@@ -14,7 +14,6 @@
   "bugs": {
     "url": "https://github.com/MRadzynski/Budgety/issues"
   },
-  "homepage": "https://github.com/MRadzynski/Budgety#readme",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
