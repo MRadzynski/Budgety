@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Navbar from './components/navbar/navbar.component';
 import HomePage from './pages/homepage/homepage.component';
+import ExpensesPage from './pages/expenses/expenses.component';
 import CustomButton from './components/custom-button/custom-button.component';
 
 import GlobalStyle from './GlobalStyles';
@@ -9,9 +9,8 @@ import GlobalStyle from './GlobalStyles';
 const App = () => (
   <div>
     <GlobalStyle />
-    <Navbar />
-    {/* <HomePage /> */}
-    <CustomButton>Add Expense</CustomButton>
+    {/* <CustomButton>Add Expense</CustomButton> */}
+    <ExpensesPage />
   </div>
 );
 

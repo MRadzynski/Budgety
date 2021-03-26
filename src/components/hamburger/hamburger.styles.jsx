@@ -15,10 +15,12 @@ export const HamburgerContainer = styled.div`
     width: 3rem;
     height: 0.5rem;
     border-radius: 10px;
-    background-color: #043d53;
+    background-color: ${({ open }) =>
+      open ? 'var(--black-shade)' : 'var(--white-shade)'};
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     :first-child {
       transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};

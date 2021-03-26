@@ -7,9 +7,10 @@ export const MenuContainer = styled.nav`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: rgba(73, 134, 204, 0.192);
+  background-color: rgba(240, 240, 240, 0.95);
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-40vw)')};
   transition: all 0.3s linear;
+  z-index: 1;
 
   @media screen and (min-width: 64rem) {
     width: 25vw;
