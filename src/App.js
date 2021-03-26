@@ -1,14 +1,15 @@
 import React from 'react';
 
-import Header from './components/header/header.component';
+import Navbar from './components/navbar/navbar.component';
 import HomePage from './pages/homepage/homepage.component';
 import CustomButton from './components/custom-button/custom-button.component';
 
-import './App.css';
+import GlobalStyle from './GlobalStyles';
 
 const App = () => (
   <div>
-    <Header />
+    <GlobalStyle />
+    <Navbar />
     {/* <HomePage /> */}
     <CustomButton>Add Expense</CustomButton>
   </div>

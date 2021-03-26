@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 import Hamburger from '../hamburger/hamburger.component';
 import Menu from '../menu/menu.component';
 
-import { HeaderContainer } from './header.styles';
+import { NavbarContainer } from './navbar.styles';
 
-const Header = () => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <HeaderContainer>
+    <NavbarContainer>
       <Hamburger open={open} setOpen={setOpen} />
       <Menu open={open} setOpen={setOpen} />
-    </HeaderContainer>
+    </NavbarContainer>
   );
 };
 
-export default Header;
+export default Navbar;

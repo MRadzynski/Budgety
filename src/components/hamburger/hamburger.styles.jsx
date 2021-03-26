@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
 export const HamburgerContainer = styled.div`
+  width: 3rem;
+  height: 3rem;
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
-  gap: 0.7rem;
-  position: absolute;
-  top: 2rem;
+  justify-content: space-around;
+  position: fixed;
+  top: 1.5rem;
   left: 2rem;
   z-index: 10;
 
   span {
-    width: 5vh;
+    width: 3rem;
     height: 0.5rem;
-    border-radius: 50px;
+    border-radius: 10px;
     background-color: #043d53;
     transition: all 0.3s linear;
     position: relative;

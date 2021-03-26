@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
+export const NavbarContainer = styled.header`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 `;
