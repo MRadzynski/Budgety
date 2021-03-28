@@ -1,6 +1,7 @@
 import React from 'react';
 
-import SignInForm from './pages/signIn/signIn.component';
+import SignIn from './pages/signIn/signIn.component';
+import SignUp from './pages/signUp/sign-up.component';
 import HomePage from './pages/homepage/homepage.component';
 import ExpensesPage from './pages/expenses/expenses.component';
 import CustomButton from './components/custom-button/custom-button.component';
@@ -12,7 +13,7 @@ const App = () => (
     <GlobalStyle />
     {/* <CustomButton>Add Expense</CustomButton> */}
     {/* <ExpensesPage /> */}
-    <SignInForm />
+    <SignUp />
   </div>
 );
 

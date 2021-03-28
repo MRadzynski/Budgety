@@ -3,7 +3,7 @@ import React from 'react';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import { SignInFormContainer } from './signIn.styles';
 
-const SignInForm = () => (
+const SignIn = () => (
   <SignInFormContainer>
     <h1>Budgety</h1>
     <form>
@@ -15,4 +15,4 @@ const SignInForm = () => (
   </SignInFormContainer>
 );
 
-export default SignInForm;
+export default SignIn;
