@@ -17,7 +17,7 @@ html {
 }
 
 body{
-  background-color: var(--primary-color)
+  background-color: var(--primary-color);
 }
 
 

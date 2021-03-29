@@ -12,9 +12,6 @@ export const CustomButtonContainer = styled.button`
   color: var(--black-shade);
   font-size: 2rem;
   position: relative;
-  /* position: absolute;
-  top: 50%;
-  left: 30%; */
 
   :hover {
     background-color: #dee2e6;
