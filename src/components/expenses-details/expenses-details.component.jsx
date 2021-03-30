@@ -1,11 +1,27 @@
 import React from 'react';
 
-import { ExpensesDetailsContainer } from './expenses-details.styles';
+import CategoriesList from '../categories-list/categories-list.component';
 import CustomButton from '../custom-button/custom-button.component';
+import {
+  ExpensesDetailsContainer,
+  OverlapsContainer,
+  Overlap,
+} from './expenses-details.styles';
 
 const ExpensesDetails = () => (
   <ExpensesDetailsContainer>
-    <CustomButton>Add Expense</CustomButton>
+    <OverlapsContainer>
+      <Overlap active>Expenses</Overlap>
+      <Overlap>Savings</Overlap>
+    </OverlapsContainer>
+    <CategoriesList />
+    <CustomButton
+      type="button"
+      bgColor="var(--primary-color)"
+      textColor="var(--white-shade)"
+    >
+      Add Expense
+    </CustomButton>
   </ExpensesDetailsContainer>
 );
 

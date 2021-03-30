@@ -24,7 +24,10 @@ const SignInUp = ({ formType }) => (
       {formType === 'sign-up' ? (
         <FormInput type="password" placeholder="Confirm password" required />
       ) : null}
-      <CustomButton>
+      <CustomButton
+        bgColor={'var(--white-shade)'}
+        textColor={'var(--black-shade)'}
+      >
         {formType === 'sign-up' ? 'Sign Up' : 'Sign In'}
       </CustomButton>
     </Form>

@@ -10,6 +10,7 @@ export const MenuContainer = styled.nav`
   background-color: rgba(240, 240, 240, 0.95);
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-40vw)')};
   transition: all 0.3s linear;
+  position: absolute;
   z-index: 1;
 
   @media screen and (min-width: 64rem) {
