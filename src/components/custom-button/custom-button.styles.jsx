@@ -12,8 +12,9 @@ export const CustomButtonContainer = styled.button`
   color: ${({ textColor }) => textColor};
   font-size: 2rem;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 
   :hover {
-    background-color: #dee2e6;
+    background-color: #395ae0;
   }
 `;

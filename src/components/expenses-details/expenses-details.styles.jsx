@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 export const ExpensesDetailsContainer = styled.div`
   width: 100%;
   height: 60vh;
@@ -26,7 +28,7 @@ export const OverlapsContainer = styled.div`
   align-items: center;
 `;
 
-export const Overlap = styled.div`
+export const Overlap = styled(Link)`
   width: 30%;
   border-top: ${({ active }) =>
     active ? '0.25rem solid var(--primary-color)' : '0'};
@@ -34,7 +36,9 @@ export const Overlap = styled.div`
   padding-top: 3px;
   font-size: 2.5rem;
   text-align: center;
+  text-decoration: none;
   color: ${({ active }) =>
     active ? 'var(--primary-color)' : 'var(--black-shade)'};
   font-weight: bold;
+  -webkit-tap-highlight-color: transparent;
 `;

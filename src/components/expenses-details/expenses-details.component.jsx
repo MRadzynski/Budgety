@@ -8,11 +8,15 @@ import {
   Overlap,
 } from './expenses-details.styles';
 
-const ExpensesDetails = () => (
+const ExpensesDetails = ({ currentPath }) => (
   <ExpensesDetailsContainer>
     <OverlapsContainer>
-      <Overlap active>Expenses</Overlap>
-      <Overlap>Savings</Overlap>
+      <Overlap to="/expenses" active={currentPath === '/expenses'}>
+        Expenses
+      </Overlap>
+      <Overlap to="/savings" active={currentPath === '/savings'}>
+        Savings
+      </Overlap>
     </OverlapsContainer>
     <CategoriesList />
     <CustomButton

@@ -6,7 +6,7 @@ export const ExpensesPageContainer = styled.div`
 `;
 
 export const ExpensesTitle = styled.h1`
-  font-size: 3.2rem;
+  font-size: 8vw;
   letter-spacing: 0.2rem;
   color: var(--white-shade);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -16,19 +16,19 @@ export const ExpensesTitle = styled.h1`
 `;
 
 export const ChartContainer = styled.div`
-  width: 21rem;
-  height: 21rem;
-  background-color: var(--white-shade);
-  border-radius: 50%;
-  position: absolute;
-  top: 4%;
-  right: 4%;
+  width: 25vh;
+  height: 25vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  background-color: var(--white-shade);
+  position: absolute;
+  top: 4%;
+  right: 4%;
 `;
 
 export const ChartPrice = styled.h2`
   color: var(--black-shade);
-  font-size: 2.8rem;
+  font-size: 3.5vh;
 `;
