@@ -11,10 +11,16 @@ import {
 const ExpensesDetails = ({ currentPath }) => (
   <ExpensesDetailsContainer>
     <OverlapsContainer>
-      <Overlap to="/expenses" active={currentPath === '/expenses'}>
+      <Overlap
+        to="/expenses"
+        active={currentPath === '/expenses' ? 'true' : null}
+      >
         Expenses
       </Overlap>
-      <Overlap to="/savings" active={currentPath === '/savings'}>
+      <Overlap
+        to="/savings"
+        active={currentPath === '/savings' ? 'true' : null}
+      >
         Savings
       </Overlap>
     </OverlapsContainer>

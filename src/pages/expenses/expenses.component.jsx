@@ -1,7 +1,8 @@
 import React from 'react';
-
 import { useLocation } from 'react-router-dom';
-import Navbar from '../../components/navbar/navbar.component';
+
+import CATEGORIES_DATA from '../../categories.data';
+
 import ExpensesDetails from '../../components/expenses-details/expenses-details.component';
 
 import {
@@ -13,16 +14,24 @@ import {
 
 const ExpensesPage = () => {
   let location = useLocation();
+  let overallAmount = Object.entries(CATEGORIES_DATA).reduce(
+    (acc, item) => acc + item[1].amount,
+    0
+  );
+  let formattedOverallAmount = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(overallAmount);
+
   return (
     <ExpensesPageContainer>
       <ExpensesTitle>
         {location.pathname === '/expenses' ? 'Expenses' : 'Savings'}
       </ExpensesTitle>
       <ChartContainer>
-        <ChartPrice>$5.712.345,34</ChartPrice>
+        <ChartPrice>{formattedOverallAmount}</ChartPrice>
       </ChartContainer>
       <ExpensesDetails currentPath={location.pathname} />
-      {/* <Navbar /> */}
     </ExpensesPageContainer>
   );
 };

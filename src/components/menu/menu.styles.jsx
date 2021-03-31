@@ -41,4 +41,5 @@ export const MenuLink = styled(Link)`
   text-decoration: none;
   color: var(--black-shade);
   font-weight: bold;
+  -webkit-tap-highlight-color: transparent;
 `;
