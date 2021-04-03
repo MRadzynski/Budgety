@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import CustomButton from '../custom-button/custom-button.component';
-import { auth } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 import {
   SignInUpContainer,
@@ -44,7 +44,7 @@ const SignInUp = ({ formType }) => {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((userData) => {
-          console.log(userData);
+          console.log(userData.user);
         })
         .catch((error) => {
           console.log(error);
@@ -53,7 +53,7 @@ const SignInUp = ({ formType }) => {
       auth
         .signInWithEmailAndPassword(email, password)
         .then((userData) => {
-          console.log(userData);
+          console.log(userData.user);
         })
         .catch((error) => console.log(error));
     }
@@ -95,11 +95,23 @@ const SignInUp = ({ formType }) => {
 
         <CustomButton
           type="submit"
-          bgColor={'var(--white-shade)'}
-          textColor={'var(--black-shade)'}
+          bgColor="var(--white-shade)"
+          hoverColor="#4285f4"
+          textColor="var(--black-shade)"
         >
           {formType === 'sign-up' ? 'Sign Up' : 'Sign In'}
         </CustomButton>
+        {formType === 'sign-in' ? (
+          <CustomButton
+            type="button"
+            bgColor="#4285f4"
+            hoverColor="#357ae8"
+            textColor="var(--white-shade)"
+            onClick={signInWithGoogle}
+          >
+            Sign In with Google
+          </CustomButton>
+        ) : null}
       </Form>
       <FormSubtext>
         {formType === 'sign-up'
