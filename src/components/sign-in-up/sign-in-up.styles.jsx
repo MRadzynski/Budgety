@@ -17,10 +17,6 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   gap: 3rem;
-
-  button {
-    margin-top: 2rem;
-  }
 `;
 
 export const FormInput = styled.input`
@@ -63,6 +59,16 @@ export const FormSubtext = styled.h2`
   font-weight: normal;
   text-align: center;
   letter-spacing: 0.15rem;
+`;
+
+export const ErrorMessageContainer = styled.div`
+  width: 60%;
+  visibility: ${({ display }) => (display === 'true' ? 'visible' : 'hidden')};
+  margin-top: -2rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--errorMessage);
 `;
 
 export const LogoContainer = styled.div`

@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   --primary-color: #4361EE;
   --white-shade: #F5F5F5;
   --black-shade: #353535;
+  --errorMessage: #ed4337;
 }
 * {
   margin: 0;

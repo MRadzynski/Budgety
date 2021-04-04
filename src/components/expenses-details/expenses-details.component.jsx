@@ -28,6 +28,7 @@ const ExpensesDetails = ({ currentPath }) => (
     <CustomButton
       type="button"
       bgColor="var(--primary-color)"
+      hoverColor="#395ae0"
       textColor="var(--white-shade)"
     >
       Add Expense

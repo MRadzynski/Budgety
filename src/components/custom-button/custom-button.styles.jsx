@@ -15,6 +15,7 @@ export const CustomButtonContainer = styled.button`
   -webkit-tap-highlight-color: transparent;
 
   :hover {
-    background-color: #395ae0;
+    background-color: ${({ hoverColor }) => hoverColor};
+    color: var(--white-shade);
   }
 `;
