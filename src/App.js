@@ -8,20 +8,29 @@ import SignUp from './components/sign-up/sign-up.component';
 import ExpensesPage from './pages/expenses/expenses.component';
 
 import GlobalStyle from './GlobalStyles';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserDocument } from './firebase/firebase.utils';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
-      setCurrentUser(userAuth);
+    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserDocument(userAuth);
+
+        userRef.onSnapshot((snapshot) => {
+          setCurrentUser({ id: snapshot.id, ...snapshot.data() });
+        });
+      } else {
+        setCurrentUser(null);
+      }
     });
 
     return () => {
       unsubscribe();
     };
   }, []);
+
   return (
     <div>
       <GlobalStyle />

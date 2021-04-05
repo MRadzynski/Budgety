@@ -35,27 +35,18 @@ const SignInUp = ({ formType }) => {
     const { email, password } = userCredentials;
     setError('false');
 
-    if (formType === 'sign-up') {
-      if (userCredentials.password !== userCredentials.confirmPassword) {
-        setError('true');
-        return;
+    try {
+      if (formType === 'sign-up') {
+        if (userCredentials.password !== userCredentials.confirmPassword) {
+          setError('true');
+          return;
+        }
+        await auth.createUserWithEmailAndPassword(email, password);
+      } else {
+        await auth.signInWithEmailAndPassword(email, password);
       }
-
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((userData) => {
-          console.log(userData.user);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      auth
-        .signInWithEmailAndPassword(email, password)
-        .then((userData) => {
-          console.log(userData.user);
-        })
-        .catch((error) => console.log(error));
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
