@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { setCurrentUser } from './redux/user/user.actions';
 import Navbar from './components/navbar/navbar.component';
 import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
@@ -10,9 +11,7 @@ import ExpensesPage from './pages/expenses/expenses.component';
 import GlobalStyle from './GlobalStyles';
 import { auth, createUserDocument } from './firebase/firebase.utils';
 
-const App = () => {
-  const [currentUser, setCurrentUser] = useState(null);
-
+const App = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -29,12 +28,12 @@ const App = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [setCurrentUser]);
 
   return (
     <div>
       <GlobalStyle />
-      <Navbar />
+      {currentUser ? <Navbar /> : null}
       <Switch>
         <Route path="/expenses">
           <ExpensesPage />
@@ -61,4 +60,12 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
