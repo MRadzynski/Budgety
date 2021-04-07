@@ -9,6 +9,7 @@ import Navbar from './components/navbar/navbar.component';
 import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
 import ExpensesPage from './pages/expenses/expenses.component';
+import ExchangePage from './pages/exchange/exchange.component';
 
 import GlobalStyle from './GlobalStyles';
 import { auth, createUserDocument } from './firebase/firebase.utils';
@@ -42,6 +43,9 @@ const App = ({ setCurrentUser, currentUser }) => {
         </Route>
         <Route path="/savings">
           <ExpensesPage />
+        </Route>
+        <Route path="/exchange">
+          <ExchangePage />
         </Route>
         <Route path="/settings"></Route>
         <Route
