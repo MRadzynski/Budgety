@@ -22,9 +22,26 @@ export const ExchangeList = styled.ul`
 
 export const ExchangeListItem = styled.li`
   display: flex;
+  justify-content: space-between;
   padding: 3rem;
 
   &:nth-child(2n) {
     background-color: #e0e0e0;
   }
+`;
+
+export const CurrencyRate = styled.h2`
+  font-size: 2.4rem;
+  letter-spacing: 0.1rem;
+`;
+
+export const CurrencyName = styled.h2`
+  font-size: 1.8rem;
+  letter-spacing: 0.15rem;
+`;
+
+export const DateInfo = styled.h3`
+  color: var(--black-shade);
+  font-size: 1.6rem;
+  text-align: center;
 `;
