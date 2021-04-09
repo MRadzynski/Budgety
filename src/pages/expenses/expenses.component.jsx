@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import CATEGORIES_DATA from '../../categories.data';
+import { selectExpenses } from '../../redux/finance/finance.selectors';
+import { setExpenses } from '../../redux/finance/finance.actions';
 
 import ExpensesDetails from '../../components/expenses-details/expenses-details.component';
+
+import { formatCurrency } from '../../redux/finance/finance.utils';
 
 import {
   ExpensesPageContainer,
@@ -12,16 +16,9 @@ import {
   ChartPrice,
 } from './expenses.styles';
 
-const ExpensesPage = () => {
+const ExpensesPage = ({ setExpenses, sumExpenses }) => {
+  useEffect(() => setExpenses(), [setExpenses]);
   let location = useLocation();
-  let overallAmount = Object.entries(CATEGORIES_DATA).reduce(
-    (acc, item) => acc + item[1].amount,
-    0
-  );
-  let formattedOverallAmount = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(overallAmount);
 
   return (
     <ExpensesPageContainer>
@@ -29,11 +26,19 @@ const ExpensesPage = () => {
         {location.pathname === '/expenses' ? 'Expenses' : 'Savings'}
       </ExpensesTitle>
       <ChartContainer>
-        <ChartPrice>{formattedOverallAmount}</ChartPrice>
+        <ChartPrice>{formatCurrency(sumExpenses)}</ChartPrice>
       </ChartContainer>
       <ExpensesDetails currentPath={location.pathname} />
     </ExpensesPageContainer>
   );
 };
 
-export default ExpensesPage;
+const mapStateToProps = (state) => ({
+  sumExpenses: selectExpenses(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setExpenses: () => dispatch(setExpenses()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpensesPage);
