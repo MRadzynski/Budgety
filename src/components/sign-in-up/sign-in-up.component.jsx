@@ -8,6 +8,7 @@ import {
   FormSubtext,
   LogoContainer,
   FormInput,
+  SignInUpLink,
 } from './sign-in-up.styles';
 
 import Logo from '../../assets/logo.png';
@@ -31,11 +32,17 @@ const SignInUp = ({ formType }) => (
         {formType === 'sign-up' ? 'Sign Up' : 'Sign In'}
       </CustomButton>
     </Form>
-    <FormSubtext>
-      {formType === 'sign-up'
-        ? `Already have an account? Sign In!`
-        : `Don't have an account? Sign Up!`}
-    </FormSubtext>
+    {formType === 'sign-up' ? (
+      <FormSubtext>
+        Already have an account?
+        <SignInUpLink to="/signin">Sign In!</SignInUpLink>
+      </FormSubtext>
+    ) : (
+      <FormSubtext>
+        Don't have an account?
+        <SignInUpLink to="/signup">Sign Up!</SignInUpLink>
+      </FormSubtext>
+    )}
   </SignInUpContainer>
 );
 

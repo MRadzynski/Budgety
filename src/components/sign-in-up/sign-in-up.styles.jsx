@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const SignInUpContainer = styled.div`
   width: 100vw;
@@ -74,4 +75,14 @@ export const LogoContainer = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+export const SignInUpLink = styled(Link)`
+  text-decoration: none;
+  font-size: 110%;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  margin-left: 1rem;
+  color: #33cfff;
+  border-bottom: 1px solid #33cfff;
 `;
