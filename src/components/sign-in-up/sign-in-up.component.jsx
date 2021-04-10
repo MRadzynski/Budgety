@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import CustomButton from '../custom-button/custom-button.component';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+
 import {
   SignInUpContainer,
   Form,
@@ -9,41 +11,113 @@ import {
   LogoContainer,
   FormInput,
   SignInUpLink,
+  ErrorMessageContainer,
 } from './sign-in-up.styles';
 
 import Logo from '../../assets/logo.png';
 
-const SignInUp = ({ formType }) => (
-  <SignInUpContainer>
-    <FormTitle>Budgety</FormTitle>
-    <LogoContainer>
-      <img src={Logo} alt="Budgety logo" />
-    </LogoContainer>
-    <Form>
-      <FormInput type="email" placeholder="Email" required />
-      <FormInput type="password" placeholder="Password" required />
+const SignInUp = ({ formType }) => {
+  const [userCredentials, setUserCredentails] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [error, setError] = useState('false');
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setUserCredentails({ ...userCredentials, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { email, password } = userCredentials;
+    setError('false');
+
+    try {
+      if (formType === 'sign-up') {
+        if (userCredentials.password !== userCredentials.confirmPassword) {
+          setError('true');
+          return;
+        }
+        await auth.createUserWithEmailAndPassword(email, password);
+      } else {
+        await auth.signInWithEmailAndPassword(email, password);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <SignInUpContainer>
+      <FormTitle>Budgety</FormTitle>
+      <LogoContainer>
+        <img src={Logo} alt="Budgety logo" />
+      </LogoContainer>
+      <Form onSubmit={handleSubmit}>
+        <FormInput
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          required
+        />
+        <FormInput
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+          required
+        />
+        {formType === 'sign-up' ? (
+          <FormInput
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            onChange={handleChange}
+            required
+          />
+        ) : null}
+        <ErrorMessageContainer display={error}>
+          Passwords don't match!
+        </ErrorMessageContainer>
+
+        <CustomButton
+          type="submit"
+          bgColor="var(--white-shade)"
+          hoverColor="#4285f4"
+          textColor="var(--black-shade)"
+        >
+          {formType === 'sign-up' ? 'Sign Up' : 'Sign In'}
+        </CustomButton>
+        {formType === 'sign-in' ? (
+          <CustomButton
+            type="button"
+            bgColor="#4285f4"
+            hoverColor="#357ae8"
+            textColor="var(--white-shade)"
+            onClick={signInWithGoogle}
+          >
+            Sign In with Google
+          </CustomButton>
+        ) : null}
+      </Form>
       {formType === 'sign-up' ? (
-        <FormInput type="password" placeholder="Confirm password" required />
-      ) : null}
-      <CustomButton
-        bgColor={'var(--white-shade)'}
-        textColor={'var(--black-shade)'}
-      >
-        {formType === 'sign-up' ? 'Sign Up' : 'Sign In'}
-      </CustomButton>
-    </Form>
-    {formType === 'sign-up' ? (
-      <FormSubtext>
-        Already have an account?
-        <SignInUpLink to="/signin">Sign In!</SignInUpLink>
-      </FormSubtext>
-    ) : (
-      <FormSubtext>
-        Don't have an account?
-        <SignInUpLink to="/signup">Sign Up!</SignInUpLink>
-      </FormSubtext>
-    )}
-  </SignInUpContainer>
-);
+        <FormSubtext>
+          Already have an account?
+          <SignInUpLink to="/signin">Sign In!</SignInUpLink>
+        </FormSubtext>
+      ) : (
+        <FormSubtext>
+          Don't have an account?
+          <SignInUpLink to="/signup">Sign Up!</SignInUpLink>
+        </FormSubtext>
+      )}
+    </SignInUpContainer>
+  );
+};
 
 export default SignInUp;
