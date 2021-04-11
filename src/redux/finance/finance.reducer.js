@@ -1,5 +1,5 @@
 import { FinanceAcionTypes } from './finance.types';
-import { sumExpenses } from './finance.utils';
+import { sumExpenses, sumIncome } from './finance.utils';
 
 const INITIAL_STATE = {
   balance: 0,
@@ -14,6 +14,11 @@ const financeReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         expenses: sumExpenses(),
+      };
+    case FinanceAcionTypes.SET_INCOME:
+      return {
+        ...state,
+        income: sumIncome(),
       };
     default:
       return state;

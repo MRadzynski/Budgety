@@ -6,3 +6,8 @@ export const selectExpenses = createSelector(
   [selectFinance],
   (finance) => finance.expenses
 );
+
+export const selectIncome = createSelector(
+  [selectFinance],
+  (finance) => finance.income
+);

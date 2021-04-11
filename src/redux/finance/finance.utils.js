@@ -8,6 +8,8 @@ export const sumExpenses = () => {
   return expenses.toFixed(2);
 };
 
+export const sumIncome = () => {};
+
 export const formatCurrency = (money) =>
   new Intl.NumberFormat('en-US', {
     style: 'currency',
