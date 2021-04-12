@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import CustomButton from '../custom-button/custom-button.component';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+
+import CustomButton from '../custom-button/custom-button.component';
 
 import {
   SignInUpContainer,

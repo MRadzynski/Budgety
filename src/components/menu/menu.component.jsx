@@ -1,24 +1,42 @@
 import React from 'react';
+import { auth } from '../../firebase/firebase.utils';
+import { useHistory } from 'react-router-dom';
 
-import { MenuContainer, MenuList, MenuItem, MenuLink } from './menu.styles';
+import {
+  MenuContainer,
+  MenuList,
+  MenuItem,
+  MenuLink,
+  MenuOverlay,
+} from './menu.styles';
+const Menu = ({ open, setOpen }) => {
+  const history = useHistory();
 
-const Menu = ({ open, setOpen }) => (
-  <MenuContainer open={open} setOpen={setOpen}>
-    <MenuList>
-      <MenuItem>
-        <MenuLink to="/">Home</MenuLink>
-      </MenuItem>
-      <MenuItem>
-        <MenuLink to="/expenses">Expenses</MenuLink>
-      </MenuItem>
-      <MenuItem>
-        <MenuLink to="/exchange">Exchange</MenuLink>
-      </MenuItem>
-      <MenuItem>
-        <MenuLink to="/settings">Settings</MenuLink>
-      </MenuItem>
-    </MenuList>
-  </MenuContainer>
-);
+  const handleLogout = async () => {
+    await auth.signOut();
+    history.push('/signin');
+  };
+
+  return (
+    <MenuContainer open={open}>
+      <MenuList>
+        <MenuItem>
+          <MenuLink to="/">Home</MenuLink>
+        </MenuItem>
+        <MenuItem>
+          <MenuLink to="/expenses">Expenses</MenuLink>
+        </MenuItem>
+        <MenuItem>
+          <MenuLink to="/exchange">Exchange</MenuLink>
+        </MenuItem>
+        <MenuItem>
+          <MenuLink to="/settings">Settings</MenuLink>
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+      </MenuList>
+      <MenuOverlay open={open} onClick={() => setOpen(!open)} />
+    </MenuContainer>
+  );
+};
 
 export default Menu;
