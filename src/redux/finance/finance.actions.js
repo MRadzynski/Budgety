@@ -1,9 +1,6 @@
-import { FinanceAcionTypes } from './finance.types';
+import { FinanceActionTypes } from './finance.types';
 
-export const setExpenses = () => ({
-  type: FinanceAcionTypes.SET_EXPENSES,
-});
-
-export const setIncome = () => ({
-  type: FinanceAcionTypes.SET_INCOME,
+export const setFinances = (finances) => ({
+  type: FinanceActionTypes.SET_FINANCES,
+  payload: finances,
 });

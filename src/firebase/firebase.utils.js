@@ -2,6 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+import FinanceSchema from './finances.schema';
+
 const config = {
   apiKey: 'AIzaSyB3uJxFSTpQpdqN9XOT3HtDrRi0aY3_y-Q',
   authDomain: 'budgety-database.firebaseapp.com',
@@ -34,6 +36,26 @@ export const createUserDocument = async (userAuth, additionalData) => {
     return userRef;
   } catch (error) {
     console.log('User creating error', error.message);
+  }
+};
+
+export const getUserFinancesRef = async (userId) => {
+  const financesRef = firestore
+    .collection('finances')
+    .where('userId', '==', userId);
+  const financesSnapshot = await financesRef.get();
+
+  if (financesSnapshot.empty) {
+    const financesDocRef = firestore.collection('finances').doc();
+    await financesDocRef.set({
+      userId,
+      expenses: FinanceSchema.expenses,
+      income: FinanceSchema.income,
+      savings: FinanceSchema.savings,
+    });
+    return financesDocRef;
+  } else {
+    return financesSnapshot.docs[0].ref;
   }
 };
 
