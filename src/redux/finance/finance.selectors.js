@@ -7,6 +7,11 @@ export const selectExpenses = createSelector(
   (finance) => finance.expenses
 );
 
+export const selectTotalExpenses = createSelector(
+  [selectFinance],
+  (finance) => finance.totalExpenses
+);
+
 export const selectIncome = createSelector(
   [selectFinance],
   (finance) => finance.income

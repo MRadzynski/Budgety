@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { selectExpenses } from '../../redux/finance/finance.selectors';
 
 import CategoriesList from '../categories-list/categories-list.component';
 import CustomButton from '../custom-button/custom-button.component';
@@ -8,7 +11,7 @@ import {
   Overlap,
 } from './expenses-details.styles';
 
-const ExpensesDetails = ({ currentPath }) => (
+const ExpensesDetails = ({ currentPath, expenses }) => (
   <ExpensesDetailsContainer>
     <OverlapsContainer>
       <Overlap
@@ -24,7 +27,7 @@ const ExpensesDetails = ({ currentPath }) => (
         Savings
       </Overlap>
     </OverlapsContainer>
-    <CategoriesList />
+    <CategoriesList categoriesData={expenses} />
     <CustomButton
       type="button"
       bgColor="var(--primary-color)"
@@ -36,4 +39,8 @@ const ExpensesDetails = ({ currentPath }) => (
   </ExpensesDetailsContainer>
 );
 
-export default ExpensesDetails;
+const mapStateToProps = (state) => ({
+  expenses: selectExpenses(state),
+});
+
+export default connect(mapStateToProps)(ExpensesDetails);

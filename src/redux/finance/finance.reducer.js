@@ -1,24 +1,24 @@
-import { FinanceAcionTypes } from './finance.types';
-import { sumExpenses, sumIncome } from './finance.utils';
+import { FinanceActionTypes } from './finance.types';
+import { calculateSum } from './finance.utils';
 
 const INITIAL_STATE = {
-  balance: 0,
-  expenses: 0,
-  income: 0,
-  savings: 0,
+  balance: undefined,
+  totalExpenses: undefined,
+  totalIncome: undefined,
+  expenses: null,
+  income: null,
+  savings: null,
 };
 
 const financeReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FinanceAcionTypes.SET_EXPENSES:
+    case FinanceActionTypes.SET_FINANCES:
       return {
         ...state,
-        expenses: sumExpenses(),
-      };
-    case FinanceAcionTypes.SET_INCOME:
-      return {
-        ...state,
-        income: sumIncome(),
+        expenses: action.payload.expenses,
+        income: action.payload.income,
+        savings: action.payload.savings,
+        totalExpenses: calculateSum(action.payload.expenses),
       };
     default:
       return state;

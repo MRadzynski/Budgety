@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CATEGORIES_DATA from '../../categories.data.js';
+import { formatCurrency } from '../../redux/finance/finance.utils';
 
 import {
   CategoriesListContainer,
@@ -12,9 +12,8 @@ import {
   CategoryPrice,
 } from './categories-list.styles';
 
-const CategoriesList = () => {
-  let categoriesData = Object.entries(CATEGORIES_DATA).map((item) => item[1]);
-
+const CategoriesList = ({ categoriesData }) => {
+  if (categoriesData === null) return <h1>Loading...</h1>;
   return (
     <CategoriesListContainer>
       <CategoryList>
@@ -22,17 +21,14 @@ const CategoriesList = () => {
           <Category key={categoryData.id}>
             <CategoryLogo bgColor={categoryData.bgColor}>
               <img
-                src={categoryData.image}
-                alt={categoryData.title + ' icon'}
+                src={categoryData.category + 'Icon'}
+                alt={categoryData.category + ' icon'}
               />
             </CategoryLogo>
             <CategoryInfoContainer>
-              <CategoryName>{categoryData.title}</CategoryName>
+              <CategoryName>{categoryData.category}</CategoryName>
               <CategoryPrice>
-                {new Intl.NumberFormat('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                }).format(categoryData.amount)}
+                {formatCurrency(categoryData.amount)}
               </CategoryPrice>
             </CategoryInfoContainer>
           </Category>

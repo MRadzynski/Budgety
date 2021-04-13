@@ -1,17 +1,12 @@
-import CATEGORIES_DATA from '../../categories.data';
-
-export const sumExpenses = () => {
-  const expenses = Object.entries(CATEGORIES_DATA).reduce(
-    (acc, item) => acc + item[1].amount,
-    0
-  );
-  return expenses.toFixed(2);
+export const calculateSum = (categories) => {
+  if (!categories) return;
+  return categories.reduce((acc, category) => acc + category.amount, 0);
 };
-
-export const sumIncome = () => {};
 
 export const formatCurrency = (money) =>
   new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(money);

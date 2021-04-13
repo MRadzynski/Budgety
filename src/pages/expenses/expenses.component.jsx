@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { selectExpenses } from '../../redux/finance/finance.selectors';
-import { setExpenses } from '../../redux/finance/finance.actions';
+import { selectTotalExpenses } from '../../redux/finance/finance.selectors';
 
 import ExpensesDetails from '../../components/expenses-details/expenses-details.component';
 
@@ -16,8 +15,7 @@ import {
   ChartPrice,
 } from './expenses.styles';
 
-const ExpensesPage = ({ setExpenses, sumExpenses }) => {
-  useEffect(() => setExpenses(), [setExpenses]);
+const ExpensesPage = ({ totalExpenses }) => {
   let location = useLocation();
 
   return (
@@ -26,7 +24,11 @@ const ExpensesPage = ({ setExpenses, sumExpenses }) => {
         {location.pathname === '/expenses' ? 'Expenses' : 'Savings'}
       </ExpensesTitle>
       <ChartContainer>
-        <ChartPrice>{formatCurrency(sumExpenses)}</ChartPrice>
+        {totalExpenses === null ? (
+          <h1>Calculating...</h1>
+        ) : (
+          <ChartPrice>{formatCurrency(totalExpenses)}</ChartPrice>
+        )}
       </ChartContainer>
       <ExpensesDetails currentPath={location.pathname} />
     </ExpensesPageContainer>
@@ -34,11 +36,7 @@ const ExpensesPage = ({ setExpenses, sumExpenses }) => {
 };
 
 const mapStateToProps = (state) => ({
-  sumExpenses: selectExpenses(state),
+  totalExpenses: selectTotalExpenses(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setExpenses: () => dispatch(setExpenses()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ExpensesPage);
+export default connect(mapStateToProps)(ExpensesPage);
