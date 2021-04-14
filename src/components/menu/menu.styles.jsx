@@ -39,6 +39,10 @@ export const MenuItem = styled.li`
   width: 100%;
   padding: 1.5rem 0;
   text-align: center;
+
+  &:last-child {
+    cursor: pointer;
+  }
 `;
 
 export const MenuLink = styled(Link)`

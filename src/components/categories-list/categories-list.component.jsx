@@ -21,7 +21,7 @@ const CategoriesList = ({ categoriesData }) => {
           <Category key={categoryData.id}>
             <CategoryLogo bgColor={categoryData.bgColor}>
               <img
-                src={categoryData.category + 'Icon'}
+                src={`assets/icons/${categoryData.category.toLowerCase()}.png`}
                 alt={categoryData.category + ' icon'}
               />
             </CategoryLogo>

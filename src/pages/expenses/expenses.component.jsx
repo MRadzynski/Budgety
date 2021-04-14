@@ -24,7 +24,7 @@ const ExpensesPage = ({ totalExpenses }) => {
         {location.pathname === '/expenses' ? 'Expenses' : 'Savings'}
       </ExpensesTitle>
       <ChartContainer>
-        {totalExpenses === null ? (
+        {totalExpenses === undefined ? (
           <h1>Calculating...</h1>
         ) : (
           <ChartPrice>{formatCurrency(totalExpenses)}</ChartPrice>

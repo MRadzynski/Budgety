@@ -20,6 +20,11 @@ const financeReducer = (state = INITIAL_STATE, action) => {
         savings: action.payload.savings,
         totalExpenses: calculateSum(action.payload.expenses),
       };
+    case FinanceActionTypes.SET_EXPENSES:
+      return {
+        ...state,
+        expenses: action.payload,
+      };
     default:
       return state;
   }

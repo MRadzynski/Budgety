@@ -14,8 +14,6 @@ import {
   ErrorMessageContainer,
 } from './sign-in-up.styles';
 
-import Logo from '../../assets/logo.png';
-
 const SignInUp = ({ formType }) => {
   const [userCredentials, setUserCredentails] = useState({
     email: '',
@@ -55,7 +53,7 @@ const SignInUp = ({ formType }) => {
     <SignInUpContainer>
       <FormTitle>Budgety</FormTitle>
       <LogoContainer>
-        <img src={Logo} alt="Budgety logo" />
+        <img src="assets/logo.png" alt="Budgety logo" />
       </LogoContainer>
       <Form onSubmit={handleSubmit}>
         <FormInput

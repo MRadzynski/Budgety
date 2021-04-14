@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { selectExpenses } from '../../redux/finance/finance.selectors';
 
+import ExpenseForm from '../expense-form/expense-form.component';
 import CategoriesList from '../categories-list/categories-list.component';
 import CustomButton from '../custom-button/custom-button.component';
 import {
@@ -13,7 +14,7 @@ import {
 
 const ExpensesDetails = ({ currentPath, expenses }) => (
   <ExpensesDetailsContainer>
-    <OverlapsContainer>
+    {/* <OverlapsContainer>
       <Overlap
         to="/expenses"
         active={currentPath === '/expenses' ? 'true' : null}
@@ -26,16 +27,17 @@ const ExpensesDetails = ({ currentPath, expenses }) => (
       >
         Savings
       </Overlap>
-    </OverlapsContainer>
-    <CategoriesList categoriesData={expenses} />
-    <CustomButton
+    </OverlapsContainer> */}
+    {/* <CategoriesList categoriesData={expenses} /> */}
+    <ExpenseForm />
+    {/* <CustomButton
       type="button"
       bgColor="var(--primary-color)"
       hoverColor="#395ae0"
       textColor="var(--white-shade)"
     >
       Add Expense
-    </CustomButton>
+    </CustomButton> */}
   </ExpensesDetailsContainer>
 );
 

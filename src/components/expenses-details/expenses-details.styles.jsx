@@ -18,6 +18,7 @@ export const ExpensesDetailsContainer = styled.div`
   button {
     position: absolute;
     bottom: 3%;
+    left: 25%;
   }
 `;
 

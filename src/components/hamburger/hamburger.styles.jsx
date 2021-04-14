@@ -10,6 +10,7 @@ export const HamburgerContainer = styled.div`
   top: 1.5rem;
   left: 2rem;
   z-index: 10;
+  cursor: pointer;
 
   span {
     width: 3rem;
