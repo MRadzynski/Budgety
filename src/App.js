@@ -57,10 +57,16 @@ const App = ({ setCurrentUser, currentUser, setFinances }) => {
       <GlobalStyle />
       {currentUser ? <Navbar /> : null}
       <Switch>
-        <Route path="/expenses">
+        <Route exact path="/expenses">
           <ExpensesPage />
         </Route>
-        <Route path="/savings">
+        <Route path="/expenses/add-expenses">
+          <ExpensesPage />
+        </Route>
+        <Route exact path="/income">
+          <ExpensesPage />
+        </Route>
+        <Route path="/income/add-income">
           <ExpensesPage />
         </Route>
         <Route path="/exchange">

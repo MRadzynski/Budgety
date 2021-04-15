@@ -9,3 +9,8 @@ export const setExpenses = (expenses) => ({
   type: FinanceActionTypes.SET_EXPENSES,
   payload: expenses,
 });
+
+export const setIncome = (income) => ({
+  type: FinanceActionTypes.SET_INCOME,
+  payload: income,
+});

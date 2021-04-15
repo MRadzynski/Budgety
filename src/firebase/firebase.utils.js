@@ -59,13 +59,17 @@ export const getUserFinancesRef = async (userId) => {
   }
 };
 
-export const updateFinances = async (userId, expenseObj) => {
+export const updateFinances = async (userId, expenseObj, incomeObj) => {
   const financesRef = firestore
     .collection('finances')
     .where('userId', '==', userId);
   const financesSnapshot = await financesRef.get();
 
-  financesSnapshot.docs[0].ref.update({ expenses: expenseObj });
+  if (expenseObj === null) {
+    financesSnapshot.docs[0].ref.update({ income: incomeObj });
+  } else {
+    financesSnapshot.docs[0].ref.update({ expenses: expenseObj });
+  }
 };
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
