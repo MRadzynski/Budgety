@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import CustomButton from '../custom-button/custom-button.component';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+
+import CustomButton from '../custom-button/custom-button.component';
 
 import {
   SignInUpContainer,
@@ -13,8 +14,6 @@ import {
   SignInUpLink,
   ErrorMessageContainer,
 } from './sign-in-up.styles';
-
-import Logo from '../../assets/logo.png';
 
 const SignInUp = ({ formType }) => {
   const [userCredentials, setUserCredentails] = useState({
@@ -55,7 +54,7 @@ const SignInUp = ({ formType }) => {
     <SignInUpContainer>
       <FormTitle>Budgety</FormTitle>
       <LogoContainer>
-        <img src={Logo} alt="Budgety logo" />
+        <img src="assets/logo.png" alt="Budgety logo" />
       </LogoContainer>
       <Form onSubmit={handleSubmit}>
         <FormInput
