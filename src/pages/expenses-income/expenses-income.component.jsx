@@ -7,25 +7,25 @@ import {
   selectTotalIncome,
 } from '../../redux/finance/finance.selectors';
 
-import ExpensesDetails from '../../components/expenses-details/expenses-details.component';
+import ExpensesIncomeDetails from '../../components/expenses-income-details/expenses-income-details.component';
 
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
 import {
-  ExpensesPageContainer,
-  ExpensesTitle,
+  ExpensesIncomePageContainer,
+  ExpensesIncomeTitle,
   ChartContainer,
   ChartPrice,
-} from './expenses.styles';
+} from './expenses-income.styles';
 
-const ExpensesPage = ({ totalExpenses, totalIncome }) => {
+const ExpensesIncomePage = ({ totalExpenses, totalIncome }) => {
   let location = useLocation();
 
   return (
-    <ExpensesPageContainer>
-      <ExpensesTitle>
+    <ExpensesIncomePageContainer>
+      <ExpensesIncomeTitle>
         {location.pathname.includes('/expenses') ? 'Expenses' : 'Income'}
-      </ExpensesTitle>
+      </ExpensesIncomeTitle>
       <ChartContainer>
         {location.pathname.includes('/expenses') ? (
           <ChartContainer>
@@ -45,8 +45,8 @@ const ExpensesPage = ({ totalExpenses, totalIncome }) => {
           </ChartContainer>
         )}
       </ChartContainer>
-      <ExpensesDetails currentPath={location.pathname} />
-    </ExpensesPageContainer>
+      <ExpensesIncomeDetails currentPath={location.pathname} />
+    </ExpensesIncomePageContainer>
   );
 };
 
@@ -55,4 +55,4 @@ const mapStateToProps = (state) => ({
   totalIncome: selectTotalIncome(state),
 });
 
-export default connect(mapStateToProps)(ExpensesPage);
+export default connect(mapStateToProps)(ExpensesIncomePage);

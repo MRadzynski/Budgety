@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const ExpensesPageContainer = styled.div`
+export const ExpensesIncomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const ExpensesTitle = styled.h1`
+export const ExpensesIncomeTitle = styled.h1`
   font-size: 8vw;
   letter-spacing: 0.2rem;
   color: var(--white-shade);

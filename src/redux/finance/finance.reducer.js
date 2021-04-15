@@ -1,9 +1,6 @@
 import { FinanceActionTypes } from './finance.types';
 
 const INITIAL_STATE = {
-  balance: undefined,
-  totalExpenses: undefined,
-  totalIncome: undefined,
   expenses: null,
   income: null,
   savings: null,

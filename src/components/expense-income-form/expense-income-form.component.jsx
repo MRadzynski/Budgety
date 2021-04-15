@@ -15,18 +15,18 @@ import CustomButton from '../custom-button/custom-button.component';
 import { updateFinances } from '../../firebase/firebase.utils';
 
 import {
-  ExpenseFormContainer,
+  ExpenseIncomeFormContainer,
   ExitForm,
-  AddExpenseForm,
+  AddExpenseIncomeForm,
   FormHeading,
   FormFieldContainer,
   FormInput,
   FormLabel,
   SelectList,
   ListItem,
-} from './expense-form.styles';
+} from './expense-income-form.styles';
 
-const ExpenseForm = ({
+const ExpenseIncomeForm = ({
   type,
   expenses,
   income,
@@ -82,12 +82,12 @@ const ExpenseForm = ({
   };
 
   return (
-    <ExpenseFormContainer>
+    <ExpenseIncomeFormContainer>
       <ExitForm onClick={() => history.push(`/${type}`)}>&#10005;</ExitForm>
       <FormHeading>
         Add {type === 'expenses' ? 'Expense' : 'Income'}
       </FormHeading>
-      <AddExpenseForm
+      <AddExpenseIncomeForm
         onClick={() => (open ? setOpen(!open) : open)}
         onSubmit={handleSubmit}
       >
@@ -138,8 +138,8 @@ const ExpenseForm = ({
         >
           Confirm
         </CustomButton>
-      </AddExpenseForm>
-    </ExpenseFormContainer>
+      </AddExpenseIncomeForm>
+    </ExpenseIncomeFormContainer>
   );
 };
 
@@ -154,4 +154,4 @@ const mapDispatchToProps = (dispatch) => ({
   setIncome: (income) => dispatch(setIncome(income)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseIncomeForm);

@@ -7,20 +7,20 @@ import {
   selectIncome,
 } from '../../redux/finance/finance.selectors';
 
-import ExpenseForm from '../expense-form/expense-form.component';
+import ExpenseIncomeForm from '../expense-income-form/expense-income-form.component';
 import CategoriesList from '../categories-list/categories-list.component';
 import CustomButton from '../custom-button/custom-button.component';
 import {
-  ExpensesDetailsContainer,
+  ExpensesIncomeDetailsContainer,
   OverlapsContainer,
   Overlap,
-} from './expenses-details.styles';
+} from './expenses-income-details.styles';
 
 const ExpensesDetails = ({ currentPath, expenses, income }) => {
   const history = useHistory();
 
   return (
-    <ExpensesDetailsContainer>
+    <ExpensesIncomeDetailsContainer>
       {!currentPath.includes('/add') ? (
         <>
           <OverlapsContainer>
@@ -55,9 +55,11 @@ const ExpensesDetails = ({ currentPath, expenses, income }) => {
           </CustomButton>
         </>
       ) : (
-        <ExpenseForm type={currentPath.slice(currentPath.indexOf('-') + 1)} />
+        <ExpenseIncomeForm
+          type={currentPath.slice(currentPath.indexOf('-') + 1)}
+        />
       )}
-    </ExpensesDetailsContainer>
+    </ExpensesIncomeDetailsContainer>
   );
 };
 

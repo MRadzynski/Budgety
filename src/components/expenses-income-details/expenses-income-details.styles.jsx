@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
-export const ExpensesDetailsContainer = styled.div`
+export const ExpensesIncomeDetailsContainer = styled.div`
   width: 100%;
   height: 60vh;
   background-color: var(--white-shade);

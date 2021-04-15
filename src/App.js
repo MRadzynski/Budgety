@@ -9,7 +9,7 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import Navbar from './components/navbar/navbar.component';
 import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
-import ExpensesPage from './pages/expenses/expenses.component';
+import ExpensesIncomePage from './pages/expenses-income/expenses-income.component';
 import ExchangePage from './pages/exchange/exchange.component';
 
 import GlobalStyle from './GlobalStyles';
@@ -58,16 +58,16 @@ const App = ({ setCurrentUser, currentUser, setFinances }) => {
       {currentUser ? <Navbar /> : null}
       <Switch>
         <Route exact path="/expenses">
-          <ExpensesPage />
+          <ExpensesIncomePage />
         </Route>
         <Route path="/expenses/add-expenses">
-          <ExpensesPage />
+          <ExpensesIncomePage />
         </Route>
         <Route exact path="/income">
-          <ExpensesPage />
+          <ExpensesIncomePage />
         </Route>
         <Route path="/income/add-income">
-          <ExpensesPage />
+          <ExpensesIncomePage />
         </Route>
         <Route path="/exchange">
           <ExchangePage />

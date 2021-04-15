@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ExpenseFormContainer = styled.div`
+export const ExpenseIncomeFormContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 2rem;
@@ -29,7 +29,7 @@ export const FormHeading = styled.h1`
   text-align: center;
 `;
 
-export const AddExpenseForm = styled.form`
+export const AddExpenseIncomeForm = styled.form`
   width: 100%;
   height: 80%;
   margin-top: 1rem;
