@@ -18,6 +18,7 @@ import {
   createUserDocument,
   getUserFinancesRef,
 } from './firebase/firebase.utils';
+import HomePage from './pages/homepage/homepage.component';
 
 const App = ({ setCurrentUser, currentUser, setFinances }) => {
   useEffect(() => {
@@ -85,7 +86,9 @@ const App = ({ setCurrentUser, currentUser, setFinances }) => {
             currentUser ? <Redirect to="/expenses" /> : <SignUp />
           }
         ></Route>
-        <Route exact path="/"></Route>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
       </Switch>
     </div>
   );
