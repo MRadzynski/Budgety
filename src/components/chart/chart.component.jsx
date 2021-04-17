@@ -1,11 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-
-import {
-  selectExpenses,
-  selectIncome,
-} from '../../redux/finance/finance.selectors';
 
 const Chart = ({ type }) => (
   <ResponsiveContainer width="100%" height="100%">
@@ -28,9 +22,4 @@ const Chart = ({ type }) => (
   </ResponsiveContainer>
 );
 
-const mapStateToProps = (state) => ({
-  expenses: selectExpenses(state),
-  income: selectIncome(state),
-});
-
-export default connect(mapStateToProps)(Chart);
+export default Chart;
