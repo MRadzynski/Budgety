@@ -21,14 +21,21 @@ export const ChartContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background-color: var(--white-shade);
+  background-color: var(--primary-color);
   position: absolute;
   top: 4%;
   right: 4%;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 `;
 
 export const ChartPrice = styled.h2`
-  color: var(--black-shade);
+  color: #050505;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin: auto;
   font-size: 3.5vh;
+  position: absolute;
+  /* display: none; */
 `;

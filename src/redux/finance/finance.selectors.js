@@ -24,3 +24,8 @@ export const selectTotalIncome = createSelector([selectIncome], (income) => {
   if (!income) return;
   return income.reduce((acc, singleIncome) => acc + singleIncome.amount, 0);
 });
+
+export const selectBalance = createSelector(
+  [selectTotalExpenses, selectTotalIncome],
+  (totalExpenses, totalIncome) => totalIncome - totalExpenses
+);
