@@ -11,6 +11,7 @@ import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
 import ExpensesIncomePage from './pages/expenses-income/expenses-income.component';
 import ExchangePage from './pages/exchange/exchange.component';
+import SettingsPage from './pages/settings/settings.component';
 
 import GlobalStyle from './GlobalStyles';
 import {
@@ -73,7 +74,7 @@ const App = ({ setCurrentUser, currentUser, setFinances }) => {
         <Route path="/exchange">
           <ExchangePage />
         </Route>
-        <Route path="/settings"></Route>
+        <Route path="/settings"><SettingsPage/></Route>
         <Route
           path="/signin"
           render={() =>
