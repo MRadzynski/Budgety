@@ -67,8 +67,13 @@ export const updateFinances = async (userId, expenseObj, incomeObj) => {
 
   if (expenseObj === null) {
     financesSnapshot.docs[0].ref.update({ income: incomeObj });
-  } else {
+  } else if (incomeObj === null) {
     financesSnapshot.docs[0].ref.update({ expenses: expenseObj });
+  } else {
+    financesSnapshot.docs[0].ref.update({
+      expenses: expenseObj,
+      income: incomeObj,
+    });
   }
 };
 
