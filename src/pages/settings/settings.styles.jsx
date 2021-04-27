@@ -37,7 +37,7 @@ export const SettingsGroup = styled.div`
 `;
 
 export const SettingsForm = styled.form`
-  width: 90%;
+  width: 100%;
   height: 60%;
   margin: auto;
   display: flex;
@@ -47,10 +47,11 @@ export const SettingsForm = styled.form`
 `;
 
 export const SettingFieldContainer = styled.div`
-  width: 100%;
+  width: 90%;
   height: 50%;
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 export const SettingLabel = styled.label`
@@ -59,14 +60,19 @@ export const SettingLabel = styled.label`
   color: var(--black-shade);
   font-size: 2.2rem;
   font-weight: bold;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 `;
 
 export const SettingInput = styled.input`
-  width: 30%;
-  height: 100%;
-  background-color: red;
+  width: 40%;
+  height: 70%;
+  background-color: #e0e0e0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   outline: 0;
   border: 0;
+  border-radius: 1.5rem;
+  font-size: 2.4rem;
+  text-align: center;
 `;
 
 export const EraseButton = styled.button`
@@ -85,4 +91,25 @@ export const EraseButton = styled.button`
   &:hover {
     background-color: #fe4337;
   }
+`;
+
+export const SettingList = styled.ul`
+  width: 40%;
+  height: 100%;
+  background-color: black;
+  list-style: none;
+  position: absolute;
+  right: 0;
+  bottom: -90%;
+  overflow: auto;
+  text-align: center;
+  display: ${({ open }) => (open ? 'block' : 'none')};
+`;
+
+export const SettingItem = styled.li`
+  background-color: #eaeaea;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid black;
 `;

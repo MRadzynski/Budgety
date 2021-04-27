@@ -29,3 +29,8 @@ export const selectBalance = createSelector(
   [selectTotalExpenses, selectTotalIncome],
   (totalExpenses, totalIncome) => totalIncome - totalExpenses
 );
+
+export const selectCurrency = createSelector(
+  [selectFinance],
+  (finance) => finance.currency
+);

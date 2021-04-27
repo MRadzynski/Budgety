@@ -76,6 +76,7 @@ const FinanceSchema = {
     },
   ],
   savings: [],
+  currency: 'USD',
 };
 
 export default FinanceSchema;

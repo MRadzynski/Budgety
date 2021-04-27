@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import {
+  selectCurrency,
   selectExpenses,
   selectIncome,
   selectTotalExpenses,
@@ -26,6 +27,7 @@ const ExpensesIncomePage = ({
   totalIncome,
   expenses,
   income,
+  currency,
 }) => {
   let location = useLocation();
 
@@ -40,7 +42,7 @@ const ExpensesIncomePage = ({
           {totalExpenses === undefined ? (
             <h1>Calculating...</h1>
           ) : (
-            <ChartPrice>{formatCurrency(totalExpenses)}</ChartPrice>
+            <ChartPrice>{formatCurrency(totalExpenses, currency)}</ChartPrice>
           )}
         </ChartContainer>
       ) : (
@@ -49,7 +51,7 @@ const ExpensesIncomePage = ({
           {totalIncome === undefined ? (
             <h1>Calculating...</h1>
           ) : (
-            <ChartPrice>{formatCurrency(totalIncome)}</ChartPrice>
+            <ChartPrice>{formatCurrency(totalIncome, currency)}</ChartPrice>
           )}
         </ChartContainer>
       )}
@@ -63,6 +65,7 @@ const mapStateToProps = (state) => ({
   totalIncome: selectTotalIncome(state),
   expenses: selectExpenses(state),
   income: selectIncome(state),
+  currency: selectCurrency(state),
 });
 
 export default connect(mapStateToProps)(ExpensesIncomePage);

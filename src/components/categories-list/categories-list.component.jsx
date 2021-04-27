@@ -12,7 +12,7 @@ import {
   CategoryPrice,
 } from './categories-list.styles';
 
-const CategoriesList = ({ categoriesData }) => {
+const CategoriesList = ({ categoriesData, currency }) => {
   if (categoriesData === null) return <h1>Loading...</h1>;
   return (
     <CategoriesListContainer>
@@ -28,7 +28,7 @@ const CategoriesList = ({ categoriesData }) => {
             <CategoryInfoContainer>
               <CategoryName>{categoryData.category}</CategoryName>
               <CategoryPrice>
-                {formatCurrency(categoryData.amount)}
+                {formatCurrency(categoryData.amount, currency)}
               </CategoryPrice>
             </CategoryInfoContainer>
           </Category>

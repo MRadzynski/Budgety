@@ -52,6 +52,7 @@ export const getUserFinancesRef = async (userId) => {
       expenses: FinanceSchema.expenses,
       income: FinanceSchema.income,
       savings: FinanceSchema.savings,
+      currency: FinanceSchema.currency,
     });
     return financesDocRef;
   } else {
@@ -75,6 +76,16 @@ export const updateFinances = async (userId, expenseObj, incomeObj) => {
       income: incomeObj,
     });
   }
+};
+
+export const updateCurrency = async (userId, newCurrency) => {
+  const financesRef = firestore
+    .collection('finances')
+    .where('userId', '==', userId);
+
+  const financesSnapshot = await financesRef.get();
+
+  financesSnapshot.docs[0].ref.update({ currency: newCurrency });
 };
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+
+import { selectCurrency } from '../../redux/finance/finance.selectors';
 
 import {
   ExchangeWindowContainer,
@@ -9,14 +12,14 @@ import {
   DateInfo,
 } from './exchange-window.styles';
 
-const ExchangeWindow = () => {
+const ExchangeWindow = ({ currency }) => {
   const [rates, setRates] = useState([]);
   const [date, setDate] = useState(null);
 
   useEffect(() => {
     const fetchCurrencies = async () => {
       const currenciesRes = await fetch(
-        'https://api.frankfurter.app/latest?from=USD'
+        `https://api.frankfurter.app/latest?from=${currency}`
       );
       const currenciesData = await currenciesRes.json();
       let currenciesDataArray = Object.entries(currenciesData).map(
@@ -26,7 +29,7 @@ const ExchangeWindow = () => {
       setRates(Object.entries(currenciesDataArray[3]));
     };
     fetchCurrencies();
-  }, []);
+  }, [currency]);
 
   return (
     <ExchangeWindowContainer>
@@ -43,4 +46,8 @@ const ExchangeWindow = () => {
   );
 };
 
-export default ExchangeWindow;
+const mapStateToProps = (state) => ({
+  currency: selectCurrency(state),
+});
+
+export default connect(mapStateToProps)(ExchangeWindow);

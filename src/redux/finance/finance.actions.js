@@ -14,3 +14,8 @@ export const setIncome = (income) => ({
   type: FinanceActionTypes.SET_INCOME,
   payload: income,
 });
+
+export const setCurrency = (currency) => ({
+  type: FinanceActionTypes.SET_CURRENCY,
+  payload: currency,
+});

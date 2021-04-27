@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import {
+  selectCurrency,
   selectExpenses,
   selectIncome,
 } from '../../redux/finance/finance.selectors';
@@ -16,7 +17,7 @@ import {
   Overlap,
 } from './expenses-income-details.styles';
 
-const ExpensesDetails = ({ currentPath, expenses, income }) => {
+const ExpensesDetails = ({ currentPath, expenses, income, currency }) => {
   const history = useHistory();
 
   return (
@@ -38,9 +39,9 @@ const ExpensesDetails = ({ currentPath, expenses, income }) => {
             </Overlap>
           </OverlapsContainer>
           {currentPath === '/expenses' ? (
-            <CategoriesList categoriesData={expenses} />
+            <CategoriesList categoriesData={expenses} currency={currency} />
           ) : (
-            <CategoriesList categoriesData={income} />
+            <CategoriesList categoriesData={income} currency={currency} />
           )}
           <CustomButton
             type="button"
@@ -66,6 +67,7 @@ const ExpensesDetails = ({ currentPath, expenses, income }) => {
 const mapStateToProps = (state) => ({
   expenses: selectExpenses(state),
   income: selectIncome(state),
+  currency: selectCurrency(state),
 });
 
 export default connect(mapStateToProps)(ExpensesDetails);
