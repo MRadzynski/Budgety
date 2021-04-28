@@ -60,6 +60,12 @@ export const getUserFinancesRef = async (userId) => {
   }
 };
 
+export const updateDisplayName = async (user, displayName) => {
+  const userRef = firestore.doc(`users/${user.id}`);
+
+  userRef.update({ ...user, displayName: displayName });
+};
+
 export const updateFinances = async (userId, expenseObj, incomeObj) => {
   const financesRef = firestore
     .collection('finances')

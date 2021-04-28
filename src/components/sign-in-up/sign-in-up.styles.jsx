@@ -11,13 +11,14 @@ export const SignInUpContainer = styled.div`
 `;
 
 export const Form = styled.form`
-  height: 45vh;
+  height: 47vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3rem;
+  margin-top: 2rem;
 `;
 
 export const FormInput = styled.input`
@@ -48,6 +49,10 @@ export const FormInput = styled.input`
   &[type='password'] {
     letter-spacing: 0.7rem;
   }
+
+  &[type='text']::placeholder {
+    letter-spacing: 0.15rem;
+  }
 `;
 
 export const FormTitle = styled.h1`
@@ -60,12 +65,14 @@ export const FormSubtext = styled.h2`
   font-weight: normal;
   text-align: center;
   letter-spacing: 0.15rem;
+  margin-top: 0.5rem;
 `;
 
 export const ErrorMessageContainer = styled.div`
   width: 60%;
   visibility: ${({ display }) => (display === 'true' ? 'visible' : 'hidden')};
   margin-top: -2rem;
+  margin-bottom: -1rem;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
@@ -73,8 +80,8 @@ export const ErrorMessageContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  width: 35%;
-  height: 30%;
+  width: 30%;
+  height: 25%;
   margin: 1.5rem auto 0 auto;
 
   img {

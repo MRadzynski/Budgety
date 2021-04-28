@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+import {
+  auth,
+  signInWithGoogle,
+  createUserDocument,
+} from '../../firebase/firebase.utils';
 
 import CustomButton from '../custom-button/custom-button.component';
 
@@ -17,6 +21,7 @@ import {
 
 const SignInUp = ({ formType }) => {
   const [userCredentials, setUserCredentails] = useState({
+    displayName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -32,7 +37,7 @@ const SignInUp = ({ formType }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { email, password } = userCredentials;
+    const { displayName, email, password } = userCredentials;
     setError('false');
 
     try {
@@ -41,7 +46,12 @@ const SignInUp = ({ formType }) => {
           setError('true');
           return;
         }
-        await auth.createUserWithEmailAndPassword(email, password);
+        const { user } = await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+
+        await createUserDocument(user, { displayName });
       } else {
         await auth.signInWithEmailAndPassword(email, password);
       }
@@ -57,6 +67,14 @@ const SignInUp = ({ formType }) => {
         <img src="assets/logo.png" alt="Budgety logo" />
       </LogoContainer>
       <Form onSubmit={handleSubmit}>
+        {formType === 'sign-up' ? (
+          <FormInput
+            type="text"
+            name="displayName"
+            placeholder="Display name (optional)"
+            onChange={handleChange}
+          />
+        ) : null}
         <FormInput
           type="email"
           name="email"

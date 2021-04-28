@@ -2,14 +2,21 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import {
+  updateDisplayName,
+  updateFinances,
+  updateCurrency,
+} from '../../firebase/firebase.utils';
+
+import {
   selectIncome,
   selectExpenses,
   selectCurrency,
 } from '../../redux/finance/finance.selectors';
 
-import { selectCurrentUser } from '../../redux/user/user.selectors';
-
-import { updateFinances, updateCurrency } from '../../firebase/firebase.utils';
+import {
+  selectCurrentUser,
+  selectDisplayName,
+} from '../../redux/user/user.selectors';
 
 import CURRENCIES_NAME from '../../currencies.names';
 
@@ -27,9 +34,10 @@ import {
   SettingItem,
 } from './settings.styles';
 
-const Settings = ({ currentUser, income, expenses, currency }) => {
+const Settings = ({ currentUser, displayName, income, expenses, currency }) => {
   const [open, setOpen] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState(currency);
+  const [newDisplayName, setNewDisplayName] = useState(displayName);
 
   const handleClick = () => {
     income.map((singleIncome) => (singleIncome.amount = 0));
@@ -44,11 +52,32 @@ const Settings = ({ currentUser, income, expenses, currency }) => {
     updateCurrency(currentUser.id, newCurrencyName);
   };
 
+  const handleDisplayNameChange = (e) => {
+    setNewDisplayName(e.target.value);
+  };
+
+  const handleBlur = async () => {
+    if (displayName === newDisplayName) return;
+
+    updateDisplayName(currentUser, newDisplayName);
+  };
+
   return (
     <SettingsContainer onClick={() => (open ? setOpen(false) : null)}>
       <SettingsTitle>Settings</SettingsTitle>
       <SettingsGroup>
         <SettingsGroupTitle>User</SettingsGroupTitle>
+        <SettingFieldContainer>
+          <SettingLabel>Display name</SettingLabel>
+          <SettingInput
+            type="text"
+            name="displayName"
+            value={newDisplayName || ''}
+            onChange={handleDisplayNameChange}
+            onBlur={handleBlur}
+            required
+          />
+        </SettingFieldContainer>
       </SettingsGroup>
       <SettingsGroup>
         <SettingsGroupTitle>Data</SettingsGroupTitle>
@@ -88,6 +117,7 @@ const Settings = ({ currentUser, income, expenses, currency }) => {
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
+  displayName: selectDisplayName(state),
   income: selectIncome(state),
   expenses: selectExpenses(state),
   currency: selectCurrency(state),

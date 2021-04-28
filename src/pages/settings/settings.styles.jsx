@@ -50,12 +50,13 @@ export const SettingFieldContainer = styled.div`
   width: 90%;
   height: 50%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: relative;
 `;
 
 export const SettingLabel = styled.label`
-  width: 60%;
+  width: 50%;
   background-color: var(--white-shade);
   color: var(--black-shade);
   font-size: 2.2rem;
@@ -73,6 +74,14 @@ export const SettingInput = styled.input`
   border-radius: 1.5rem;
   font-size: 2.4rem;
   text-align: center;
+
+  &[type='text'] {
+    width: 45%;
+    height: 75%;
+    font-size: 2rem;
+    padding: 0 0.5rem;
+    margin-top: 0.5rem;
+  }
 `;
 
 export const EraseButton = styled.button`
