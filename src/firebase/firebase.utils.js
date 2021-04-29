@@ -63,7 +63,7 @@ export const getUserFinancesRef = async (userId) => {
 export const updateDisplayName = async (user, displayName) => {
   const userRef = firestore.doc(`users/${user.id}`);
 
-  userRef.update({ ...user, displayName: displayName });
+  await userRef.update({ ...user, displayName: displayName });
 };
 
 export const updateFinances = async (userId, expenseObj, incomeObj) => {
@@ -73,11 +73,11 @@ export const updateFinances = async (userId, expenseObj, incomeObj) => {
   const financesSnapshot = await financesRef.get();
 
   if (expenseObj === null) {
-    financesSnapshot.docs[0].ref.update({ income: incomeObj });
+    await financesSnapshot.docs[0].ref.update({ income: incomeObj });
   } else if (incomeObj === null) {
-    financesSnapshot.docs[0].ref.update({ expenses: expenseObj });
+    await financesSnapshot.docs[0].ref.update({ expenses: expenseObj });
   } else {
-    financesSnapshot.docs[0].ref.update({
+    await financesSnapshot.docs[0].ref.update({
       expenses: expenseObj,
       income: incomeObj,
     });
@@ -91,7 +91,43 @@ export const updateCurrency = async (userId, newCurrency) => {
 
   const financesSnapshot = await financesRef.get();
 
-  financesSnapshot.docs[0].ref.update({ currency: newCurrency });
+  await financesSnapshot.docs[0].ref.update({ currency: newCurrency });
+};
+
+export const deleteAccount = async (userId) => {
+  const financesRef = firestore
+    .collection('finances')
+    .where('userId', '==', userId);
+  const financesSnapshot = await financesRef.get();
+
+  await financesSnapshot.docs[0].ref.delete();
+  await firestore.doc(`users/${userId}`).delete();
+  await auth.currentUser.delete();
+};
+
+export const reauthenticateAndDeleteUser = (password = '') => {
+  const user = firebase.auth().currentUser;
+  const provider = user.providerData[0].providerId;
+
+  if (provider === 'password') {
+    const credentials = firebase.auth.EmailAuthProvider.credential(
+      user.email,
+      password
+    );
+    return user
+      .reauthenticateWithCredential(credentials)
+      .then((res) => deleteAccount(user.uid))
+      .catch((error) => {
+        throw new Error({ message: `Couldn't perform this action` });
+      });
+  } else if (provider === 'google.com') {
+    return user
+      .reauthenticateWithPopup(googleProvider)
+      .then((res) => deleteAccount(user.uid))
+      .catch((error) => {
+        throw new Error({ message: `Couldn't perform this action` });
+      });
+  }
 };
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
