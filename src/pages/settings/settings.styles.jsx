@@ -37,8 +37,9 @@ export const SettingsGroup = styled.div`
   box-shadow: 0 8px 8px rgba(00, 00, 00, 0.25);
   border-radius: 25px;
 
-  :last-of-type {
-    height: 30vh;
+  :nth-of-type(3) {
+    height: 35vh;
+
     h2 {
       color: red;
     }
@@ -94,7 +95,7 @@ export const SettingInput = styled.input`
   }
 `;
 
-export const EraseButton = styled.button`
+export const DangerButton = styled.button`
   width: 40%;
   height: 100%;
   background-color: var(--errorMessage);
@@ -134,12 +135,12 @@ export const SettingItem = styled.li`
 `;
 
 export const Modal = styled.div`
-  width: 60%;
-  height: 20%;
+  width: 70%;
+  height: 35%;
   background-color: var(--white-shade);
   color: var(--black-shade);
   position: absolute;
-  bottom: 50%;
+  bottom: 45%;
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -147,29 +148,45 @@ export const Modal = styled.div`
   justify-content: space-between;
   flex-direction: column;
   z-index: 3;
-  padding: 2rem 0.5rem;
+  padding: 0.5rem 0.5rem;
 
   h2 {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     letter-spacing: 0.1rem;
   }
 
   label {
-    font-size: 1.8rem;
+    font-size: 2rem;
     width: 80%;
   }
 
   input {
-    width: 80%;
-    height: 40%;
-    margin-top: 1rem;
-    letter-spacing: 0.5rem;
+    width: 75%;
+    height: 15%;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 2rem 0 0 0;
+    padding: 0 1rem;
+    letter-spacing: 0.6rem;
   }
 
   form {
     height: 100%;
+    margin: 0;
+    padding: 0;
     gap: 0;
   }
+
+  button {
+    height: 15%;
+  }
+`;
+
+export const ErrorMessage = styled.span`
+  margin: 1rem 0;
+  font-size: 1.6rem;
+  color: var(--errorMessage);
+  text-align: center;
 `;
 
 export const Overlay = styled.div`
@@ -181,4 +198,15 @@ export const Overlay = styled.div`
   position: absolute;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.3);
+`;
+
+export const ExitModal = styled.div`
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
 `;

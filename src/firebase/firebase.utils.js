@@ -95,14 +95,18 @@ export const updateCurrency = async (userId, newCurrency) => {
 };
 
 export const deleteAccount = async (userId) => {
-  const financesRef = firestore
-    .collection('finances')
-    .where('userId', '==', userId);
-  const financesSnapshot = await financesRef.get();
+  try {
+    const financesRef = firestore
+      .collection('finances')
+      .where('userId', '==', userId);
+    const financesSnapshot = await financesRef.get();
 
-  await financesSnapshot.docs[0].ref.delete();
-  await firestore.doc(`users/${userId}`).delete();
-  await auth.currentUser.delete();
+    await financesSnapshot.docs[0].ref.delete();
+    await firestore.doc(`users/${userId}`).delete();
+    await auth.currentUser.delete();
+  } catch (error) {
+    throw new Error({ message: `Couldn't perform this action` });
+  }
 };
 
 export const reauthenticateAndDeleteUser = (password = '') => {
@@ -116,16 +120,16 @@ export const reauthenticateAndDeleteUser = (password = '') => {
     );
     return user
       .reauthenticateWithCredential(credentials)
-      .then((res) => deleteAccount(user.uid))
+      .then(() => deleteAccount(user.uid))
       .catch((error) => {
-        throw new Error({ message: `Couldn't perform this action` });
+        throw error;
       });
   } else if (provider === 'google.com') {
     return user
       .reauthenticateWithPopup(googleProvider)
       .then((res) => deleteAccount(user.uid))
       .catch((error) => {
-        throw new Error({ message: `Couldn't perform this action` });
+        throw error;
       });
   }
 };

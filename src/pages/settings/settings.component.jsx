@@ -23,6 +23,8 @@ import {
 
 import CURRENCIES_NAME from '../../currencies.names';
 
+import CustomPopup from '../../components/custom-popup/custom-popup.component';
+
 import {
   SettingsContainer,
   SettingsTitle,
@@ -32,21 +34,31 @@ import {
   SettingFieldContainer,
   SettingLabel,
   SettingInput,
-  EraseButton,
+  DangerButton,
   SettingList,
   SettingItem,
   Modal,
   Overlay,
+  ExitModal,
+  ErrorMessage,
 } from './settings.styles';
 
-const Settings = ({ currentUser, displayName, income, expenses, currency }) => {
+const SettingsPage = ({
+  currentUser,
+  displayName,
+  income,
+  expenses,
+  currency,
+}) => {
   const history = useHistory();
-  const modalRef = useRef();
+  const overlayRef = useRef();
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState(currency);
   const [newDisplayName, setNewDisplayName] = useState(displayName);
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [openPopup, setOpenPopup] = useState(false);
 
   const handleEraseClick = () => {
     income.map((singleIncome) => (singleIncome.amount = 0));
@@ -77,14 +89,29 @@ const Settings = ({ currentUser, displayName, income, expenses, currency }) => {
   };
 
   const closeModal = (e) => {
-    if (modalRef.current === e.target) setOpenModal(false);
+    if (overlayRef.current === e.target) {
+      setOpenModal(false);
+      setErrorMessage('');
+      setPassword('');
+    }
   };
 
   const handleDeleteSubmit = (e) => {
     e.preventDefault();
     reauthenticateAndDeleteUser(password)
-      .then((res) => history.push('/signin'))
-      .catch((error) => console.log(error.message));
+      .then(() => history.push('/signin'))
+      .catch((error) => {
+        if (error.code === `auth/user-mismatch`) {
+          setErrorMessage('Incorrect user data, please try again!');
+          setOpenPopup(true);
+        } else if (error.code === `auth/wrong-password`) {
+          setErrorMessage('Wrong Password!');
+        } else {
+          setOpenModal(false);
+          setErrorMessage('');
+          setOpenPopup(true);
+        }
+      });
   };
 
   return (
@@ -132,11 +159,11 @@ const Settings = ({ currentUser, displayName, income, expenses, currency }) => {
         <SettingsForm onSubmit={(e) => e.preventDefault()}>
           <SettingFieldContainer>
             <SettingLabel>Erase balance</SettingLabel>
-            <EraseButton onClick={handleEraseClick}>Erase!</EraseButton>
+            <DangerButton onClick={handleEraseClick}>Erase!</DangerButton>
           </SettingFieldContainer>
           <SettingFieldContainer>
             <SettingLabel>Delete account</SettingLabel>
-            <EraseButton
+            <DangerButton
               onClick={(e) =>
                 auth.currentUser.providerData[0].providerId === 'password'
                   ? setOpenModal(true)
@@ -144,19 +171,50 @@ const Settings = ({ currentUser, displayName, income, expenses, currency }) => {
               }
             >
               Delete!
-            </EraseButton>
+            </DangerButton>
           </SettingFieldContainer>
         </SettingsForm>
       </SettingsGroup>
-      <Overlay ref={modalRef} onClick={closeModal} open={openModal}>
-        <Modal>
-          <SettingsForm onSubmit={handleDeleteSubmit}>
-            <SettingsGroupTitle>Are you sure?</SettingsGroupTitle>
-            <SettingLabel>Enter your Password</SettingLabel>
-            <SettingInput type="password" onChange={handlePasswordChange} />
-          </SettingsForm>
-        </Modal>
-      </Overlay>
+      {openModal ? (
+        <Overlay ref={overlayRef} onClick={closeModal} open={openModal}>
+          <Modal>
+            <ExitModal
+              onClick={() => {
+                setOpenModal(false);
+                setErrorMessage('');
+                setPassword('');
+              }}
+            >
+              &#10005;
+            </ExitModal>
+            <SettingsForm onSubmit={handleDeleteSubmit}>
+              <SettingsGroupTitle>Are you sure?</SettingsGroupTitle>
+              <SettingLabel>Enter your Password</SettingLabel>
+              <SettingInput
+                type="password"
+                value={password || ''}
+                onChange={handlePasswordChange}
+                required
+              />
+              <ErrorMessage>{errorMessage}</ErrorMessage>
+              <DangerButton>Confirm</DangerButton>
+            </SettingsForm>
+          </Modal>
+        </Overlay>
+      ) : null}
+      {openPopup ? (
+        <Overlay
+          ref={overlayRef}
+          open={openPopup}
+          onClick={(e) => {
+            if (overlayRef.current === e.target) setOpenPopup(false);
+          }}
+        >
+          <CustomPopup open={openPopup} setOpen={setOpenPopup}>
+            {errorMessage}
+          </CustomPopup>
+        </Overlay>
+      ) : null}
     </SettingsContainer>
   );
 };
@@ -169,4 +227,4 @@ const mapStateToProps = (state) => ({
   currency: selectCurrency(state),
 });
 
-export default connect(mapStateToProps)(Settings);
+export default connect(mapStateToProps)(SettingsPage);

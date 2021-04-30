@@ -9,5 +9,5 @@ export const selectCurrentUser = createSelector(
 
 export const selectDisplayName = createSelector(
   [selectCurrentUser],
-  (currentUser) => currentUser.displayName
+  (currentUser) => currentUser?.displayName
 );

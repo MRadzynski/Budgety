@@ -14,9 +14,11 @@ const Chart = ({ type }) => (
         outerRadius={'100%'}
         blendStroke
       >
-        {type.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={entry.bgColor} />
-        ))}
+        {type
+          ? type.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.bgColor} />
+            ))
+          : null}
       </Pie>
     </PieChart>
   </ResponsiveContainer>
