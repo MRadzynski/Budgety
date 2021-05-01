@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const SettingsContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: var(--vh, 1vh) * 100;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
-  padding-bottom: 5rem;
+  margin-bottom: 5rem;
 `;
 
 export const SettingsTitle = styled.h1`
@@ -28,7 +28,7 @@ export const SettingsGroupTitle = styled.h2`
 
 export const SettingsGroup = styled.div`
   width: 80vw;
-  height: 25vh;
+  height: calc(var(--vh, 1vh) * 20);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@ export const SettingsGroup = styled.div`
   border-radius: 25px;
 
   :nth-of-type(3) {
-    height: 35vh;
+    height: calc(var(--vh, 1vh) * 30);
 
     h2 {
       color: red;
@@ -191,7 +191,7 @@ export const ErrorMessage = styled.span`
 
 export const Overlay = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: ${({ open }) => (open ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
