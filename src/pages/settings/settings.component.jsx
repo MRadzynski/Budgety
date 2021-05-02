@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
@@ -25,6 +25,10 @@ import CURRENCIES_NAME from '../../currencies.names';
 
 import CustomPopup from '../../components/custom-popup/custom-popup.component';
 
+import CustomModal from '../../components/custom-modal/custom-modal.component';
+
+import AuthorizationModal from '../../components/authorization-modal/authorization-modal.component';
+
 import {
   SettingsContainer,
   SettingsTitle,
@@ -37,10 +41,6 @@ import {
   DangerButton,
   SettingList,
   SettingItem,
-  Modal,
-  Overlay,
-  ExitModal,
-  ErrorMessage,
 } from './settings.styles';
 
 const SettingsPage = ({
@@ -51,20 +51,23 @@ const SettingsPage = ({
   currency,
 }) => {
   const history = useHistory();
-  const overlayRef = useRef();
   const [open, setOpen] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [openEraseModal, setOpenEraseModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState(currency);
   const [newDisplayName, setNewDisplayName] = useState(displayName);
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [openPopup, setOpenPopup] = useState(false);
 
   const handleEraseClick = () => {
     income.map((singleIncome) => (singleIncome.amount = 0));
     expenses.map((expense) => (expense.amount = 0));
 
     updateFinances(currentUser.id, expenses, income);
+    setOpenEraseModal(false);
+    setErrorMessage('Data erased!');
+    setOpenPopup(true);
   };
 
   const handleCurrencyChange = (e) => {
@@ -88,16 +91,7 @@ const SettingsPage = ({
     updateDisplayName(currentUser, newDisplayName);
   };
 
-  const closeModal = (e) => {
-    if (overlayRef.current === e.target) {
-      setOpenModal(false);
-      setErrorMessage('');
-      setPassword('');
-    }
-  };
-
-  const handleDeleteSubmit = (e) => {
-    e.preventDefault();
+  const handleDeleteSubmit = () => {
     reauthenticateAndDeleteUser(password)
       .then(() => history.push('/signin'))
       .catch((error) => {
@@ -106,8 +100,10 @@ const SettingsPage = ({
           setOpenPopup(true);
         } else if (error.code === `auth/wrong-password`) {
           setErrorMessage('Wrong Password!');
+        } else if (error.code === `auth/too-many-requests`) {
+          setErrorMessage('Too many requests. Try again later');
         } else {
-          setOpenModal(false);
+          setOpenDeleteModal(false);
           setErrorMessage('');
           setOpenPopup(true);
         }
@@ -159,14 +155,16 @@ const SettingsPage = ({
         <SettingsForm onSubmit={(e) => e.preventDefault()}>
           <SettingFieldContainer>
             <SettingLabel>Erase balance</SettingLabel>
-            <DangerButton onClick={handleEraseClick}>Erase!</DangerButton>
+            <DangerButton onClick={() => setOpenEraseModal(true)}>
+              Erase!
+            </DangerButton>
           </SettingFieldContainer>
           <SettingFieldContainer>
             <SettingLabel>Delete account</SettingLabel>
             <DangerButton
               onClick={(e) =>
                 auth.currentUser.providerData[0].providerId === 'password'
-                  ? setOpenModal(true)
+                  ? setOpenDeleteModal(true)
                   : handleDeleteSubmit(e)
               }
             >
@@ -175,45 +173,36 @@ const SettingsPage = ({
           </SettingFieldContainer>
         </SettingsForm>
       </SettingsGroup>
-      {openModal ? (
-        <Overlay ref={overlayRef} onClick={closeModal} open={openModal}>
-          <Modal>
-            <ExitModal
-              onClick={() => {
-                setOpenModal(false);
-                setErrorMessage('');
-                setPassword('');
-              }}
-            >
-              &#10005;
-            </ExitModal>
-            <SettingsForm onSubmit={handleDeleteSubmit}>
-              <SettingsGroupTitle>Are you sure?</SettingsGroupTitle>
-              <SettingLabel>Enter your Password</SettingLabel>
-              <SettingInput
-                type="password"
-                value={password || ''}
-                onChange={handlePasswordChange}
-                required
-              />
-              <ErrorMessage>{errorMessage}</ErrorMessage>
-              <DangerButton>Confirm</DangerButton>
-            </SettingsForm>
-          </Modal>
-        </Overlay>
+
+      {openDeleteModal ? (
+        <AuthorizationModal
+          open={openDeleteModal}
+          setOpen={setOpenDeleteModal}
+          setError={setErrorMessage}
+          errorMessage={errorMessage}
+          setInput={setPassword}
+          inputValue={password}
+          inputFunction={handlePasswordChange}
+          submitFunction={handleDeleteSubmit}
+        />
       ) : null}
       {openPopup ? (
-        <Overlay
-          ref={overlayRef}
+        <CustomPopup
           open={openPopup}
-          onClick={(e) => {
-            if (overlayRef.current === e.target) setOpenPopup(false);
-          }}
+          setOpen={setOpenPopup}
+          setError={setErrorMessage}
         >
-          <CustomPopup open={openPopup} setOpen={setOpenPopup}>
-            {errorMessage}
-          </CustomPopup>
-        </Overlay>
+          {errorMessage}
+        </CustomPopup>
+      ) : null}
+      {openEraseModal ? (
+        <CustomModal
+          open={openEraseModal}
+          setOpen={setOpenEraseModal}
+          confirmFunction={handleEraseClick}
+        >
+          Are you sure?
+        </CustomModal>
       ) : null}
     </SettingsContainer>
   );
