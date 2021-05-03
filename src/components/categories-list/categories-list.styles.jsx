@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CategoriesListContainer = styled.div`
   width: 100%;
-  height: 44vh;
+  height: calc(var(--vh, 1vh) * 44);
   display: flex;
   flex-direction: column;
 `;

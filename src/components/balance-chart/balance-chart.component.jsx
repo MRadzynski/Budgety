@@ -4,11 +4,11 @@ import { useHistory } from 'react-router-dom';
 
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
-const BalanceChart = ({ data }) => {
+const BalanceChart = ({ data, currency }) => {
   const location = useHistory();
 
   let renderLabel = function (entry) {
-    return formatCurrency(entry.amount);
+    return formatCurrency(entry.amount, currency);
   };
 
   return (

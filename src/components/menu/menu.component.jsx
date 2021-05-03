@@ -14,7 +14,8 @@ const Menu = ({ open, setOpen }) => {
 
   const handleLogout = async () => {
     await auth.signOut();
-    history.push('/signin');
+
+    return history.push('/signin');
   };
 
   return (

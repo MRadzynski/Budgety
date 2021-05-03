@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 export const ExpensesIncomeDetailsContainer = styled.div`
   width: 100%;
-  height: 60vh;
+  height: calc(var(--vh, 1vh) * 60);
   background-color: var(--white-shade);
   border-radius: 50px 50px 0px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
   padding: 0 0 2rem 0;
-  bottom: 0;
+  position: relative;
+  bottom: -40%;
   z-index: 2;
 
   button {

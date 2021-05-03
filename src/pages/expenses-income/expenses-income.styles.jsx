@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const ExpensesIncomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
 `;
 
 export const ExpensesIncomeTitle = styled.h1`
@@ -16,8 +18,8 @@ export const ExpensesIncomeTitle = styled.h1`
 `;
 
 export const ChartContainer = styled.div`
-  width: 25vh;
-  height: 25vh;
+  width: calc(var(--vh, 1vh) * 25);
+  height: calc(var(--vh, 1vh) * 25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +37,6 @@ export const ChartPrice = styled.h2`
   border-radius: 10px;
   padding: 0.5rem;
   margin: auto;
-  font-size: 3.5vh;
+  font-size: calc(var(--vh, 1vh) * 3.5);
   position: absolute;
-  /* display: none; */
 `;

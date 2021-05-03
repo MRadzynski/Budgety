@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   expenses: null,
   income: null,
   savings: null,
+  currency: null,
 };
 
 const financeReducer = (state = INITIAL_STATE, action) => {
@@ -24,6 +25,11 @@ const financeReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         income: action.payload,
+      };
+    case FinanceActionTypes.SET_CURRENCY:
+      return {
+        ...state,
+        currency: action.payload,
       };
     default:
       return state;

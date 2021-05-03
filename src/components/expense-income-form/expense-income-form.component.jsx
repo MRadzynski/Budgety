@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import {
+  selectCurrency,
   selectExpenses,
   selectIncome,
 } from '../../redux/finance/finance.selectors';
@@ -31,6 +32,7 @@ const ExpenseIncomeForm = ({
   expenses,
   income,
   currentUser,
+  currency,
   setExpenses,
   setIncome,
 }) => {
@@ -63,7 +65,7 @@ const ExpenseIncomeForm = ({
         return expense;
       });
 
-      setExpenses(newExpenseObj);
+      //setExpenses(newExpenseObj);
       updateFinances(currentUser.id, newExpenseObj, null);
     } else {
       const newIncomeObj = income.map((singleIncome) => {
@@ -73,7 +75,7 @@ const ExpenseIncomeForm = ({
         return singleIncome;
       });
 
-      setIncome(newIncomeObj);
+      //setIncome(newIncomeObj);
       updateFinances(currentUser.id, null, newIncomeObj);
     }
 
@@ -92,7 +94,7 @@ const ExpenseIncomeForm = ({
         onSubmit={handleSubmit}
       >
         <FormFieldContainer>
-          <FormLabel>Price ($)</FormLabel>
+          <FormLabel>Price ({currency})</FormLabel>
           <FormInput
             type="text"
             value={price || ''}
@@ -147,6 +149,7 @@ const mapStateToProps = (state) => ({
   expenses: selectExpenses(state),
   income: selectIncome(state),
   currentUser: selectCurrentUser(state),
+  currency: selectCurrency(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

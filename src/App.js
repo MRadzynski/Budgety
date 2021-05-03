@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { setCurrentUser } from './redux/user/user.actions';
-import { setFinances } from './redux/finance/finance.actions';
+import { setFinances, setCurrency } from './redux/finance/finance.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 import Navbar from './components/navbar/navbar.component';
@@ -11,6 +11,7 @@ import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
 import ExpensesIncomePage from './pages/expenses-income/expenses-income.component';
 import ExchangePage from './pages/exchange/exchange.component';
+import SettingsPage from './pages/settings/settings.component';
 
 import GlobalStyle from './GlobalStyles';
 import {
@@ -20,7 +21,7 @@ import {
 } from './firebase/firebase.utils';
 import HomePage from './pages/homepage/homepage.component';
 
-const App = ({ setCurrentUser, currentUser, setFinances }) => {
+const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -37,6 +38,8 @@ const App = ({ setCurrentUser, currentUser, setFinances }) => {
             income: snapshot.data().income,
             savings: snapshot.data().savings,
           });
+
+          setCurrency(snapshot.data().currency);
         });
       } else {
         setCurrentUser(null);
@@ -45,13 +48,14 @@ const App = ({ setCurrentUser, currentUser, setFinances }) => {
           income: null,
           savings: null,
         });
+        setCurrency(null);
       }
     });
 
     return () => {
       unsubscribe();
     };
-  }, [setCurrentUser, setFinances]);
+  }, [setCurrentUser, setFinances, setCurrency]);
 
   return (
     <div>
@@ -73,7 +77,9 @@ const App = ({ setCurrentUser, currentUser, setFinances }) => {
         <Route path="/exchange">
           <ExchangePage />
         </Route>
-        <Route path="/settings"></Route>
+        <Route path="/settings">
+          <SettingsPage />
+        </Route>
         <Route
           path="/signin"
           render={() =>
@@ -101,6 +107,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
   setFinances: (finances) => dispatch(setFinances(finances)),
+  setCurrency: (currency) => dispatch(setCurrency(currency)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

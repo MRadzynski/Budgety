@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HomePageContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   padding: 8rem 1rem;
   display: flex;
   flex-direction: column;
@@ -27,8 +27,8 @@ export const BalanceText = styled.h2`
 `;
 
 export const ChartContainer = styled.div`
-  width: 45vh;
-  height: 25vh;
+  width: calc(var(--vh, 1vh) * 45);
+  height: calc(var(--vh, 1vh) * 25);
   background-color: var(--white-shade);
   box-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
   border-radius: 25px;

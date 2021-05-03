@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const MenuContainer = styled.nav`
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -52,11 +52,11 @@ export const MenuLink = styled(Link)`
 `;
 
 export const MenuOverlay = styled.div`
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 60vw;
   background-color: transparent;
   display: ${({ open }) => (open ? 'block' : 'none')};
   position: fixed;
   z-index: 1;
-  right: 1px;
+  right: 0;
 `;
