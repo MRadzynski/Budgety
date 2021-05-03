@@ -46,17 +46,6 @@ export const SettingsGroup = styled.div`
   }
 `;
 
-export const SettingsForm = styled.form`
-  width: 100%;
-  height: 60%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-`;
-
 export const SettingFieldContainer = styled.div`
   width: 90%;
   height: 50%;
@@ -67,7 +56,7 @@ export const SettingFieldContainer = styled.div`
 `;
 
 export const SettingLabel = styled.label`
-  width: 50%;
+  width: 60%;
   background-color: var(--white-shade);
   color: var(--black-shade);
   font-size: 2.2rem;
@@ -97,7 +86,7 @@ export const SettingInput = styled.input`
 
 export const DangerButton = styled.button`
   width: 40%;
-  height: 100%;
+  height: 60%;
   background-color: var(--errorMessage);
   border: 0;
   border-radius: 1rem;
@@ -111,25 +100,4 @@ export const DangerButton = styled.button`
   &:hover {
     background-color: #fe4337;
   }
-`;
-
-export const SettingList = styled.ul`
-  width: 40%;
-  height: 100%;
-  background-color: black;
-  list-style: none;
-  position: absolute;
-  right: 0;
-  bottom: -90%;
-  overflow: auto;
-  text-align: center;
-  display: ${({ open }) => (open ? 'block' : 'none')};
-`;
-
-export const SettingItem = styled.li`
-  background-color: #eaeaea;
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid black;
 `;

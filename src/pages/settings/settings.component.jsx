@@ -21,26 +21,23 @@ import {
   selectDisplayName,
 } from '../../redux/user/user.selectors';
 
-import CURRENCIES_NAME from '../../currencies.names';
-
 import CustomPopup from '../../components/custom-popup/custom-popup.component';
 
 import CustomModal from '../../components/custom-modal/custom-modal.component';
 
 import AuthorizationModal from '../../components/authorization-modal/authorization-modal.component';
 
+import CurrenciesNamesList from '../../components/currencies-names-list/currencies-names-list.component';
+
 import {
   SettingsContainer,
   SettingsTitle,
   SettingsGroupTitle,
   SettingsGroup,
-  SettingsForm,
   SettingFieldContainer,
   SettingLabel,
   SettingInput,
   DangerButton,
-  SettingList,
-  SettingItem,
 } from './settings.styles';
 
 const SettingsPage = ({
@@ -51,7 +48,7 @@ const SettingsPage = ({
   currency,
 }) => {
   const history = useHistory();
-  const [open, setOpen] = useState(false);
+  const [openList, setOpenList] = useState(false);
   const [openEraseModal, setOpenEraseModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
@@ -65,6 +62,7 @@ const SettingsPage = ({
     expenses.map((expense) => (expense.amount = 0));
 
     updateFinances(currentUser.id, expenses, income);
+
     setOpenEraseModal(false);
     setErrorMessage('Data erased!');
     setOpenPopup(true);
@@ -111,8 +109,9 @@ const SettingsPage = ({
   };
 
   return (
-    <SettingsContainer onClick={() => (open ? setOpen(false) : null)}>
+    <SettingsContainer onClick={() => (openList ? setOpenList(false) : null)}>
       <SettingsTitle>Settings</SettingsTitle>
+
       <SettingsGroup>
         <SettingsGroupTitle>User</SettingsGroupTitle>
         <SettingFieldContainer>
@@ -127,6 +126,7 @@ const SettingsPage = ({
           />
         </SettingFieldContainer>
       </SettingsGroup>
+
       <SettingsGroup>
         <SettingsGroupTitle>Data</SettingsGroupTitle>
         <SettingFieldContainer>
@@ -134,44 +134,36 @@ const SettingsPage = ({
           <SettingInput
             readOnly
             value={currentCurrency}
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpenList(!openList)}
             required
           />
-          <SettingList open={open}>
-            {CURRENCIES_NAME.map((currencyName, index) => (
-              <SettingItem
-                key={index}
-                value={currencyName}
-                onClick={handleCurrencyChange}
-              >
-                {currencyName}
-              </SettingItem>
-            ))}
-          </SettingList>
+          <CurrenciesNamesList
+            open={openList}
+            chooseCurrencyFunction={handleCurrencyChange}
+          />
         </SettingFieldContainer>
       </SettingsGroup>
+
       <SettingsGroup>
         <SettingsGroupTitle>Danger Zone</SettingsGroupTitle>
-        <SettingsForm onSubmit={(e) => e.preventDefault()}>
-          <SettingFieldContainer>
-            <SettingLabel>Erase balance</SettingLabel>
-            <DangerButton onClick={() => setOpenEraseModal(true)}>
-              Erase!
-            </DangerButton>
-          </SettingFieldContainer>
-          <SettingFieldContainer>
-            <SettingLabel>Delete account</SettingLabel>
-            <DangerButton
-              onClick={(e) =>
-                auth.currentUser.providerData[0].providerId === 'password'
-                  ? setOpenDeleteModal(true)
-                  : handleDeleteSubmit(e)
-              }
-            >
-              Delete!
-            </DangerButton>
-          </SettingFieldContainer>
-        </SettingsForm>
+        <SettingFieldContainer>
+          <SettingLabel>Erase balance</SettingLabel>
+          <DangerButton onClick={() => setOpenEraseModal(true)}>
+            Erase!
+          </DangerButton>
+        </SettingFieldContainer>
+        <SettingFieldContainer>
+          <SettingLabel>Delete account</SettingLabel>
+          <DangerButton
+            onClick={(e) =>
+              auth.currentUser.providerData[0].providerId === 'password'
+                ? setOpenDeleteModal(true)
+                : handleDeleteSubmit(e)
+            }
+          >
+            Delete!
+          </DangerButton>
+        </SettingFieldContainer>
       </SettingsGroup>
 
       {openDeleteModal ? (
