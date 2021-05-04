@@ -12,8 +12,8 @@ const BalanceChart = ({ data, currency }) => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height="80%">
-      <PieChart margin={0}>
+    <ResponsiveContainer width="100%" height="100%">
+      <PieChart margin={{ top: 20 }}>
         <Pie
           data={data}
           dataKey="amount"
@@ -22,8 +22,8 @@ const BalanceChart = ({ data, currency }) => {
           cy="90%"
           startAngle={0}
           endAngle={180}
-          innerRadius={75}
-          outerRadius={100}
+          innerRadius={60}
+          outerRadius={85}
           paddingAngle={1}
           label={renderLabel}
         >

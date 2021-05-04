@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HomePageContainer = styled.div`
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
-  padding: 8rem 1rem;
+  padding: 6rem 1rem 3rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,12 +18,13 @@ export const WelcomeText = styled.h1`
   text-align: left;
 `;
 
-export const BalanceText = styled.h2`
+export const ChartText = styled.h2`
   font-size: 2rem;
   text-align: center;
   color: var(--black-shade);
   letter-spacing: 0.15rem;
   word-spacing: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const ChartContainer = styled.div`
@@ -34,4 +35,10 @@ export const ChartContainer = styled.div`
   border-radius: 25px;
   font-weight: bold;
   font-size: 1.2rem;
+  height: calc(var(--vh, 1vh) * 25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
 `;

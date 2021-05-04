@@ -1,52 +1,66 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import BalanceChart from '../../components/balance-chart/balance-chart.component';
 import {
   selectBalance,
-  selectTotalIncome,
-  selectTotalExpenses,
   selectCurrency,
+  selectTotalExpensesIncomeArr,
+  selectPercentageExpenses,
+  selectPercentageIncome,
 } from '../../redux/finance/finance.selectors';
 
-import { formatCurrency } from '../../redux/finance/finance.utils';
 import { selectDisplayName } from '../../redux/user/user.selectors';
+
+import { formatCurrency } from '../../redux/finance/finance.utils';
+
+import BalanceChart from '../../components/balance-chart/balance-chart.component';
+
+import ExpensesIncomeBarchart from '../../components/expenses-income-barchart/expenses-income-barchart.component';
 
 import {
   HomePageContainer,
   ChartContainer,
   WelcomeText,
-  BalanceText,
+  ChartText,
 } from './homepage.styles';
 
 const HomePage = ({
-  totalExpenses,
-  totalIncome,
-  balance,
-  currency,
   displayName,
+  currency,
+  balance,
+  totalExpensesIncomeArr,
+  expensesPercent,
+  incomePercent,
 }) => {
-  const totalExpenseIncomeArr = [
-    { amount: totalExpenses, name: 'Expenses', bgColor: '#E6504C' },
-    { amount: totalIncome, name: 'Income', bgColor: '#44D495' },
-  ];
   return (
     <HomePageContainer>
       <WelcomeText>Hey {displayName}! </WelcomeText>
+
       <ChartContainer>
-        <BalanceChart data={totalExpenseIncomeArr} currency={currency} />
-        <BalanceText>Balance: {formatCurrency(balance, currency)}</BalanceText>
+        <BalanceChart data={totalExpensesIncomeArr} currency={currency} />
+        <ChartText>Balance: {formatCurrency(balance, currency)}</ChartText>
+      </ChartContainer>
+
+      <ChartContainer>
+        <ExpensesIncomeBarchart data={expensesPercent} currency={currency} />
+        <ChartText>Expenses</ChartText>
+      </ChartContainer>
+
+      <ChartContainer>
+        <ExpensesIncomeBarchart data={incomePercent} currency={currency} />
+        <ChartText>Income</ChartText>
       </ChartContainer>
     </HomePageContainer>
   );
 };
 
 const mapStateToProps = (state) => ({
-  totalExpenses: selectTotalExpenses(state),
-  totalIncome: selectTotalIncome(state),
-  balance: selectBalance(state),
-  currency: selectCurrency(state),
   displayName: selectDisplayName(state),
+  currency: selectCurrency(state),
+  balance: selectBalance(state),
+  totalExpensesIncomeArr: selectTotalExpensesIncomeArr(state),
+  expensesPercent: selectPercentageExpenses(state),
+  incomePercent: selectPercentageIncome(state),
 });
 
 export default connect(mapStateToProps)(HomePage);
