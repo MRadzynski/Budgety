@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { selectCurrency } from '../../redux/finance/finance.selectors';
+import {
+  selectBalance,
+  selectCurrency,
+} from '../../redux/finance/finance.selectors';
+
+import { formatNumber } from '../../redux/finance/finance.utils';
 
 import {
   ExchangeWindowContainer,
@@ -12,7 +17,7 @@ import {
   DateInfo,
 } from './exchange-window.styles';
 
-const ExchangeWindow = ({ currency }) => {
+const ExchangeWindow = ({ currency, balance }) => {
   const [rates, setRates] = useState([]);
   const [date, setDate] = useState(null);
 
@@ -34,10 +39,16 @@ const ExchangeWindow = ({ currency }) => {
   return (
     <ExchangeWindowContainer>
       <ExchangeList>
+        <ExchangeListItem key={balance}>
+          <CurrencyName>{currency}</CurrencyName>
+          <CurrencyRate>{formatNumber(balance)}</CurrencyRate>
+        </ExchangeListItem>
         {rates.map((rate, i) => (
           <ExchangeListItem key={i}>
             <CurrencyName>{rate[0]}</CurrencyName>
-            <CurrencyRate>{rate[1].toFixed(2)}</CurrencyRate>
+            <CurrencyRate length={formatNumber(balance * rate[1]).length}>
+              {formatNumber(balance * rate[1])}
+            </CurrencyRate>
           </ExchangeListItem>
         ))}
       </ExchangeList>
@@ -48,6 +59,7 @@ const ExchangeWindow = ({ currency }) => {
 
 const mapStateToProps = (state) => ({
   currency: selectCurrency(state),
+  balance: selectBalance(state),
 });
 
 export default connect(mapStateToProps)(ExchangeWindow);
