@@ -12,14 +12,16 @@ import SignUp from './components/sign-up/sign-up.component';
 import ExpensesIncomePage from './pages/expenses-income/expenses-income.component';
 import ExchangePage from './pages/exchange/exchange.component';
 import SettingsPage from './pages/settings/settings.component';
+import HomePage from './pages/homepage/homepage.component';
+import ErrorBoundary from './components/error-boundary/error-boundary.component';
 
 import GlobalStyle from './GlobalStyles';
+
 import {
   auth,
   createUserDocument,
   getUserFinancesRef,
 } from './firebase/firebase.utils';
-import HomePage from './pages/homepage/homepage.component';
 
 const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
   useEffect(() => {
@@ -61,41 +63,43 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
     <div>
       <GlobalStyle />
       {currentUser ? <Navbar /> : null}
-      <Switch>
-        <Route exact path="/expenses">
-          <ExpensesIncomePage />
-        </Route>
-        <Route path="/expenses/add-expenses">
-          <ExpensesIncomePage />
-        </Route>
-        <Route exact path="/income">
-          <ExpensesIncomePage />
-        </Route>
-        <Route path="/income/add-income">
-          <ExpensesIncomePage />
-        </Route>
-        <Route path="/exchange">
-          <ExchangePage />
-        </Route>
-        <Route path="/settings">
-          <SettingsPage />
-        </Route>
-        <Route
-          path="/signin"
-          render={() =>
-            currentUser ? <Redirect to="/expenses" /> : <SignIn />
-          }
-        ></Route>
-        <Route
-          path="/signup"
-          render={() =>
-            currentUser ? <Redirect to="/expenses" /> : <SignUp />
-          }
-        ></Route>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-      </Switch>
+      <ErrorBoundary>
+        <Switch>
+          <Route exact path="/expenses">
+            <ExpensesIncomePage />
+          </Route>
+          <Route path="/expenses/add-expenses">
+            <ExpensesIncomePage />
+          </Route>
+          <Route exact path="/income">
+            <ExpensesIncomePage />
+          </Route>
+          <Route path="/income/add-income">
+            <ExpensesIncomePage />
+          </Route>
+          <Route path="/exchange">
+            <ExchangePage />
+          </Route>
+          <Route path="/settings">
+            <SettingsPage />
+          </Route>
+          <Route
+            path="/signin"
+            render={() =>
+              currentUser ? <Redirect to="/expenses" /> : <SignIn />
+            }
+          ></Route>
+          <Route
+            path="/signup"
+            render={() =>
+              currentUser ? <Redirect to="/expenses" /> : <SignUp />
+            }
+          ></Route>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+      </ErrorBoundary>
     </div>
   );
 };

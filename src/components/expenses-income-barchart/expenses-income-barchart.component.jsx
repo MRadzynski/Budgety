@@ -13,7 +13,7 @@ import {
   YAxis,
 } from 'recharts';
 
-const ExpensesIncomeBarchart = ({ data, currency }) => {
+const ExpensesIncomeBarchart = ({ currency, data }) => {
   const CustomTooltip = ({ active, payload, label, currency }) => {
     if (active && payload && payload.length) {
       return (
@@ -44,7 +44,7 @@ const ExpensesIncomeBarchart = ({ data, currency }) => {
         <YAxis unit="%" />
         <Tooltip content={<CustomTooltip currency={currency} />} />
         <Bar dataKey="percent">
-          {data.map((entry, index) => (
+          {data?.map((entry, index) => (
             <Cell key={index} fill={entry.bgColor} />
           ))}
         </Bar>

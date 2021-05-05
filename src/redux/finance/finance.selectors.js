@@ -9,7 +9,7 @@ export const selectExpenses = createSelector(
 
 export const selectIncome = createSelector(
   [selectFinance],
-  (finance) => finance.income
+  (finance) => finance?.income
 );
 
 export const selectTotalExpenses = createSelector(
@@ -46,7 +46,7 @@ export const selectCurrency = createSelector(
 export const selectPercentageExpenses = createSelector(
   [selectExpenses, selectTotalExpenses],
   (expenses, totalExpenses) =>
-    expenses.map((expense) => ({
+    expenses?.map((expense) => ({
       ...expense,
       percent: Number(((expense.amount / totalExpenses) * 100).toFixed(2)),
     }))
@@ -55,7 +55,7 @@ export const selectPercentageExpenses = createSelector(
 export const selectPercentageIncome = createSelector(
   [selectIncome, selectTotalIncome],
   (income, totalIncome) =>
-    income.map((singleIncome) => ({
+    income?.map((singleIncome) => ({
       ...singleIncome,
       percent: Number(((singleIncome.amount / totalIncome) * 100).toFixed(2)),
     }))

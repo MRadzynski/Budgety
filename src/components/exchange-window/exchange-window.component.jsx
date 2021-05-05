@@ -34,6 +34,11 @@ const ExchangeWindow = ({ currency, balance }) => {
       setRates(Object.entries(currenciesDataArray[3]));
     };
     fetchCurrencies();
+
+    return () => {
+      setDate(null);
+      setRates([]);
+    };
   }, [currency]);
 
   return (

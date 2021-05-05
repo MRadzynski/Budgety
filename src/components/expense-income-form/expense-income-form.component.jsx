@@ -65,7 +65,6 @@ const ExpenseIncomeForm = ({
         return expense;
       });
 
-      //setExpenses(newExpenseObj);
       updateFinances(currentUser.id, newExpenseObj, null);
     } else {
       const newIncomeObj = income.map((singleIncome) => {
@@ -75,7 +74,6 @@ const ExpenseIncomeForm = ({
         return singleIncome;
       });
 
-      //setIncome(newIncomeObj);
       updateFinances(currentUser.id, null, newIncomeObj);
     }
 

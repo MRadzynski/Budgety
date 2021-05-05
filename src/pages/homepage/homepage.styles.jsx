@@ -16,6 +16,7 @@ export const WelcomeText = styled.h1`
   color: var(--white-shade);
   text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
   text-align: left;
+  letter-spacing: 0.15rem;
 `;
 
 export const ChartText = styled.h2`
