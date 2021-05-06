@@ -8,6 +8,8 @@ import {
 
 import { formatNumber } from '../../redux/finance/finance.utils';
 
+import Spinner from '../spinner/spinner.component';
+
 import {
   ExchangeWindowContainer,
   ExchangeList,
@@ -20,6 +22,7 @@ import {
 const ExchangeWindow = ({ currency, balance }) => {
   const [rates, setRates] = useState([]);
   const [date, setDate] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCurrencies = async () => {
@@ -32,6 +35,7 @@ const ExchangeWindow = ({ currency, balance }) => {
       );
       setDate(currenciesDataArray[2]);
       setRates(Object.entries(currenciesDataArray[3]));
+      setLoading(false);
     };
     fetchCurrencies();
 
@@ -44,18 +48,24 @@ const ExchangeWindow = ({ currency, balance }) => {
   return (
     <ExchangeWindowContainer>
       <ExchangeList>
-        <ExchangeListItem key={balance}>
-          <CurrencyName>{currency}</CurrencyName>
-          <CurrencyRate>{formatNumber(balance)}</CurrencyRate>
-        </ExchangeListItem>
-        {rates.map((rate, i) => (
-          <ExchangeListItem key={i}>
-            <CurrencyName>{rate[0]}</CurrencyName>
-            <CurrencyRate length={formatNumber(balance * rate[1]).length}>
-              {formatNumber(balance * rate[1])}
-            </CurrencyRate>
-          </ExchangeListItem>
-        ))}
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <ExchangeListItem key={balance}>
+              <CurrencyName>{currency}</CurrencyName>
+              <CurrencyRate>{formatNumber(balance)}</CurrencyRate>
+            </ExchangeListItem>
+            {rates.map((rate, i) => (
+              <ExchangeListItem key={i}>
+                <CurrencyName>{rate[0]}</CurrencyName>
+                <CurrencyRate length={formatNumber(balance * rate[1]).length}>
+                  {formatNumber(balance * rate[1])}
+                </CurrencyRate>
+              </ExchangeListItem>
+            ))}
+          </>
+        )}
       </ExchangeList>
       <DateInfo>Last Update: {date}</DateInfo>
     </ExchangeWindowContainer>
