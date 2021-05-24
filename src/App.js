@@ -14,6 +14,7 @@ import ExchangePage from './pages/exchange/exchange.component';
 import SettingsPage from './pages/settings/settings.component';
 import HomePage from './pages/homepage/homepage.component';
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
+import NotFound from './components/notFound/notFound.component';
 
 import GlobalStyle from './GlobalStyles';
 
@@ -97,6 +98,9 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
           ></Route>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       </ErrorBoundary>
