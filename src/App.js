@@ -9,6 +9,7 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import Navbar from './components/navbar/navbar.component';
 import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
+import ResetPassword from './components/reset-password/reset-password.component';
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
 import NotFound from './components/notFound/notFound.component';
 import Spinner from './components/spinner/spinner.component';
@@ -104,9 +105,17 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
                 currentUser ? <Redirect to="/expenses" /> : <SignUp />
               }
             ></Route>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
+            <Route
+              path="/reset-password"
+              render={() =>
+                currentUser ? <Redirect to="/expenses" /> : <ResetPassword />
+              }
+            ></Route>
+            <Route
+              exact
+              path="/"
+              render={() => (currentUser ? <HomePage /> : <SignIn />)}
+            ></Route>
             <Route component={NotFound} />
           </Switch>
         </Suspense>

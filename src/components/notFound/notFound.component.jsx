@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import { useHistory } from 'react-router-dom';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 import CustomButton from '../custom-button/custom-button.component';
 
@@ -10,7 +13,7 @@ import {
   NotFoundText,
 } from './notFound.styles';
 
-const NotFound = () => {
+const NotFound = ({ currentUser }) => {
   const history = useHistory();
   return (
     <NotFoundContainer>
@@ -22,12 +25,18 @@ const NotFound = () => {
       <CustomButton
         textColor="var(--black-shade)"
         hoverColor="#4285f4"
-        onClick={() => history.push('/')}
+        onClick={() => {
+          currentUser ? history.push('/') : history.push('/signin');
+        }}
       >
-        Go Home!
+        {currentUser ? 'Go Home!' : 'Go Sign In!'}
       </CustomButton>
     </NotFoundContainer>
   );
 };
 
-export default NotFound;
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps)(NotFound);

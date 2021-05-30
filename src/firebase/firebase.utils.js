@@ -134,6 +134,20 @@ export const reauthenticateAndDeleteUser = (password = '') => {
   }
 };
 
+export const resetUserPassword = async (email) => {
+  try {
+    auth.useDeviceLanguage();
+
+    const actionCodeSettings = {
+      url: 'http://localhost:3000/signin',
+      handleCodeInApp: false,
+    };
+    await auth.sendPasswordResetEmail(email, actionCodeSettings);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);

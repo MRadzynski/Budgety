@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
 const BalanceChart = ({ data, currency }) => {
-  const location = useHistory();
+  const history = useHistory();
 
   let renderLabel = function (entry) {
     return formatCurrency(entry.amount, currency);
@@ -31,7 +31,7 @@ const BalanceChart = ({ data, currency }) => {
             <Cell
               key={`${index}`}
               fill={entry.bgColor}
-              onClick={() => location.push(`/${entry.name.toLowerCase()}`)}
+              onClick={() => history.push(`/${entry.name.toLowerCase()}`)}
             />
           ))}
         </Pie>
