@@ -12,7 +12,7 @@ const ExchangePage = () => (
   <ExchangeContainer>
     <ExchangeTitle>Exchange</ExchangeTitle>
     <ExchangeSubTitle>
-      Check amount of your budget in different currencies
+      Check your balance in different currencies
     </ExchangeSubTitle>
     <ExchangeWindow />
   </ExchangeContainer>

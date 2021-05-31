@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { selectCurrency } from '../../redux/finance/finance.selectors';
+import {
+  selectBalance,
+  selectCurrency,
+} from '../../redux/finance/finance.selectors';
+
+import { formatNumber } from '../../redux/finance/finance.utils';
+
+import Spinner from '../spinner/spinner.component';
 
 import {
   ExchangeWindowContainer,
@@ -12,9 +19,10 @@ import {
   DateInfo,
 } from './exchange-window.styles';
 
-const ExchangeWindow = ({ currency }) => {
+const ExchangeWindow = ({ currency, balance }) => {
   const [rates, setRates] = useState([]);
   const [date, setDate] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCurrencies = async () => {
@@ -27,19 +35,37 @@ const ExchangeWindow = ({ currency }) => {
       );
       setDate(currenciesDataArray[2]);
       setRates(Object.entries(currenciesDataArray[3]));
+      setLoading(false);
     };
     fetchCurrencies();
+
+    return () => {
+      setDate(null);
+      setRates([]);
+    };
   }, [currency]);
 
   return (
     <ExchangeWindowContainer>
       <ExchangeList>
-        {rates.map((rate, i) => (
-          <ExchangeListItem key={i}>
-            <CurrencyName>{rate[0]}</CurrencyName>
-            <CurrencyRate>{rate[1].toFixed(2)}</CurrencyRate>
-          </ExchangeListItem>
-        ))}
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <ExchangeListItem key={balance}>
+              <CurrencyName>{currency}</CurrencyName>
+              <CurrencyRate>{formatNumber(balance)}</CurrencyRate>
+            </ExchangeListItem>
+            {rates.map((rate, i) => (
+              <ExchangeListItem key={i}>
+                <CurrencyName>{rate[0]}</CurrencyName>
+                <CurrencyRate length={formatNumber(balance * rate[1]).length}>
+                  {formatNumber(balance * rate[1])}
+                </CurrencyRate>
+              </ExchangeListItem>
+            ))}
+          </>
+        )}
       </ExchangeList>
       <DateInfo>Last Update: {date}</DateInfo>
     </ExchangeWindowContainer>
@@ -48,6 +74,7 @@ const ExchangeWindow = ({ currency }) => {
 
 const mapStateToProps = (state) => ({
   currency: selectCurrency(state),
+  balance: selectBalance(state),
 });
 
 export default connect(mapStateToProps)(ExchangeWindow);

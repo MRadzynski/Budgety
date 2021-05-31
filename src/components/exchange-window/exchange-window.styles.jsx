@@ -18,6 +18,7 @@ export const ExchangeList = styled.ul`
   position: relative;
   overflow: hidden scroll;
   border-radius: 25px;
+  margin-top: 0.5rem;
 `;
 
 export const ExchangeListItem = styled.li`
@@ -31,8 +32,8 @@ export const ExchangeListItem = styled.li`
 `;
 
 export const CurrencyRate = styled.h2`
-  font-size: 2.4rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: ${({ length }) => (length > 13 ? '0' : '0.1rem')};
+  font-size: ${({ length }) => (length > 13 ? '2.2rem' : '2.4rem')};
 `;
 
 export const CurrencyName = styled.h2`

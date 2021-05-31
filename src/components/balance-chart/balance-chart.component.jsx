@@ -5,15 +5,15 @@ import { useHistory } from 'react-router-dom';
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
 const BalanceChart = ({ data, currency }) => {
-  const location = useHistory();
+  const history = useHistory();
 
   let renderLabel = function (entry) {
     return formatCurrency(entry.amount, currency);
   };
 
   return (
-    <ResponsiveContainer width="100%" height="80%">
-      <PieChart margin={0}>
+    <ResponsiveContainer width="100%" height="100%">
+      <PieChart margin={{ top: 20 }}>
         <Pie
           data={data}
           dataKey="amount"
@@ -22,8 +22,8 @@ const BalanceChart = ({ data, currency }) => {
           cy="90%"
           startAngle={0}
           endAngle={180}
-          innerRadius={75}
-          outerRadius={100}
+          innerRadius={60}
+          outerRadius={85}
           paddingAngle={1}
           label={renderLabel}
         >
@@ -31,7 +31,7 @@ const BalanceChart = ({ data, currency }) => {
             <Cell
               key={`${index}`}
               fill={entry.bgColor}
-              onClick={() => location.push(`/${entry.name.toLowerCase()}`)}
+              onClick={() => history.push(`/${entry.name.toLowerCase()}`)}
             />
           ))}
         </Pie>

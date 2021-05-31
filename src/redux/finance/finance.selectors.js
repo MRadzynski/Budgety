@@ -9,7 +9,7 @@ export const selectExpenses = createSelector(
 
 export const selectIncome = createSelector(
   [selectFinance],
-  (finance) => finance.income
+  (finance) => finance?.income
 );
 
 export const selectTotalExpenses = createSelector(
@@ -25,6 +25,14 @@ export const selectTotalIncome = createSelector([selectIncome], (income) => {
   return income.reduce((acc, singleIncome) => acc + singleIncome.amount, 0);
 });
 
+export const selectTotalExpensesIncomeArr = createSelector(
+  [selectTotalExpenses, selectTotalIncome],
+  (totalExpenses, totalIncome) => [
+    { amount: totalExpenses, name: 'Expenses', bgColor: '#E6504C' },
+    { amount: totalIncome, name: 'Income', bgColor: '#44D495' },
+  ]
+);
+
 export const selectBalance = createSelector(
   [selectTotalExpenses, selectTotalIncome],
   (totalExpenses, totalIncome) => totalIncome - totalExpenses
@@ -33,4 +41,22 @@ export const selectBalance = createSelector(
 export const selectCurrency = createSelector(
   [selectFinance],
   (finance) => finance.currency
+);
+
+export const selectPercentageExpenses = createSelector(
+  [selectExpenses, selectTotalExpenses],
+  (expenses, totalExpenses) =>
+    expenses?.map((expense) => ({
+      ...expense,
+      percent: Number(((expense.amount / totalExpenses) * 100).toFixed(2)),
+    }))
+);
+
+export const selectPercentageIncome = createSelector(
+  [selectIncome, selectTotalIncome],
+  (income, totalIncome) =>
+    income?.map((singleIncome) => ({
+      ...singleIncome,
+      percent: Number(((singleIncome.amount / totalIncome) * 100).toFixed(2)),
+    }))
 );

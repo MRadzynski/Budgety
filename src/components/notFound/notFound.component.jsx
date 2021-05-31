@@ -1,0 +1,42 @@
+import React from 'react';
+
+import { connect } from 'react-redux';
+
+import { useHistory } from 'react-router-dom';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+
+import CustomButton from '../custom-button/custom-button.component';
+
+import {
+  NotFoundContainer,
+  NotFoundImageContainer,
+  NotFoundText,
+} from './notFound.styles';
+
+const NotFound = ({ currentUser }) => {
+  const history = useHistory();
+  return (
+    <NotFoundContainer>
+      <NotFoundImageContainer>
+        <img alt="Dog eating paper" src="https://i.imgur.com/lKJiT77.png" />
+      </NotFoundImageContainer>
+      <NotFoundText>A Dog Ate this Page</NotFoundText>
+
+      <CustomButton
+        textColor="var(--black-shade)"
+        hoverColor="#4285f4"
+        onClick={() => {
+          currentUser ? history.push('/') : history.push('/signin');
+        }}
+      >
+        {currentUser ? 'Go Home!' : 'Go Sign In!'}
+      </CustomButton>
+    </NotFoundContainer>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps)(NotFound);

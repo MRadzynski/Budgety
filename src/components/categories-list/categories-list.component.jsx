@@ -2,6 +2,8 @@ import React from 'react';
 
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
+import Spinner from '../spinner/spinner.component';
+
 import {
   CategoriesListContainer,
   CategoryList,
@@ -13,7 +15,7 @@ import {
 } from './categories-list.styles';
 
 const CategoriesList = ({ categoriesData, currency }) => {
-  if (categoriesData === null) return <h1>Loading...</h1>;
+  if (categoriesData === null) return <Spinner />;
   return (
     <CategoriesListContainer>
       <CategoryList>

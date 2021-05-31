@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -9,17 +9,28 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import Navbar from './components/navbar/navbar.component';
 import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
-import ExpensesIncomePage from './pages/expenses-income/expenses-income.component';
-import ExchangePage from './pages/exchange/exchange.component';
-import SettingsPage from './pages/settings/settings.component';
+import ResetPassword from './components/reset-password/reset-password.component';
+import ErrorBoundary from './components/error-boundary/error-boundary.component';
+import NotFound from './components/notFound/notFound.component';
+import Spinner from './components/spinner/spinner.component';
 
-import GlobalStyle from './GlobalStyles';
 import {
   auth,
   createUserDocument,
   getUserFinancesRef,
 } from './firebase/firebase.utils';
-import HomePage from './pages/homepage/homepage.component';
+
+import GlobalStyle from './GlobalStyles';
+
+const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
+
+const ExchangePage = lazy(() => import('./pages/exchange/exchange.component'));
+
+const ExpensesIncomePage = lazy(() =>
+  import('./pages/expenses-income/expenses-income.component')
+);
+
+const SettingsPage = lazy(() => import('./pages/settings/settings.component'));
 
 const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
   useEffect(() => {
@@ -58,45 +69,58 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
   }, [setCurrentUser, setFinances, setCurrency]);
 
   return (
-    <div>
+    <>
       <GlobalStyle />
       {currentUser ? <Navbar /> : null}
-      <Switch>
-        <Route exact path="/expenses">
-          <ExpensesIncomePage />
-        </Route>
-        <Route path="/expenses/add-expenses">
-          <ExpensesIncomePage />
-        </Route>
-        <Route exact path="/income">
-          <ExpensesIncomePage />
-        </Route>
-        <Route path="/income/add-income">
-          <ExpensesIncomePage />
-        </Route>
-        <Route path="/exchange">
-          <ExchangePage />
-        </Route>
-        <Route path="/settings">
-          <SettingsPage />
-        </Route>
-        <Route
-          path="/signin"
-          render={() =>
-            currentUser ? <Redirect to="/expenses" /> : <SignIn />
-          }
-        ></Route>
-        <Route
-          path="/signup"
-          render={() =>
-            currentUser ? <Redirect to="/expenses" /> : <SignUp />
-          }
-        ></Route>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-      </Switch>
-    </div>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            <Route exact path="/expenses">
+              <ExpensesIncomePage />
+            </Route>
+            <Route path="/expenses/add-expenses">
+              <ExpensesIncomePage />
+            </Route>
+            <Route exact path="/income">
+              <ExpensesIncomePage />
+            </Route>
+            <Route path="/income/add-income">
+              <ExpensesIncomePage />
+            </Route>
+            <Route path="/exchange">
+              <ExchangePage />
+            </Route>
+            <Route path="/settings">
+              <SettingsPage />
+            </Route>
+            <Route
+              path="/signin"
+              render={() =>
+                currentUser ? <Redirect to="/expenses" /> : <SignIn />
+              }
+            ></Route>
+            <Route
+              path="/signup"
+              render={() =>
+                currentUser ? <Redirect to="/expenses" /> : <SignUp />
+              }
+            ></Route>
+            <Route
+              path="/reset-password"
+              render={() =>
+                currentUser ? <Redirect to="/expenses" /> : <ResetPassword />
+              }
+            ></Route>
+            <Route
+              exact
+              path="/"
+              render={() => (currentUser ? <HomePage /> : <SignIn />)}
+            ></Route>
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </ErrorBoundary>
+    </>
   );
 };
 

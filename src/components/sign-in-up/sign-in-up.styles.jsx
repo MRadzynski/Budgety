@@ -31,6 +31,7 @@ export const FormInput = styled.input`
   outline: none;
   font-size: 1.8rem;
   letter-spacing: 0.2rem;
+  margin: ${({ resetInput }) => (resetInput ? '2.5rem 0' : '0 0')};
 
   ::placeholder {
     color: #e6e6e6;
@@ -58,25 +59,50 @@ export const FormInput = styled.input`
 export const FormTitle = styled.h1`
   font-size: 5rem;
   margin: 3rem auto 2rem auto;
+  letter-spacing: 0.25rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const FormSubtext = styled.h2`
+  width: 80%;
   font-weight: normal;
   text-align: center;
   letter-spacing: 0.15rem;
   margin-top: 0.5rem;
+  font-size: ${({ reset }) => (reset ? '1.8rem' : null)};
+`;
+
+export const ForgotPasswordLink = styled(Link)`
+  width: 70%;
+  text-decoration: underline;
+  text-align: right;
+  font-size: 130%;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  margin: -2rem 0 -1rem 0;
+  color: #33cfff;
 `;
 
 export const ErrorMessageContainer = styled.div`
-  width: 60%;
-  visibility: ${({ display }) => (display === 'true' ? 'visible' : 'hidden')};
-  margin-top: -2rem;
-  margin-bottom: -1rem;
+  width: 80%;
+  display: ${({ display }) => (display !== '' ? 'inline-block' : 'none')};
+  margin-top: ${({ reset }) => (reset ? '-4rem' : '-1rem')};
+  margin-bottom: -1.5rem;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
   color: var(--errorMessage);
+`;
+
+export const SuccessMessageContainer = styled.div`
+  width: 80%;
+  display: ${({ display }) => (display !== '' ? 'inline-block' : 'none')};
+  margin-top: -4rem;
+  margin-bottom: -1rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #4bb543;
 `;
 
 export const LogoContainer = styled.div`

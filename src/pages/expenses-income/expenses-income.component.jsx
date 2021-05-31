@@ -15,6 +15,8 @@ import Chart from '../../components/chart/chart.component';
 
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
+import Spinner from '../../components/spinner/spinner.component';
+
 import {
   ExpensesIncomePageContainer,
   ExpensesIncomeTitle,
@@ -40,7 +42,7 @@ const ExpensesIncomePage = ({
         <ChartContainer>
           <Chart type={expenses} />
           {totalExpenses === undefined ? (
-            <h1>Calculating...</h1>
+            <Spinner />
           ) : (
             <ChartPrice>{formatCurrency(totalExpenses, currency)}</ChartPrice>
           )}
@@ -49,7 +51,7 @@ const ExpensesIncomePage = ({
         <ChartContainer>
           <Chart type={income} />
           {totalIncome === undefined ? (
-            <h1>Calculating...</h1>
+            <Spinner />
           ) : (
             <ChartPrice>{formatCurrency(totalIncome, currency)}</ChartPrice>
           )}
