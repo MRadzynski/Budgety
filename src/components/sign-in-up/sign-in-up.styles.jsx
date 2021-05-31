@@ -18,7 +18,6 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  /* gap: ${({ resetForm }) => (resetForm ? '5rem' : '3rem')}; */
   margin-top: 2rem;
 `;
 
