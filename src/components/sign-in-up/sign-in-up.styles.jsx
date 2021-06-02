@@ -19,6 +19,24 @@ export const Form = styled.form`
   justify-content: center;
   gap: 3rem;
   margin-top: 2rem;
+
+  button:nth-of-type(2) {
+    margin-top: -1rem;
+  }
+
+  @media (min-width: 20rem) {
+    margin-top: 2rem;
+
+    button:nth-of-type(1) {
+      margin-top: -0.5rem;
+    }
+  }
+
+  @media (min-width: 23rem) {
+    button:nth-of-type(1) {
+      margin-top: 1rem;
+    }
+  }
 `;
 
 export const FormInput = styled.input`
@@ -54,13 +72,70 @@ export const FormInput = styled.input`
   &[type='text']::placeholder {
     letter-spacing: 0.15rem;
   }
+
+  @media (min-width: 20rem) {
+    line-height: 1.8rem;
+    font-size: 1.6rem;
+    margin: ${({ resetInput }) => (resetInput ? '0 0 1.5rem 0' : '0')};
+
+    ::placeholder {
+      font-size: 1.6rem;
+    }
+
+    &[type='email'] {
+      letter-spacing: 0.25rem;
+    }
+  }
+
+  @media (min-width: 22.5rem) {
+    font-size: 1.8rem;
+    margin: ${({ resetInput }) => (resetInput ? '0.5rem 0 1.5rem 0' : '0')};
+
+    ::placeholder {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (min-width: 23rem) {
+    font-size: 2rem;
+    margin: ${({ resetInput }) => (resetInput ? '-1rem 0 2rem 0' : '0')};
+  }
+
+  @media (min-width: 25rem) {
+    font-size: 2.2rem;
+
+    ::placeholder {
+      font-size: 2rem;
+    }
+  }
 `;
 
 export const FormTitle = styled.h1`
-  font-size: 5rem;
-  margin: 3rem auto 2rem auto;
+  font-size: 4rem;
+  margin: 2rem auto;
   letter-spacing: 0.25rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media (min-width: 20rem) {
+    margin: 2rem auto;
+    font-size: 4rem;
+    letter-spacing: 0.35rem;
+  }
+
+  @media (min-width: 22.5rem) {
+    font-size: 4.5rem;
+    letter-spacing: 0.4rem;
+  }
+
+  @media (min-width: 22.5rem) and (min-height: 50rem) {
+    font-size: 5rem;
+    margin: 3rem auto 2rem auto;
+  }
+
+  @media (min-width: 25rem) {
+    margin: 3rem auto 2rem auto;
+    font-size: 5rem;
+  }
 `;
 
 export const FormSubtext = styled.h2`
@@ -70,6 +145,23 @@ export const FormSubtext = styled.h2`
   letter-spacing: 0.15rem;
   margin-top: 0.5rem;
   font-size: ${({ reset }) => (reset ? '1.8rem' : null)};
+
+  @media (min-width: 20rem) {
+    font-size: ${({ reset }) => (reset ? '1.4rem' : '1.3rem')};
+    margin: 0 0 2rem 0;
+  }
+
+  @media (min-width: 22.5rem) {
+    margin-top: 0.75rem;
+  }
+
+  @media (min-width: 23rem) {
+    font-size: ${({ reset }) => (reset ? '1.7rem' : '1.5rem')};
+  }
+
+  @media (min-width: 25rem) {
+    font-size: ${({ reset }) => (reset ? '1.8rem' : '1.6rem')};
+  }
 `;
 
 export const ForgotPasswordLink = styled(Link)`
@@ -81,28 +173,63 @@ export const ForgotPasswordLink = styled(Link)`
   letter-spacing: 0.2rem;
   margin: -2rem 0 -1rem 0;
   color: #33cfff;
+
+  @media (min-width: 20rem) {
+    margin: -2rem 0 -0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 22.5rem) {
+    font-size: 1.3rem;
+  }
+
+  @media (min-width: 23rem) {
+    font-size: 1.4rem;
+    margin-bottom: -0.5rem;
+  }
+
+  @media (min-width: 22.5rem) and (min-height: 50rem) {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 25rem) {
+    margin-bottom: -0.25rem;
+    font-size: 1.5rem;
+  }
 `;
 
 export const ErrorMessageContainer = styled.div`
   width: 80%;
   display: ${({ display }) => (display !== '' ? 'inline-block' : 'none')};
-  margin-top: ${({ reset }) => (reset ? '-4rem' : '-1rem')};
+  margin-top: ${({ reset }) => (reset ? '-4rem' : '-2rem')};
   margin-bottom: -1.5rem;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
   color: var(--errorMessage);
+
+  @media (min-width: 23rem) {
+    margin-bottom: ${({ reset }) => (reset ? '-1rem' : '-2.5rem')};
+  }
+
+  @media (min-width: 25rem) {
+    margin-bottom: ${({ reset }) => (reset ? '-1rem' : '-2.7rem')};
+    font-size: 1.8rem;
+  }
 `;
 
 export const SuccessMessageContainer = styled.div`
   width: 80%;
   display: ${({ display }) => (display !== '' ? 'inline-block' : 'none')};
-  margin-top: -4rem;
-  margin-bottom: -1rem;
+  margin: -4rem 0 -1rem 0;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
   color: #4bb543;
+
+  @media (min-width: 25rem) {
+    font-size: 1.8rem;
+  }
 `;
 
 export const LogoContainer = styled.div`

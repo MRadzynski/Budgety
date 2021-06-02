@@ -18,4 +18,10 @@ export const CustomButtonContainer = styled.button`
     background-color: ${({ hoverColor }) => hoverColor};
     color: var(--white-shade);
   }
+
+  @media (max-width: 20rem) {
+    width: 19rem;
+    height: 4rem;
+    font-size: 1.8rem;
+  }
 `;

@@ -169,7 +169,9 @@ const SignInUp = ({ formType }) => {
             <ErrorMessageContainer display={errorMessage} reset>
               {errorMessage}
             </ErrorMessageContainer>
-            <CustomButton hoverColor="#33cfff">Reset Password</CustomButton>
+            <CustomButton bgColor="var(--white-shade)" hoverColor="#33cfff">
+              Reset Password
+            </CustomButton>
           </>
         )}
       </Form>
