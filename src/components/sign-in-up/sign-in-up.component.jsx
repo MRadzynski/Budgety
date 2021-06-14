@@ -74,9 +74,9 @@ const SignInUp = ({ formType }) => {
           error.code === 'auth/wrong-password') &&
         formType === 'sign-in'
       ) {
-        setErrorMessage('Wrong e-mail or password!');
+        setErrorMessage('Wrong email or password!');
       } else if (error.code === 'auth/user-not-found' && formType === 'reset') {
-        setErrorMessage('There is no account at this e-mail address!');
+        setErrorMessage('There is no account at this email address!');
       }
     }
   };

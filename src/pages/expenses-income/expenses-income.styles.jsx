@@ -23,7 +23,7 @@ export const ChartContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-color);
+  background-color: transparent;
   position: absolute;
   top: 4%;
   right: 4%;

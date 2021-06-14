@@ -22,8 +22,11 @@ html {
 }
 
 body{
-  background-color: var(--primary-color);
   height:100%;
+  background-color: var(--primary-color);
+  background-image: url('assets/background-image2.png');
+  ${'' /* background-position: center; */}
+  background-size: cover;
 }
 `;
 
