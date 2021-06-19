@@ -9,8 +9,6 @@ import {
 } from '../../redux/finance/finance.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-import { setExpenses, setIncome } from '../../redux/finance/finance.actions';
-
 import CustomButton from '../custom-button/custom-button.component';
 
 import { updateFinances } from '../../firebase/firebase.utils';
@@ -33,8 +31,6 @@ const ExpenseIncomeForm = ({
   income,
   currentUser,
   currency,
-  setExpenses,
-  setIncome,
 }) => {
   const history = useHistory();
   const [category, setCategory] = useState('');
@@ -98,6 +94,7 @@ const ExpenseIncomeForm = ({
             value={price || ''}
             pattern="[0-9]+([\.,]{0,1}([0-9]{0,2}))"
             onChange={handleChange}
+            inputMode="decimal"
             required
           ></FormInput>
         </FormFieldContainer>
@@ -150,9 +147,4 @@ const mapStateToProps = (state) => ({
   currency: selectCurrency(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setExpenses: (expenses) => dispatch(setExpenses(expenses)),
-  setIncome: (income) => dispatch(setIncome(income)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ExpenseIncomeForm);
+export default connect(mapStateToProps)(ExpenseIncomeForm);

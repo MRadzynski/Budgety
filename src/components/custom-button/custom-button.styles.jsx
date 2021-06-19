@@ -59,6 +59,13 @@ export const CustomButtonContainer = styled.button`
     font-size: 3.2rem;
   }
 
+  @media (min-width: 160rem) and (min-height: 90rem) {
+    height: 9rem;
+    width: 40rem;
+    border-radius: 50px;
+    font-size: 4rem;
+  }
+
   @media (min-width: 240rem) {
     width: 60rem;
     height: 10rem;

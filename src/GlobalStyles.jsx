@@ -23,8 +23,7 @@ html {
 
 body{
   height:100%;
-  background-color: var(--primary-color);
-  background-image: url('assets/background-image2.png');
+  background: url('/assets/background-image2.png'), var(--primary-color);
   ${'' /* background-position: center; */}
   background-size: cover;
 }

@@ -27,8 +27,6 @@ const BalanceChart = ({ data, currency }) => {
           cy={innerWidth >= 1024 ? '75%' : '90%'}
           startAngle={0}
           endAngle={180}
-          // innerRadius={innerWidth > 700 ? '100' : '60'}
-          // outerRadius={innerWidth > 700 ? '150' : '85'}
           innerRadius={innerWidth > 700 ? 100 + 30 * sizeModifier : '60'}
           outerRadius={innerWidth > 700 ? 150 + 30 * sizeModifier : '85'}
           paddingAngle={1}

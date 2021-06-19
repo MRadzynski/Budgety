@@ -186,7 +186,6 @@ export const ChartText = styled.h2`
 `;
 
 export const ChartContainer = styled.div`
-  width: calc(var(--vh, 1vh) * 45);
   width: 82vw;
   height: calc(var(--vh, 1vh) * 25);
   background-color: var(--white-shade);
