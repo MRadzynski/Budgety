@@ -36,4 +36,73 @@ export const HamburgerContainer = styled.div`
       transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
+
+  @media (min-width: 48rem) and (orientation: portrait) {
+    width: 5rem;
+    height: 5rem;
+
+    span {
+      width: 5rem;
+      height: 0.8rem;
+    }
+  }
+
+  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+    top: 2rem;
+    left: 2.5rem;
+  }
+
+  @media (min-width: 64rem) and (orientation: landscape) {
+    width: 4rem;
+    height: 4rem;
+
+    span {
+      width: 4rem;
+      height: 0.7rem;
+    }
+  }
+
+  @media (min-width: 85rem) and (min-height: 900px) {
+    width: 5rem;
+    height: 5rem;
+    top: 2.5rem;
+    left: 3rem;
+
+    span {
+      width: 5rem;
+      height: 0.8rem;
+    }
+  }
+
+  @media (min-width: 120rem) {
+    width: 6rem;
+    height: 6rem;
+
+    span {
+      width: 6rem;
+      height: 1rem;
+    }
+  }
+
+  @media (min-width: 160rem) and (min-height: 90rem) {
+    width: 7rem;
+    height: 7rem;
+
+    span {
+      width: 7rem;
+      height: 1.3rem;
+    }
+  }
+
+  @media (min-width: 240rem) {
+    width: 12rem;
+    height: 12rem;
+    top: 5rem;
+    left: 6rem;
+
+    span {
+      width: 12rem;
+      height: 2rem;
+    }
+  }
 `;

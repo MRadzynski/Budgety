@@ -98,6 +98,11 @@ export const ModalInput = styled.input`
     letter-spacing: 0.8rem;
   }
 
+  @media (min-width: 90rem) and (min-height: 700px) {
+    width: 70%;
+    font-size: 3.4rem;
+  }
+
   @media (min-width: 100rem) and (min-height: 900px) {
     width: 65%;
   }
