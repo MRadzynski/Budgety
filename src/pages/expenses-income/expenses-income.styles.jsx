@@ -12,9 +12,9 @@ export const ExpensesIncomeTitle = styled.h1`
   top: 10%;
   left: 6%;
   color: var(--white-shade);
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 8vw;
   letter-spacing: 0.2rem;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   @media (min-width: 20rem) {
     left: 8%;
@@ -90,11 +90,11 @@ export const ChartContainer = styled.div`
 
 export const ChartPrice = styled.h2`
   position: absolute;
-  color: #050505;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 0.5rem;
   margin: auto;
+  padding: 0.5rem;
   border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #050505;
   font-size: calc(var(--vh, 1vh) * 3.5);
 
   @media (min-width: 64rem) and (orientation: landscape) {

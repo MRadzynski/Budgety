@@ -87,8 +87,8 @@ export const SettingsTitle = styled.h1`
 
 export const SettingsGroupTitle = styled.h2`
   margin-bottom: 1rem;
-  font-size: 2.5rem;
   color: var(--black-shade);
+  font-size: 2.5rem;
   text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
   letter-spacing: 0.2rem;
 
@@ -204,10 +204,10 @@ export const SettingFieldContainer = styled.div`
 
 export const SettingLabel = styled.label`
   width: 60%;
-  font-size: 2.2rem;
-  font-weight: bold;
   background-color: var(--white-shade);
   color: var(--black-shade);
+  font-size: 2.2rem;
+  font-weight: bold;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
   @media (min-width: 20rem) {
@@ -350,9 +350,9 @@ export const DangerButton = styled.button`
   height: 60%;
   border: 0;
   border-radius: 1rem;
-  font-size: 2rem;
   background-color: var(--errorMessage);
   color: white;
+  font-size: 2rem;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;

@@ -11,8 +11,8 @@ export const SignInUpContainer = styled.div`
 `;
 
 export const Form = styled.form`
-  height: calc(var(--vh, 1vh) * 47);
   width: 100%;
+  height: calc(var(--vh, 1vh) * 47);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,17 +108,16 @@ export const Form = styled.form`
 
 export const FormInput = styled.input`
   width: 70%;
-  line-height: 3rem;
-  background-color: var(--primary-color);
-  background-color: transparent;
-  color: var(--white-shade);
+  margin: ${({ resetInput }) => (resetInput ? '2.5rem 0' : '0 0')};
   border-width: 0 0 1px 0;
   border-color: white;
   outline: none;
+  background-color: transparent;
+  color: var(--white-shade);
   font-size: 1.8rem;
+  line-height: 3rem;
   letter-spacing: 0.2rem;
   caret-color: white;
-  margin: ${({ resetInput }) => (resetInput ? '2.5rem 0' : '0 0')};
 
   ::placeholder {
     color: #e6e6e6;
@@ -130,7 +129,6 @@ export const FormInput = styled.input`
   :-webkit-autofill:hover,
   :-webkit-autofill:active,
   :-webkit-autofill:focus {
-    /* box-shadow: 0 0 0 30px var(--primary-color) inset !important; */
     -webkit-text-fill-color: var(--white-shade) !important;
     background-clip: content-box !important;
     transition: background-color 5000s;
@@ -145,9 +143,9 @@ export const FormInput = styled.input`
   }
 
   @media (min-width: 20rem) {
-    line-height: 1.8rem;
-    font-size: 1.6rem;
     margin: ${({ resetInput }) => (resetInput ? '0 0 1.5rem 0' : '0')};
+    font-size: 1.6rem;
+    line-height: 1.8rem;
 
     ::placeholder {
       font-size: 1.6rem;
@@ -159,8 +157,8 @@ export const FormInput = styled.input`
   }
 
   @media (min-width: 22.5rem) {
-    font-size: 1.8rem;
     margin: ${({ resetInput }) => (resetInput ? '0.5rem 0 1.5rem 0' : '0')};
+    font-size: 1.8rem;
 
     ::placeholder {
       font-size: 1.8rem;
@@ -168,8 +166,8 @@ export const FormInput = styled.input`
   }
 
   @media (min-width: 23rem) {
-    font-size: 2rem;
     margin: ${({ resetInput }) => (resetInput ? '-1rem 0 2rem 0' : '0')};
+    font-size: 2rem;
   }
 
   @media (min-width: 25rem) {
@@ -181,9 +179,9 @@ export const FormInput = styled.input`
   }
 
   @media (min-width: 48rem) {
+    margin: ${({ resetInput }) => (resetInput ? '0 0 2rem 0' : '0')};
     font-size: 3rem;
     line-height: 4rem;
-    margin: ${({ resetInput }) => (resetInput ? '0 0 2rem 0' : '0')};
 
     ::placeholder {
       font-size: 3rem;
@@ -261,8 +259,8 @@ export const FormInput = styled.input`
 `;
 
 export const FormTitle = styled.h1`
-  font-size: 4rem;
   margin: 2rem auto;
+  font-size: 4rem;
   letter-spacing: 0.25rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -278,8 +276,8 @@ export const FormTitle = styled.h1`
   }
 
   @media (min-width: 22.5rem) and (min-height: 50rem) {
-    font-size: 5rem;
     margin: 3rem auto 2rem auto;
+    font-size: 5rem;
   }
 
   @media (min-width: 25rem) {
@@ -288,8 +286,8 @@ export const FormTitle = styled.h1`
   }
 
   @media (min-width: 48rem) {
-    font-size: 7rem;
     margin: 3.5rem 0 3rem 0;
+    font-size: 7rem;
   }
 
   @media (min-width: 52rem) and (orientation: portrait) {
@@ -297,9 +295,9 @@ export const FormTitle = styled.h1`
   }
 
   @media (min-width: 64rem) and (orientation: landscape) {
+    margin-top: 1.5rem;
     font-size: 10rem;
     letter-spacing: 1.5rem;
-    margin-top: 1.5rem;
   }
 
   @media (min-width: 80rem) and (orientation: landscape) {
@@ -327,11 +325,11 @@ export const FormTitle = styled.h1`
 
 export const FormSubtext = styled.h2`
   width: 80%;
+  margin-top: 0.5rem;
+  font-size: ${({ reset }) => (reset ? '1.8rem' : null)};
   font-weight: normal;
   text-align: center;
   letter-spacing: 0.15rem;
-  margin-top: 0.5rem;
-  font-size: ${({ reset }) => (reset ? '1.8rem' : null)};
 
   @media (min-width: 20rem) {
     font-size: ${({ reset }) => (reset ? '1.4rem' : '1.3rem')};
@@ -395,13 +393,13 @@ export const FormSubtext = styled.h2`
 
 export const ForgotPasswordLink = styled(Link)`
   width: 70%;
-  text-decoration: underline;
-  text-align: right;
-  font-size: 130%;
-  font-weight: bold;
-  letter-spacing: 0.2rem;
   margin: -2rem 0 -1rem 0;
   color: #33cfff;
+  font-size: 130%;
+  font-weight: bold;
+  text-align: right;
+  text-decoration: underline;
+  letter-spacing: 0.2rem;
 
   @media (min-width: 20rem) {
     margin: -2rem 0 -0.5rem 0;
@@ -413,8 +411,8 @@ export const ForgotPasswordLink = styled(Link)`
   }
 
   @media (min-width: 23rem) {
-    font-size: 1.4rem;
     margin-bottom: -0.5rem;
+    font-size: 1.4rem;
   }
 
   @media (min-width: 22.5rem) and (min-height: 50rem) {
@@ -438,8 +436,8 @@ export const ForgotPasswordLink = styled(Link)`
 
   @media (min-width: 64rem) and (orientation: landscape) {
     width: 50%;
-    font-size: 2.4rem;
     margin-bottom: -0.5rem;
+    font-size: 2.4rem;
   }
 
   @media (min-width: 80rem) and (orientation: landscape) {
@@ -475,10 +473,10 @@ export const ErrorMessageContainer = styled.div`
   display: ${({ display }) => (display !== '' ? 'inline-block' : 'none')};
   margin-top: ${({ reset }) => (reset ? '-4rem' : '-2rem')};
   margin-bottom: -1.5rem;
+  color: var(--errorMessage);
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-  color: var(--errorMessage);
 
   @media (min-width: 23rem) {
     margin-bottom: ${({ reset }) => (reset ? '-1rem' : '-2.5rem')};
@@ -500,9 +498,9 @@ export const ErrorMessageContainer = styled.div`
   }
 
   @media (min-width: 64rem) and (orientation: landscape) {
+    width: 90%;
     margin-bottom: ${({ reset }) => (reset ? '-2.5rem' : '-3.5rem')};
     font-size: 2.6rem;
-    width: 90%;
   }
 
   @media (min-width: 80rem) {
@@ -526,10 +524,10 @@ export const SuccessMessageContainer = styled.div`
   width: 80%;
   display: ${({ display }) => (display !== '' ? 'inline-block' : 'none')};
   margin: -4rem 0 -1rem 0;
+  color: #4bb543;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-  color: #4bb543;
 
   @media (min-width: 25rem) {
     font-size: 1.8rem;
@@ -540,14 +538,14 @@ export const SuccessMessageContainer = styled.div`
   }
 
   @media (min-width: 52rem) and (orientation: portrait) {
-    font-size: 3rem;
     margin-bottom: -3rem;
+    font-size: 3rem;
   }
 
   @media (min-width: 64rem) and (orientation: landscape) {
+    width: 90%;
     margin-bottom: -2.5rem;
     font-size: 2.6rem;
-    width: 90%;
   }
 
   @media (min-width: 80rem) {
@@ -574,8 +572,8 @@ export const LogoContainer = styled.div`
   }
 
   @media (min-width: 48rem) {
-    margin-bottom: ${({ reset }) => (reset ? '-1rem' : '-3.7rem')};
     height: 30%;
+    margin-bottom: ${({ reset }) => (reset ? '-1rem' : '-3.7rem')};
   }
 
   @media (min-width: 52rem) and (orientation: portrait) {
@@ -583,33 +581,33 @@ export const LogoContainer = styled.div`
   }
 
   @media (min-width: 64rem) and (orientation: landscape) {
-    margin-bottom: ${({ reset }) => (reset ? '-1rem' : '2rem')};
-    height: 30%;
     width: 20%;
+    height: 30%;
+    margin-bottom: ${({ reset }) => (reset ? '-1rem' : '2rem')};
   }
 
   @media (min-width: 80rem) and (orientation: landscape) {
-    height: 22%;
     width: 12%;
+    height: 22%;
   }
 
   @media (min-width: 120rem) {
-    height: 25%;
     width: 10%;
+    height: 25%;
   }
 
   @media (min-width: 160rem) {
-    height: 22%;
     width: 7%;
+    height: 22%;
   }
 `;
 
 export const SignInUpLink = styled(Link)`
-  text-decoration: none;
+  margin-left: 1rem;
+  border-bottom: 1px solid #33cfff;
+  color: #33cfff;
   font-size: 110%;
   font-weight: bold;
+  text-decoration: none;
   letter-spacing: 0.2rem;
-  margin-left: 1rem;
-  color: #33cfff;
-  border-bottom: 1px solid #33cfff;
 `;

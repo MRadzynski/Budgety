@@ -3,18 +3,18 @@ import styled from 'styled-components';
 export const CustomModalContainer = styled.div`
   width: 70%;
   height: ${({ large }) => (large ? '35%' : '20%')};
-  background-color: var(--white-shade);
-  color: var(--black-shade);
+  display: ${({ open }) => (open ? 'flex' : 'none')};
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   position: absolute;
   bottom: 45%;
-  border-radius: 15px;
-  display: ${({ open }) => (open ? 'flex' : 'none')};
-  align-items: center;
-  text-align: center;
-  justify-content: space-evenly;
-  flex-direction: column;
-  z-index: 3;
   padding: 0.5rem;
+  border-radius: 15px;
+  background-color: var(--white-shade);
+  color: var(--black-shade);
+  text-align: center;
+  z-index: 3;
 
   @media (min-width: 64rem) and (orientation: landscape) {
     width: 45%;
@@ -135,15 +135,15 @@ export const CustomModalTitle = styled.h2`
 `;
 
 export const CustomModalButton = styled.button`
-  height: ${({ large }) => (large ? '15%' : '30%')};
   width: 40%;
-  background-color: var(--errorMessage);
+  height: ${({ large }) => (large ? '15%' : '30%')};
   border: 0;
   border-radius: 1rem;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 2rem;
   color: white;
+  background-color: var(--errorMessage);
+  font-size: 2rem;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 

@@ -93,10 +93,10 @@ export const HomePageContainer = styled.div`
 
 export const WelcomeText = styled.h1`
   width: 80%;
-  font-size: 3rem;
   color: var(--white-shade);
-  text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
+  font-size: 3rem;
   text-align: left;
+  text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
   letter-spacing: 0.15rem;
 
   @media (min-width: 20rem) {
@@ -112,13 +112,13 @@ export const WelcomeText = styled.h1`
   }
 
   @media (min-width: 48rem) {
-    font-size: 5rem;
     margin: 1.5rem 0 0.5rem 0;
+    font-size: 5rem;
   }
 
   @media (min-width: 64rem) and (orientation: landscape) {
-    font-size: 6rem;
     margin: 2rem 0 0 0;
+    font-size: 6rem;
   }
 
   @media (min-width: 90rem) and (orientation: landscape) {
@@ -130,18 +130,18 @@ export const WelcomeText = styled.h1`
   }
 
   @media (min-width: 240rem) {
-    font-size: 15rem;
     margin: 10rem 0 0 0;
+    font-size: 15rem;
   }
 `;
 
 export const ChartText = styled.h2`
+  margin-bottom: 0.5rem;
+  color: var(--black-shade);
   font-size: 2rem;
   text-align: center;
-  color: var(--black-shade);
   letter-spacing: 0.15rem;
   word-spacing: 0.5rem;
-  margin-bottom: 0.5rem;
 
   @media (min-width: 20rem) {
     font-size: 1.5rem;
@@ -152,8 +152,8 @@ export const ChartText = styled.h2`
   }
 
   @media (min-width: 25rem) {
-    font-size: 1.8rem;
     padding: 0.3rem 0;
+    font-size: 1.8rem;
   }
 
   @media (min-width: 48rem) {
@@ -188,16 +188,16 @@ export const ChartText = styled.h2`
 export const ChartContainer = styled.div`
   width: 82vw;
   height: calc(var(--vh, 1vh) * 25);
-  background-color: var(--white-shade);
-  box-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
-  border-radius: 25px;
-  font-weight: bold;
-  font-size: 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-top: 1rem;
+  border-radius: 25px;
+  background-color: var(--white-shade);
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
 
   @media (min-width: 20rem) {
     font-size: 0.8rem;
