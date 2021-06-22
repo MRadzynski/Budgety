@@ -234,3 +234,47 @@ export const ChartContainer = styled.div`
     font-size: 6rem;
   }
 `;
+
+export const NoDataText = styled.h2`
+  padding: 4rem 1rem;
+  font-size: 1.6rem;
+
+  @media (min-width: 22.5rem) {
+    padding: 4.5rem 1rem;
+    font-size: 1.8rem;
+  }
+
+  @media (min-width: 25rem) {
+    padding: 5rem 1rem;
+    font-size: 2.2rem;
+  }
+
+  @media (min-width: 48rem) and (orientation: portrait) {
+    padding: 7rem 1rem;
+    font-size: 3.2rem;
+  }
+
+  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+    padding: 9rem 1rem;
+    font-size: 3.6rem;
+  }
+
+  @media (min-width: 64rem) and (orientation: landscape) {
+    padding: 6rem 1rem;
+    font-size: 3.2rem;
+  }
+
+  @media (min-width: 120rem) {
+    font-size: 4rem;
+  }
+
+  @media (min-width: 160rem) and (min-height: 90rem) {
+    padding: 12rem 1rem;
+    font-size: 6rem;
+  }
+
+  @media (min-width: 240rem) {
+    padding: 15rem 1rem;
+    font-size: 9rem;
+  }
+`;

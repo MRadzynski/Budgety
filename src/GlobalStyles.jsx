@@ -2,6 +2,11 @@ import { createGlobalStyle } from 'styled-components';
 
 let vh = window.innerHeight * 0.01;
 
+window.addEventListener('orientationchange', () => {
+  vh = window.innerHeight * 0.01;
+  window.location.reload();
+});
+
 const GlobalStyle = createGlobalStyle`
 :root {
   --primary-color: #4361EE;

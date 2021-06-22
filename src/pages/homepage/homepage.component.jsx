@@ -7,6 +7,8 @@ import {
   selectTotalExpensesIncomeArr,
   selectPercentageExpenses,
   selectPercentageIncome,
+  selectTotalExpenses,
+  selectTotalIncome,
 } from '../../redux/finance/finance.selectors';
 
 import { selectDisplayName } from '../../redux/user/user.selectors';
@@ -22,6 +24,7 @@ import {
   ChartContainer,
   WelcomeText,
   ChartText,
+  NoDataText,
 } from './homepage.styles';
 
 const HomePage = ({
@@ -31,23 +34,38 @@ const HomePage = ({
   totalExpensesIncomeArr,
   expensesPercent,
   incomePercent,
+  totalExpenses,
+  totalIncome,
+  totalBalance,
 }) => {
   return (
     <HomePageContainer>
       <WelcomeText>Hey {displayName}! </WelcomeText>
 
       <ChartContainer>
-        <BalanceChart data={totalExpensesIncomeArr} currency={currency} />
+        {totalBalance !== 0 ? (
+          <BalanceChart data={totalExpensesIncomeArr} currency={currency} />
+        ) : (
+          <NoDataText>No data to present 😔</NoDataText>
+        )}
         <ChartText>Balance: {formatCurrency(balance, currency)}</ChartText>
       </ChartContainer>
 
       <ChartContainer>
-        <ExpensesIncomeBarchart data={expensesPercent} currency={currency} />
+        {totalExpenses !== 0 ? (
+          <ExpensesIncomeBarchart data={expensesPercent} currency={currency} />
+        ) : (
+          <NoDataText>No data to present 😔</NoDataText>
+        )}
         <ChartText>Expenses</ChartText>
       </ChartContainer>
 
       <ChartContainer>
-        <ExpensesIncomeBarchart data={incomePercent} currency={currency} />
+        {totalIncome !== 0 ? (
+          <ExpensesIncomeBarchart data={incomePercent} currency={currency} />
+        ) : (
+          <NoDataText>No data to present 😔</NoDataText>
+        )}
         <ChartText>Income</ChartText>
       </ChartContainer>
     </HomePageContainer>
@@ -61,6 +79,9 @@ const mapStateToProps = (state) => ({
   totalExpensesIncomeArr: selectTotalExpensesIncomeArr(state),
   expensesPercent: selectPercentageExpenses(state),
   incomePercent: selectPercentageIncome(state),
+  totalExpenses: selectTotalExpenses(state),
+  totalIncome: selectTotalIncome(state),
+  totalBalance: selectBalance(state),
 });
 
 export default connect(mapStateToProps)(HomePage);

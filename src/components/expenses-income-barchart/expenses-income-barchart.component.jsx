@@ -42,7 +42,7 @@ const ExpensesIncomeBarchart = ({ currency, data }) => {
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <BarChart data={data} margin={{ left: -15, top: 7, right: 3, bottom: 0 }}>
+      <BarChart data={data} margin={{ left: -17, top: 7, right: 3, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey="category"
