@@ -25,7 +25,7 @@ const Menu = ({ open, setOpen }) => {
           <MenuLink to="/">Home</MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink to="/expenses">Expenses</MenuLink>
+          <MenuLink to="/expenses">Expenses Income</MenuLink>
         </MenuItem>
         <MenuItem>
           <MenuLink to="/exchange">Exchange</MenuLink>

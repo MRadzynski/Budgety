@@ -19,11 +19,11 @@ const CategoriesList = ({ categoriesData, currency }) => {
   return (
     <CategoriesListContainer>
       <CategoryList>
-        {categoriesData.map((categoryData) => (
+        {categoriesData?.map((categoryData) => (
           <Category key={categoryData.id}>
             <CategoryLogo bgColor={categoryData.bgColor}>
               <img
-                src={`assets/icons/${categoryData.category.toLowerCase()}.png`}
+                src={`assets/icons/${categoryData.category.toLowerCase()}.svg`}
                 alt={categoryData.category + ' icon'}
               />
             </CategoryLogo>

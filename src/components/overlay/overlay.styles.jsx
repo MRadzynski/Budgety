@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const slide = keyframes`
+  0% { opacity: 0;}
+  100% { opacity:1;}
+`;
 
 export const OverlayContainer = styled.div`
   width: 100vw;
@@ -9,4 +14,5 @@ export const OverlayContainer = styled.div`
   position: absolute;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.3);
+  animation: ${slide} 0.2s ease-in;
 `;

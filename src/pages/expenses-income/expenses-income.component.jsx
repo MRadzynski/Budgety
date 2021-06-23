@@ -31,7 +31,7 @@ const ExpensesIncomePage = ({
   income,
   currency,
 }) => {
-  let location = useLocation();
+  const location = useLocation();
 
   return (
     <ExpensesIncomePageContainer>

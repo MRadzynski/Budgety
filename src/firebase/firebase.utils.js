@@ -35,7 +35,6 @@ export const createUserDocument = async (userAuth, additionalData) => {
     }
     return userRef;
   } catch (error) {
-    console.log('User creating error', error.message);
   }
 };
 
@@ -127,7 +126,7 @@ export const reauthenticateAndDeleteUser = (password = '') => {
   } else if (provider === 'google.com') {
     return user
       .reauthenticateWithPopup(googleProvider)
-      .then((res) => deleteAccount(user.uid))
+      .then(() => deleteAccount(user.uid))
       .catch((error) => {
         throw error;
       });

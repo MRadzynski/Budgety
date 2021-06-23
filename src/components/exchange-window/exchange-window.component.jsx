@@ -30,7 +30,7 @@ const ExchangeWindow = ({ currency, balance }) => {
         `https://api.frankfurter.app/latest?from=${currency}`
       );
       const currenciesData = await currenciesRes.json();
-      let currenciesDataArray = Object.entries(currenciesData).map(
+      const currenciesDataArray = Object.entries(currenciesData).map(
         (field) => field[1]
       );
       setDate(currenciesDataArray[2]);

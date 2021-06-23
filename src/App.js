@@ -45,12 +45,12 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
 
         financeRef.onSnapshot((snapshot) => {
           setFinances({
-            expenses: snapshot.data().expenses,
-            income: snapshot.data().income,
-            savings: snapshot.data().savings,
+            expenses: snapshot.data()?.expenses,
+            income: snapshot.data()?.income,
+            savings: snapshot.data()?.savings,
           });
 
-          setCurrency(snapshot.data().currency);
+          setCurrency(snapshot.data()?.currency);
         });
       } else {
         setCurrentUser(null);
@@ -75,47 +75,41 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <Switch>
-            <Route exact path="/expenses">
-              <ExpensesIncomePage />
-            </Route>
-            <Route path="/expenses/add-expenses">
-              <ExpensesIncomePage />
-            </Route>
-            <Route exact path="/income">
-              <ExpensesIncomePage />
-            </Route>
-            <Route path="/income/add-income">
-              <ExpensesIncomePage />
-            </Route>
-            <Route path="/exchange">
-              <ExchangePage />
-            </Route>
-            <Route path="/settings">
-              <SettingsPage />
-            </Route>
+            <Route exact path="/expenses"
+            render={() => (currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin"/>)}/>
+
+            <Route path="/expenses/add-expenses" render={() => (currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin"/>)}/>
+
+            <Route exact path="/income" render={() => (currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin"/>)}/>
+
+            <Route path="/income/add-income" render={() => (currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin"/>)}/>
+
+            <Route path="/exchange" render={() => (currentUser ? <ExchangePage /> : <Redirect to="/signin"/>)}/>
+
+            <Route path="/settings" render={() => (currentUser ? <SettingsPage /> : <Redirect to="/signin"/>)}/>
+
             <Route
               path="/signin"
-              render={() =>
-                currentUser ? <Redirect to="/expenses" /> : <SignIn />
-              }
-            ></Route>
+              render={() => (currentUser ? <Redirect to="/" /> : <SignIn />)}
+            />
+            
             <Route
               path="/signup"
-              render={() =>
-                currentUser ? <Redirect to="/expenses" /> : <SignUp />
-              }
-            ></Route>
+              render={() => (currentUser ? <Redirect to="/" /> : <SignUp />)}
+            />
+
             <Route
               path="/reset-password"
               render={() =>
-                currentUser ? <Redirect to="/expenses" /> : <ResetPassword />
+                currentUser ? <Redirect to="/" /> : <ResetPassword />
               }
-            ></Route>
+            />
+        
             <Route
               exact
               path="/"
               render={() => (currentUser ? <HomePage /> : <SignIn />)}
-            ></Route>
+            />
             <Route component={NotFound} />
           </Switch>
         </Suspense>

@@ -10,7 +10,7 @@ const Chart = ({ type }) => (
         nameKey="category"
         cx="50%"
         cy="50%"
-        innerRadius={50}
+        innerRadius={'50%'}
         outerRadius={'100%'}
         blendStroke
       >
