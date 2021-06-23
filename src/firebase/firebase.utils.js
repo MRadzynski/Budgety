@@ -34,8 +34,7 @@ export const createUserDocument = async (userAuth, additionalData) => {
       });
     }
     return userRef;
-  } catch (error) {
-  }
+  } catch (error) {}
 };
 
 export const getUserFinancesRef = async (userId) => {
@@ -138,7 +137,10 @@ export const resetUserPassword = async (email) => {
     auth.useDeviceLanguage();
 
     const actionCodeSettings = {
-      url: 'http://localhost:3000/signin',
+      url:
+        process.env.NODE_ENV === 'production'
+          ? 'https://budgety-live.herokuapp.com/signin'
+          : 'http://localhost:3000/signin',
       handleCodeInApp: false,
     };
     await auth.sendPasswordResetEmail(email, actionCodeSettings);
