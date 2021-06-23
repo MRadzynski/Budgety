@@ -138,9 +138,9 @@ export const resetUserPassword = async (email) => {
 
     const actionCodeSettings = {
       url:
-        process.env.NODE_ENV === 'production'
-          ? 'https://budgety-live.herokuapp.com/signin'
-          : 'http://localhost:3000/signin',
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:3000/signin'
+          : 'https://budgety-live.herokuapp.com/signin',
       handleCodeInApp: false,
     };
     await auth.sendPasswordResetEmail(email, actionCodeSettings);
