@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const slide = keyframes`
+  0% { opacity: 0;}
+  100% { opacity:1;}
+`;
 
 export const CustomPopupContainer = styled.div`
   width: 80%;
@@ -12,6 +17,7 @@ export const CustomPopupContainer = styled.div`
   background-color: var(--white-shade);
   color: var(--black-shade);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  animation: ${slide} 0.2s ease-in;
 
   @media (min-width: 48rem) and (orientation: portrait) {
     width: 60%;

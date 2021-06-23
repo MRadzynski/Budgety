@@ -253,7 +253,7 @@ export const SettingInput = styled.input`
   border: 0;
   border-radius: 1rem;
   outline: 0;
-  background-color: #e0e0e0;
+  background-color: var(--light-gray);
   font-size: 2.4rem;
   text-align: center;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);

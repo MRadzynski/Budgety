@@ -25,7 +25,7 @@ const NotFound = ({ currentUser }) => {
       <CustomButton
         bgColor="var(--white-shade)"
         textColor="var(--black-shade)"
-        hoverColor="#4285f4"
+        hoverColor="var(--secondary-color)"
         onClick={() => {
           currentUser ? history.push('/') : history.push('/signin');
         }}

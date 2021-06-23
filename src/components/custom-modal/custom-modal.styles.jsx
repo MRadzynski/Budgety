@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const slide = keyframes`
+  0% { opacity: 0;}
+  100% { opacity:1;}
+`;
 
 export const CustomModalContainer = styled.div`
   width: 70%;
@@ -15,6 +20,7 @@ export const CustomModalContainer = styled.div`
   color: var(--black-shade);
   text-align: center;
   z-index: 3;
+  animation: ${slide} 0.3s ease-in;
 
   @media (min-width: 64rem) and (orientation: landscape) {
     width: 45%;

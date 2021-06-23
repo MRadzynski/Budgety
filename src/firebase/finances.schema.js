@@ -64,12 +64,18 @@ const FinanceSchema = {
     },
     {
       id: 11,
+      category: 'Sale',
+      amount: 0,
+      bgColor: '#89F64F',
+    },
+    {
+      id: 12,
       category: 'Gifts',
       amount: 0,
       bgColor: '#57EB82',
     },
     {
-      id: 12,
+      id: 13,
       category: 'Other',
       amount: 0,
       bgColor: '#44D444',

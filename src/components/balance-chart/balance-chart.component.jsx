@@ -7,12 +7,12 @@ import { formatCurrency } from '../../redux/finance/finance.utils';
 const BalanceChart = ({ data, currency }) => {
   const history = useHistory();
 
-  let innerWidth = window.innerWidth;
+  const innerWidth = window.innerWidth;
   let sizeModifier = Math.floor(innerWidth / 640) - 1;
 
   if (innerWidth >= 3840) sizeModifier += 5;
 
-  let renderLabel = function (entry) {
+  const renderLabel = function (entry) {
     return formatCurrency(entry.amount, currency);
   };
 

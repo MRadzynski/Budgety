@@ -13,8 +13,8 @@ import {
   YAxis,
 } from 'recharts';
 
-let innerWidth = window.innerWidth;
-let sizeModifier = Math.floor(innerWidth / 1280) / 2;
+const innerWidth = window.innerWidth;
+const sizeModifier = Math.floor(innerWidth / 1280) / 2;
 
 const ExpensesIncomeBarchart = ({ currency, data }) => {
   const CustomTooltip = ({ active, payload, label, currency }) => {

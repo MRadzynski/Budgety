@@ -24,6 +24,9 @@ import {
   SuccessMessageContainer,
 } from './sign-in-up.styles';
 
+const regex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
 const SignInUp = ({ formType }) => {
   const [userCredentials, setUserCredentails] = useState({
     displayName: '',
@@ -54,6 +57,12 @@ const SignInUp = ({ formType }) => {
           setErrorMessage(`Passwords don't match!`);
           return;
         }
+
+        if (!userCredentials.password.match(regex)) {
+          setErrorMessage(`Password too weak!`);
+          return;
+        }
+
         const { user } = await auth.createUserWithEmailAndPassword(
           email,
           password
@@ -67,8 +76,6 @@ const SignInUp = ({ formType }) => {
         setIsMessage('true');
       }
     } catch (error) {
-      console.log(error.code);
-
       if (
         (error.code === 'auth/user-not-found' ||
           error.code === 'auth/wrong-password') &&
@@ -85,7 +92,7 @@ const SignInUp = ({ formType }) => {
     <SignInUpContainer>
       <FormTitle>Budgety</FormTitle>
       <LogoContainer>
-        <img src="assets/logo.png" alt="Budgety logo" />
+        <img src="/assets/logo.png" alt="Budgety logo" />
       </LogoContainer>
       <Form onSubmit={handleSubmit}>
         {!location.pathname.includes('/reset-password') ? (
@@ -133,7 +140,7 @@ const SignInUp = ({ formType }) => {
             <CustomButton
               type="submit"
               bgColor="var(--white-shade)"
-              hoverColor="#4285f4"
+              hoverColor="var(--secondary-color)"
               textColor="var(--black-shade)"
             >
               {formType === 'sign-up' ? 'Sign Up' : 'Sign In'}
@@ -169,7 +176,10 @@ const SignInUp = ({ formType }) => {
             <ErrorMessageContainer display={errorMessage} reset>
               {errorMessage}
             </ErrorMessageContainer>
-            <CustomButton bgColor="var(--white-shade)" hoverColor="#33cfff">
+            <CustomButton
+              bgColor="var(--white-shade)"
+              hoverColor="var(--secondary-color)"
+            >
               Reset Password
             </CustomButton>
           </>

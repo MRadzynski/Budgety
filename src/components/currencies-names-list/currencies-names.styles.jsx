@@ -8,7 +8,7 @@ export const CurrenciesList = styled.ul`
   right: 0;
   bottom: -100%;
   border-radius: 0.5rem;
-  background-color: black;
+  background-color: #eaeaea;
   text-align: center;
   list-style: none;
   overflow: auto;
@@ -32,6 +32,11 @@ export const CurrenciesListItem = styled.li`
   background-color: #eaeaea;
   font-size: 2rem;
   font-weight: bold;
+  cursor: pointer;
+
+  &:hover{
+    background-color:#dddddd;
+  }
 
   @media (min-width: 20rem) {
     font-size: 1.3rem;

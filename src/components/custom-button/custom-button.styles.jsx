@@ -39,12 +39,11 @@ export const CustomButtonContainer = styled.button`
   }
 
   @media (min-width: 64rem) and (orientation: landscape) {
-    width: 35rem;
+    width: 30rem;
     height: 6rem;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
-    width: 30rem;
+  @media (min-width: 80rem) and (min-height: 900px) and (orientation: landscape) {
     height: 5.5rem;
   }
 

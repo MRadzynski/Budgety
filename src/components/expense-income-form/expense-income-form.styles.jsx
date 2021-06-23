@@ -138,7 +138,7 @@ export const FormFieldContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  background-color: #e0e0e0;
+  background-color: var(--light-gray);
   margin-bottom: 3rem;
   border-radius: 25px;
 
@@ -331,6 +331,10 @@ export const SelectList = styled.ul`
 
   @media (min-width: 120rem) {
     margin-right: 5.5rem;
+  }
+
+  @media (min-width: 120rem) and (max-height: 848px) {
+    margin-right: 4rem;
   }
 
   @media (min-width: 240rem) {

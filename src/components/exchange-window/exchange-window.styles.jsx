@@ -10,7 +10,7 @@ export const ExchangeWindowContainer = styled.div`
   background-color: var(--white-shade);
 
   @media (min-width: 22.5rem) {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   @media (min-width: 48rem) and (orientation: portrait) {
@@ -66,7 +66,7 @@ export const ExchangeListItem = styled.li`
   padding: 3rem 2rem;
 
   &:nth-child(2n) {
-    background-color: #e0e0e0;
+    background-color: var(--light-gray);
   }
 
   @media (min-width: 22.5rem) {
