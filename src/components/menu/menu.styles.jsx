@@ -93,6 +93,10 @@ export const MenuItem = styled.li`
   width: 100%;
   font-size: 2.5rem;
   text-align: center;
+  
+  &:nth-child(2){
+    word-spacing: 250rem;
+  }
 
   &:last-child {
     position: absolute;
