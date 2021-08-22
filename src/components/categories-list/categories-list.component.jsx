@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory, useLocation } from 'react-router';
 
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
@@ -15,12 +16,29 @@ import {
 } from './categories-list.styles';
 
 const CategoriesList = ({ categoriesData, currency }) => {
+  const history = useHistory();
+  const location = useLocation();
+
+  const handleClick = (e) => {
+    const targetURL = e.target.closest('li').dataset.name;
+    const originPathname = location.pathname;
+    const pathname = `${originPathname}/add-${originPathname.slice(
+      1
+    )}/${targetURL}`;
+    console.log(pathname);
+    history.push(pathname);
+  };
+
   if (categoriesData === null) return <Spinner />;
   return (
     <CategoriesListContainer>
       <CategoryList>
         {categoriesData?.map((categoryData) => (
-          <Category key={categoryData.id}>
+          <Category
+            key={categoryData.id}
+            onClick={handleClick}
+            data-name={categoryData.category}
+          >
             <CategoryLogo bgColor={categoryData.bgColor}>
               <img
                 src={`assets/icons/${categoryData.category.toLowerCase()}.svg`}

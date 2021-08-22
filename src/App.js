@@ -75,24 +75,55 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <Switch>
-            <Route exact path="/expenses"
-            render={() => (currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin"/>)}/>
+            <Route
+              exact
+              path="/expenses"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
 
-            <Route path="/expenses/add-expenses" render={() => (currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin"/>)}/>
+            <Route
+              path="/expenses/add-expenses"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
 
-            <Route exact path="/income" render={() => (currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin"/>)}/>
+            <Route
+              exact
+              path="/income"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
 
-            <Route path="/income/add-income" render={() => (currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin"/>)}/>
+            <Route
+              path="/income/add-income"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
 
-            <Route path="/exchange" render={() => (currentUser ? <ExchangePage /> : <Redirect to="/signin"/>)}/>
+            <Route
+              path="/exchange"
+              render={() =>
+                currentUser ? <ExchangePage /> : <Redirect to="/signin" />
+              }
+            />
 
-            <Route path="/settings" render={() => (currentUser ? <SettingsPage /> : <Redirect to="/signin"/>)}/>
+            <Route
+              path="/settings"
+              render={() =>
+                currentUser ? <SettingsPage /> : <Redirect to="/signin" />
+              }
+            />
 
             <Route
               path="/signin"
               render={() => (currentUser ? <Redirect to="/" /> : <SignIn />)}
             />
-            
+
             <Route
               path="/signup"
               render={() => (currentUser ? <Redirect to="/" /> : <SignUp />)}
@@ -104,7 +135,7 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
                 currentUser ? <Redirect to="/" /> : <ResetPassword />
               }
             />
-        
+
             <Route
               exact
               path="/"

@@ -56,9 +56,7 @@ const ExpensesDetails = ({ currentPath, expenses, income, currency }) => {
           </CustomButton>
         </>
       ) : (
-        <ExpenseIncomeForm
-          type={currentPath.slice(currentPath.indexOf('-') + 1)}
-        />
+        <ExpenseIncomeForm type={currentPath.split('/')[1]} />
       )}
     </ExpensesIncomeDetailsContainer>
   );
