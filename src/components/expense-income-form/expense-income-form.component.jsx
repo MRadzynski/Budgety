@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 
 import {
   selectCurrency,
@@ -33,9 +33,17 @@ const ExpenseIncomeForm = ({
   currency,
 }) => {
   const history = useHistory();
+  const location = useLocation();
+
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState(0);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const index = location.pathname.lastIndexOf('/');
+    const categoryName = location.pathname.slice(index + 1);
+    setCategory(categoryName);
+  }, [location]);
 
   const handleChange = (e) => {
     let correctNum = e.target.value;
