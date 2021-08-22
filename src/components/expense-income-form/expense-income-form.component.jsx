@@ -42,6 +42,9 @@ const ExpenseIncomeForm = ({
   useEffect(() => {
     const index = location.pathname.lastIndexOf('/');
     const categoryName = location.pathname.slice(index + 1);
+
+    if (categoryName.includes('add-')) return;
+
     setCategory(categoryName);
   }, [location]);
 
