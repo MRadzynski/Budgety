@@ -25,7 +25,7 @@ const CategoriesList = ({ categoriesData, currency }) => {
     const pathname = `${originPathname}/add-${originPathname.slice(
       1
     )}/${targetURL}`;
-    console.log(pathname);
+
     history.push(pathname);
   };
 
