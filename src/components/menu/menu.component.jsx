@@ -31,6 +31,9 @@ const Menu = ({ open, setOpen }) => {
           <MenuLink to="/exchange">Exchange</MenuLink>
         </MenuItem>
         <MenuItem>
+          <MenuLink to="/history">History</MenuLink>
+        </MenuItem>
+        <MenuItem>
           <MenuLink to="/settings">Settings</MenuLink>
         </MenuItem>
         <MenuItem onClick={handleLogout}>Log Out</MenuItem>

@@ -30,6 +30,8 @@ const ExpensesIncomePage = lazy(() =>
   import('./pages/expenses-income/expenses-income.component')
 );
 
+const HistoryPage = lazy(() => import('./pages/history/history.component'));
+
 const SettingsPage = lazy(() => import('./pages/settings/settings.component'));
 
 const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
@@ -109,6 +111,13 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
               path="/exchange"
               render={() =>
                 currentUser ? <ExchangePage /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route
+              path="/history"
+              render={() =>
+                currentUser ? <HistoryPage /> : <Redirect to="/signin" />
               }
             />
 

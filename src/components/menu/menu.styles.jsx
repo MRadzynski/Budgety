@@ -43,7 +43,7 @@ export const MenuList = styled.ul`
   }
 
   @media (min-width: 25rem) {
-    gap: 4rem;
+    gap: 3rem;
   }
 
   @media (min-width: 48rem) and (orientation: portrait) {
@@ -123,7 +123,7 @@ export const MenuItem = styled.li`
   }
 
   @media (min-width: 25rem) {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
   }
 
   @media (min-width: 48rem) and (orientation: portrait) {
