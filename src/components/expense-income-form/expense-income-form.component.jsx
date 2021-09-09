@@ -6,6 +6,8 @@ import {
   selectCurrency,
   selectExpenses,
   selectIncome,
+  selectExpensesLogs,
+  selectIncomeLogs
 } from '../../redux/finance/finance.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
@@ -29,6 +31,8 @@ const ExpenseIncomeForm = ({
   type,
   expenses,
   income,
+  expensesLogs,
+  incomeLogs,
   currentUser,
   currency,
 }) => {
@@ -57,31 +61,73 @@ const ExpenseIncomeForm = ({
     setPrice(correctNum);
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (Number(price) === 0) return;
+
+  //   const formattedPrice = Number(price);
+
+  //   if (type === 'expenses') {
+  //     const newExpenseObj = expenses.map((expense) => {
+  //       if (expense.category === category) {
+  //         expense.amount += formattedPrice;
+  //         expense.amount = Number(expense.amount.toFixed(2));
+  //       }
+  //       return expense;
+  //     });
+
+  //     updateFinances(currentUser.id, newExpenseObj, null);
+  //   } else {
+  //     const newIncomeObj = income.map((singleIncome) => {
+  //       if (singleIncome.category === category) {
+  //         singleIncome.amount += formattedPrice;
+  //       }
+  //       return singleIncome;
+  //     });
+
+  //     updateFinances(currentUser.id, null, newIncomeObj);
+  //   }
+
+  //   setCategory('');
+  //   setPrice('');
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Number(price) === 0) return;
 
-    const formattedPrice = Number(price);
+    const formattedPrice = Number((+price).toFixed(2));
+
+    const newFinanceObj = {
+      amount: formattedPrice,
+      date: new Date(),
+    }
 
     if (type === 'expenses') {
       const newExpenseObj = expenses.map((expense) => {
         if (expense.category === category) {
           expense.amount += formattedPrice;
-          expense.amount = Number(expense.amount.toFixed(2));
+          expense.logs.push(newFinanceObj);
+          newFinanceObj.category = category;
         }
         return expense;
       });
+      expensesLogs.push(newFinanceObj);
+      console.log(expensesLogs)
 
-      updateFinances(currentUser.id, newExpenseObj, null);
+      updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
     } else {
       const newIncomeObj = income.map((singleIncome) => {
         if (singleIncome.category === category) {
           singleIncome.amount += formattedPrice;
+          singleIncome.logs.push(newFinanceObj);
+          newFinanceObj.category = category;
         }
         return singleIncome;
       });
+      incomeLogs.push(newFinanceObj);
 
-      updateFinances(currentUser.id, null, newIncomeObj);
+      updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
     }
 
     setCategory('');
@@ -154,6 +200,8 @@ const ExpenseIncomeForm = ({
 const mapStateToProps = (state) => ({
   expenses: selectExpenses(state),
   income: selectIncome(state),
+  expensesLogs: selectExpensesLogs(state),
+  incomeLogs: selectIncomeLogs(state),
   currentUser: selectCurrentUser(state),
   currency: selectCurrency(state),
 });

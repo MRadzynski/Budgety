@@ -34,7 +34,7 @@ export const createUserDocument = async (userAuth, additionalData) => {
       });
     }
     return userRef;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getUserFinancesRef = async (userId) => {
@@ -49,7 +49,8 @@ export const getUserFinancesRef = async (userId) => {
       userId,
       expenses: FinanceSchema.expenses,
       income: FinanceSchema.income,
-      savings: FinanceSchema.savings,
+      expensesLogs: FinanceSchema.expensesLogs,
+      incomeLogs: FinanceSchema.incomeLogs,
       currency: FinanceSchema.currency,
     });
     return financesDocRef;
@@ -64,20 +65,22 @@ export const updateDisplayName = async (user, displayName) => {
   await userRef.update({ ...user, displayName: displayName });
 };
 
-export const updateFinances = async (userId, expenseObj, incomeObj) => {
+export const updateFinances = async (userId, expenseObj, incomeObj, logs) => {
   const financesRef = firestore
     .collection('finances')
     .where('userId', '==', userId);
   const financesSnapshot = await financesRef.get();
 
   if (expenseObj === null) {
-    await financesSnapshot.docs[0].ref.update({ income: incomeObj });
+    await financesSnapshot.docs[0].ref.update({ income: incomeObj, incomeLogs: logs });
   } else if (incomeObj === null) {
-    await financesSnapshot.docs[0].ref.update({ expenses: expenseObj });
+    await financesSnapshot.docs[0].ref.update({ expenses: expenseObj, expensesLogs: logs });
   } else {
     await financesSnapshot.docs[0].ref.update({
       expenses: expenseObj,
       income: incomeObj,
+      incomeLogs: logs,
+      expensesLogs: logs
     });
   }
 };

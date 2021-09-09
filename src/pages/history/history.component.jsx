@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { HistoryPageContainer } from './history.styles'
+import { HistoryPageContainer, HistoryTitle } from './history.styles'
 
 const HistoryPage = () => {
 
   return (
     <HistoryPageContainer>
-      History!
+      <HistoryTitle>
+        History!
+      </HistoryTitle>
     </HistoryPageContainer>
   )
 }

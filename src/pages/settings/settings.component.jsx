@@ -58,10 +58,18 @@ const SettingsPage = ({
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleEraseClick = () => {
-    income.map((singleIncome) => (singleIncome.amount = 0));
-    expenses.map((expense) => (expense.amount = 0));
+    income.map((singleIncome) => {
+      singleIncome.amount = 0;
+      singleIncome.logs = [];
+      return singleIncome;
+    });
+    expenses.map((expense) => {
+      expense.amount = 0;
+      expense.logs = [];
+      return expense;
+    });
 
-    updateFinances(currentUser.id, expenses, income);
+    updateFinances(currentUser.id, expenses, income, []);
 
     setOpenEraseModal(false);
     setErrorMessage('Data erased!');

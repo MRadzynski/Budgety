@@ -49,7 +49,8 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
           setFinances({
             expenses: snapshot.data()?.expenses,
             income: snapshot.data()?.income,
-            savings: snapshot.data()?.savings,
+            expensesLogs: snapshot.data()?.expensesLogs,
+            incomeLogs: snapshot.data()?.incomeLogs,
           });
 
           setCurrency(snapshot.data()?.currency);
@@ -59,7 +60,8 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
         setFinances({
           expenses: null,
           income: null,
-          savings: null,
+          expensesLogs: null,
+          incomeLogs: null,
         });
         setCurrency(null);
       }

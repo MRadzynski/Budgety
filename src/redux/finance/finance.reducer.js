@@ -3,7 +3,8 @@ import { FinanceActionTypes } from './finance.types';
 const INITIAL_STATE = {
   expenses: null,
   income: null,
-  savings: null,
+  expensesLogs: null,
+  incomeLogs: null,
   currency: null,
 };
 
@@ -14,7 +15,8 @@ const financeReducer = (state = INITIAL_STATE, action) => {
         ...state,
         expenses: action.payload.expenses,
         income: action.payload.income,
-        savings: action.payload.savings,
+        expensesLogs: action.payload.expensesLogs,
+        incomeLogs: action.payload.incomeLogs,
       };
     case FinanceActionTypes.SET_EXPENSES:
       return {
