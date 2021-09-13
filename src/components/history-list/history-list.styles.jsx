@@ -12,7 +12,7 @@ export const HistoryListContainer = styled.div`
   }
 
   @media (min-width: 80rem) and (orientation: landscape) {
-    width: 75%;
+    width: 85%;
   }
 
   @media (min-width: 120rem) {
