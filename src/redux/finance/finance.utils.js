@@ -12,6 +12,22 @@ export const formatNumber = (money) =>
     maximumFractionDigits: 2,
   }).format(money);
 
+export const formatMonth = (date) => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const month = date.split('/')[0];
+  const year = date.split('/')[1];
+
+  if (!month || !year) return date;
+
+  return `${months[month]} ${year}`;
+}
+
+export const getMonthlyFinanceSum = (data) => {
+  return data.reduce((acc, category) => {
+    return acc += category.amount;
+  }, 0)
+}
+
 const getMonthlyExpenseIncomeBalance = (dataSet, dateToCheck) => {
   let financeMonthlyArr = [];
 
@@ -45,9 +61,7 @@ const getMonthlyExpenseIncomeBalance = (dataSet, dateToCheck) => {
 }
 
 const getMonthlyExpenseIncomePercent = (data) => {
-  const monthlyFinanceSum = data.reduce((acc, category) => {
-    return acc += category.amount;
-  }, 0)
+  const monthlyFinanceSum = getMonthlyFinanceSum(data);
 
   return data.map(category => {
     return {

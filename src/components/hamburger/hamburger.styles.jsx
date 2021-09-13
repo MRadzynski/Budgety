@@ -7,6 +7,7 @@ export const HamburgerContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   position: fixed;
+  position: ${({ location }) => location === 'history' ? 'absolute' : 'fixed'};
   top: 1.5rem;
   left: 2rem;
   z-index: 10;
@@ -17,7 +18,7 @@ export const HamburgerContainer = styled.div`
     height: 0.5rem;
     border-radius: 10px;
     background-color: ${({ open }) =>
-      open ? 'var(--black-shade)' : 'var(--white-shade)'};
+    open ? 'var(--black-shade)' : 'var(--white-shade)'};
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
@@ -38,12 +39,12 @@ export const HamburgerContainer = styled.div`
   }
 
   @media (min-width: 48rem) and (orientation: portrait) {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
 
     span {
-      width: 5rem;
-      height: 0.8rem;
+      width: 4rem;
+      height: 0.7rem;
     }
   }
 

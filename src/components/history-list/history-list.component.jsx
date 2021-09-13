@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { selectCurrency, selectExpenses, selectIncome, selectHistoryLogs } from '../../redux/finance/finance.selectors';
-import { generateHistoryChart } from '../../redux/finance/finance.utils'
-
-import ExpensesIncomeBarchart from '../expenses-income-barchart/expenses-income-barchart.component';
-
-import { HistoryListContainer, ChartList, ChartListItem } from './history-list.styles';
-
-import { updateHistory } from '../../firebase/firebase.utils';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectExpenses, selectIncome, selectHistoryLogs, selectPercentageExpenses, selectPercentageIncome } from '../../redux/finance/finance.selectors';
+import { generateHistoryChart } from '../../redux/finance/finance.utils'
+import { updateHistory } from '../../firebase/firebase.utils';
 
-const HistoryList = ({ expenses, income, history, currency, currentUser }) => {
+import HistoryTab from '../history-tab/history-tab.component';
+
+import { HistoryListContainer, HistoryChartList, HistoryChartListItem, HistoryMonthlyChartsContainer } from './history-list.styles';
+
+const HistoryList = ({ expenses, income, history, currentUser, expensesPercent, incomePercent }) => {
   const [historyLogs, setHistoryLogs] = useState(history)
+  const [financeObj] = useState({ date: 'All Time', expensesArr: expensesPercent, incomeArr: incomePercent })
 
   useEffect(() => {
     const data = { expenses: expenses, income: income };
@@ -21,7 +21,7 @@ const HistoryList = ({ expenses, income, history, currency, currentUser }) => {
     if (newHistoryLog) {
       setHistoryLogs(newHistoryLog)
     }
-  }, [])
+  }, [history, income, expenses])
 
   useEffect(() => {
     updateHistory(currentUser.id, historyLogs);
@@ -29,28 +29,31 @@ const HistoryList = ({ expenses, income, history, currency, currentUser }) => {
 
   return (
     <HistoryListContainer>
-      <ChartList>
-        {history.map(historyLog => (
-          <>
-            <ChartListItem>
-              <ExpensesIncomeBarchart data={historyLog.expensesArr} currency={currency} />
-            </ChartListItem>
-            <ChartListItem>
-              <ExpensesIncomeBarchart data={historyLog.incomeArr} currency={currency} />
-            </ChartListItem>
-          </>
-        ))}
-      </ChartList>
+      <HistoryChartList>
+        <HistoryChartListItem>
+          <HistoryTab data={financeObj} />
+        </HistoryChartListItem>
+
+        <HistoryMonthlyChartsContainer>
+          {history.map(historyLog => (
+            <HistoryChartListItem>
+              <HistoryTab data={historyLog} />
+            </HistoryChartListItem>))
+          }
+        </HistoryMonthlyChartsContainer>
+
+      </HistoryChartList>
     </HistoryListContainer>
   );
 }
 
 const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
   expenses: selectExpenses(state),
   income: selectIncome(state),
   history: selectHistoryLogs(state),
-  currency: selectCurrency(state),
-  currentUser: selectCurrentUser(state)
+  expensesPercent: selectPercentageExpenses(state),
+  incomePercent: selectPercentageIncome(state),
 })
 
 

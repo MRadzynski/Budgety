@@ -9,7 +9,7 @@ const HistoryPage = () => {
   return (
     <HistoryPageContainer>
       <HistoryTitle>
-        History!
+        History
       </HistoryTitle>
       <HistoryList />
     </HistoryPageContainer>
