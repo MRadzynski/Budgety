@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { selectCurrency, selectExpenses, selectIncome } from '../../redux/finance/finance.selectors';
+import { selectCurrency, selectExpenses, selectIncome, selectHistoryLogs } from '../../redux/finance/finance.selectors';
 import { generateHistoryChart } from '../../redux/finance/finance.utils'
 
 import ExpensesIncomeBarchart from '../expenses-income-barchart/expenses-income-barchart.component';
@@ -11,28 +11,35 @@ import { HistoryListContainer, ChartList, ChartListItem } from './history-list.s
 import { updateHistory } from '../../firebase/firebase.utils';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const HistoryList = ({ expenses, income, currency, currentUser }) => {
-  const [historyLogs, setHistoryLogs] = useState([])
+const HistoryList = ({ expenses, income, history, currency, currentUser }) => {
+  const [historyLogs, setHistoryLogs] = useState(history)
 
   useEffect(() => {
     const data = { expenses: expenses, income: income };
-    setHistoryLogs(generateHistoryChart(data))
+    const newHistoryLog = generateHistoryChart(history, data);
+
+    if (newHistoryLog) {
+      setHistoryLogs(newHistoryLog)
+    }
   }, [])
 
   useEffect(() => {
-    console.log('hist', historyLogs);
-    updateHistory(currentUser.id, historyLogs)
-  }, [historyLogs])
+    updateHistory(currentUser.id, historyLogs);
+  }, [currentUser.id, historyLogs])
 
   return (
     <HistoryListContainer>
       <ChartList>
-        <ChartListItem>
-          <ExpensesIncomeBarchart data={historyLogs.expensesArr} currency={currency} />
-        </ChartListItem>
-        <ChartListItem>
-          <ExpensesIncomeBarchart data={historyLogs.incomeArr} currency={currency} />
-        </ChartListItem>
+        {history.map(historyLog => (
+          <>
+            <ChartListItem>
+              <ExpensesIncomeBarchart data={historyLog.expensesArr} currency={currency} />
+            </ChartListItem>
+            <ChartListItem>
+              <ExpensesIncomeBarchart data={historyLog.incomeArr} currency={currency} />
+            </ChartListItem>
+          </>
+        ))}
       </ChartList>
     </HistoryListContainer>
   );
@@ -41,6 +48,7 @@ const HistoryList = ({ expenses, income, currency, currentUser }) => {
 const mapStateToProps = (state) => ({
   expenses: selectExpenses(state),
   income: selectIncome(state),
+  history: selectHistoryLogs(state),
   currency: selectCurrency(state),
   currentUser: selectCurrentUser(state)
 })
