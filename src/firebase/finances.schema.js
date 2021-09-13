@@ -96,6 +96,7 @@ const FinanceSchema = {
   ],
   expensesLogs: [],
   incomeLogs: [],
+  historyLogs: [],
   currency: 'USD',
 };
 

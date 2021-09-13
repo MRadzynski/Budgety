@@ -61,37 +61,6 @@ const ExpenseIncomeForm = ({
     setPrice(correctNum);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (Number(price) === 0) return;
-
-  //   const formattedPrice = Number(price);
-
-  //   if (type === 'expenses') {
-  //     const newExpenseObj = expenses.map((expense) => {
-  //       if (expense.category === category) {
-  //         expense.amount += formattedPrice;
-  //         expense.amount = Number(expense.amount.toFixed(2));
-  //       }
-  //       return expense;
-  //     });
-
-  //     updateFinances(currentUser.id, newExpenseObj, null);
-  //   } else {
-  //     const newIncomeObj = income.map((singleIncome) => {
-  //       if (singleIncome.category === category) {
-  //         singleIncome.amount += formattedPrice;
-  //       }
-  //       return singleIncome;
-  //     });
-
-  //     updateFinances(currentUser.id, null, newIncomeObj);
-  //   }
-
-  //   setCategory('');
-  //   setPrice('');
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Number(price) === 0) return;
@@ -113,7 +82,6 @@ const ExpenseIncomeForm = ({
         return expense;
       });
       expensesLogs.push(newFinanceObj);
-      console.log(expensesLogs)
 
       updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
     } else {

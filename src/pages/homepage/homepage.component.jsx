@@ -38,6 +38,7 @@ const HomePage = ({
   totalIncome,
   totalBalance,
 }) => {
+
   return (
     <HomePageContainer>
       <WelcomeText>Hey {displayName}! </WelcomeText>

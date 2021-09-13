@@ -51,6 +51,7 @@ export const getUserFinancesRef = async (userId) => {
       income: FinanceSchema.income,
       expensesLogs: FinanceSchema.expensesLogs,
       incomeLogs: FinanceSchema.incomeLogs,
+      historyLogs: FinanceSchema.historyLogs,
       currency: FinanceSchema.currency,
     });
     return financesDocRef;
@@ -80,7 +81,8 @@ export const updateFinances = async (userId, expenseObj, incomeObj, logs) => {
       expenses: expenseObj,
       income: incomeObj,
       incomeLogs: logs,
-      expensesLogs: logs
+      expensesLogs: logs,
+      historyLogs: logs
     });
   }
 };
@@ -93,6 +95,16 @@ export const updateCurrency = async (userId, newCurrency) => {
   const financesSnapshot = await financesRef.get();
 
   await financesSnapshot.docs[0].ref.update({ currency: newCurrency });
+};
+
+export const updateHistory = async (userId, history) => {
+  const financesRef = firestore
+    .collection('finances')
+    .where('userId', '==', userId);
+
+  const financesSnapshot = await financesRef.get();
+
+  await financesSnapshot.docs[0].ref.update({ historyLogs: history });
 };
 
 export const deleteAccount = async (userId) => {

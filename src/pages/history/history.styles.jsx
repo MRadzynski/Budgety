@@ -9,7 +9,7 @@ export const HistoryPageContainer = styled.div`
 `;
 
 export const HistoryTitle = styled.h1`
-  margin-top: 3rem;
+  margin: 3rem 0;
   font-size: 2rem;
   color: var(--white-shade);
   text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);

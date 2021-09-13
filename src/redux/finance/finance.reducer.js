@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   income: null,
   expensesLogs: null,
   incomeLogs: null,
+  historyLogs: null,
   currency: null,
 };
 
@@ -17,6 +18,7 @@ const financeReducer = (state = INITIAL_STATE, action) => {
         income: action.payload.income,
         expensesLogs: action.payload.expensesLogs,
         incomeLogs: action.payload.incomeLogs,
+        historyLogs: action.payload.historyLogs,
       };
     case FinanceActionTypes.SET_EXPENSES:
       return {
