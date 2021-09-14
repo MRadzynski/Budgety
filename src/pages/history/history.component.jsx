@@ -2,7 +2,7 @@ import React from 'react';
 
 import HistoryList from '../../components/history-list/history-list.component'
 
-import { HistoryPageContainer, HistoryTitle } from './history.styles'
+import { HistoryPageContainer, HistoryTitle, HistorySubtitle } from './history.styles'
 
 const HistoryPage = () => {
 
@@ -11,6 +11,9 @@ const HistoryPage = () => {
       <HistoryTitle>
         History
       </HistoryTitle>
+      <HistorySubtitle>
+        Summary of your previous months
+      </HistorySubtitle>
       <HistoryList />
     </HistoryPageContainer>
   )

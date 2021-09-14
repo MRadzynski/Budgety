@@ -15,7 +15,7 @@ export const HistoryPageContainer = styled.div`
 `;
 
 export const HistoryTitle = styled.h1`
-  margin: 3rem 0;
+  margin: 3rem 0 2rem 0;
   color: var(--white-shade);
   font-size: 2rem;
   text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
@@ -51,4 +51,13 @@ export const HistoryTitle = styled.h1`
     margin: 10rem 0;
     font-size: 15rem;
   }
-`
+`;
+
+export const HistorySubtitle = styled.h3`
+  width: 80%;
+  margin: 0 auto 2rem;
+  color: var(--white-shade);
+  font-size: 1.8rem;
+  text-align:center;
+  text-shadow: 0 4px 4px rgba(0,0,0,0.25);
+`;
