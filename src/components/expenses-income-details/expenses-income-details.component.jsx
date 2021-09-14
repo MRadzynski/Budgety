@@ -4,8 +4,8 @@ import { useHistory } from 'react-router';
 
 import {
   selectCurrency,
-  selectExpenses,
-  selectIncome,
+  selectLatestExpenses,
+  selectLatestIncome,
 } from '../../redux/finance/finance.selectors';
 
 import ExpenseIncomeForm from '../expense-income-form/expense-income-form.component';
@@ -17,7 +17,7 @@ import {
   Overlap,
 } from './expenses-income-details.styles';
 
-const ExpensesDetails = ({ currentPath, expenses, income, currency }) => {
+const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }) => {
   const history = useHistory();
 
   return (
@@ -39,9 +39,9 @@ const ExpensesDetails = ({ currentPath, expenses, income, currency }) => {
             </Overlap>
           </OverlapsContainer>
           {currentPath === '/expenses' ? (
-            <CategoriesList categoriesData={expenses} currency={currency} />
+            <CategoriesList categoriesData={latestExpenses} currency={currency} />
           ) : (
-            <CategoriesList categoriesData={income} currency={currency} />
+            <CategoriesList categoriesData={latestIncome} currency={currency} />
           )}
           <CustomButton
             type="button"
@@ -63,8 +63,8 @@ const ExpensesDetails = ({ currentPath, expenses, income, currency }) => {
 };
 
 const mapStateToProps = (state) => ({
-  expenses: selectExpenses(state),
-  income: selectIncome(state),
+  latestExpenses: selectLatestExpenses(state),
+  latestIncome: selectLatestIncome(state),
   currency: selectCurrency(state),
 });
 

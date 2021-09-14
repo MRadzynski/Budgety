@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom';
 
 import {
   selectCurrency,
-  selectExpenses,
-  selectIncome,
-  selectTotalExpenses,
-  selectTotalIncome,
+  selectLatestExpenses,
+  selectLatestExpensesTotal,
+  selectLatestIncome,
+  selectLatestIncomeTotal,
 } from '../../redux/finance/finance.selectors';
 
 import ExpensesIncomeDetails from '../../components/expenses-income-details/expenses-income-details.component';
@@ -25,10 +25,10 @@ import {
 } from './expenses-income.styles';
 
 const ExpensesIncomePage = ({
-  totalExpenses,
-  totalIncome,
-  expenses,
-  income,
+  latestExpensesTotal,
+  latestIncomeTotal,
+  latestExpenses,
+  latestIncome,
   currency,
 }) => {
   const location = useLocation();
@@ -40,20 +40,20 @@ const ExpensesIncomePage = ({
       </ExpensesIncomeTitle>
       {location.pathname.includes('/expenses') ? (
         <ChartContainer>
-          <Chart type={expenses} />
-          {totalExpenses === undefined ? (
+          <Chart data={latestExpenses} />
+          {latestExpensesTotal === undefined ? (
             <Spinner />
           ) : (
-            <ChartPrice>{formatCurrency(totalExpenses, currency)}</ChartPrice>
+            <ChartPrice>{formatCurrency(latestExpensesTotal, currency)}</ChartPrice>
           )}
         </ChartContainer>
       ) : (
         <ChartContainer>
-          <Chart type={income} />
-          {totalIncome === undefined ? (
+          <Chart data={latestIncome} />
+          {latestIncomeTotal === undefined ? (
             <Spinner />
           ) : (
-            <ChartPrice>{formatCurrency(totalIncome, currency)}</ChartPrice>
+            <ChartPrice>{formatCurrency(latestIncomeTotal, currency)}</ChartPrice>
           )}
         </ChartContainer>
       )}
@@ -63,11 +63,11 @@ const ExpensesIncomePage = ({
 };
 
 const mapStateToProps = (state) => ({
-  totalExpenses: selectTotalExpenses(state),
-  totalIncome: selectTotalIncome(state),
-  expenses: selectExpenses(state),
-  income: selectIncome(state),
   currency: selectCurrency(state),
+  latestExpensesTotal: selectLatestExpensesTotal(state),
+  latestIncomeTotal: selectLatestIncomeTotal(state),
+  latestExpenses: selectLatestExpenses(state),
+  latestIncome: selectLatestIncome(state)
 });
 
 export default connect(mapStateToProps)(ExpensesIncomePage);
