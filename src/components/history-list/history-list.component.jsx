@@ -30,13 +30,13 @@ const HistoryList = ({ expenses, income, history, currentUser, expensesPercent, 
   return (
     <HistoryListContainer>
       <HistoryChartList>
-        <HistoryChartListItem>
+        <HistoryChartListItem key='allTime'>
           <HistoryTab data={financeObj} />
         </HistoryChartListItem>
 
         <HistoryMonthlyChartsContainer>
-          {history.map(historyLog => (
-            <HistoryChartListItem>
+          {history.map((historyLog, index) => (
+            <HistoryChartListItem key={index}>
               <HistoryTab data={historyLog} />
             </HistoryChartListItem>))
           }

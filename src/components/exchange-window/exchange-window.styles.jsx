@@ -2,15 +2,20 @@ import styled from 'styled-components';
 
 export const ExchangeWindowContainer = styled.div`
   width: 80%;
-  height: 75%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   padding-top: 0.5rem;
   border-radius: 25px;
   background-color: var(--white-shade);
+  box-shadow: 0 6px 6px rgba(0,0,0,0.25);
 
   @media (min-width: 22.5rem) {
     margin-top: 1rem;
+  }
+
+  @media (min-width: 25rem) {
+    margin-top: -0.5rem;
   }
 
   @media (min-width: 48rem) and (orientation: portrait) {

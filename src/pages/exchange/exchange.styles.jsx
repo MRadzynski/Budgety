@@ -110,3 +110,24 @@ export const ExchangeSubTitle = styled.h2`
     font-size: 7rem;
   }
 `;
+
+export const ExchangeButtonsContainer = styled.div`
+  display:flex;
+  gap: 2rem;
+`;
+
+export const ExchangeButton = styled.button`
+  width: 13rem;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--secondary-color);
+  border-radius: 15px;
+  background-color: var(--white-shade);
+  color: var(--black-shade);
+  font-size: 1.5rem;
+  box-shadow: 0 6px 6px rgba(0,0,0,0.25);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--light-gray)
+  }
+`;
