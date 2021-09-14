@@ -81,5 +81,10 @@ export const HistoryMonthlyChartsContainer = styled.div`
     display:flex;
     flex-direction: row;
     align-items: flex-start;
+    flex-wrap:wrap;
+
+    ${HistoryChartListItem} {
+      width: calc(50% - 2rem)
+    }
   }
 `;

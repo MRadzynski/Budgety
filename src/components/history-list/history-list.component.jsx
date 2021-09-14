@@ -16,12 +16,12 @@ const HistoryList = ({ expenses, income, history, currentUser, expensesPercent, 
 
   useEffect(() => {
     const data = { expenses: expenses, income: income };
-    const newHistoryLog = generateHistoryChart(history, data);
+    const newHistoryLog = generateHistoryChart(currentUser.createdAt, history, data);
 
     if (newHistoryLog) {
       setHistoryLogs(newHistoryLog)
     }
-  }, [history, income, expenses])
+  }, [currentUser.createdAt, history, income, expenses])
 
   useEffect(() => {
     updateHistory(currentUser.id, historyLogs);

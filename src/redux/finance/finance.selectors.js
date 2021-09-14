@@ -66,3 +66,105 @@ export const selectPercentageIncome = createSelector(
       percent: Number(((singleIncome.amount / totalIncome) * 100).toFixed(2)),
     }))
 );
+
+export const selectLatestExpenses = createSelector([selectExpenses], (expenses) => {
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  const latestMonthExpenses = [];
+
+  expenses?.forEach((expense, index) => {
+    const newRecords = expense.logs.filter(entry => {
+      const entryDate = new Date(entry.date.seconds * 1000);
+
+      if (entryDate.getMonth() === currentMonth && entryDate.getFullYear() === currentYear) {
+        return true;
+      }
+      return false;
+    })
+
+    const sumOfExpenses = newRecords.reduce((acc, entry) => {
+      return acc + entry.amount
+    }, 0)
+
+    const monthExpenseObj = {
+      id: expenses[index].id,
+      category: expenses[index].category,
+      bgColor: expenses[index].bgColor,
+      amount: sumOfExpenses,
+    }
+    latestMonthExpenses.push(monthExpenseObj);
+  })
+
+  return latestMonthExpenses;
+})
+
+export const selectLatestExpensesTotal = createSelector([selectLatestExpenses], (latestMonthExpenses) =>
+  latestMonthExpenses.reduce((acc, entry) => {
+    return acc + entry.amount;
+  }, 0)
+)
+
+export const selectLatestExpensesPercent = createSelector([selectLatestExpenses, selectLatestExpensesTotal], (latestMonthExpenses, monthlyExpensesTotal) =>
+  latestMonthExpenses.map(monthExpense => {
+    return {
+      ...monthExpense,
+      percent: Number(((monthExpense.amount / monthlyExpensesTotal) * 100).toFixed(2))
+    }
+  }))
+
+export const selectLatestIncome = createSelector([selectIncome], (income) => {
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  const latestMonthIncome = [];
+
+  income?.forEach((singleIncome, index) => {
+    const newRecords = singleIncome.logs.filter(entry => {
+      const entryDate = new Date(entry.date.seconds * 1000);
+
+      if (entryDate.getMonth() === currentMonth && entryDate.getFullYear() === currentYear) {
+        return true;
+      }
+      return false;
+    })
+
+    const sumOfIncome = newRecords.reduce((acc, entry) => {
+      return acc + entry.amount
+    }, 0)
+
+    const monthIncomeObj = {
+      id: income[index].id,
+      category: income[index].category,
+      bgColor: income[index].bgColor,
+      amount: sumOfIncome,
+    }
+    latestMonthIncome.push(monthIncomeObj);
+  })
+
+  return latestMonthIncome;
+})
+
+export const selectLatestIncomeTotal = createSelector([selectLatestIncome], (latestMonthIncome) =>
+  latestMonthIncome.reduce((acc, entry) => {
+    return acc + entry.amount;
+  }, 0)
+)
+
+export const selectLatestIncomePercent = createSelector([selectLatestIncome, selectLatestIncomeTotal], (latestMonthIncome, monthlyIncomeTotal) =>
+  latestMonthIncome.map(monthIncome => {
+    return {
+      ...monthIncome,
+      percent: Number(((monthIncome.amount / monthlyIncomeTotal) * 100).toFixed(2))
+    }
+  }))
+
+export const selectLatestExpensesIncomeArr = createSelector(
+  [selectLatestExpensesTotal, selectLatestIncomeTotal],
+  (latestTotalExpenses, latestTotalIncome) => [
+    { amount: latestTotalExpenses, name: 'Expenses', bgColor: '#E6504C' },
+    { amount: latestTotalIncome, name: 'Income', bgColor: '#44D495' },
+  ]
+);
+
+export const selectLatestBalance = createSelector([selectLatestExpensesTotal, selectLatestIncomeTotal], (totalExpesnes, totalIncome) => totalIncome - totalExpesnes)

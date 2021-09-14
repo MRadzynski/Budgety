@@ -41,7 +41,7 @@ const HistoryTab = ({ data, currency }) => {
             </HistoryChartContainer> : <NoDataInfo>No Income Recorded</NoDataInfo>
           }
 
-          <HistoryChartBalance surplus={incomeSum > expensesSum}>
+          <HistoryChartBalance balance={incomeSum - expensesSum}>
             Balance: {formatCurrency(incomeSum - expensesSum)}
           </HistoryChartBalance>
         </>

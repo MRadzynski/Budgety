@@ -178,7 +178,7 @@ export const HistoryChartTitle = styled.h3`
 
 export const HistoryChartBalance = styled.h2`
   padding-bottom: 1rem;
-  color: ${({ surplus }) => surplus ? 'var(--successMessage)' : 'var(--errorMessage)'};
+  color: ${({ balance }) => balance > 0 ? 'var(--successMessage)' : balance < 0 ? 'var(--errorMessage)' : 'var(--primary-color)'};
   font-size: 1.8rem;
   word-spacing: 0.5rem;
 
