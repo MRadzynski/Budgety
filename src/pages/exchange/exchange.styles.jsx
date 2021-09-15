@@ -11,6 +11,7 @@ export const ExchangeContainer = styled.div`
 
   @media (min-width: 20rem) {
     gap: 2rem;
+    padding: 3rem 2rem;
   }
 
   @media (min-width: 22.5rem) {
@@ -19,6 +20,10 @@ export const ExchangeContainer = styled.div`
 
   @media (min-width: 48rem) and (orientation: portrait) {
     gap: 3.5rem;
+  }
+
+  @media (min-width: 64rem) and (orientation: landscape){
+    padding: 3rem 2rem;
   }
 `;
 
@@ -44,11 +49,16 @@ export const ExchangeTitle = styled.h1`
     font-size: 6rem;
   }
 
+  @media (min-width: 64rem) and (orientation: portrait) {
+    margin-top: 5rem;
+  }
+
   @media (min-width: 64rem) and (orientation: landscape) {
     font-size: 6rem;
   }
 
   @media (min-width: 85rem) and (orientation: landscape) {
+    margin-top: 2rem;
     font-size: 6.2rem;
   }
 
@@ -68,6 +78,7 @@ export const ExchangeTitle = styled.h1`
 `;
 
 export const ExchangeSubTitle = styled.h2`
+  width: 90%;
   color: var(--white-shade);
   font-size: 1.8rem;
   font-weight: normal;
@@ -114,6 +125,14 @@ export const ExchangeSubTitle = styled.h2`
 export const ExchangeButtonsContainer = styled.div`
   display:flex;
   gap: 2rem;
+
+  @media (min-width: 48rem) {
+    gap: 8rem;
+  }
+
+  @media (min-width: 160rem) {
+    gap: 10rem;
+  }
 `;
 
 export const ExchangeButton = styled.button`
@@ -141,5 +160,61 @@ export const ExchangeButton = styled.button`
     width: 11rem;
     padding: 1rem 1rem;
     font-size: 1.3rem;
+  }
+
+  @media (min-width: 25rem) {
+    width: 13rem;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: 48rem) and (orientation: portrait){
+    width: 20rem;
+    padding: 1.5rem 2rem;
+    font-size: 2rem;
+  }
+
+  @media (min-width: 64rem) and (orientation: portrait) {
+    width: 25rem;
+    margin-top: 4rem;
+    padding: 1.5rem 2rem;
+    font-size: 2.8rem;
+  }
+
+  @media (min-width: 64rem) and (orientation: landscape) {
+    width: 20rem;
+    font-size: 2rem;
+    border-radius: 20px;
+  }
+
+  @media (min-width: 80rem) and (orientation: landscape) {
+    width: 25rem;
+    margin-top: 1rem;
+    padding: 1.5rem 2rem;
+    font-size: 2.8rem;
+  }
+
+  @media (min-width: 120rem) {
+    border-radius: 25px;
+  }
+
+  @media (min-width: 160rem) {
+    width: 30rem;
+    margin-top: 2.5rem;
+    border-radius: 30px;
+  }
+
+  @media (min-width: 160rem) and (min-height: 90rem) {
+    margin-top: 6rem;
+    padding: 2.5rem 2rem;
+  }
+
+  @media (min-width: 240rem) {
+    width: 45rem;
+    margin-top: 10rem;
+    padding: 4rem 3rem;
+    border-radius: 50px;
+    font-size: 5rem;
   }
 `;

@@ -11,6 +11,7 @@ export const ExchangeWindowContainer = styled.div`
   box-shadow: 0 6px 6px rgba(0,0,0,0.25);
 
   @media (min-width: 20rem) {
+    height: 65%;
     margin-top: -0.5rem;
   }
 
@@ -23,11 +24,12 @@ export const ExchangeWindowContainer = styled.div`
   }
 
   @media (min-width: 48rem) and (orientation: portrait) {
-    margin-top: 4rem;
+    margin-top: 0;
   }
 
   @media (min-width: 64rem) and (orientation: landscape) {
     width: 60%;
+    height: 65%;
     margin-top: 1rem;
     padding-top: 1rem;
   }
@@ -39,6 +41,7 @@ export const ExchangeWindowContainer = styled.div`
 
   @media (min-width: 120rem) {
     width: 45%;
+    height: 60%;
     padding-top: 1.5rem;
   }
 
@@ -54,6 +57,7 @@ export const ExchangeWindowContainer = styled.div`
   @media (min-width: 240rem) {
     margin-top: 6rem;
     padding-top: 3rem;
+    border-radius: 50px;
   }
 `;
 
