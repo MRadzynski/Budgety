@@ -130,4 +130,16 @@ export const ExchangeButton = styled.button`
   &:hover {
     background-color: var(--light-gray)
   }
+
+  @media (min-width: 20rem) {
+    width: 10rem;
+    padding: 1rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  @media (min-width: 22.5rem) {
+    width: 11rem;
+    padding: 1rem 1rem;
+    font-size: 1.3rem;
+  }
 `;

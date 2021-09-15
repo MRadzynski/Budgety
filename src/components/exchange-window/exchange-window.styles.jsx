@@ -10,8 +10,12 @@ export const ExchangeWindowContainer = styled.div`
   background-color: var(--white-shade);
   box-shadow: 0 6px 6px rgba(0,0,0,0.25);
 
+  @media (min-width: 20rem) {
+    margin-top: -0.5rem;
+  }
+
   @media (min-width: 22.5rem) {
-    margin-top: 1rem;
+    margin-top: -0.5rem;
   }
 
   @media (min-width: 25rem) {
