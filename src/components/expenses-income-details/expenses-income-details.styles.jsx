@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
+
+import { breakpoints } from '../../styles/breakpoints';
 
 export const ExpensesIncomeDetailsContainer = styled.div`
   width: 100%;
@@ -21,20 +22,20 @@ export const ExpensesIncomeDetailsContainer = styled.div`
     margin: auto;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 80%;
     height: calc(var(--vh, 1vh) * 55);
     bottom: -45%;
     margin: 0 auto;
   }
 
-  @media (min-width: 80rem) {
+  @media ${breakpoints.sLaptop} {
     button {
       bottom: 3.5%;
     }
   }
 
-  @media (min-width: 90rem) {
+  @media ${breakpoints.lLaptop} {
     width: 70%;
 
     button {
@@ -42,7 +43,7 @@ export const ExpensesIncomeDetailsContainer = styled.div`
     }
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     width: 65%;
 
     button {
@@ -50,7 +51,7 @@ export const ExpensesIncomeDetailsContainer = styled.div`
     }
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     width: 50%;
 
     button {
@@ -58,13 +59,13 @@ export const ExpensesIncomeDetailsContainer = styled.div`
     }
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     button {
       bottom: 1.5%;
     }
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     height: calc(var(--vh, 1vh) * 50);
     bottom: -50%;
   }
@@ -91,47 +92,47 @@ export const Overlap = styled(Link)`
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 48rem) {
+  @media ${breakpoints.tablet} {
     border-top: ${({ active }) =>
-      active ? '0.3rem solid var(--primary-color)' : '0'};
+    active ? '0.3rem solid var(--primary-color)' : '0'};
     font-size: 3.2rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 3.4rem;
   }
 
-  @media (min-width: 90rem) {
+  @media ${breakpoints.lLaptop} {
     font-size: 3.6rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     border-top: ${({ active }) =>
-      active ? '0.4rem solid var(--primary-color)' : '0'};
+    active ? '0.4rem solid var(--primary-color)' : '0'};
     font-size: 4.2rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     border-top: ${({ active }) =>
-      active ? '0.5rem solid var(--primary-color)' : '0'};
+    active ? '0.5rem solid var(--primary-color)' : '0'};
     font-size: 4.8rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     border-top: ${({ active }) =>
-      active ? '0.7rem solid var(--primary-color)' : '0'};
+    active ? '0.7rem solid var(--primary-color)' : '0'};
     font-size: 7rem;
   }
 `;

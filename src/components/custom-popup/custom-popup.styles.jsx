@@ -1,8 +1,10 @@
 import styled, { keyframes } from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 const slide = keyframes`
   0% { opacity: 0;}
-  100% { opacity:1;}
+  100% { opacity: 1;}
 `;
 
 export const CustomPopupContainer = styled.div`
@@ -19,31 +21,31 @@ export const CustomPopupContainer = styled.div`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   animation: ${slide} 0.2s ease-in;
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     width: 60%;
     height: 15%;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 50%;
     height: 15%;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     width: 45%;
     height: 20%;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     width: 40%;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     width: 35%;
     border-radius: 25px;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     border-radius: 40px;
   }
 `;
@@ -52,47 +54,47 @@ export const CustomPopupText = styled.h1`
   font-size: 2rem;
   text-align: center;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     font-size: 1.8rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 3rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 4rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 4rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 4.4rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: 4.6rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 5.4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 8rem;
   }
 `;
@@ -105,49 +107,49 @@ export const ExitPopup = styled.div`
   font-weight: bold;
   cursor: pointer;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     top: 0;
     font-size: 3rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     top: 0;
     font-size: 4rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     top: 0;
     font-size: 3.2rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 4rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     top: 0.5rem;
     left: 1.5rem;
     font-size: 4.4rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: 4.6rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     left: 2rem;
     font-size: 5.4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     top: 1.5rem;
     left: 4rem;
     font-size: 8rem;

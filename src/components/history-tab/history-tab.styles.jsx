@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const HistoryTabContainer = styled.div`
   width: 100%;
   height: calc(var(--vh, 1vh) * 6);
@@ -16,22 +18,22 @@ export const HistoryTabContainer = styled.div`
     background-color: var(--light-gray);
   }
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     height: calc(var(--vh, 1vh) * 6);
     padding-left: 2rem;
     border-radius: 20px;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.lTabletPortrait} {
     height: calc(var(--vh, 1vh) * 7);
     padding-left: 3rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     border-radius: 30px;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     height: calc(var(--vh,1vh) * 10);
   }
 `;
@@ -40,31 +42,31 @@ export const DateDescription = styled.h3`
   color: var(--primary-color);
   font-size: 1.3rem;
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     font-size: 2rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 2.8rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: 3rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 4.5rem;
   }
 `;
@@ -75,31 +77,31 @@ export const ExpandArrow = styled.span`
   transition: transform 0.2s linear;
   transform: ${({ isOpen }) => isOpen ? 'rotate(90deg)' : 'rotate(0)'};
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     font-size: 2rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 2.8rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: 3rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 4.5rem;
   }
 `;
@@ -111,30 +113,30 @@ export const HistoryChartContainer = styled.div`
   border-radius: 10px;
   background-color: var(--white-shade);
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     height: 15rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.lTabletPortrait} {
     width: 90%;
     height: 17rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 90%;
     height: 15rem;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     width: 85%;
     height: 17rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     height: 20rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     height: 27rem;
   }
 `;
@@ -145,33 +147,33 @@ export const HistoryChartTitle = styled.h3`
   font-size: 1.5rem;
   word-spacing: 0.3rem;
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     padding-top: 1rem;
     font-size: 2rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.lTabletPortrait} {
     padding: 1.2rem 0;
     font-size: 2.6rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 2.8rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: 3rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 4.8rem;
   }
 `;
@@ -182,39 +184,39 @@ export const HistoryChartBalance = styled.h2`
   font-size: 1.8rem;
   word-spacing: 0.5rem;
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     padding: 1rem 0;
     font-size: 2.4rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.lTabletPortrait} {
     padding: 1.5rem 0;
     font-size: 3rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.8rem;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     padding: 2.5rem 0;
     font-size: 3rem;
   }
 
-  @media (min-width: 90rem) and (orientation: landscape) {
+  @media ${breakpoints.lLaptop} {
     font-size: 3.4rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     padding: 3rem 0;
     font-size: 3.6rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: 3.8rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 6rem;
   }
 `;
@@ -224,32 +226,32 @@ export const NoDataInfo = styled.h4`
   color: #9e9e9e;
   font-size: 1.5rem;
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     font-size: 2rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.lTabletPortrait} {
     margin-top: 2rem;
     font-size: 2.6rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: 3rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 4.8rem;
   }
 `;

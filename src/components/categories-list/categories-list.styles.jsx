@@ -1,36 +1,38 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const CategoriesListContainer = styled.div`
   width: 100%;
   height: calc(var(--vh, 1vh) * 44);
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 52rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     height: calc(var(--vh, 1vh) * 43);
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     height: calc(var(--vh, 1vh) * 34);
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     height: calc(var(--vh, 1vh) * 35);
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     height: calc(var(--vh, 1vh) * 36);
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     height: calc(var(--vh, 1vh) * 37);
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     height: calc(var(--vh, 1vh) * 40);
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     height: calc(var(--vh, 1vh) * 38);
   }
 `;
@@ -49,49 +51,49 @@ export const CategoryList = styled.ul`
   list-style: none;
   overflow: hidden scroll;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     gap: 1rem;
     margin-top: 2rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     gap: 1.3rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     gap: 1.5rem;
     margin: 3rem 0 -1rem 0;
   }
 
-  @media (min-width: 48rem) {
+  @media ${breakpoints.tablet} {
     gap: 2.5rem;
     margin-bottom: -2rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     gap: 2rem;
     margin-top: 1rem;
   }
 
-  @media (min-width: 90rem) {
+  @media ${breakpoints.sLaptop} {
     gap: 2.5rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     margin-top: 3rem;
     margin-bottom: -3rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     margin-top: 2rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     gap: 3rem;
     margin-top: 3rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     gap: 4rem;
     margin-top: 5rem;
   }
@@ -125,25 +127,25 @@ export const CategoryLogo = styled.div`
     height: 75%;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 13%;
   }
 
-  @media (min-width: 90rem) {
+  @media ${breakpoints.sLaptop} {
     width: 11%;
     margin-right: 4rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     width: 10%;
     margin-left: 1rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     width: 12%;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     width: 11%;
     margin: 1rem 5rem 1rem 1rem;
   }
@@ -154,23 +156,23 @@ export const CategoryInfoContainer = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     gap: 0.3rem;
   }
 
-  @media (min-width: 48rem) {
+  @media ${breakpoints.tablet} {
     gap: 0.7rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     gap: 1.2rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     gap: 1.5rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     gap: 2.2rem;
   }
 `;
@@ -178,35 +180,35 @@ export const CategoryInfoContainer = styled.div`
 export const CategoryName = styled.h2`
   font-size: 2.2rem;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     font-size: 1.8rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 48rem) {
+  @media ${breakpoints.tablet} {
     font-size: 3rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 3.8rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 4.2rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 6rem;
   }
 `;
@@ -214,35 +216,35 @@ export const CategoryName = styled.h2`
 export const CategoryPrice = styled.h3`
   font-size: 1.6rem;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     font-size: 1.3rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 1.4rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 1.4rem;
   }
 
-  @media (min-width: 48rem) {
+  @media ${breakpoints.tablet} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 3rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 4.2rem;
   }
 `;

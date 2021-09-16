@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const HistoryPageContainer = styled.div`
   width: 100%;
   /* height: calc(var(--vh,1vh) * 100); */
@@ -9,7 +11,7 @@ export const HistoryPageContainer = styled.div`
   align-items: center;
   padding-bottom: 3rem;
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     padding-bottom: 5rem;
   }
 `;
@@ -20,34 +22,34 @@ export const HistoryTitle = styled.h1`
   font-size: 2rem;
   text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
 
-  @media (min-width: 20rem){
+  @media ${breakpoints.xsPhone} {
     font-size: 4.5rem;
   }
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     font-size: 6rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.lTabletPortrait} {
     margin: 5rem 0;
     font-size: 8rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     margin: 3rem 0;
     font-size: 7rem;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     font-size: 8.5rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     margin: 5rem 0;
     font-size: 9rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     margin: 10rem 0;
     font-size: 15rem;
   }

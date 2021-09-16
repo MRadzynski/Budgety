@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const HistoryListContainer = styled.div`
   width: 85%;
   height: 100%;
@@ -7,19 +9,19 @@ export const HistoryListContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.xsLaptop}  {
     width: 80%;
   }
 
-  @media (min-width: 80rem) and (orientation: landscape) {
+  @media ${breakpoints.sLaptop} {
     width: 85%;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     width: 60%;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     width: 45%;
   }
 `;
@@ -32,15 +34,15 @@ export const HistoryChartList = styled.ul`
   align-items: center;
   gap: 2rem;
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     gap: 3rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.xsLaptop} {
     gap: 4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     gap: 6rem;
   }
 `;
@@ -54,11 +56,11 @@ export const HistoryChartListItem = styled.li`
   background-color: var(--white-shade);
   box-shadow: 0 6px 6px rgba(0,0,0,0.25);
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     border-radius: 20px;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     border-radius: 30px;
   }
 `;
@@ -69,15 +71,15 @@ export const HistoryMonthlyChartsContainer = styled.div`
   flex-direction:column;
   gap: 2rem;
 
-  @media (min-width: 48rem){
+  @media ${breakpoints.tablet} {
     gap: 3rem;
   }
 
-  @media (min-width: 64rem){
+  @media ${breakpoints.xsLaptop} {
     gap: 4rem;
   }
 
-  @media (min-width: 80rem) {
+  @media ${breakpoints.sLaptop} {
     display:flex;
     flex-direction: row;
     align-items: flex-start;
