@@ -13,6 +13,7 @@ import {
 } from '../../redux/finance/finance.selectors';
 
 import { formatCurrency } from '../../redux/finance/finance.utils';
+import useHistoryChart from '../../hooks/useHistoryChart';
 
 import BalanceChart from '../../components/balance-chart/balance-chart.component';
 import ExpensesIncomeBarchart from '../../components/expenses-income-barchart/expenses-income-barchart.component';
@@ -25,6 +26,7 @@ import {
   NoDataText,
 } from './homepage.styles';
 
+
 const HomePage = ({
   displayName,
   currency,
@@ -33,39 +35,43 @@ const HomePage = ({
   latestExpensesPercent,
   latestIncomePercent,
   latestExpensesIncomeArr,
-  latestBalance
-}) => (
-  <HomePageContainer>
-    <WelcomeText>Hey {displayName}! </WelcomeText>
+  latestBalance,
+}) => {
+  useHistoryChart();
 
-    <ChartContainer>
-      {latestBalance !== 0 ? (
-        <BalanceChart data={latestExpensesIncomeArr} currency={currency} />
-      ) : (
-        <NoDataText>No data to present 😔</NoDataText>
-      )}
-      <ChartText>Balance: {formatCurrency(latestBalance, currency)}</ChartText>
-    </ChartContainer>
+  return (
+    <HomePageContainer>
+      <WelcomeText>Hey {displayName}! </WelcomeText>
 
-    <ChartContainer>
-      {latestExpensesTotal !== 0 ? (
-        <ExpensesIncomeBarchart data={latestExpensesPercent} currency={currency} />
-      ) : (
-        <NoDataText>No data to present 😔</NoDataText>
-      )}
-      <ChartText>Expenses</ChartText>
-    </ChartContainer>
+      <ChartContainer>
+        {latestBalance !== 0 ? (
+          <BalanceChart data={latestExpensesIncomeArr} currency={currency} />
+        ) : (
+          <NoDataText>No data to present 😔</NoDataText>
+        )}
+        <ChartText>Balance: {formatCurrency(latestBalance, currency)}</ChartText>
+      </ChartContainer>
 
-    <ChartContainer>
-      {latestIncomeTotal !== 0 ? (
-        <ExpensesIncomeBarchart data={latestIncomePercent} currency={currency} />
-      ) : (
-        <NoDataText>No data to present 😔</NoDataText>
-      )}
-      <ChartText>Income</ChartText>
-    </ChartContainer>
-  </HomePageContainer>
-);
+      <ChartContainer>
+        {latestExpensesTotal !== 0 ? (
+          <ExpensesIncomeBarchart data={latestExpensesPercent} currency={currency} />
+        ) : (
+          <NoDataText>No data to present 😔</NoDataText>
+        )}
+        <ChartText>Expenses</ChartText>
+      </ChartContainer>
+
+      <ChartContainer>
+        {latestIncomeTotal !== 0 ? (
+          <ExpensesIncomeBarchart data={latestIncomePercent} currency={currency} />
+        ) : (
+          <NoDataText>No data to present 😔</NoDataText>
+        )}
+        <ChartText>Income</ChartText>
+      </ChartContainer>
+    </HomePageContainer>
+  )
+};
 
 
 const mapStateToProps = (state) => ({
@@ -76,7 +82,7 @@ const mapStateToProps = (state) => ({
   latestExpensesPercent: selectLatestExpensesPercent(state),
   latestIncomePercent: selectLatestIncomePercent(state),
   latestExpensesIncomeArr: selectLatestExpensesIncomeArr(state),
-  latestBalance: selectLatestBalance(state)
+  latestBalance: selectLatestBalance(state),
 });
 
 export default connect(mapStateToProps)(HomePage);

@@ -72,6 +72,8 @@ const getMonthlyExpenseIncomePercent = (data) => {
 }
 
 export const generateHistoryChart = (userCreatedAt, historyLogs, data) => {
+  if (!historyLogs) return;
+
   let historyFlag = false;
   const userCreatedAtDate = new Date(userCreatedAt.seconds * 1000);
 
@@ -79,7 +81,7 @@ export const generateHistoryChart = (userCreatedAt, historyLogs, data) => {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
-  if (userCreatedAtDate.getMonth() === currentMonth && userCreatedAtDate.getFullYear() === currentYear) return;
+  if (userCreatedAtDate.getMonth() >= currentMonth && userCreatedAtDate.getFullYear() >= currentYear) return;
 
   const monthToCheck = currentMonth - 1 >= 0 ? currentMonth - 1 : 11;
   const yearToCheck = monthToCheck === 11 ? currentYear - 1 : currentYear;
@@ -105,5 +107,6 @@ export const generateHistoryChart = (userCreatedAt, historyLogs, data) => {
     incomeArr: incomeMonthlyPercentArr,
     date: `${monthToCheck}/${yearToCheck}`
   });
+
   return historyLogs;
 }
