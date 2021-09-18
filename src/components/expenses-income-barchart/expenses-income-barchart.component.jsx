@@ -45,10 +45,13 @@ const ExpensesIncomeBarchart = ({ currency, data }) => {
       <BarChart data={data} margin={{ left: -17, top: 7, right: 3, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
+          interval={window.innerWidth < 1024 && 0} //interval={0} or tick={{fontSize: (sizeModifier + 1) * 10.5,}}
           dataKey="category"
-          tick={{
-            fontSize: (sizeModifier + 1) * 10.5,
-          }}
+          tick={window.innerWidth >= 1024 ?
+            {
+              fontSize: (sizeModifier + 1) * 10.5,
+            } : true
+          }
         />
         <YAxis
           unit="%"

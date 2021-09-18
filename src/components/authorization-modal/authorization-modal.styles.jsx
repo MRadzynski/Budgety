@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { breakpoints } from '../../styles/breakpoints';
 
 export const ModalForm = styled.form`
+  width:100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@ export const ModalLabel = styled.label`
   font-weight: bold;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     margin-bottom: -1rem;
     font-size: 1.5rem;
   }
@@ -72,7 +73,7 @@ export const ModalInput = styled.input`
   letter-spacing: 0.6rem;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.6rem;
   }
 
@@ -130,7 +131,7 @@ export const ErrorMessage = styled.span`
   font-size: 1.6rem;
   text-align: center;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     margin: 0.5rem 0 -1.5rem 0;
     font-size: 1.3rem;
   }

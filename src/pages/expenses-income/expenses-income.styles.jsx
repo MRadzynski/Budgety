@@ -18,6 +18,10 @@ export const ExpensesIncomeTitle = styled.h1`
   letter-spacing: 0.2rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+  @media ${breakpoints.fold} {
+    font-size: 2.1rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     left: 8%;
     font-size: 2.4rem;

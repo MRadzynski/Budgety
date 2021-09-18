@@ -8,8 +8,16 @@ export const CategoriesListContainer = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media ${breakpoints.lPhone} {
+    height: calc(var(--vh, 1vh) * 43.5);
+  }
+
   @media ${breakpoints.tablet} {
     height: calc(var(--vh, 1vh) * 43);
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    height: calc(var(--vh, 1vh) * 47);
   }
 
   @media ${breakpoints.xsLaptop} {
@@ -17,6 +25,14 @@ export const CategoriesListContainer = styled.div`
   }
 
   @media ${breakpoints.sLaptop} {
+    height: calc(var(--vh, 1vh) * 35);
+  }
+
+  @media ${breakpoints.laptop} {
+    height: calc(var(--vh, 1vh) * 39);
+  }
+
+  @media ${breakpoints.lLaptop} {
     height: calc(var(--vh, 1vh) * 35);
   }
 
@@ -51,22 +67,25 @@ export const CategoryList = styled.ul`
   list-style: none;
   overflow: hidden scroll;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     gap: 1rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
     margin-top: 2rem;
   }
 
   @media ${breakpoints.sPhone} {
-    gap: 1.3rem;
+    gap: 1.2rem;
   }
 
   @media ${breakpoints.lPhone} {
-    gap: 1.5rem;
+    gap: 1.2rem;
     margin: 3rem 0 -1rem 0;
   }
 
   @media ${breakpoints.tablet} {
-    gap: 2.5rem;
+    gap: 2rem;
     margin-bottom: -2rem;
   }
 
@@ -156,7 +175,7 @@ export const CategoryInfoContainer = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     gap: 0.3rem;
   }
 
@@ -180,7 +199,7 @@ export const CategoryInfoContainer = styled.div`
 export const CategoryName = styled.h2`
   font-size: 2.2rem;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.8rem;
   }
 
@@ -216,7 +235,7 @@ export const CategoryName = styled.h2`
 export const CategoryPrice = styled.h3`
   font-size: 1.6rem;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.3rem;
   }
 

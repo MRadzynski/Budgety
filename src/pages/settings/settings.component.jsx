@@ -8,6 +8,7 @@ import {
   updateFinances,
   updateCurrency,
   reauthenticateAndDeleteUser,
+  updateHistory
 } from '../../firebase/firebase.utils';
 
 import {
@@ -70,6 +71,7 @@ const SettingsPage = ({
     });
 
     updateFinances(currentUser.id, expenses, income, []);
+    updateHistory(currentUser.id, []);
 
     setOpenEraseModal(false);
     setErrorMessage('Data erased!');

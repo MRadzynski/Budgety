@@ -30,6 +30,11 @@ export const MenuList = styled.ul`
   font-weight: bold;
   list-style: none;
   padding-bottom: 3rem;
+  box-shadow: 0 8px 8px rgba(0,0,0,0.25);
+
+  @media ${breakpoints.fold} {
+    gap: 1.5rem;
+  }
 
   @media ${breakpoints.xsPhone} {
     gap: 2rem;
@@ -40,49 +45,44 @@ export const MenuList = styled.ul`
   }
 
   @media ${breakpoints.phone} {
-    gap: 3.5rem;
+    gap: 1rem;
   }
 
   @media ${breakpoints.lPhone} {
-    gap: 3rem;
+    gap: 2rem;
   }
 
   @media ${breakpoints.tablet} {
-    gap: 5rem;
+    gap: 2.5rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    gap: 8rem;
+    gap: 4rem;
   }
 
   @media ${breakpoints.xsLaptop} {
     width: 30vw;
-    gap: 1.5rem;
+    gap: 1rem;
     padding-bottom: 7rem;
   }
 
   @media ${breakpoints.laptop} {
-    gap: 3rem;
+    gap: 1.5rem;
   }
 
   @media ${breakpoints.lLaptop} {
     width: 25vw;
+    gap: 1rem;
   }
 
   @media ${breakpoints.desktopFHD} {
     width: 20vw;
+    gap: 2rem;
   }
 
   @media ${breakpoints.desktopUltrawide} {
     width: 15vw;
-  }
-
-  @media ${breakpoints.desktop2K} {
-    gap: 6rem;
-  }
-
-  @media ${breakpoints.desktop4K} {
-    gap: 10rem;
+    gap: 3rem;
   }
 `;
 
@@ -106,6 +106,10 @@ export const MenuItem = styled.li`
     background-color: #ccc;
   }
 
+  @media ${breakpoints.fold} {
+    font-size: 2rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     font-size: 2rem;
     letter-spacing: 0.1rem;
@@ -116,7 +120,7 @@ export const MenuItem = styled.li`
   }
 
   @media ${breakpoints.phone} {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 
   @media ${breakpoints.lPhone} {
@@ -124,7 +128,7 @@ export const MenuItem = styled.li`
   }
 
   @media ${breakpoints.tablet} {
-    font-size: 3.8rem;
+    font-size: 3.4rem;
     letter-spacing: 0.3rem;
 
     &:last-child {
@@ -141,7 +145,7 @@ export const MenuItem = styled.li`
   }
 
   @media ${breakpoints.xsLaptop} {
-    font-size: 3.8rem;
+    font-size: 3.2rem;
     letter-spacing: 0.3rem;
 
     &:last-child {
@@ -150,15 +154,15 @@ export const MenuItem = styled.li`
   }
 
   @media ${breakpoints.laptop} {
-    font-size: 4.8rem;
+    font-size: 3.4rem;
   }
 
   @media ${breakpoints.lLaptop} {
-    font-size: 4.2rem;
+    font-size: 3.2rem;
   }
 
   @media ${breakpoints.desktopFHD} {
-    font-size: 4.6rem;
+    font-size: 4rem;
   }
 
   @media ${breakpoints.desktop2K} {

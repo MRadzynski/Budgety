@@ -10,11 +10,12 @@ import {
 
 import ExpenseIncomeForm from '../expense-income-form/expense-income-form.component';
 import CategoriesList from '../categories-list/categories-list.component';
-import CustomButton from '../custom-button/custom-button.component';
+
 import {
   ExpensesIncomeDetailsContainer,
   OverlapsContainer,
   Overlap,
+  CustomButtonStyled
 } from './expenses-income-details.styles';
 
 const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }) => {
@@ -43,7 +44,7 @@ const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }
           ) : (
             <CategoriesList categoriesData={latestIncome} currency={currency} />
           )}
-          <CustomButton
+          <CustomButtonStyled
             type="button"
             bgColor="var(--primary-color)"
             hoverColor="#395ae0"
@@ -53,7 +54,7 @@ const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }
             }
           >
             {currentPath === '/expenses' ? 'Add Expense' : 'Add Income'}
-          </CustomButton>
+          </CustomButtonStyled>
         </>
       ) : (
         <ExpenseIncomeForm type={currentPath.split('/')[1]} />

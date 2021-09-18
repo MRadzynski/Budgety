@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { breakpoints } from '../../styles/breakpoints';
 
+import CustomButton from '../custom-button/custom-button.component';
+
 export const ExpensesIncomeDetailsContainer = styled.div`
   width: 100%;
   height: calc(var(--vh, 1vh) * 60);
@@ -22,11 +24,16 @@ export const ExpensesIncomeDetailsContainer = styled.div`
     margin: auto;
   }
 
+  @media ${breakpoints.fold} {
+    border-radius: 30px 30px 0px 0px;
+  }
+
   @media ${breakpoints.xsLaptop} {
     width: 80%;
     height: calc(var(--vh, 1vh) * 55);
     bottom: -45%;
     margin: 0 auto;
+    border-radius: 50px 50px 0px 0px;
   }
 
   @media ${breakpoints.sLaptop} {
@@ -92,6 +99,10 @@ export const Overlap = styled(Link)`
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 
+  @media ${breakpoints.fold} {
+    font-size: 1.8rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     font-size: 2rem;
   }
@@ -134,5 +145,46 @@ export const Overlap = styled(Link)`
     border-top: ${({ active }) =>
     active ? '0.7rem solid var(--primary-color)' : '0'};
     font-size: 7rem;
+  }
+`;
+
+export const CustomButtonStyled = styled(CustomButton)`
+  @media ${breakpoints.fold} {
+    height: 4rem;
+  }
+  @media ${breakpoints.phone} {
+    height: 3.5rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    height: 4.5rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    height: 6.5rem;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    height: 7rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    height: 6rem;
+  }
+
+  @media ${breakpoints.desktopFHD} {
+    height: 6.5rem;
+  }
+
+  @media ${breakpoints.desktopUltrawide} {
+    height: 6rem;
+  }
+
+  @media ${breakpoints.desktop2K} {
+    height: 9rem;
+  }
+
+  @media ${breakpoints.desktop4K} {
+    height: 10rem;
   }
 `;

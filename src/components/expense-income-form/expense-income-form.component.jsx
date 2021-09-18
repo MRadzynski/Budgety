@@ -12,8 +12,6 @@ import {
 } from '../../redux/finance/finance.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-import CustomButton from '../custom-button/custom-button.component';
-
 import { updateFinances } from '../../firebase/firebase.utils';
 
 import {
@@ -26,6 +24,7 @@ import {
   FormLabel,
   SelectList,
   ListItem,
+  CustomButtonStyled
 } from './expense-income-form.styles';
 
 const ExpenseIncomeForm = ({
@@ -154,14 +153,14 @@ const ExpenseIncomeForm = ({
             </SelectList>
           )}
         </FormFieldContainer>
-        <CustomButton
+        <CustomButtonStyled
           type="submit"
           bgColor="var(--primary-color)"
           hoverColor="#395ae0"
           textColor="var(--white-shade)"
         >
           Confirm
-        </CustomButton>
+        </CustomButtonStyled>
       </AddExpenseIncomeForm>
     </ExpenseIncomeFormContainer>
   );

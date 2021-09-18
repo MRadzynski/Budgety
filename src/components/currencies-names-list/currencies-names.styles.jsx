@@ -40,7 +40,7 @@ export const CurrenciesListItem = styled.li`
     background-color:#dddddd;
   }
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.3rem;
   }
 

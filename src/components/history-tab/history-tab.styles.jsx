@@ -13,9 +13,25 @@ export const HistoryTabContainer = styled.div`
   border-radius: 10px;
   background-color: var(--white-shade);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background-color: var(--light-gray);
+  }
+
+  @media ${breakpoints.fold} {
+    border-radius: 15px;
+    gap: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    border-radius: 10px;
+  }
+
+  @media ${breakpoints.lPhone} {
+    padding-left: 2rem;
+    border-radius: 15px;
   }
 
   @media ${breakpoints.tablet} {
@@ -25,16 +41,44 @@ export const HistoryTabContainer = styled.div`
   }
 
   @media ${breakpoints.lTabletPortrait} {
+    height: calc(var(--vh, 1vh) * 6);
+    gap: 2rem;
+    padding-left: 3rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    height: calc(var(--vh, 1vh) * 8);
+    gap: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  @media ${breakpoints.sLaptop} {
+    border-radius: 25px;
+  }
+
+  @media ${breakpoints.laptop} {
     height: calc(var(--vh, 1vh) * 7);
     padding-left: 3rem;
   }
 
+  @media ${breakpoints.desktopFHD} {
+    gap: 2.5rem;
+  }
+
   @media ${breakpoints.desktopUltrawide} {
+    padding-left: 3.5rem;
     border-radius: 30px;
   }
 
+  @media ${breakpoints.desktop2K} {
+    height: calc(var(--vh, 1vh) * 6);
+    gap: 3rem;
+  }
+
   @media ${breakpoints.desktop4K} {
-    height: calc(var(--vh,1vh) * 10);
+    height: calc(var(--vh,1vh) * 7);
+    padding-left: 5rem;
+    border-radius: 50px;
   }
 `;
 
@@ -67,7 +111,7 @@ export const DateDescription = styled.h3`
   }
 
   @media ${breakpoints.desktop4K} {
-    font-size: 4.5rem;
+    font-size: 5rem;
   }
 `;
 
@@ -102,7 +146,7 @@ export const ExpandArrow = styled.span`
   }
 
   @media ${breakpoints.desktop4K} {
-    font-size: 4.5rem;
+    font-size: 5rem;
   }
 `;
 

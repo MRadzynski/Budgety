@@ -26,15 +26,34 @@ export const Form = styled.form`
     margin-top: -1rem;
   }
 
+  @media ${breakpoints.fold} {
+    gap: 2rem;
+
+    button:nth-of-type(1) {
+      margin-top: 1rem;
+    }
+  }
+
   @media ${breakpoints.xsPhone} {
+    gap: 2rem;
     margin-top: 2rem;
 
     button:nth-of-type(1) {
-      margin-top: -0.5rem;
+      margin-top: 1rem;
     }
   }
 
   @media ${breakpoints.phone} {
+    gap:2rem;
+
+    button:nth-of-type(1) {
+      margin-top: 1rem;
+    }
+  }
+
+  @media ${breakpoints.lPhone} {
+    gap:2.5rem;
+
     button:nth-of-type(1) {
       margin-top: 1rem;
     }
@@ -42,6 +61,7 @@ export const Form = styled.form`
 
   @media ${breakpoints.tablet} {
     width: 80%;
+    gap: 3rem;
     margin-top: 3rem;
 
     button:nth-of-type(1) {
@@ -80,7 +100,7 @@ export const Form = styled.form`
   }
 
   @media ${breakpoints.laptop} {
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   @media ${breakpoints.lLaptop} {
@@ -91,6 +111,7 @@ export const Form = styled.form`
 
   @media ${breakpoints.desktopFHD} {
     margin-top: 0;
+    gap: 3rem;
 
     button:nth-of-type(1) {
       margin-top: 3rem;
@@ -146,6 +167,19 @@ export const FormInput = styled.input`
     letter-spacing: 0.15rem;
   }
 
+  @media ${breakpoints.fold} {
+    margin: ${({ resetInput }) => (resetInput ? '0 0 1.5rem 0' : '0')};
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+
+    ::placeholder {
+      font-size: 1.5rem;
+    }
+    &[type='email'] {
+      letter-spacing: 0.25rem;
+    }
+  }
+  
   @media ${breakpoints.xsPhone} {
     margin: ${({ resetInput }) => (resetInput ? '0 0 1.5rem 0' : '0')};
     font-size: 1.6rem;
@@ -210,7 +244,7 @@ export const FormInput = styled.input`
   }
 
   @media ${breakpoints.xsLaptop} {
-    width: 40%;
+    width: 35%;
 
     &[type='password'] {
       letter-spacing: 1.2rem;
@@ -218,7 +252,7 @@ export const FormInput = styled.input`
   }
 
   @media ${breakpoints.sLaptop} {
-    width: 40%;
+    width: 30%;
     font-size: 2.4rem;
     letter-spacing: 0.4rem;
     line-height: 3rem;
@@ -239,24 +273,24 @@ export const FormInput = styled.input`
   }
 
   @media ${breakpoints.laptop} {
-    width: 40%;
-    font-size: 3.2rem;
+    font-size: 2.8rem;
 
     ::placeholder {
-      font-size: 3.2rem;
+      font-size: 2.8rem;
     }
   }
 
   @media ${breakpoints.lLaptop} {
-    font-size: 3.4rem;
+    width: 30%;
+    font-size: 3rem;
 
     ::placeholder {
-      font-size: 3.4rem;
+      font-size: 3rem;
     }
   }
 
   @media ${breakpoints.desktopFHD} {
-    width: 40%;
+    width: 25%;
     font-size: 2.8rem;
     line-height: 3.6rem;
 
@@ -266,7 +300,7 @@ export const FormInput = styled.input`
   }
 
   @media ${breakpoints.desktopUltrawide} {
-    width: 25%;
+    width: 20%;
     font-size: 2.8rem;
 
     ::placeholder {
@@ -275,7 +309,7 @@ export const FormInput = styled.input`
   }
 
   @media ${breakpoints.desktop2K} {
-    width: 30%;
+    width: 25%;
     font-size: 4.6rem;
     line-height: 7rem;
 
@@ -337,7 +371,7 @@ export const FormTitle = styled.h1`
 
   @media ${breakpoints.laptop} {
     margin-top: 2rem;
-    font-size: 9rem;
+    font-size: 8rem;
   }
 
   @media ${breakpoints.lLaptop} {
@@ -373,6 +407,10 @@ export const FormSubtext = styled.h2`
   text-align: center;
   letter-spacing: 0.15rem;
 
+  @media ${breakpoints.fold} {
+    font-size: ${({ reset }) => (reset ? '1.6rem' : '1.5rem')};
+  }
+
   @media ${breakpoints.xsPhone} {
     margin: 0 0 2rem 0;
     font-size: ${({ reset }) => (reset ? '1.4rem' : '1.3rem')};
@@ -406,7 +444,7 @@ export const FormSubtext = styled.h2`
   }
 
   @media ${breakpoints.xsLaptop} {
-    width: ${({ reset }) => (reset ? '60%' : '80%')};
+    width: ${({ reset }) => (reset ? '50%' : '80%')};
     margin-top: 1rem;
     padding-bottom: ${({ reset }) => (reset ? '0' : '4rem')};
     font-size: ${({ reset }) => (reset ? '2.6rem' : '2.4rem')};
@@ -420,7 +458,7 @@ export const FormSubtext = styled.h2`
   }
 
   @media ${breakpoints.laptop}  {
-    font-size: ${({ reset }) => (reset ? '3rem' : '2.6rem')};
+    font-size: ${({ reset }) => (reset ? '3rem' : '2.4rem')};
   }
 
   @media ${breakpoints.lLaptop} {
@@ -428,11 +466,11 @@ export const FormSubtext = styled.h2`
   }
 
   @media ${breakpoints.desktopFHD} {
+    width: ${({ reset }) => (reset ? '30%' : '80%')};
     font-size: ${({ reset }) => (reset ? '3rem' : '2.6rem')};
   }
 
   @media ${breakpoints.desktopUltrawide} {
-    width: ${({ reset }) => (reset ? '30%' : '80%')};
     margin-top: 0rem;
     font-size: ${({ reset }) => (reset ? '2.8rem' : '2.4rem')};
   }
@@ -455,6 +493,7 @@ export const ForgotPasswordLink = styled(Link)`
   text-align: right;
   text-decoration: underline;
   letter-spacing: 0.2rem;
+  -webkit-tap-highlight-color: transparent;
 
   @media ${breakpoints.xsPhone} {
     margin: -2rem 0 -0.5rem 0;
@@ -466,7 +505,6 @@ export const ForgotPasswordLink = styled(Link)`
   }
 
   @media ${breakpoints.phone} {
-    margin-bottom: -0.5rem;
     font-size: 1.4rem;
   }
 
@@ -490,36 +528,37 @@ export const ForgotPasswordLink = styled(Link)`
   }
 
   @media ${breakpoints.xsLaptop} {
-    width: 40%;
+    width: 35%;
     margin-bottom: -0.5rem;
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 
   @media ${breakpoints.sLaptop} {
-    width: 40%;
+    width: 30%;
     font-size: 1.8rem;
   }
 
   @media ${breakpoints.laptop} {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 
   @media ${breakpoints.lLaptop} {
+    width: 30%;
     margin-bottom: 0;
     font-size: 2.2rem;
   }
 
   @media ${breakpoints.desktopFHD} {
-    width: 40%;
+    width: 25%;
     font-size: 2.4rem;
   }
 
   @media ${breakpoints.desktopUltrawide} {
-    width: 25%;
+    width: 20%;
   }
 
   @media ${breakpoints.desktop2K} {
-    width:30%;
+    width: 25%;
     font-size: 3.6rem;
   }
 
@@ -538,8 +577,13 @@ export const ErrorMessageContainer = styled.div`
   font-weight: bold;
   text-align: center;
 
+  @media ${breakpoints.fold} {
+    margin-top: ${({ reset }) => (reset ? '-3rem' : '-1rem')};
+    margin-bottom: ${({ reset }) => (reset ? '-2rem' : '-1rem')};
+  }
+
   @media ${breakpoints.phone} {
-    margin-bottom: ${({ reset }) => (reset ? '-1rem' : '-2.5rem')};
+    margin-bottom: ${({ reset }) => (reset ? '-2.5rem' : '-2.5rem')};
   }
 
   @media ${breakpoints.lPhone} {
@@ -651,6 +695,14 @@ export const LogoContainer = styled.div`
     height: 100%;
   }
 
+  @media ${breakpoints.fold} {
+    height: 20%;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    height: 25%;
+  }
+
   @media ${breakpoints.tablet} {
     height: 30%;
     margin-bottom: ${({ reset }) => (reset ? '-1rem' : '-3.7rem')};
@@ -672,7 +724,6 @@ export const LogoContainer = styled.div`
 
   @media ${breakpoints.laptop} {
     width: 15%;
-    height: 25%;
     margin-bottom: ${({ reset }) => (reset ? '-1rem' : '0rem')};
   }
 

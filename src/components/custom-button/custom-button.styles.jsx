@@ -21,6 +21,12 @@ export const CustomButtonContainer = styled.button`
     color: var(--white-shade);
   }
 
+  @media ${breakpoints.fold} {
+    width: 16rem;
+    height: 3.5rem;
+    font-size: 1.6rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     width: 19rem;
     height: 4rem;
@@ -41,18 +47,23 @@ export const CustomButtonContainer = styled.button`
   }
 
   @media ${breakpoints.xsLaptop} {
+    width: 27rem;
+    height: 5rem;
+    font-size: 2.4rem;
+  }
+
+  @media ${breakpoints.laptop} {
     width: 30rem;
-    height: 6rem;
+    height: 5.5rem;
   }
 
   @media ${breakpoints.desktopFHD} {
     width: 35rem;
-    height: 6.5rem;
-    font-size: 3.4rem;
+    height: 6rem;
+    font-size: 3rem;
   }
 
   @media ${breakpoints.desktopUltrawide} {
-    height: 6rem;
     font-size: 3.2rem;
   }
 

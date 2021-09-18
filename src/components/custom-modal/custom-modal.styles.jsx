@@ -53,8 +53,9 @@ export const CustomModalExit = styled.div`
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.8rem;
   }
 
@@ -101,7 +102,7 @@ export const CustomModalTitle = styled.h2`
   font-weight: bold;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 2rem;
   }
 
@@ -159,7 +160,7 @@ export const CustomModalButton = styled.button`
     background-color: #fe4337;
   }
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.6rem;
   }
 

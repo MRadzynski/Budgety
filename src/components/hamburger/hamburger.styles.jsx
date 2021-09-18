@@ -14,6 +14,7 @@ export const HamburgerContainer = styled.div`
   left: 2rem;
   z-index: 10;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
   span {
     width: 3rem;

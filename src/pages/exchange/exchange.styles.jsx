@@ -11,12 +11,25 @@ export const ExchangeContainer = styled.div`
   gap: 3rem;
   padding: 6rem 2rem;
 
+  @media ${breakpoints.fold} {
+    gap: 1.5rem;
+    padding: 4rem 1rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     gap: 2rem;
     padding: 3rem 2rem;
   }
 
   @media ${breakpoints.sPhone} {
+    gap: 2.5rem;
+  }
+
+  @media ${breakpoints.phone} {
+    gap: 2rem;
+  }
+
+  @media ${breakpoints.lPhone} {
     gap: 2.5rem;
   }
 
@@ -95,6 +108,10 @@ export const ExchangeSubTitle = styled.h2`
     font-size: 1.8rem;
   }
 
+  @media ${breakpoints.phone} {
+    font-size: 1.9rem;
+  }
+
   @media ${breakpoints.lPhone} {
     font-size: 2.2rem;
   }
@@ -128,8 +145,29 @@ export const ExchangeButtonsContainer = styled.div`
   display:flex;
   gap: 2rem;
 
+  @media ${breakpoints.fold} {
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  @media ${breakpoints.phone} {
+    margin-top: -0.5rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    margin-top: 0;
+  }
+
   @media ${breakpoints.tablet} {
     gap: 8rem;
+  }
+
+  @media ${breakpoints.laptop} {
+    gap: 8rem;
+  }
+
+  @media ${breakpoints.lLaptop} {
+    margin-top: -1.5rem;
   }
 
   @media ${breakpoints.desktopUltrawide} {
@@ -147,9 +185,16 @@ export const ExchangeButton = styled.button`
   font-size: 1.5rem;
   box-shadow: 0 6px 6px rgba(0,0,0,0.25);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background-color: var(--light-gray)
+  }
+
+  @media ${breakpoints.fold} {
+    width: 10rem;
+    padding: 1.25rem 0.75rem;
+    font-size: 1.1rem;
   }
 
   @media ${breakpoints.xsPhone} {
@@ -158,17 +203,22 @@ export const ExchangeButton = styled.button`
     font-size: 1.1rem;
   }
 
-  @media ${breakpoints.sPhone} {
+  @media ${breakpoints.phone} {
     width: 11rem;
     padding: 1rem 1rem;
     font-size: 1.3rem;
   }
 
+  @media ${breakpoints.sPhone} {
+    padding: 1rem 0.5rem;
+    font-size: 1.3rem;
+  }
+
   @media ${breakpoints.lPhone} {
     width: 13rem;
-    margin-top: 1rem;
+    margin-top: 0rem;
     padding: 1rem 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   @media ${breakpoints.tablet} {
@@ -186,8 +236,9 @@ export const ExchangeButton = styled.button`
 
   @media ${breakpoints.xsLaptop} {
     width: 20rem;
-    font-size: 2rem;
+    margin-top: 0;
     border-radius: 20px;
+    font-size: 2rem;
   }
 
   @media ${breakpoints.sLaptop} {
@@ -216,6 +267,7 @@ export const ExchangeButton = styled.button`
     width: 45rem;
     margin-top: 10rem;
     padding: 4rem 3rem;
+    border-width: 6px;
     border-radius: 50px;
     font-size: 5rem;
   }

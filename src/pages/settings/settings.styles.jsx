@@ -11,20 +11,28 @@ export const SettingsContainer = styled.div`
   gap: 3rem;
   margin-bottom: 5rem;
 
+  @media ${breakpoints.fold} {
+    gap: 2.5rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     margin-bottom: 0;
   }
 
   @media ${breakpoints.sPhone} {
-    gap: 4rem;
+    gap: 3rem;
   }
 
   @media ${breakpoints.tablet} {
-    gap: 5rem;
+    gap: 4rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
     gap: 7rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    gap: 3.5rem;
   }
 
   @media ${breakpoints.desktop2K} {
@@ -37,11 +45,16 @@ export const SettingsContainer = styled.div`
 `;
 
 export const SettingsTitle = styled.h1`
-  padding-top: 4rem;
+  padding-top: 3rem;
   color: var(--white-shade);
   font-size: 4rem;
   text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
   letter-spacing: 0.4rem;
+
+  @media ${breakpoints.fold} {
+    padding-top: 4rem;
+    font-size: 3.5rem;
+  }
 
   @media ${breakpoints.xsPhone} {
     font-size: 3rem;
@@ -52,11 +65,12 @@ export const SettingsTitle = styled.h1`
   }
 
   @media ${breakpoints.lPhone} {
+    padding-top: 4rem;
     font-size: 4.4rem;
   }
 
   @media ${breakpoints.tablet} {
-    margin-top: 2rem;
+    padding-top: 4rem;
     font-size: 7rem;
   }
 
@@ -65,6 +79,7 @@ export const SettingsTitle = styled.h1`
   }
 
   @media ${breakpoints.xsLaptop} {
+    padding-top: 2rem;
     font-size: 5.5rem;
   }
 
@@ -90,7 +105,7 @@ export const SettingsGroupTitle = styled.h2`
   text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
   letter-spacing: 0.2rem;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 2.2rem;
   }
 
@@ -117,7 +132,7 @@ export const SettingsGroupTitle = styled.h2`
 
   @media ${breakpoints.laptop} {
     margin-top: 1rem;
-    font-size: 4rem;
+    font-size: 3.8rem;
   }
 
   @media ${breakpoints.desktopFHD} {
@@ -152,7 +167,13 @@ export const SettingsGroup = styled.div`
     }
   }
 
+  @media ${breakpoints.fold} {
+    width: 85vw;
+    height: calc(var(--vh, 1vh) * 17);
+  }
+
   @media ${breakpoints.xsPhone} {
+    width: 80vw;
     height: calc(var(--vh, 1vh) * 18);
   }
 
@@ -208,7 +229,7 @@ export const SettingLabel = styled.label`
   font-weight: bold;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.7rem;
   }
 
@@ -233,7 +254,7 @@ export const SettingLabel = styled.label`
   }
 
   @media ${breakpoints.laptop} {
-    font-size: 4rem;
+    font-size: 3.2rem;
   }
 
   @media ${breakpoints.desktop2K} {
@@ -263,6 +284,10 @@ export const SettingInput = styled.input`
     padding: 0 0.5rem;
     font-size: 1.8rem;
     cursor: text;
+  }
+
+  @media ${breakpoints.fold} {
+    font-size: 1.7rem;
   }
 
   @media ${breakpoints.xsPhone} {
@@ -318,10 +343,10 @@ export const SettingInput = styled.input`
   }
 
   @media ${breakpoints.laptop} {
-    font-size: 3.8rem;
+    font-size: 3.2rem;
 
     &[type='text'] {
-      font-size: 3.8rem;
+      font-size: 3.2rem;
     }
   }
 
@@ -360,7 +385,7 @@ export const DangerButton = styled.button`
     background-color: #fe4337;
   }
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.7rem;
   }
 
@@ -388,7 +413,7 @@ export const DangerButton = styled.button`
   }
 
   @media ${breakpoints.laptop} {
-    font-size: 3.8rem;
+    font-size: 3.2rem;
   }
 
   @media ${breakpoints.desktop2K} {

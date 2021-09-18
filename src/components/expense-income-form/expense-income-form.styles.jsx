@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { breakpoints } from '../../styles/breakpoints';
 
+import CustomButton from '../custom-button/custom-button.component';
+
 export const ExpenseIncomeFormContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -49,7 +51,13 @@ export const ExitForm = styled.div`
   font-weight: bold;
   cursor: pointer;
 
+  @media ${breakpoints.fold} {
+    left: 2rem;
+    font-size: 2.2rem;
+  }
+
   @media ${breakpoints.xsPhone} {
+    left: 3rem;
     font-size: 2.4rem;
   }
 
@@ -95,7 +103,7 @@ export const FormHeading = styled.h1`
   font-size: 2.5rem;
   text-align: center;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 2rem;
   }
 
@@ -144,7 +152,26 @@ export const FormFieldContainer = styled.div`
   margin-bottom: 3rem;
   border-radius: 25px;
 
+  @media ${breakpoints.fold} {
+    margin-bottom: 2rem;
+    border-radius: 20px;
+  }
+  
+  @media ${breakpoints.xsPhone} {
+    border-radius: 25px;
+  }
+  
+  @media ${breakpoints.phone} {
+    height: 30%;
+    margin-bottom: 2rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    margin-bottom: 3rem;
+  }
+
   @media ${breakpoints.tablet} {
+    height: 25%;
     justify-content: space-evenly;
     margin-bottom: 4rem;
     border-radius: 35px;
@@ -172,7 +199,13 @@ export const FormLabel = styled.label`
   font-size: 2.4rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+  @media ${breakpoints.fold} {
+    margin-left: 2rem;
+    font-size: 1.6rem;
+  }
+
   @media ${breakpoints.xsPhone} {
+    margin-left: 3rem;
     font-size: 1.8rem;
   }
 
@@ -241,6 +274,10 @@ export const FormInput = styled.input`
     box-shadow: 0 0 0 1000px var(--primary-color) inset !important;
   }
 
+  @media ${breakpoints.fold} {
+    font-size: 1.8rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     font-size: 2rem;
   }
@@ -303,17 +340,18 @@ export const SelectList = styled.ul`
   text-align: center;
   cursor: pointer;
 
+  @media ${breakpoints.lPhone} {
+    height: 120%;
+  }
+
   @media ${breakpoints.tablet} {
     width: 30%;
+    height: 160%;
     margin-right: 3rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
     height: 120%;
-    margin-right: 3.5rem;
-  }
-
-  @media ${breakpoints.lTabletPortrait} {
     margin-right: 5rem;
   }
 
@@ -322,13 +360,25 @@ export const SelectList = styled.ul`
     height: 120%;
     margin-right: 3rem;
   }
+  
+  @media ${breakpoints.sLaptop} {
+    margin-right: 4rem;
+  }
+  
+  @media ${breakpoints.laptop} {
+    margin-right: 5rem;
+  }
+  
+  @media ${breakpoints.lLaptop} {
+    margin-right: 4.5rem;
+  }
 
   @media ${breakpoints.sDesktop} {
     margin-right: 5rem;
   }
 
   @media ${breakpoints.desktopFHD} {
-    margin-right: 4rem;
+    margin-right: 5.5rem;
   }
 
   @media ${breakpoints.desktop4K} {
@@ -345,6 +395,10 @@ export const ListItem = styled.li`
 
   &:hover {
     background-color: #dddddd;
+  }
+
+  @media ${breakpoints.fold} {
+    font-size: 1.6rem;
   }
 
   @media ${breakpoints.xsPhone} {
@@ -381,5 +435,47 @@ export const ListItem = styled.li`
 
   @media ${breakpoints.desktop4K} {
     font-size: 6rem;
+  }
+`;
+
+export const CustomButtonStyled = styled(CustomButton)`
+  @media ${breakpoints.fold} {
+    height: 4rem;
+  }
+
+  @media ${breakpoints.phone} {
+    height: 3.5rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    height: 4.5rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    height: 6.5rem;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    height: 7rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    height: 6rem;
+  }
+
+  @media ${breakpoints.desktopFHD} {
+    height: 6.5rem;
+  }
+
+  @media ${breakpoints.desktopUltrawide} {
+    height: 6rem;
+  }
+
+  @media ${breakpoints.desktop2K} {
+    height: 9rem;
+  }
+
+  @media ${breakpoints.desktop4K} {
+    height: 10rem;
   }
 `;

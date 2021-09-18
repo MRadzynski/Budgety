@@ -39,7 +39,7 @@ export const HistoryChartList = styled.ul`
   }
 
   @media ${breakpoints.xsLaptop} {
-    gap: 4rem;
+    gap: 3rem;
   }
 
   @media ${breakpoints.desktop4K} {
@@ -56,13 +56,34 @@ export const HistoryChartListItem = styled.li`
   background-color: var(--white-shade);
   box-shadow: 0 6px 6px rgba(0,0,0,0.25);
 
+  @media ${breakpoints.fold} {
+    border-radius: 15px;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    border-radius: 10px;
+  }
+
+  @media ${breakpoints.lPhone} {
+    border-radius: 15px;
+  }
+
   @media ${breakpoints.tablet} {
     border-radius: 20px;
+  }
+
+  @media ${breakpoints.sLaptop} {
+    border-radius: 25px;
   }
 
   @media ${breakpoints.desktopUltrawide} {
     border-radius: 30px;
   }
+
+  @media ${breakpoints.desktop4K} {
+    border-radius: 50px;
+  }
+
 `;
 
 export const HistoryMonthlyChartsContainer = styled.div`

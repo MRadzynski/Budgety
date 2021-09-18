@@ -11,12 +11,24 @@ export const HomePageContainer = styled.div`
   align-items: center;
   gap: 3rem;
 
+  @media ${breakpoints.fold} {
+    gap: 2rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     gap: 1.5rem;
   }
 
   @media ${breakpoints.sPhone} {
     gap: 1.8rem;
+  }
+
+  @media ${breakpoints.phone} {
+    gap: 1.5rem;
+
+     > div:first-of-type {
+      padding-left:0;
+    }
   }
 
   @media ${breakpoints.lPhone} {
@@ -101,6 +113,10 @@ export const WelcomeText = styled.h1`
   text-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
   letter-spacing: 0.15rem;
 
+  @media ${breakpoints.fold} {
+    font-size: 2.4rem;
+  }
+
   @media ${breakpoints.xsPhone} {
     font-size: 2.5rem;
   }
@@ -109,8 +125,12 @@ export const WelcomeText = styled.h1`
     font-size: 3rem;
   }
 
+  @media ${breakpoints.phone} {
+    font-size: 2.8rem;
+  }
+
   @media ${breakpoints.lPhone} {
-    font-size: 3.5rem;
+    font-size: 3.4rem;
   }
 
   @media ${breakpoints.tablet} {
@@ -145,7 +165,7 @@ export const ChartText = styled.h2`
   letter-spacing: 0.15rem;
   word-spacing: 0.5rem;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 1.5rem;
   }
 
@@ -154,12 +174,16 @@ export const ChartText = styled.h2`
   }
 
   @media ${breakpoints.lPhone} {
-    padding: 0.3rem 0;
+    margin-bottom: 0.5rem;
     font-size: 1.8rem;
   }
 
   @media ${breakpoints.tablet} {
     font-size: 2.4rem;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    font-size: 3rem;
   }
 
   @media ${breakpoints.xsLaptop} {
@@ -200,8 +224,10 @@ export const ChartContainer = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
   box-shadow: 0 4px 4px rgba(00, 00, 00, 0.25);
+  overflow-y: hidden;
+  overflow-x: hidden;
 
-  @media ${breakpoints.xsPhone} {
+  @media ${breakpoints.fold} {
     font-size: 0.8rem;
   }
 
@@ -209,7 +235,14 @@ export const ChartContainer = styled.div`
     font-size: 1rem;
   }
 
+  @media ${breakpoints.phone} {
+    height: calc(var(--vh, 1vh) * 24);
+    padding-left: 0.5rem; 
+  }
+
   @media ${breakpoints.lPhone} {
+    height: calc(var(--vh, 1vh) * 25);
+    padding-left: 0; 
     font-size: 1.2rem;
   }
 
@@ -224,7 +257,16 @@ export const ChartContainer = styled.div`
     height: 100%;
   }
 
+  @media ${breakpoints.laptop} {
+    height: calc(var(--vh, 1vh) * 33);
+  }
+
+  @media ${breakpoints.lLaptop} {
+    height: calc(var(--vh, 1vh) * 35);
+  }
+
   @media ${breakpoints.desktopFHD} {
+    height: 100%;
     font-size: 2.4rem;
   }
 
@@ -232,7 +274,12 @@ export const ChartContainer = styled.div`
     font-size: 3rem;
   }
 
+  @media ${breakpoints.desktop2k} {
+    height: 80%;
+  }
+
   @media ${breakpoints.desktop4K} {
+    padding: 0 2rem;
     font-size: 6rem;
   }
 `;
@@ -243,6 +290,11 @@ export const NoDataText = styled.h2`
 
   @media ${breakpoints.sPhone} {
     padding: 4.5rem 1rem;
+    font-size: 1.8rem;
+  }
+
+  @media ${breakpoints.phone} {
+    padding: 3.5rem 1rem;
     font-size: 1.8rem;
   }
 
