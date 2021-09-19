@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const ErrorContainer = styled.div`
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
@@ -28,39 +30,39 @@ export const ErrorText = styled.h1`
   color: var(--white-shade);
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.8rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 5rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1366px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 7rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 5rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 6rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 9rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 13rem;
   }
 `;

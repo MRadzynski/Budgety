@@ -1,8 +1,10 @@
 import styled, { keyframes } from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 const slide = keyframes`
   0% { opacity: 0;}
-  100% { opacity:1;}
+  100% { opacity: 1;}
 `;
 
 export const CustomModalContainer = styled.div`
@@ -22,24 +24,24 @@ export const CustomModalContainer = styled.div`
   z-index: 3;
   animation: ${slide} 0.3s ease-in;
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 45%;
     height: ${({ large }) => (large ? '40%' : '25%')};
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     width: 40%;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     width: 35%;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     width: 30%;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     border-radius: 40px;
   }
 `;
@@ -51,43 +53,44 @@ export const CustomModalExit = styled.div`
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
     font-size: 1.8rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     left: 1.2rem;
     font-size: 2.6rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     left: 1.4rem;
     font-size: 3.4rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 4.4rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 4rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     left: 2rem;
     font-size: 6rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     left: 3rem;
     font-size: 9rem;
   }
@@ -99,43 +102,43 @@ export const CustomModalTitle = styled.h2`
   font-weight: bold;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
     font-size: 2rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 3.4rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 4.4rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 4rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 4.4rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 6rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 9rem;
   }
 `;
@@ -157,41 +160,41 @@ export const CustomModalButton = styled.button`
     background-color: #fe4337;
   }
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
     font-size: 1.6rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 1.8rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 3rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     border-radius: 2rem;
     font-size: 4rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     border-radius: 1.5rem;
     font-size: 2.6rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 3.6rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 5.4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 8rem;
   }
 `;

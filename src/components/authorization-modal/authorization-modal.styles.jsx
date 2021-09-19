@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const ModalForm = styled.form`
+  width:100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -15,41 +18,41 @@ export const ModalLabel = styled.label`
   font-weight: bold;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
     margin-bottom: -1rem;
     font-size: 1.5rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 1.8rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     margin: -2.5rem 0;
     font-size: 3.6rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     font-size: 3.6rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 4.4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     margin: -5rem 0 -4rem 0;
     font-size: 6rem;
   }
@@ -70,52 +73,52 @@ export const ModalInput = styled.input`
   letter-spacing: 0.6rem;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
     font-size: 1.6rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 2.4rem;
     letter-spacing: 0.7rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     border-radius: 2.4rem;
     font-size: 3.2rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     width: 70%;
     font-size: 3.2rem;
     letter-spacing: 0.8rem;
   }
 
-  @media (min-width: 90rem) and (min-height: 700px) {
+  @media ${breakpoints.lLaptop} {
     width: 70%;
     font-size: 3.4rem;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     width: 65%;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: 4rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 4.4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     border-radius: 4rem;
     font-size: 8rem;
     letter-spacing: 1rem;
@@ -128,38 +131,38 @@ export const ErrorMessage = styled.span`
   font-size: 1.6rem;
   text-align: center;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
     margin: 0.5rem 0 -1.5rem 0;
     font-size: 1.3rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 1.6rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     margin: 0 0 -2rem 0;
     font-size: 2.2rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     margin: -1.5rem 0 -3rem 0;
     font-size: 3.2rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 3.6rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     margin: -3rem 0 -4.5rem 0;
     font-size: 5.4rem;
   }

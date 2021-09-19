@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const ExpensesIncomePageContainer = styled.div`
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
@@ -16,44 +18,48 @@ export const ExpensesIncomeTitle = styled.h1`
   letter-spacing: 0.2rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
+    font-size: 2.1rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
     left: 8%;
     font-size: 2.4rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.7rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 3rem;
   }
 
-  @media (min-width: 48rem) {
+  @media ${breakpoints.tablet} {
     font-size: 6rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 7.5rem;
   }
 
-  @media (min-width: 90rem) {
+  @media ${breakpoints.lLaptop} {
     font-size: 8.5rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 10rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     left: 12%;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 13rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     top: 12%;
     left: 15%;
     font-size: 18rem;
@@ -73,17 +79,17 @@ export const ChartContainer = styled.div`
   border-radius: 50%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 
-  @media (min-width: 48rem) {
+  @media ${breakpoints.tablet} {
     width: calc(var(--vh, 1vh) * 30);
     height: calc(var(--vh, 1vh) * 30);
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: calc(var(--vh, 1vh) * 37);
     height: calc(var(--vh, 1vh) * 37);
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     right: 12%;
   }
 `;
@@ -97,11 +103,11 @@ export const ChartPrice = styled.h2`
   color: #050505;
   font-size: calc(var(--vh, 1vh) * 3.5);
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: calc(var(--vh, 1vh) * 4.5);
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     font-size: calc(var(--vh, 1vh) * 5.5);
   }
 `;

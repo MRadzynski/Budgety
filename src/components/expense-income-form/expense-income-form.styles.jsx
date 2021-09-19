@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
+import CustomButton from '../custom-button/custom-button.component';
+
 export const ExpenseIncomeFormContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -22,19 +26,19 @@ export const AddExpenseIncomeForm = styled.form`
     cursor: text;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     margin-top: 3rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     margin-top: -1rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     margin-top: 2rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     margin-top: 4rem;
   }
 `;
@@ -47,43 +51,49 @@ export const ExitForm = styled.div`
   font-weight: bold;
   cursor: pointer;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
+    left: 2rem;
+    font-size: 2.2rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    left: 3rem;
     font-size: 2.4rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 3rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     top: 2rem;
     left: 4rem;
     font-size: 3.6rem;
   }
 
-  @media (min-width: 64rem) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 6rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 3.6rem;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     font-size: 4.2rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     top: 2rem;
     left: 4rem;
     font-size: 5.6rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 8rem;
   }
 `;
@@ -93,40 +103,40 @@ export const FormHeading = styled.h1`
   font-size: 2.5rem;
   text-align: center;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
     font-size: 2rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.8rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 3.8rem;
   }
 
-  @media (min-width: 64rem) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     margin-top: 1rem;
     font-size: 4.8rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 3.6rem;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     font-size: 4rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 6rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     margin-top: 1rem;
     font-size: 9rem;
   }
@@ -142,23 +152,42 @@ export const FormFieldContainer = styled.div`
   margin-bottom: 3rem;
   border-radius: 25px;
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.fold} {
+    margin-bottom: 2rem;
+    border-radius: 20px;
+  }
+  
+  @media ${breakpoints.xsPhone} {
+    border-radius: 25px;
+  }
+  
+  @media ${breakpoints.phone} {
+    height: 30%;
+    margin-bottom: 2rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    margin-bottom: 3rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    height: 25%;
     justify-content: space-evenly;
     margin-bottom: 4rem;
     border-radius: 35px;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 80%;
     height: 28%;
     justify-content: space-evenly;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     border-radius: 50px;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     margin-bottom: 5rem;
     border-radius: 75px;
   }
@@ -170,43 +199,49 @@ export const FormLabel = styled.label`
   font-size: 2.4rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
+    margin-left: 2rem;
+    font-size: 1.6rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    margin-left: 3rem;
     font-size: 1.8rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 3rem;
   }
 
-  @media (min-width: 52rem) and (orientation: portrait) {
+  /* @media (min-width: 52rem) and (orientation: portrait) {
     font-size: 3.6rem;
-  }
+  } */
 
-  @media (min-width: 64rem) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 4rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 5.2rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 7rem;
   }
 `;
@@ -239,49 +274,53 @@ export const FormInput = styled.input`
     box-shadow: 0 0 0 1000px var(--primary-color) inset !important;
   }
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
+    font-size: 1.8rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.6rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     width: 30%;
     border-radius: 10px;
     font-size: 3.2rem;
   }
 
-  @media (min-width: 52rem) and (orientation: portrait) {
+  /* @media (min-width: 52rem) and (orientation: portrait) {
     font-size: 3.6rem;
-  }
+  } */
 
-  @media (min-width: 64rem) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 4.8rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 27%;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     border-radius: 15px;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 5.4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     border-radius: 35px;
     font-size: 7.5rem;
   }
@@ -301,43 +340,48 @@ export const SelectList = styled.ul`
   text-align: center;
   cursor: pointer;
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.lPhone} {
+    height: 120%;
+  }
+
+  @media ${breakpoints.tablet} {
     width: 30%;
+    height: 160%;
     margin-right: 3rem;
   }
 
-  @media (min-width: 64rem) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     height: 120%;
-    margin-right: 3.5rem;
-  }
-
-  @media (min-width: 64rem) and (min-height: 1366px) and (orientation: portrait) {
     margin-right: 5rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 27%;
     height: 120%;
     margin-right: 3rem;
   }
-
-  @media (min-width: 69.5rem) and (orientation: landscape) {
-    margin-right: 3.5rem;
+  
+  @media ${breakpoints.sLaptop} {
+    margin-right: 4rem;
+  }
+  
+  @media ${breakpoints.laptop} {
+    margin-right: 5rem;
+  }
+  
+  @media ${breakpoints.lLaptop} {
+    margin-right: 4.5rem;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     margin-right: 5rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     margin-right: 5.5rem;
   }
 
-  @media (min-width: 120rem) and (max-height: 848px) {
-    margin-right: 4rem;
-  }
-
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     margin-right: 10rem;
   }
 `;
@@ -353,39 +397,85 @@ export const ListItem = styled.li`
     background-color: #dddddd;
   }
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
+    font-size: 1.6rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
     font-size: 1.8rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 2.8rem;
   }
 
-  @media (min-width: 52rem) and (orientation: portrait) {
+  /* @media (min-width: 52rem) and (orientation: portrait) {
     font-size: 3.2rem;
-  }
+  } */
 
-  @media (min-width: 64rem) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 4rem;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     font-size: 3rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 4.4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 6rem;
+  }
+`;
+
+export const CustomButtonStyled = styled(CustomButton)`
+  @media ${breakpoints.fold} {
+    height: 4rem;
+  }
+
+  @media ${breakpoints.phone} {
+    height: 3.5rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    height: 4.5rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    height: 6.5rem;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    height: 7rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    height: 6rem;
+  }
+
+  @media ${breakpoints.desktopFHD} {
+    height: 6.5rem;
+  }
+
+  @media ${breakpoints.desktopUltrawide} {
+    height: 6rem;
+  }
+
+  @media ${breakpoints.desktop2K} {
+    height: 9rem;
+  }
+
+  @media ${breakpoints.desktop4K} {
+    height: 10rem;
   }
 `;

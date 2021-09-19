@@ -1,22 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { selectDisplayName } from '../../redux/user/user.selectors';
 import {
-  selectBalance,
   selectCurrency,
-  selectTotalExpensesIncomeArr,
-  selectPercentageExpenses,
-  selectPercentageIncome,
-  selectTotalExpenses,
-  selectTotalIncome,
+  selectLatestIncomeTotal,
+  selectLatestExpensesTotal,
+  selectLatestExpensesPercent,
+  selectLatestIncomePercent,
+  selectLatestExpensesIncomeArr,
+  selectLatestBalance,
 } from '../../redux/finance/finance.selectors';
 
-import { selectDisplayName } from '../../redux/user/user.selectors';
-
 import { formatCurrency } from '../../redux/finance/finance.utils';
+import useHistoryChart from '../../hooks/useHistoryChart';
 
 import BalanceChart from '../../components/balance-chart/balance-chart.component';
-
 import ExpensesIncomeBarchart from '../../components/expenses-income-barchart/expenses-income-barchart.component';
 
 import {
@@ -27,33 +26,35 @@ import {
   NoDataText,
 } from './homepage.styles';
 
+
 const HomePage = ({
   displayName,
   currency,
-  balance,
-  totalExpensesIncomeArr,
-  expensesPercent,
-  incomePercent,
-  totalExpenses,
-  totalIncome,
-  totalBalance,
+  latestExpensesTotal,
+  latestIncomeTotal,
+  latestExpensesPercent,
+  latestIncomePercent,
+  latestExpensesIncomeArr,
+  latestBalance,
 }) => {
+  useHistoryChart();
+
   return (
     <HomePageContainer>
       <WelcomeText>Hey {displayName}! </WelcomeText>
 
       <ChartContainer>
-        {totalBalance !== 0 ? (
-          <BalanceChart data={totalExpensesIncomeArr} currency={currency} />
+        {latestBalance !== 0 ? (
+          <BalanceChart data={latestExpensesIncomeArr} currency={currency} />
         ) : (
           <NoDataText>No data to present 😔</NoDataText>
         )}
-        <ChartText>Balance: {formatCurrency(balance, currency)}</ChartText>
+        <ChartText>Balance: {formatCurrency(latestBalance, currency)}</ChartText>
       </ChartContainer>
 
       <ChartContainer>
-        {totalExpenses !== 0 ? (
-          <ExpensesIncomeBarchart data={expensesPercent} currency={currency} />
+        {latestExpensesTotal !== 0 ? (
+          <ExpensesIncomeBarchart data={latestExpensesPercent} currency={currency} />
         ) : (
           <NoDataText>No data to present 😔</NoDataText>
         )}
@@ -61,27 +62,27 @@ const HomePage = ({
       </ChartContainer>
 
       <ChartContainer>
-        {totalIncome !== 0 ? (
-          <ExpensesIncomeBarchart data={incomePercent} currency={currency} />
+        {latestIncomeTotal !== 0 ? (
+          <ExpensesIncomeBarchart data={latestIncomePercent} currency={currency} />
         ) : (
           <NoDataText>No data to present 😔</NoDataText>
         )}
         <ChartText>Income</ChartText>
       </ChartContainer>
     </HomePageContainer>
-  );
+  )
 };
+
 
 const mapStateToProps = (state) => ({
   displayName: selectDisplayName(state),
   currency: selectCurrency(state),
-  balance: selectBalance(state),
-  totalExpensesIncomeArr: selectTotalExpensesIncomeArr(state),
-  expensesPercent: selectPercentageExpenses(state),
-  incomePercent: selectPercentageIncome(state),
-  totalExpenses: selectTotalExpenses(state),
-  totalIncome: selectTotalIncome(state),
-  totalBalance: selectBalance(state),
+  latestExpensesTotal: selectLatestExpensesTotal(state),
+  latestIncomeTotal: selectLatestIncomeTotal(state),
+  latestExpensesPercent: selectLatestExpensesPercent(state),
+  latestIncomePercent: selectLatestIncomePercent(state),
+  latestExpensesIncomeArr: selectLatestExpensesIncomeArr(state),
+  latestBalance: selectLatestBalance(state),
 });
 
 export default connect(mapStateToProps)(HomePage);

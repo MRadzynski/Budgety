@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const HamburgerContainer = styled.div`
   width: 3rem;
   height: 3rem;
@@ -7,17 +9,19 @@ export const HamburgerContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   position: fixed;
+  position: ${({ location }) => location === 'history' ? 'absolute' : 'fixed'};
   top: 1.5rem;
   left: 2rem;
   z-index: 10;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
   span {
     width: 3rem;
     height: 0.5rem;
     border-radius: 10px;
     background-color: ${({ open }) =>
-      open ? 'var(--black-shade)' : 'var(--white-shade)'};
+    open ? 'var(--black-shade)' : 'var(--white-shade)'};
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
@@ -37,22 +41,7 @@ export const HamburgerContainer = styled.div`
     }
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
-    width: 5rem;
-    height: 5rem;
-
-    span {
-      width: 5rem;
-      height: 0.8rem;
-    }
-  }
-
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
-    top: 2rem;
-    left: 2.5rem;
-  }
-
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.tablet} {
     width: 4rem;
     height: 4rem;
 
@@ -62,7 +51,22 @@ export const HamburgerContainer = styled.div`
     }
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.lTabletPortrait} {
+    top: 2rem;
+    left: 2.5rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    width: 4rem;
+    height: 4rem;
+
+    span {
+      width: 4rem;
+      height: 0.7rem;
+    }
+  }
+
+  @media ${breakpoints.laptop} {
     width: 5rem;
     height: 5rem;
     top: 2.5rem;
@@ -74,7 +78,7 @@ export const HamburgerContainer = styled.div`
     }
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     width: 6rem;
     height: 6rem;
 
@@ -84,7 +88,7 @@ export const HamburgerContainer = styled.div`
     }
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     width: 7rem;
     height: 7rem;
 
@@ -94,7 +98,7 @@ export const HamburgerContainer = styled.div`
     }
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     width: 12rem;
     height: 12rem;
     top: 5rem;

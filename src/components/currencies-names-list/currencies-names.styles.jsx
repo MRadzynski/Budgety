@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const CurrenciesList = styled.ul`
   width: 43%;
   height: 100%;
@@ -13,15 +15,15 @@ export const CurrenciesList = styled.ul`
   list-style: none;
   overflow: auto;
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.xsPhone} {
     height: 110%;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     width: 40%;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 30%;
   }
 `;
@@ -38,40 +40,40 @@ export const CurrenciesListItem = styled.li`
     background-color:#dddddd;
   }
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
     font-size: 1.3rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 1.4rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
     font-size: 1.6rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     font-size: 2.4rem;
     letter-spacing: 0.15rem;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 3.2rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
+  @media ${breakpoints.laptop} {
     font-size: 3rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 3.4rem;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 6rem;
   }
 `;

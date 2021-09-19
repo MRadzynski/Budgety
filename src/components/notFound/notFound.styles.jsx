@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../styles/breakpoints';
+
 export const NotFoundContainer = styled.div`
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
@@ -19,23 +21,23 @@ export const NotFoundImageContainer = styled.div`
     height: 100%;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 50vw;
   }
 
-  @media (min-width: 90rem) and (min-height: 900px) {
+  @media ${breakpoints.lLaptop} {
     width: 45vw;
   }
 
-  @media (min-width: 100rem) and (min-height: 900px) {
+  @media ${breakpoints.sDesktop} {
     width: 40vw;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     width: 35vw;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     width: 30vw;
   }
 `;
@@ -49,29 +51,29 @@ export const NotFoundText = styled.h1`
   color: var(--white-shade);
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
-  @media (min-width: 23rem) {
+  @media ${breakpoints.phone} {
     margin: -2rem 0 2rem 0;
     padding: 0 2rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     margin: 0rem 0 3rem 0;
     font-size: 6rem;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     font-size: 6rem;
   }
 
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     font-size: 7rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     margin: 0rem 0 4rem 0;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     margin: 0rem 0 7rem 0;
     font-size: 12rem;
   }

@@ -30,6 +30,8 @@ const ExpensesIncomePage = lazy(() =>
   import('./pages/expenses-income/expenses-income.component')
 );
 
+const HistoryPage = lazy(() => import('./pages/history/history.component'));
+
 const SettingsPage = lazy(() => import('./pages/settings/settings.component'));
 
 const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
@@ -47,7 +49,9 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
           setFinances({
             expenses: snapshot.data()?.expenses,
             income: snapshot.data()?.income,
-            savings: snapshot.data()?.savings,
+            expensesLogs: snapshot.data()?.expensesLogs,
+            incomeLogs: snapshot.data()?.incomeLogs,
+            historyLogs: snapshot.data()?.historyLogs
           });
 
           setCurrency(snapshot.data()?.currency);
@@ -57,7 +61,9 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
         setFinances({
           expenses: null,
           income: null,
-          savings: null,
+          expensesLogs: null,
+          incomeLogs: null,
+          historyLogs: null
         });
         setCurrency(null);
       }
@@ -109,6 +115,13 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
               path="/exchange"
               render={() =>
                 currentUser ? <ExchangePage /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route
+              path="/history"
+              render={() =>
+                currentUser ? <HistoryPage /> : <Redirect to="/signin" />
               }
             />
 

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   selectCurrency,
   selectExpenses,
   selectIncome,
+  selectExpensesLogs,
+  selectIncomeLogs
 } from '../../redux/finance/finance.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
-
-import CustomButton from '../custom-button/custom-button.component';
 
 import { updateFinances } from '../../firebase/firebase.utils';
 
@@ -23,12 +24,15 @@ import {
   FormLabel,
   SelectList,
   ListItem,
+  CustomButtonStyled
 } from './expense-income-form.styles';
 
 const ExpenseIncomeForm = ({
   type,
   expenses,
   income,
+  expensesLogs,
+  incomeLogs,
   currentUser,
   currency,
 }) => {
@@ -61,27 +65,38 @@ const ExpenseIncomeForm = ({
     e.preventDefault();
     if (Number(price) === 0) return;
 
-    const formattedPrice = Number(price);
+    const formattedPrice = Number((+price).toFixed(2));
+
+    const newFinanceObj = {
+      id: uuidv4(),
+      amount: formattedPrice,
+      date: new Date(),
+    }
 
     if (type === 'expenses') {
       const newExpenseObj = expenses.map((expense) => {
         if (expense.category === category) {
           expense.amount += formattedPrice;
-          expense.amount = Number(expense.amount.toFixed(2));
+          expense.logs.push(newFinanceObj);
+          newFinanceObj.category = category;
         }
         return expense;
       });
+      expensesLogs.push(newFinanceObj);
 
-      updateFinances(currentUser.id, newExpenseObj, null);
+      updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
     } else {
       const newIncomeObj = income.map((singleIncome) => {
         if (singleIncome.category === category) {
           singleIncome.amount += formattedPrice;
+          singleIncome.logs.push(newFinanceObj);
+          newFinanceObj.category = category;
         }
         return singleIncome;
       });
+      incomeLogs.push(newFinanceObj);
 
-      updateFinances(currentUser.id, null, newIncomeObj);
+      updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
     }
 
     setCategory('');
@@ -138,14 +153,14 @@ const ExpenseIncomeForm = ({
             </SelectList>
           )}
         </FormFieldContainer>
-        <CustomButton
+        <CustomButtonStyled
           type="submit"
           bgColor="var(--primary-color)"
           hoverColor="#395ae0"
           textColor="var(--white-shade)"
         >
           Confirm
-        </CustomButton>
+        </CustomButtonStyled>
       </AddExpenseIncomeForm>
     </ExpenseIncomeFormContainer>
   );
@@ -154,6 +169,8 @@ const ExpenseIncomeForm = ({
 const mapStateToProps = (state) => ({
   expenses: selectExpenses(state),
   income: selectIncome(state),
+  expensesLogs: selectExpensesLogs(state),
+  incomeLogs: selectIncomeLogs(state),
   currentUser: selectCurrentUser(state),
   currency: selectCurrency(state),
 });

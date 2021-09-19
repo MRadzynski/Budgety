@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
+
+import { breakpoints } from '../../styles/breakpoints';
 
 export const MenuContainer = styled.nav`
   width: 100vw;
@@ -29,63 +30,59 @@ export const MenuList = styled.ul`
   font-weight: bold;
   list-style: none;
   padding-bottom: 3rem;
+  box-shadow: 0 8px 8px rgba(0,0,0,0.25);
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
+    gap: 1.5rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
     gap: 2rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     gap: 3rem;
   }
 
-  @media (min-width: 23rem) {
-    gap: 3.5rem;
+  @media ${breakpoints.phone} {
+    gap: 1rem;
   }
 
-  @media (min-width: 25rem) {
+  @media ${breakpoints.lPhone} {
+    gap: 2rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    gap: 2.5rem;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
     gap: 4rem;
   }
 
-  @media (min-width: 48rem) and (orientation: portrait) {
-    gap: 5rem;
-  }
-
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
-    gap: 8rem;
-  }
-
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 30vw;
-    gap: 1.5rem;
+    gap: 1rem;
     padding-bottom: 7rem;
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
-    gap: 3rem;
+  @media ${breakpoints.laptop} {
+    gap: 1.5rem;
   }
 
-  @media (min-width: 90rem) and (min-height: 700px) {
+  @media ${breakpoints.lLaptop} {
     width: 25vw;
+    gap: 1rem;
   }
 
-  @media (min-width: 90rem) and (min-height: 900px) {
-    width: 25vw;
-  }
-
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     width: 20vw;
+    gap: 2rem;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     width: 15vw;
-  }
-
-  @media (min-width: 160rem) and (min-height: 90rem) {
-    gap: 6rem;
-  }
-
-  @media (min-width: 240rem) {
-    gap: 10rem;
+    gap: 3rem;
   }
 `;
 
@@ -109,25 +106,29 @@ export const MenuItem = styled.li`
     background-color: #ccc;
   }
 
-  @media (min-width: 20rem) {
+  @media ${breakpoints.fold} {
+    font-size: 2rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
     font-size: 2rem;
     letter-spacing: 0.1rem;
   }
 
-  @media (min-width: 22.5rem) {
+  @media ${breakpoints.sPhone} {
     font-size: 2.2rem;
   }
 
-  @media (min-width: 23rem) {
+  @media ${breakpoints.phone} {
+    font-size: 2.2rem;
+  }
+
+  @media ${breakpoints.lPhone} {
     font-size: 2.4rem;
   }
 
-  @media (min-width: 25rem) {
-    font-size: 2.8rem;
-  }
-
-  @media (min-width: 48rem) and (orientation: portrait) {
-    font-size: 3.8rem;
+  @media ${breakpoints.tablet} {
+    font-size: 3.4rem;
     letter-spacing: 0.3rem;
 
     &:last-child {
@@ -135,7 +136,7 @@ export const MenuItem = styled.li`
     }
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     font-size: 5.2rem;
 
     &:last-child {
@@ -143,8 +144,8 @@ export const MenuItem = styled.li`
     }
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
-    font-size: 3.8rem;
+  @media ${breakpoints.xsLaptop} {
+    font-size: 3.2rem;
     letter-spacing: 0.3rem;
 
     &:last-child {
@@ -152,19 +153,19 @@ export const MenuItem = styled.li`
     }
   }
 
-  @media (min-width: 85rem) and (min-height: 900px) {
-    font-size: 4.8rem;
+  @media ${breakpoints.laptop} {
+    font-size: 3.4rem;
   }
 
-  @media (min-width: 90rem) and (min-height: 700px) {
-    font-size: 4.2rem;
+  @media ${breakpoints.lLaptop} {
+    font-size: 3.2rem;
   }
 
-  @media (min-width: 120rem) {
-    font-size: 4.6rem;
+  @media ${breakpoints.desktopFHD} {
+    font-size: 4rem;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     font-size: 5.6rem;
 
     &:last-child {
@@ -172,7 +173,7 @@ export const MenuItem = styled.li`
     }
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     font-size: 8rem;
 
     &:last-child {
@@ -190,23 +191,23 @@ export const MenuLink = styled(Link)`
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
 
-  @media (min-width: 48rem) and (orientation: portrait) {
+  @media ${breakpoints.tablet} {
     padding: 2rem 0;
   }
 
-  @media (min-width: 64rem) and (min-height: 1280px) and (orientation: portrait) {
+  @media ${breakpoints.lTabletPortrait} {
     padding: 2.5rem 0;
   }
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     padding: 2rem 0;
   }
 
-  @media (min-width: 160rem) and (min-height: 90rem) {
+  @media ${breakpoints.desktop2K} {
     padding: 3rem 0;
   }
 
-  @media (min-width: 240rem) {
+  @media ${breakpoints.desktop4K} {
     padding: 5rem 0;
   }
 `;
@@ -220,23 +221,19 @@ export const MenuOverlay = styled.div`
   z-index: 1;
   background-color: transparent;
 
-  @media (min-width: 64rem) and (orientation: landscape) {
+  @media ${breakpoints.xsLaptop} {
     width: 70vw;
   }
 
-  @media (min-width: 90rem) and (min-height: 700px) {
+  @media ${breakpoints.lLaptop} {
     width: 75vw;
   }
 
-  @media (min-width: 90rem) and (min-height: 900px) {
-    width: 75vw;
-  }
-
-  @media (min-width: 120rem) {
+  @media ${breakpoints.desktopFHD} {
     width: 80vw;
   }
 
-  @media (min-width: 160rem) {
+  @media ${breakpoints.desktopUltrawide} {
     width: 85vw;
   }
 `;
