@@ -74,7 +74,7 @@ export const selectLatestExpenses = createSelector([selectExpenses], (expenses) 
   const latestMonthExpenses = [];
 
   expenses?.forEach((expense, index) => {
-    const newRecords = expense.logs.filter(entry => {
+    const newRecords = expense.logs?.filter(entry => {
       const entryDate = new Date(entry.date.seconds * 1000);
 
       if (entryDate.getMonth() === currentMonth && entryDate.getFullYear() === currentYear) {
@@ -83,7 +83,7 @@ export const selectLatestExpenses = createSelector([selectExpenses], (expenses) 
       return false;
     })
 
-    const sumOfExpenses = newRecords.reduce((acc, entry) => {
+    const sumOfExpenses = newRecords?.reduce((acc, entry) => {
       return acc + entry.amount
     }, 0)
 
@@ -91,7 +91,7 @@ export const selectLatestExpenses = createSelector([selectExpenses], (expenses) 
       id: expenses[index].id,
       category: expenses[index].category,
       bgColor: expenses[index].bgColor,
-      amount: sumOfExpenses,
+      amount: sumOfExpenses || 0,
     }
     latestMonthExpenses.push(monthExpenseObj);
   })
@@ -120,7 +120,7 @@ export const selectLatestIncome = createSelector([selectIncome], (income) => {
   const latestMonthIncome = [];
 
   income?.forEach((singleIncome, index) => {
-    const newRecords = singleIncome.logs.filter(entry => {
+    const newRecords = singleIncome.logs?.filter(entry => {
       const entryDate = new Date(entry.date.seconds * 1000);
 
       if (entryDate.getMonth() === currentMonth && entryDate.getFullYear() === currentYear) {
@@ -129,7 +129,7 @@ export const selectLatestIncome = createSelector([selectIncome], (income) => {
       return false;
     })
 
-    const sumOfIncome = newRecords.reduce((acc, entry) => {
+    const sumOfIncome = newRecords?.reduce((acc, entry) => {
       return acc + entry.amount
     }, 0)
 
@@ -137,7 +137,7 @@ export const selectLatestIncome = createSelector([selectIncome], (income) => {
       id: income[index].id,
       category: income[index].category,
       bgColor: income[index].bgColor,
-      amount: sumOfIncome,
+      amount: sumOfIncome || 0,
     }
     latestMonthIncome.push(monthIncomeObj);
   })
