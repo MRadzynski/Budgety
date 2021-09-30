@@ -17,10 +17,11 @@ import {
   Overlap,
   CustomButtonStyled
 } from './expenses-income-details.styles';
+import NewCategoryForm from '../new-category-form/new-category-form.component';
 
 const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }) => {
   const history = useHistory();
-
+  console.log(currentPath.split('/')[1])
   return (
     <ExpensesIncomeDetailsContainer>
       {!currentPath.includes('/add') ? (
@@ -57,7 +58,7 @@ const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }
           </CustomButtonStyled>
         </>
       ) : (
-        <ExpenseIncomeForm type={currentPath.split('/')[1]} />
+        currentPath.includes('add-new-category') ? <NewCategoryForm type={currentPath.split('/')[1]} /> : <ExpenseIncomeForm type={currentPath.split('/')[1]} />
       )}
     </ExpensesIncomeDetailsContainer>
   );

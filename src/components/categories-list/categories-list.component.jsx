@@ -22,9 +22,15 @@ const CategoriesList = ({ categoriesData, currency }) => {
   const handleClick = (e) => {
     const targetURL = e.target.closest('li').dataset.name;
     const originPathname = location.pathname;
-    const pathname = `${originPathname}/add-${originPathname.slice(
-      1
-    )}/${targetURL}`;
+    let pathname;
+
+    if (targetURL !== 'new-category') {
+      pathname = `${originPathname}/add-${originPathname.slice(
+        1
+      )}/${targetURL}`;
+    } else {
+      pathname = `${originPathname}/add-${targetURL}`;
+    }
 
     history.push(pathname);
   };
@@ -53,6 +59,21 @@ const CategoriesList = ({ categoriesData, currency }) => {
             </CategoryInfoContainer>
           </Category>
         ))}
+        <Category
+          key={'newCategory'}
+          onClick={handleClick}
+          data-name='new-category'
+        >
+          <CategoryLogo bgColor={'#49CDF5'}>
+            <img
+              src={`assets/icons/plus.svg`}
+              alt={'add icon'}
+            />
+          </CategoryLogo>
+          <CategoryInfoContainer>
+            <CategoryName>Add new category</CategoryName>
+          </CategoryInfoContainer>
+        </Category>
       </CategoryList>
     </CategoriesListContainer>
   );

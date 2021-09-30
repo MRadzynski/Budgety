@@ -172,6 +172,7 @@ export const CategoryLogo = styled.div`
 
 export const CategoryInfoContainer = styled.div`
   display: flex;
+  justify-content:center;
   flex-direction: column;
   gap: 0.5rem;
 
