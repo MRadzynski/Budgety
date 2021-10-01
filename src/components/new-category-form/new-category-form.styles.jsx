@@ -89,7 +89,7 @@ export const CategoryIconContainer = styled.div`
   border-radius: 5px;
   outline: none;
   background-color: var(--black-shade);
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(0,0,0,0.4);
   color: var(--black-shade);
   font-size: 2.4rem;
   text-align: center;

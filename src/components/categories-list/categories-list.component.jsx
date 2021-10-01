@@ -47,8 +47,8 @@ const CategoriesList = ({ categoriesData, currency }) => {
           >
             <CategoryLogo bgColor={categoryData.bgColor}>
               <img
-                src={`assets/icons/${categoryData.category.toLowerCase()}.svg`}
-                alt={categoryData.category + ' icon'}
+                src={`assets/icons/${categoryData.icon}.svg`}
+                alt={categoryData.icon.replace('_', ' ') + ' icon'}
               />
             </CategoryLogo>
             <CategoryInfoContainer>

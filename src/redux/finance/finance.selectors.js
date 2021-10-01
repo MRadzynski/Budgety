@@ -91,6 +91,7 @@ export const selectLatestExpenses = createSelector([selectExpenses], (expenses) 
       id: expenses[index].id,
       category: expenses[index].category,
       bgColor: expenses[index].bgColor,
+      icon: expenses[index].icon,
       amount: sumOfExpenses || 0,
     }
     latestMonthExpenses.push(monthExpenseObj);
@@ -137,6 +138,7 @@ export const selectLatestIncome = createSelector([selectIncome], (income) => {
       id: income[index].id,
       category: income[index].category,
       bgColor: income[index].bgColor,
+      icon: income[index].icon,
       amount: sumOfIncome || 0,
     }
     latestMonthIncome.push(monthIncomeObj);

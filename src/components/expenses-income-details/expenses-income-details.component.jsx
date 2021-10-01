@@ -21,7 +21,7 @@ import NewCategoryForm from '../new-category-form/new-category-form.component';
 
 const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }) => {
   const history = useHistory();
-  console.log(currentPath.split('/')[1])
+  console.log('lat', latestExpenses)
   return (
     <ExpensesIncomeDetailsContainer>
       {!currentPath.includes('/add') ? (

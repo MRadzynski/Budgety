@@ -112,5 +112,5 @@ export const generateHistoryChart = (userCreatedAt, historyLogs, data) => {
 }
 
 export const formatName = (text) => {
-  return text[0].toUpperCase() + text.slice(1);
+  return text[0].toUpperCase() + text.slice(1).toLowerCase();
 }

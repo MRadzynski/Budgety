@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { connect } from 'react-redux';
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from 'uuid';
 
 import IconPicker from "../icon-picker/icon-picker.component";
+
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectExpenses, selectExpensesLogs, selectIncome, selectIncomeLogs } from "../../redux/finance/finance.selectors";
+import { updateFinances } from "../../firebase/firebase.utils";
 
 import { formatName } from '../../redux/finance/finance.utils';
 
@@ -19,7 +24,7 @@ import {
 } from "./new-category-form.styles";
 
 
-const NewCategoryForm = ({ type }) => {
+const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, incomeLogs }) => {
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const [categoryData, setCategoryData] = useState({
@@ -43,9 +48,17 @@ const NewCategoryForm = ({ type }) => {
       amount: 0,
       bgColor: categoryData.bgColor,
       icon: categoryData.icon,
+      logs: [],
     }
-    console.log(newCategoryData);
 
+    if (type === 'expenses') {
+      const newExpensesObj = [...expenses, newCategoryData];
+      updateFinances(currentUser.id, newExpensesObj, null, expensesLogs);
+    } else if (type === 'income') {
+      const newIncomeObj = [...income, newCategoryData];
+      updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
+    }
+    history.push(`/${type}`)
   }
 
   return (
@@ -64,7 +77,7 @@ const NewCategoryForm = ({ type }) => {
         <CategoryFieldGroup>
           <CategoryLabelField>Icon</CategoryLabelField>
           <CategoryIconContainer onClick={() => setIsOpen(true)}>
-            {categoryData.icon && <img src={`/assets/icons/${categoryData.icon}.svg`} alt={`${categoryData.icon} icon`} />}
+            {categoryData.icon ? <img src={`/assets/icons/${categoryData.icon}.svg`} alt={`${categoryData.icon} icon`} /> : <img src={`/assets/icons/other.svg`} alt={`other icon`} />}
           </CategoryIconContainer>
         </CategoryFieldGroup>
         {isOpen && <IconPicker setCategoryData={setCategoryData} setIsOpen={setIsOpen} isOpen={isOpen} />}
@@ -74,9 +87,6 @@ const NewCategoryForm = ({ type }) => {
           bgColor="var(--primary-color)"
           hoverColor="#395ae0"
           textColor="var(--white-shade)"
-        // onClick={() =>
-        //   history.push(`/${type}`)
-        // }
         >
           Add Category
         </CustomButtonStyled>
@@ -85,4 +95,12 @@ const NewCategoryForm = ({ type }) => {
   )
 }
 
-export default NewCategoryForm;
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
+  expenses: selectExpenses(state),
+  income: selectIncome(state),
+  expensesLogs: selectExpensesLogs(state),
+  incomeLogs: selectIncomeLogs(state)
+})
+
+export default connect(mapStateToProps)(NewCategoryForm);

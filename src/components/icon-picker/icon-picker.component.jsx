@@ -12,10 +12,13 @@ const IconPicker = ({ setCategoryData, setIsOpen, isOpen }) => {
     setCategoryData(prevData => { return { ...prevData, icon: iconName } })
     setIsOpen(false);
   }
+
+  const handleExit = () => setIsOpen(false);
+
   return (
     // <IconPickerOverlay setOpen={setIsOpen} open={isOpen}>
     <IconPickerContainer>
-      <ExitForm setIsOpen={setIsOpen}>&#10005;</ExitForm>
+      <ExitForm onClick={handleExit}>&#10005;</ExitForm>
       <IconsList>
         {iconsNames.map((icon, index) =>
           <IconsListItem key={index} data-name={icon} onClick={handleClick}>

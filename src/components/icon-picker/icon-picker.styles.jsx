@@ -12,6 +12,7 @@ export const IconPickerContainer = styled.div`
   top: 20%;
   left: 10%;
   z-index: 2;
+  padding: 1rem 0.25rem;
   border-radius: 20px;
   background-color: white;
   box-shadow: 0 6px 6px rgba(0,0,0,0.25);
@@ -55,7 +56,7 @@ export const IconsListItem = styled.li`
   width: 15%;
   padding: 0.5rem;
   border-radius: 15px;
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(0,0,0,0.6);
   box-shadow: 0 2px 2px rgba(0,0,0,0.25);
 
   img {
