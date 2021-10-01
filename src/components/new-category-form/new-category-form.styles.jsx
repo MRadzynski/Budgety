@@ -90,6 +90,7 @@ export const CategoryIconContainer = styled.div`
   outline: none;
   background-color: var(--black-shade);
   background-color: rgba(0,0,0,0.4);
+  background-color: ${({ bgColor }) => bgColor};
   color: var(--black-shade);
   font-size: 2.4rem;
   text-align: center;

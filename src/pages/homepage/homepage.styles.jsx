@@ -332,3 +332,10 @@ export const NoDataText = styled.h2`
     font-size: 9rem;
   }
 `;
+
+export const ScrollableChartContainer = styled.div`
+  width: 100%;
+  height: 80%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+`;

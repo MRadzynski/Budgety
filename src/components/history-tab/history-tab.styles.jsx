@@ -299,3 +299,10 @@ export const NoDataInfo = styled.h4`
     font-size: 4.8rem;
   }
 `;
+
+export const ScrollableChartContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+`;

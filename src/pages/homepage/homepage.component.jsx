@@ -21,6 +21,7 @@ import ExpensesIncomeBarchart from '../../components/expenses-income-barchart/ex
 import {
   HomePageContainer,
   ChartContainer,
+  ScrollableChartContainer,
   WelcomeText,
   ChartText,
   NoDataText,
@@ -52,21 +53,25 @@ const HomePage = ({
         <ChartText>Balance: {formatCurrency(latestBalance, currency)}</ChartText>
       </ChartContainer>
 
-      <ChartContainer>
-        {latestExpensesTotal !== 0 ? (
-          <ExpensesIncomeBarchart data={latestExpensesPercent} currency={currency} />
-        ) : (
-          <NoDataText>No data to present 😔</NoDataText>
-        )}
+      <ChartContainer >
+        <ScrollableChartContainer>
+          {latestExpensesTotal !== 0 ? (
+            <ExpensesIncomeBarchart data={latestExpensesPercent} currency={currency} />
+          ) : (
+            <NoDataText>No data to present 😔</NoDataText>
+          )}
+        </ScrollableChartContainer>
         <ChartText>Expenses</ChartText>
       </ChartContainer>
 
       <ChartContainer>
-        {latestIncomeTotal !== 0 ? (
-          <ExpensesIncomeBarchart data={latestIncomePercent} currency={currency} />
-        ) : (
-          <NoDataText>No data to present 😔</NoDataText>
-        )}
+        <ScrollableChartContainer>
+          {latestIncomeTotal !== 0 ? (
+            <ExpensesIncomeBarchart data={latestIncomePercent} currency={currency} />
+          ) : (
+            <NoDataText>No data to present 😔</NoDataText>
+          )}
+        </ScrollableChartContainer>
         <ChartText>Income</ChartText>
       </ChartContainer>
     </HomePageContainer>

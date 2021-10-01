@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
-// import Overlay from "../overlay/overlay.component";
+import Overlay from "../overlay/overlay.component";
+
+import { OverlayContainer } from "../overlay/overlay.styles";
 
 export const IconPickerContainer = styled.div`
   width: 80%;
-  height: 40%;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,22 +20,26 @@ export const IconPickerContainer = styled.div`
   box-shadow: 0 6px 6px rgba(0,0,0,0.25);
 `;
 
-// export const IconPickerOverlay = styled(Overlay)`
-//   width: 100vw;
-//   height: calc(var(--vh, 1vh) * 100);
-//   display: ${({ open }) => (open ? 'flex' : 'none')};
-//   align-items: center;
-//   justify-content: center;
-//   position: absolute;
-//   z-index: 1;
-//   background-color: rgba(0, 0, 0, 0.3);
-// `;
+export const IconPickerOverlay = styled(Overlay)`
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 60);
+  display: ${({ open }) => (open ? 'flex' : 'none')};
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border-radius: 50px 50px 0px 0px;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
 
 
 export const ExitForm = styled.div`
   position: absolute;
   top: 0.5rem;
   left: 1rem;
+  z-index: 3;
   font-size: 2.5rem;
   font-weight: bold;
   cursor: pointer;

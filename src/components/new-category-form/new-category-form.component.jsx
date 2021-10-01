@@ -29,7 +29,7 @@ const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, in
   const [isOpen, setIsOpen] = useState(false);
   const [categoryData, setCategoryData] = useState({
     category: '',
-    bgColor: '#000',
+    bgColor: 'rgba(0,0,0,0.6)',
     icon: '',
   })
 
@@ -76,7 +76,7 @@ const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, in
         </CategoryFieldGroup>
         <CategoryFieldGroup>
           <CategoryLabelField>Icon</CategoryLabelField>
-          <CategoryIconContainer onClick={() => setIsOpen(true)}>
+          <CategoryIconContainer onClick={() => setIsOpen(true)} bgColor={categoryData.bgColor}>
             {categoryData.icon ? <img src={`/assets/icons/${categoryData.icon}.svg`} alt={`${categoryData.icon} icon`} /> : <img src={`/assets/icons/other.svg`} alt={`other icon`} />}
           </CategoryIconContainer>
         </CategoryFieldGroup>

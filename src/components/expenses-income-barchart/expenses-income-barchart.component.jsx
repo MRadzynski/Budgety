@@ -41,11 +41,11 @@ const ExpensesIncomeBarchart = ({ currency, data }) => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width={`${data.length * 20}%`} height="100%">
       <BarChart data={data} margin={{ left: -17, top: 7, right: 3, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
-          interval={window.innerWidth < 1024 && 0} //interval={0} or tick={{fontSize: (sizeModifier + 1) * 10.5,}}
+          // interval={window.innerWidth < 1024 && 0}
           dataKey="category"
           tick={window.innerWidth >= 1024 ?
             {
