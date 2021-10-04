@@ -2,7 +2,7 @@ import { IconPickerOverlay, IconPickerContainer, ExitForm, IconsList, IconsListI
 
 import iconsNames from '../../icons.names';
 
-const IconPicker = ({ setCategoryData, setIsOpen, isOpen }) => {
+const IconPicker = ({ setCategoryData, setIsOpen, isOpen, itemsColor }) => {
   const handleClick = (e) => {
     const iconName = e.target.closest('li').dataset.name;
 
@@ -18,7 +18,7 @@ const IconPicker = ({ setCategoryData, setIsOpen, isOpen }) => {
         <ExitForm onClick={handleExit}>&#10005;</ExitForm>
         <IconsList>
           {iconsNames.map((icon, index) =>
-            <IconsListItem key={index} data-name={icon} onClick={handleClick}>
+            <IconsListItem key={index} data-name={icon} onClick={handleClick} bgColor={itemsColor}>
               <img src={`/assets/icons/${icon}.svg`} alt={`${icon} icon`} />
             </IconsListItem>)}
         </IconsList>

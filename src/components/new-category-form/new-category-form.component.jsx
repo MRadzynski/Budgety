@@ -80,7 +80,7 @@ const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, in
             {categoryData.icon ? <img src={`/assets/icons/${categoryData.icon}.svg`} alt={`${categoryData.icon} icon`} /> : <img src={`/assets/icons/other.svg`} alt={`other icon`} />}
           </CategoryIconContainer>
         </CategoryFieldGroup>
-        {isOpen && <IconPicker setCategoryData={setCategoryData} setIsOpen={setIsOpen} isOpen={isOpen} />}
+        {isOpen && <IconPicker setCategoryData={setCategoryData} setIsOpen={setIsOpen} isOpen={isOpen} itemsColor={categoryData.bgColor} />}
 
         <CustomButtonStyled
           type="submit"

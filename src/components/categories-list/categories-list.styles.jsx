@@ -120,6 +120,7 @@ export const CategoryList = styled.ul`
 
 export const Category = styled.li`
   width: 90%;
+  /* height: 25%; */
   display: flex;
   padding: 1rem;
   border-radius: 15px;
@@ -133,6 +134,7 @@ export const Category = styled.li`
 
 export const CategoryLogo = styled.div`
   width: 15%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
