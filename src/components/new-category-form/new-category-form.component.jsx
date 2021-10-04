@@ -27,11 +27,12 @@ import {
 const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, incomeLogs }) => {
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState('');
   const [categoryData, setCategoryData] = useState({
     category: '',
     bgColor: 'rgba(0,0,0,0.6)',
     icon: '',
-  })
+  });
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +42,20 @@ const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, in
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+
+    let duplicatedCategories;
+
+    if (type === 'expenses') {
+      duplicatedCategories = expenses.filter(expense => formatName(expense.category) === formatName(categoryData.category))
+    } else if (type === 'income') {
+      duplicatedCategories = income.filter(expense => formatName(expense.category) === formatName(categoryData.category))
+    }
+
+    if (duplicatedCategories.length !== 0) {
+      setError('Category already exists');
+      return;
+    };
 
     const newCategoryData = {
       id: uuidv4(),

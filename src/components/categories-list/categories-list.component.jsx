@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
 
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectExpenses, selectExpensesLogs, selectIncome, selectIncomeLogs } from '../../redux/finance/finance.selectors';
+
+import { updateFinances } from '../../firebase/firebase.utils';
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
+import CustomModal from '../custom-modal/custom-modal.component';
 import Spinner from '../spinner/spinner.component';
 
 import {
@@ -13,11 +19,14 @@ import {
   CategoryInfoContainer,
   CategoryName,
   CategoryPrice,
+  ActionButtons,
 } from './categories-list.styles';
 
-const CategoriesList = ({ categoriesData, currency }) => {
+const CategoriesList = ({ categoriesData, currency, currentUser, expenses, income, expensesLogs, incomeLogs }) => {
   const history = useHistory();
   const location = useLocation();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [categoryToDelete, setCategoryToDelete] = useState(null);
 
   const handleClick = (e) => {
     const targetURL = e.target.closest('li').dataset.name;
@@ -35,7 +44,29 @@ const CategoriesList = ({ categoriesData, currency }) => {
     history.push(pathname);
   };
 
+  const handleDeleteClick = (e) => {
+    e.stopPropagation();
+
+    setCategoryToDelete(e.target.name);
+    setIsOpenModal(true);
+  }
+
+  const deleteCategory = () => {
+    let newCategoriesData;
+
+    if (location.pathname.includes('expenses')) {
+      newCategoriesData = expenses.filter(categoryData => categoryData.category !== categoryToDelete);
+      updateFinances(currentUser.id, newCategoriesData, null, expensesLogs);
+    } else if (location.pathname.includes('income')) {
+      newCategoriesData = income.filter(categoryData => categoryData.category !== categoryToDelete);
+      updateFinances(currentUser.id, null, newCategoriesData, incomeLogs);
+    }
+
+    setIsOpenModal(false);
+  }
+
   if (categoriesData === null) return <Spinner />;
+
   return (
     <CategoriesListContainer>
       <CategoryList>
@@ -57,6 +88,9 @@ const CategoriesList = ({ categoriesData, currency }) => {
                 {formatCurrency(categoryData.amount, currency)}
               </CategoryPrice>
             </CategoryInfoContainer>
+            <ActionButtons>
+              <img src={`assets/icons/remove_circle.svg`} alt="delete" name={categoryData.category} onClick={handleDeleteClick} />
+            </ActionButtons>
           </Category>
         ))}
         <Category
@@ -75,8 +109,17 @@ const CategoriesList = ({ categoriesData, currency }) => {
           </CategoryInfoContainer>
         </Category>
       </CategoryList>
+      {isOpenModal && <CustomModal open={isOpenModal} setOpen={setIsOpenModal} confirmFunction={deleteCategory} large overlayRadius>Are you sure?</CustomModal>}
     </CategoriesListContainer>
   );
 };
 
-export default CategoriesList;
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
+  expenses: selectExpenses(state),
+  income: selectIncome(state),
+  expensesLogs: selectExpensesLogs(state),
+  incomeLogs: selectIncomeLogs(state),
+})
+
+export default connect(mapStateToProps)(CategoriesList);

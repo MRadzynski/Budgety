@@ -45,17 +45,11 @@ export const IconPickerOverlay = styled(Overlay)`
   top: 0;
   left: 0;
   z-index: 1;
-  border-radius: 50px 50px 0px 0px;
   background-color: rgba(0, 0, 0, 0.3);
-
-  @media ${breakpoints.fold} {
-    border-radius: 30px 30px 0px 0px;
-  }
 
   @media ${breakpoints.xsLaptop} {
     height: calc(var(--vh, 1vh) * 55);
     width: 80vw;
-    border-radius: 50px 50px 0px 0px;
   }
 
   @media ${breakpoints.lLaptop} {

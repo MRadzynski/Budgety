@@ -13,7 +13,7 @@ const IconPicker = ({ setCategoryData, setIsOpen, isOpen, itemsColor }) => {
   const handleExit = () => setIsOpen(false);
 
   return (
-    <IconPickerOverlay setOpen={setIsOpen} open={isOpen}>
+    <IconPickerOverlay setOpen={setIsOpen} open={isOpen} overlayRadius>
       <IconPickerContainer>
         <ExitForm onClick={handleExit}>&#10005;</ExitForm>
         <IconsList>

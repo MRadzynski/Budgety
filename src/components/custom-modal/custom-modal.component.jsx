@@ -9,7 +9,7 @@ import {
   CustomModalButton,
 } from './custom-modal.styles';
 
-const CustomModal = ({ open, setOpen, confirmFunction, children }) => {
+const CustomModal = ({ open, setOpen, confirmFunction, large, overlayRadius, children }) => {
   const handleExit = () => {
     setOpen(false);
   };
@@ -19,11 +19,11 @@ const CustomModal = ({ open, setOpen, confirmFunction, children }) => {
   };
 
   return (
-    <Overlay open={open} setOpen={setOpen}>
-      <CustomModalContainer open={open}>
+    <Overlay open={open} setOpen={setOpen} overlayRadius={overlayRadius}>
+      <CustomModalContainer open={open} large={large}>
         <CustomModalExit onClick={handleExit}>&#10005;</CustomModalExit>
         <CustomModalTitle>{children}</CustomModalTitle>
-        <CustomModalButton onClick={handleClick}>Confirm</CustomModalButton>
+        <CustomModalButton onClick={handleClick} large={large}>Confirm</CustomModalButton>
       </CustomModalContainer>
     </Overlay>
   );

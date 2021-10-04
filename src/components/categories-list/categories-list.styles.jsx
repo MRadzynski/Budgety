@@ -270,3 +270,10 @@ export const CategoryPrice = styled.h3`
     font-size: 4.2rem;
   }
 `;
+
+export const ActionButtons = styled.div`
+  display: flex;
+  align-self: center;
+  position: absolute;
+  right: 10%;
+`;

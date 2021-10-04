@@ -287,6 +287,7 @@ export const ChartContainer = styled.div`
 export const NoDataText = styled.h2`
   padding: 4rem 1rem;
   font-size: 1.6rem;
+  text-align:center;
 
   @media ${breakpoints.sPhone} {
     padding: 4.5rem 1rem;
