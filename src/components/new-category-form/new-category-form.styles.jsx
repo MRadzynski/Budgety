@@ -281,19 +281,51 @@ export const CategoryLabelField = styled.label`
   }
 `;
 
-export const CategoryInputField = styled.input`
+export const CategoryInputContainer = styled.div`
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+
+  @media ${breakpoints.tablet} {
+    width: 40%;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    width: 40%;
+  }
+
+  @media ${breakpoints.sLaptop} {
+    width: 35%;
+  }
+
+  @media ${breakpoints.desktop2K} {
+    width: 40%;
+  }
+`;
+
+export const CategoryInputField = styled.input`
+  width: 100%;
   height: 60%;
   padding: 1rem;
-  border: 0;
+  border: ${({ error }) => error ? '1px solid var(--errorMessage)' : '0'};
   border-radius: 5px;
   outline: none;
   background-color: var(--white-shade);
   color: var(--black-shade);
   font-size: 2.4rem;
   text-align: center;
+  text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    box-shadow: 0 0 0px 1000px #f5f5f5 inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px #f5f5f5 inset !important;
+  }
 
   &[type="color"]{
     width: 15%;
@@ -311,6 +343,7 @@ export const CategoryInputField = styled.input`
   }
 
   @media ${breakpoints.xsPhone} {
+    padding: 0.5rem;
     font-size: 1.8rem;
     
     &[type="color"]{
@@ -323,15 +356,17 @@ export const CategoryInputField = styled.input`
   }
 
   @media ${breakpoints.phone}{
+    padding: 0.25rem;
     font-size: 2.1rem;
   }
 
   @media ${breakpoints.lPhone} {
+    padding: 0.5rem;
     font-size: 2.4rem;
   }
 
   @media ${breakpoints.tablet} {
-    width: 40%;
+    padding: 1rem;
     font-size: 3.6rem;
   }
 
@@ -340,19 +375,21 @@ export const CategoryInputField = styled.input`
   }
 
   @media ${breakpoints.xsLaptop} {
-    width: 40%;
     font-size: 2.6rem;
   }
 
   @media ${breakpoints.sLaptop} {
-    width: 35%;
-
     &[type="color"]{
       width: 13%;
     }
   }
 
+  @media ${breakpoints.lLaptop} {
+    padding: 0.2rem;
+  }
+
   @media ${breakpoints.sDesktop} {
+    padding: 0.5rem;
     font-size: 3.2rem;
   }
 
@@ -361,12 +398,75 @@ export const CategoryInputField = styled.input`
   }
 
   @media ${breakpoints.desktop2K} {
-    width: 40%;
     font-size: 5.2rem;
   }
 
   @media ${breakpoints.desktop4K} {
     font-size: 7rem;
+  }
+`;
+
+export const ErrorMessage = styled.span`
+  position: absolute;
+  bottom: -1.25rem;
+  color: var(--errorMessage);
+
+  @media ${breakpoints.fold} {
+    bottom: -0.75rem;
+    font-size: 0.7rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    bottom: -0.7rem;
+  }
+
+  @media ${breakpoints.sPhone} {
+    bottom: -1rem;
+    font-size: 0.9rem;
+  }
+
+  @media ${breakpoints.phone} {
+    font-size: 0.8rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    bottom: -1.1rem;
+    font-size: 1rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    bottom: -1.6rem;
+    font-size: 1.5rem;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    bottom: -2rem;
+    font-size: 2rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    bottom: -1.1rem;
+    font-size: 1.1rem;
+  }
+
+  @media ${breakpoints.lLaptop} {
+    bottom: -1.2rem;
+    font-size: 1.2rem;
+  }
+
+  @media ${breakpoints.sDesktop} {
+    bottom: -1.8rem;
+    font-size: 1.6rem;
+  }
+
+  @media ${breakpoints.desktop2K} {
+    bottom: -2.4rem;
+    font-size: 2.2rem;
+  }
+
+  @media ${breakpoints.desktop4K} {
+    bottom: -3.2rem;
+    font-size: 3.2rem;
   }
 `;
 
@@ -434,6 +534,14 @@ export const CustomButtonStyled = styled(CustomButton)`
   }
 
   @media ${breakpoints.laptop} {
+    height: 6rem;
+  }
+
+  @media ${breakpoints.lLaptop} {
+    height: 5rem;
+  }
+
+  @media ${breakpoints.sDesktop} {
     height: 6rem;
   }
 

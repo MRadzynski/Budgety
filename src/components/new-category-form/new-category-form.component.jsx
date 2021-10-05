@@ -20,7 +20,9 @@ import {
   CategoryLabelField,
   CategoryInputField,
   CategoryIconContainer,
-  CustomButtonStyled
+  CustomButtonStyled,
+  CategoryInputContainer,
+  ErrorMessage
 } from "./new-category-form.styles";
 
 
@@ -33,7 +35,7 @@ const NewCategoryForm = ({ type, edit, currentUser, expenses, income, expensesLo
   const [categoryData, setCategoryData] = useState({
     category: '',
     bgColor: '#000000',
-    icon: '',
+    icon: 'other',
   });
 
   useEffect(() => {
@@ -117,7 +119,10 @@ const NewCategoryForm = ({ type, edit, currentUser, expenses, income, expensesLo
       <CategoryForm onSubmit={handleSubmit}>
         <CategoryFieldGroup>
           <CategoryLabelField>Name</CategoryLabelField>
-          <CategoryInputField type="text" name="category" onChange={handleOnChange} value={categoryData.category} required />
+          <CategoryInputContainer>
+            <CategoryInputField type="text" name="category" error={error} onChange={handleOnChange} value={categoryData.category} required />
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+          </CategoryInputContainer>
         </CategoryFieldGroup>
         <CategoryFieldGroup>
           <CategoryLabelField>Color</CategoryLabelField>
@@ -137,7 +142,7 @@ const NewCategoryForm = ({ type, edit, currentUser, expenses, income, expensesLo
           hoverColor="#395ae0"
           textColor="var(--white-shade)"
         >
-          Add Category
+          {edit ? 'Edit Category' : 'Add Category'}
         </CustomButtonStyled>
       </CategoryForm>
     </NewCategoryFormContainer>

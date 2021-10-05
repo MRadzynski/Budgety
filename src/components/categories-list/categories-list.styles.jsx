@@ -277,4 +277,53 @@ export const ActionButtons = styled.div`
   gap: 0.25rem;
   position: absolute;
   right: 10%;
+
+  @media ${breakpoints.tablet} {
+    img {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    img {
+      height: 4.5rem;
+      width: 4.5rem;
+    }
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    img {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  @media ${breakpoints.sLaptop} {
+    img {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+  }
+
+  @media ${breakpoints.sDesktop} {
+    img {
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+
+  @media ${breakpoints.desktop2K} {
+    img {
+      height: 5rem;
+      width: 5rem;
+    }
+  }
+
+  @media ${breakpoints.desktop4K} {
+    img {
+      height: 7rem;
+      width: 7rem;
+    }
+  }
 `;

@@ -303,6 +303,6 @@ export const NoDataInfo = styled.h4`
 export const ScrollableChartContainer = styled.div`
   width: 100%;
   height: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
 `;

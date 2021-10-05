@@ -79,6 +79,7 @@ const ExpenseIncomeForm = ({
           expense.amount += formattedPrice;
           expense.logs.push(newFinanceObj);
           newFinanceObj.category = category;
+          newFinanceObj.categoryId = expense.id;
         }
         return expense;
       });
@@ -91,6 +92,7 @@ const ExpenseIncomeForm = ({
           singleIncome.amount += formattedPrice;
           singleIncome.logs.push(newFinanceObj);
           newFinanceObj.category = category;
+          newFinanceObj.categoryId = singleIncome.id;
         }
         return singleIncome;
       });
