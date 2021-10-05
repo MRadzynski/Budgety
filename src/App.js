@@ -104,6 +104,13 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
             />
 
             <Route
+              path="/expenses/edit-category/:categoryId"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route
               exact
               path="/income"
               render={() =>
@@ -120,6 +127,13 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
 
             <Route
               path="/income/add-new-category"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route
+              path="/income/edit-category/:categoryId"
               render={() =>
                 currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
               }

@@ -274,6 +274,7 @@ export const CategoryPrice = styled.h3`
 export const ActionButtons = styled.div`
   display: flex;
   align-self: center;
+  gap: 0.25rem;
   position: absolute;
   right: 10%;
 `;

@@ -70,7 +70,6 @@ export const IconPickerOverlay = styled(Overlay)`
   }
 `;
 
-
 export const ExitForm = styled.div`
   position: absolute;
   top: 0.5rem;

@@ -21,10 +21,10 @@ import NewCategoryForm from '../new-category-form/new-category-form.component';
 
 const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }) => {
   const history = useHistory();
-
+  console.log('current', currentPath)
   return (
     <ExpensesIncomeDetailsContainer>
-      {!currentPath.includes('/add') ? (
+      {!currentPath.includes('/add') && !currentPath.includes('/edit') ? (
         <>
           <OverlapsContainer>
             <Overlap
@@ -58,7 +58,10 @@ const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }
           </CustomButtonStyled>
         </>
       ) : (
-        currentPath.includes('add-new-category') ? <NewCategoryForm type={currentPath.split('/')[1]} /> : <ExpenseIncomeForm type={currentPath.split('/')[1]} />
+        currentPath.includes('add-new-category')
+          ? <NewCategoryForm type={currentPath.split('/')[1]} />
+          : (currentPath.includes('edit-category') ? <NewCategoryForm type={currentPath.split('/')[1]} edit />
+            : <ExpenseIncomeForm type={currentPath.split('/')[1]} />)
       )}
     </ExpensesIncomeDetailsContainer>
   );

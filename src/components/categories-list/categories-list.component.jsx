@@ -47,7 +47,7 @@ const CategoriesList = ({ categoriesData, currency, currentUser, expenses, incom
   const handleDeleteClick = (e) => {
     e.stopPropagation();
 
-    setCategoryToDelete(e.target.name);
+    setCategoryToDelete(e.target.id);
     setIsOpenModal(true);
   }
 
@@ -55,14 +55,21 @@ const CategoriesList = ({ categoriesData, currency, currentUser, expenses, incom
     let newCategoriesData;
 
     if (location.pathname.includes('expenses')) {
-      newCategoriesData = expenses.filter(categoryData => categoryData.category !== categoryToDelete);
+      newCategoriesData = expenses.filter(categoryData => categoryData.id !== categoryToDelete);
       updateFinances(currentUser.id, newCategoriesData, null, expensesLogs);
     } else if (location.pathname.includes('income')) {
-      newCategoriesData = income.filter(categoryData => categoryData.category !== categoryToDelete);
+      newCategoriesData = income.filter(categoryData => categoryData.id !== categoryToDelete);
       updateFinances(currentUser.id, null, newCategoriesData, incomeLogs);
     }
 
     setIsOpenModal(false);
+  }
+
+  const handleEditClick = (e) => {
+    e.stopPropagation();
+    const categoryId = e.target.id;
+
+    history.push(`${location.pathname}/edit-category/${categoryId}`)
   }
 
   if (categoriesData === null) return <Spinner />;
@@ -89,7 +96,8 @@ const CategoriesList = ({ categoriesData, currency, currentUser, expenses, incom
               </CategoryPrice>
             </CategoryInfoContainer>
             <ActionButtons>
-              <img src={`assets/icons/remove_circle.svg`} alt="delete" name={categoryData.category} onClick={handleDeleteClick} />
+              <img src={`assets/icons/edit.svg`} alt="edit category" id={categoryData.id} onClick={handleEditClick} />
+              <img src={`assets/icons/remove_circle.svg`} alt="delete category" id={categoryData.id} onClick={handleDeleteClick} />
             </ActionButtons>
           </Category>
         ))}

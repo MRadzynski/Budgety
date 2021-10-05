@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { connect } from 'react-redux';
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { v4 as uuidv4 } from 'uuid';
 
 import IconPicker from "../icon-picker/icon-picker.component";
@@ -24,15 +24,36 @@ import {
 } from "./new-category-form.styles";
 
 
-const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, incomeLogs }) => {
+const NewCategoryForm = ({ type, edit, currentUser, expenses, income, expensesLogs, incomeLogs }) => {
   const history = useHistory();
+  const params = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState('');
+  const [currentEditedCategory, setCurrentEditedCategory] = useState(null);
   const [categoryData, setCategoryData] = useState({
     category: '',
-    bgColor: 'rgba(0,0,0,0.6)',
+    bgColor: '#000000',
     icon: '',
   });
+
+  useEffect(() => {
+    if (type === 'expenses' && edit) {
+      const editedCategory = expenses.find(expense => expense.id === params.categoryId)
+      setCurrentEditedCategory(editedCategory)
+    } else if (type === 'income' && edit) {
+      const editedCategory = income.find(singleIncome => singleIncome.id === params.categoryId)
+      setCurrentEditedCategory(editedCategory)
+    } else {
+      return;
+    }
+  }, [edit, expenses, income, type, params.categoryId])
+
+  useEffect(() => {
+    if (currentEditedCategory) {
+      const { category, bgColor, icon } = currentEditedCategory;
+      setCategoryData({ category: category, bgColor: bgColor, icon: icon })
+    }
+  }, [currentEditedCategory]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +73,7 @@ const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, in
       duplicatedCategories = income.filter(expense => formatName(expense.category) === formatName(categoryData.category))
     }
 
-    if (duplicatedCategories.length !== 0) {
+    if (duplicatedCategories.length !== 0 && !edit) {
       setError('Category already exists');
       return;
     };
@@ -66,13 +87,26 @@ const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, in
       logs: [],
     }
 
-    if (type === 'expenses') {
+    if (type === 'expenses' && !edit) {
       const newExpensesObj = [...expenses, newCategoryData];
+
       updateFinances(currentUser.id, newExpensesObj, null, expensesLogs);
-    } else if (type === 'income') {
+    } else if (type === 'income' && !edit) {
       const newIncomeObj = [...income, newCategoryData];
+
       updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
+    } else if (type === 'expenses' && edit) {
+      const { category, bgColor, icon } = newCategoryData;
+      const newExpenses = expenses.map(expense => expense.id === params.categoryId ? { ...expense, category: category, bgColor: bgColor, icon: icon } : expense)
+
+      updateFinances(currentUser.id, newExpenses, null, expensesLogs);
+    } else if (type === 'income' && edit) {
+      const { category, bgColor, icon } = newCategoryData;
+      const newIncome = income.map(singleIncome => singleIncome.id === params.categoryId ? { ...singleIncome, category: category, bgColor: bgColor, icon: icon } : singleIncome)
+
+      updateFinances(currentUser.id, null, newIncome, incomeLogs);
     }
+
     history.push(`/${type}`)
   }
 
@@ -83,11 +117,11 @@ const NewCategoryForm = ({ type, currentUser, expenses, income, expensesLogs, in
       <CategoryForm onSubmit={handleSubmit}>
         <CategoryFieldGroup>
           <CategoryLabelField>Name</CategoryLabelField>
-          <CategoryInputField type="text" name="category" onChange={handleOnChange} required />
+          <CategoryInputField type="text" name="category" onChange={handleOnChange} value={categoryData.category} required />
         </CategoryFieldGroup>
         <CategoryFieldGroup>
           <CategoryLabelField>Color</CategoryLabelField>
-          <CategoryInputField type="color" name="bgColor" onChange={handleOnChange} required />
+          <CategoryInputField type="color" name="bgColor" onChange={handleOnChange} value={categoryData.bgColor} required />
         </CategoryFieldGroup>
         <CategoryFieldGroup>
           <CategoryLabelField>Icon</CategoryLabelField>
