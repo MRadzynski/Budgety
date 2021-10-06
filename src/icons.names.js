@@ -36,7 +36,6 @@ const iconsNames = [
   'language',
   'laptop',
   'local_bar',
-  'local_bar',
   'location_city',
   'luggage',
   'map',

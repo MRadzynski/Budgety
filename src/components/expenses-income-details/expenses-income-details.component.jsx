@@ -8,8 +8,9 @@ import {
   selectLatestIncome,
 } from '../../redux/finance/finance.selectors';
 
-import ExpenseIncomeForm from '../expense-income-form/expense-income-form.component';
 import CategoriesList from '../categories-list/categories-list.component';
+import ExpenseIncomeForm from '../expense-income-form/expense-income-form.component';
+import NewCategoryForm from '../new-category-form/new-category-form.component';
 
 import {
   ExpensesIncomeDetailsContainer,
@@ -17,11 +18,10 @@ import {
   Overlap,
   CustomButtonStyled
 } from './expenses-income-details.styles';
-import NewCategoryForm from '../new-category-form/new-category-form.component';
 
 const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }) => {
   const history = useHistory();
-  console.log('current', currentPath)
+
   return (
     <ExpensesIncomeDetailsContainer>
       {!currentPath.includes('/add') && !currentPath.includes('/edit') ? (
