@@ -7,8 +7,8 @@ import IconPicker from "../icon-picker/icon-picker.component";
 
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { selectExpenses, selectExpensesLogs, selectIncome, selectIncomeLogs } from "../../redux/finance/finance.selectors";
-import { updateFinances } from "../../firebase/firebase.utils";
 
+import { updateFinances } from "../../firebase/firebase.utils";
 import { formatName } from '../../redux/finance/finance.utils';
 
 import {

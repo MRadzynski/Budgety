@@ -98,6 +98,62 @@ export const ExitForm = styled.div`
   }
 `;
 
+export const RevertAction = styled.span`
+  position: absolute;
+  top: 1.8rem;
+  right: 3rem;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  @media ${breakpoints.fold} {
+    right: 2rem;
+    font-size: 2rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    right: 3rem;
+    font-size: 2.2rem;
+  }
+
+  @media ${breakpoints.sPhone} {
+    font-size: 2.4rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    font-size: 2.8rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    top: 2rem;
+    right: 4rem;
+    font-size: 3.6rem;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    font-size: 5rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    font-size: 3.6rem;
+  }
+
+  @media ${breakpoints.sDesktop} {
+    font-size: 4.2rem;
+  }
+
+  @media ${breakpoints.desktop2K} {
+    top: 2.4rem;
+    right: 4rem;
+    font-size: 5.6rem;
+  }
+
+  @media ${breakpoints.desktop4K} {
+    font-size: 8rem;
+  }
+`;
+
 export const FormHeading = styled.h1`
   color: var(--black-shade);
   font-size: 2.5rem;

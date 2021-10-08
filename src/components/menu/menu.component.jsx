@@ -1,6 +1,7 @@
 import React from 'react';
-import { auth } from '../../firebase/firebase.utils';
 import { useHistory } from 'react-router-dom';
+
+import { auth } from '../../firebase/firebase.utils';
 
 import {
   MenuContainer,
@@ -9,6 +10,7 @@ import {
   MenuLink,
   MenuOverlay,
 } from './menu.styles';
+
 const Menu = ({ open, setOpen }) => {
   const history = useHistory();
 

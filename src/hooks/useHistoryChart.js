@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 import { selectCurrentUser } from '../redux/user/user.selectors';
 import { selectExpenses, selectIncome, selectHistoryLogs } from '../redux/finance/finance.selectors';
-import { generateHistoryChart, isChartExists } from '../redux/finance/finance.utils'
 
+import { generateHistoryChart, isChartExists } from '../redux/finance/finance.utils'
 import { updateHistory } from '../firebase/firebase.utils';
+
 import useDateInfo from './useDateInfo';
 
 const useHistoryChart = () => {

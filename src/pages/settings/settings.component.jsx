@@ -3,15 +3,6 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import {
-  auth,
-  updateDisplayName,
-  updateFinances,
-  updateCurrency,
-  reauthenticateAndDeleteUser,
-  updateHistory
-} from '../../firebase/firebase.utils';
-
-import {
   selectIncome,
   selectExpenses,
   selectCurrency,
@@ -22,12 +13,18 @@ import {
   selectDisplayName,
 } from '../../redux/user/user.selectors';
 
+import {
+  auth,
+  updateDisplayName,
+  updateFinances,
+  updateCurrency,
+  reauthenticateAndDeleteUser,
+  updateHistory
+} from '../../firebase/firebase.utils';
+
 import CustomPopup from '../../components/custom-popup/custom-popup.component';
-
 import CustomModal from '../../components/custom-modal/custom-modal.component';
-
 import AuthorizationModal from '../../components/authorization-modal/authorization-modal.component';
-
 import CurrenciesNamesList from '../../components/currencies-names-list/currencies-names-list.component';
 
 import {

@@ -17,6 +17,7 @@ import { updateFinances } from '../../firebase/firebase.utils';
 import {
   ExpenseIncomeFormContainer,
   ExitForm,
+  RevertAction,
   AddExpenseIncomeForm,
   FormHeading,
   FormFieldContainer,
@@ -40,8 +41,11 @@ const ExpenseIncomeForm = ({
   const location = useLocation();
 
   const [category, setCategory] = useState('');
+  const [lastIncomeCategoryId, setLastIncomeCategoryId] = useState(null)
+  const [lastExpenseCategoryId, setLastExpenseCategoryId] = useState(null)
   const [price, setPrice] = useState(0);
   const [open, setOpen] = useState(false);
+  const [isRevertShown, setIsRevertShown] = useState(false);
 
   useEffect(() => {
     const index = location.pathname.lastIndexOf('/');
@@ -91,6 +95,7 @@ const ExpenseIncomeForm = ({
       if (newFinanceObj.categoryId && newFinanceObj.category && newFinanceObj.bgColor) {
         expensesLogs.push(newFinanceObj);
         updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
+        setLastExpenseCategoryId(newFinanceObj.categoryId);
       }
 
     } else {
@@ -108,12 +113,49 @@ const ExpenseIncomeForm = ({
       if (newFinanceObj.categoryId && newFinanceObj.category && newFinanceObj.bgColor) {
         incomeLogs.push(newFinanceObj);
         updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
+        setLastIncomeCategoryId(newFinanceObj.categoryId);
       }
     }
 
     setCategory('');
     setPrice('');
+    setIsRevertShown(true);
   };
+
+  const handleRevert = () => {
+    if (type === 'expenses') {
+      expensesLogs.pop();
+      const newExpenseObj = expenses.map(expense => {
+        if (expense.id === lastExpenseCategoryId) {
+          const entryToRemove = expense.logs.slice().pop()
+          const amountToSubstact = entryToRemove.amount;
+          const entryIdToRemove = entryToRemove.id
+          expense.amount -= amountToSubstact;
+          expense.logs = expense.logs.filter(entry => entry.id !== entryIdToRemove)
+        }
+        return expense;
+      })
+
+      updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
+      setLastExpenseCategoryId(null);
+    } else if (type === 'income') {
+      incomeLogs.pop();
+      const newIncomeObj = income.map(singleIncome => {
+        if (singleIncome.id === lastIncomeCategoryId) {
+          const entryToRemove = singleIncome.logs.slice().pop()
+          const amountToSubstact = entryToRemove.amount;
+          const entryIdToRemove = entryToRemove.id
+          singleIncome.amount -= amountToSubstact;
+          singleIncome.logs = singleIncome.logs.filter(entry => entry.id !== entryIdToRemove)
+        }
+        return singleIncome;
+      })
+
+      updateFinances(currentUser.id, null, newIncomeObj, incomeLogs)
+      setLastIncomeCategoryId(null);
+    }
+    setIsRevertShown(false);
+  }
 
   return (
     <ExpenseIncomeFormContainer>
@@ -121,6 +163,7 @@ const ExpenseIncomeForm = ({
       <FormHeading>
         Add {type === 'expenses' ? 'Expense' : 'Income'}
       </FormHeading>
+      {isRevertShown && <RevertAction onClick={handleRevert}>&#8634;</RevertAction>}
       <AddExpenseIncomeForm
         onClick={() => (open ? setOpen(!open) : open)}
         onSubmit={handleSubmit}

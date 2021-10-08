@@ -9,7 +9,7 @@ import { HistoryListContainer, HistoryChartList, HistoryChartListItem, HistoryMo
 
 const HistoryList = ({ allTimeExpensesPercent, allTimeIncomePercent, history, }) => {
   const [financeObj] = useState({ date: 'All Time', expensesArr: allTimeExpensesPercent, incomeArr: allTimeIncomePercent })
-
+  console.log(financeObj)
   return (
     <HistoryListContainer>
       <HistoryChartList>

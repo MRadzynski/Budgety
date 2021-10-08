@@ -1,6 +1,6 @@
 import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { useHistory } from 'react-router-dom';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 import { formatCurrency } from '../../redux/finance/finance.utils';
 

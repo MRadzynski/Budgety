@@ -177,8 +177,10 @@ export const selectAllTimeExpensesCategoriesId = createSelector([selectExpensesL
   return Array.from(new Set(categoriesIds));
 })
 
-export const selectAllTimeExpensesCategories = createSelector([selectAllTimeExpensesCategoriesId, selectExpensesLogs], (categoriesIds, expensesLogs) => {
-  return categoriesIds?.map(categoryId => {
+export const selectAllTimeExpensesCategories = createSelector([selectAllTimeExpensesCategoriesId, selectExpensesLogs, selectExpenses], (categoriesIds, expensesLogs, expenses) => {
+  const zeroValueCategories = expenses?.filter(singleIncome => !categoriesIds.includes(singleIncome.id))
+
+  const valuableCategories = categoriesIds?.map(categoryId => {
     const lastOccurence = expensesLogs.slice().reverse().findIndex(entry => entry.categoryId === categoryId);
     const foundIndex = (expensesLogs.length - 1) - lastOccurence
     const categoryObj = {
@@ -199,6 +201,7 @@ export const selectAllTimeExpensesCategories = createSelector([selectAllTimeExpe
 
     return categoryObj
   })
+  return [...valuableCategories, ...zeroValueCategories];
 })
 
 export const selectAllTimeExpensesPercent = createSelector([selectAllTimeExpensesCategories], (allTimeExpensesCategories) => {
@@ -218,8 +221,10 @@ export const selectAllTimeIncomeCategoriesId = createSelector([selectIncomeLogs]
   return Array.from(new Set(categoriesIds));
 })
 
-export const selectAllTimeIncomeCategories = createSelector([selectAllTimeIncomeCategoriesId, selectIncomeLogs], (categoriesIds, incomeLogs) => {
-  return categoriesIds?.map(categoryId => {
+export const selectAllTimeIncomeCategories = createSelector([selectAllTimeIncomeCategoriesId, selectIncomeLogs, selectIncome], (categoriesIds, incomeLogs, income) => {
+  const zeroValueCategories = income?.filter(singleIncome => !categoriesIds.includes(singleIncome.id))
+
+  const valuableCategories = categoriesIds?.map(categoryId => {
     const lastOccurence = incomeLogs.slice().reverse().findIndex(entry => entry.categoryId === categoryId);
     const foundIndex = (incomeLogs.length - 1) - lastOccurence
 
@@ -241,6 +246,8 @@ export const selectAllTimeIncomeCategories = createSelector([selectAllTimeIncome
 
     return categoryObj
   })
+
+  return [...valuableCategories, ...zeroValueCategories];
 })
 
 export const selectAllTimeIncomePercent = createSelector([selectAllTimeIncomeCategories], (allTimeIncomeCategories) => {
