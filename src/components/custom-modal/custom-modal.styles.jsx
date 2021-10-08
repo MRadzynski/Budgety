@@ -9,13 +9,14 @@ const slide = keyframes`
 
 export const CustomModalContainer = styled.div`
   width: 70%;
-  height: ${({ large }) => (large ? '35%' : '20%')};
+  /* height: ${({ large }) => (large ? '35%' : '20%')}; */
+  height: ${({ large }) => (large ? 'calc(var(--vh,vh)*35)' : 'calc(var(--vh,vh)*20)')};
   display: ${({ open }) => (open ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   position: absolute;
-  bottom: 45%;
+  bottom: 35%;
   padding: 0.5rem;
   border-radius: 15px;
   background-color: var(--white-shade);
