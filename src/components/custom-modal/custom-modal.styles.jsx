@@ -145,8 +145,9 @@ export const CustomModalTitle = styled.h2`
 
 export const CustomModalButton = styled.button`
   width: 40%;
-  height: ${({ large }) => (large ? '15%' : '30%')};
+  height: ${({ large }) => (large ? 'auto' : '30%')};
   border: 0;
+  padding: 0.5rem 1rem;
   border-radius: 1rem;
   color: white;
   background-color: var(--errorMessage);
@@ -155,6 +156,9 @@ export const CustomModalButton = styled.button`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  position: relative !important;
+  bottom: 0 !important;
+  margin: unset !important;
 
   &:hover {
     background-color: #fe4337;

@@ -5,7 +5,9 @@ import { OverlayContainer } from './overlay.styles';
 const Overlay = ({
   open,
   setOpen,
+  overlayRadius,
   children,
+  className,
   setError = null,
   setInput = null,
 }) => {
@@ -20,7 +22,7 @@ const Overlay = ({
   };
 
   return (
-    <OverlayContainer ref={overlayRef} open={open} onClick={handleClick}>
+    <OverlayContainer className={className} ref={overlayRef} open={open} overlayRadius={overlayRadius} onClick={handleClick}>
       {children}
     </OverlayContainer>
   );

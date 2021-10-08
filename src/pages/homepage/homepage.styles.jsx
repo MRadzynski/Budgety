@@ -287,6 +287,7 @@ export const ChartContainer = styled.div`
 export const NoDataText = styled.h2`
   padding: 4rem 1rem;
   font-size: 1.6rem;
+  text-align:center;
 
   @media ${breakpoints.sPhone} {
     padding: 4.5rem 1rem;
@@ -331,4 +332,11 @@ export const NoDataText = styled.h2`
     padding: 15rem 1rem;
     font-size: 9rem;
   }
+`;
+
+export const ScrollableChartContainer = styled.div`
+  width: 100%;
+  height: 80%;
+  overflow-x: auto;
+  overflow-y: hidden;
 `;

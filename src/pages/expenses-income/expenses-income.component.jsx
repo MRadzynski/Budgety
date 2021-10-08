@@ -10,11 +10,10 @@ import {
   selectLatestIncomeTotal,
 } from '../../redux/finance/finance.selectors';
 
-import ExpensesIncomeDetails from '../../components/expenses-income-details/expenses-income-details.component';
-import Chart from '../../components/chart/chart.component';
-
 import { formatCurrency } from '../../redux/finance/finance.utils';
 
+import ExpensesIncomeDetails from '../../components/expenses-income-details/expenses-income-details.component';
+import Chart from '../../components/chart/chart.component';
 import Spinner from '../../components/spinner/spinner.component';
 
 import {

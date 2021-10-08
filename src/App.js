@@ -6,6 +6,12 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { setFinances, setCurrency } from './redux/finance/finance.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
+import {
+  auth,
+  createUserDocument,
+  getUserFinancesRef,
+} from './firebase/firebase.utils';
+
 import Navbar from './components/navbar/navbar.component';
 import SignIn from './components/sign-in/sign-in.component';
 import SignUp from './components/sign-up/sign-up.component';
@@ -14,24 +20,14 @@ import ErrorBoundary from './components/error-boundary/error-boundary.component'
 import NotFound from './components/notFound/notFound.component';
 import Spinner from './components/spinner/spinner.component';
 
-import {
-  auth,
-  createUserDocument,
-  getUserFinancesRef,
-} from './firebase/firebase.utils';
-
 import GlobalStyle from './GlobalStyles';
 
 const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
-
 const ExchangePage = lazy(() => import('./pages/exchange/exchange.component'));
-
 const ExpensesIncomePage = lazy(() =>
   import('./pages/expenses-income/expenses-income.component')
 );
-
 const HistoryPage = lazy(() => import('./pages/history/history.component'));
-
 const SettingsPage = lazy(() => import('./pages/settings/settings.component'));
 
 const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
@@ -97,6 +93,20 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
             />
 
             <Route
+              path="/expenses/add-new-category"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route
+              path="/expenses/edit-category/:categoryId"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route
               exact
               path="/income"
               render={() =>
@@ -106,6 +116,20 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
 
             <Route
               path="/income/add-income"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route
+              path="/income/add-new-category"
+              render={() =>
+                currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
+              }
+            />
+
+            <Route
+              path="/income/edit-category/:categoryId"
               render={() =>
                 currentUser ? <ExpensesIncomePage /> : <Redirect to="/signin" />
               }

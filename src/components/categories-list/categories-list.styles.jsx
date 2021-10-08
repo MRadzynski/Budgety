@@ -120,6 +120,7 @@ export const CategoryList = styled.ul`
 
 export const Category = styled.li`
   width: 90%;
+  /* height: 25%; */
   display: flex;
   padding: 1rem;
   border-radius: 15px;
@@ -133,6 +134,7 @@ export const Category = styled.li`
 
 export const CategoryLogo = styled.div`
   width: 15%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,6 +174,7 @@ export const CategoryLogo = styled.div`
 
 export const CategoryInfoContainer = styled.div`
   display: flex;
+  justify-content:center;
   flex-direction: column;
   gap: 0.5rem;
 
@@ -265,5 +268,62 @@ export const CategoryPrice = styled.h3`
 
   @media ${breakpoints.desktop4K} {
     font-size: 4.2rem;
+  }
+`;
+
+export const ActionButtons = styled.div`
+  display: flex;
+  align-self: center;
+  gap: 0.25rem;
+  position: absolute;
+  right: 10%;
+
+  @media ${breakpoints.tablet} {
+    img {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    img {
+      height: 4.5rem;
+      width: 4.5rem;
+    }
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    img {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  @media ${breakpoints.sLaptop} {
+    img {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+  }
+
+  @media ${breakpoints.sDesktop} {
+    img {
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+
+  @media ${breakpoints.desktop2K} {
+    img {
+      height: 5rem;
+      width: 5rem;
+    }
+  }
+
+  @media ${breakpoints.desktop4K} {
+    img {
+      height: 7rem;
+      width: 7rem;
+    }
   }
 `;

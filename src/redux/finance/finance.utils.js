@@ -42,8 +42,9 @@ const getMonthlyExpenseIncomeBalance = (dataSet, dateToCheck) => {
 
         if (logMonth === dateToCheck.monthToCheck && logYear === dateToCheck.yearToCheck) {
           return acc += entry.amount;
+        } else {
+          return acc;
         }
-        return 0;
       }, 0)
     }
 
@@ -71,20 +72,14 @@ const getMonthlyExpenseIncomePercent = (data) => {
   })
 }
 
-export const generateHistoryChart = (userCreatedAt, historyLogs, data) => {
+export const generateHistoryChart = (userCreatedAt, historyLogs, data, dateInfo) => {
   if (!historyLogs) return;
 
   let historyFlag = false;
   const userCreatedAtDate = new Date(userCreatedAt.seconds * 1000);
-
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
+  const { currentMonth, currentYear, monthToCheck, yearToCheck } = dateInfo;
 
   if (userCreatedAtDate.getMonth() >= currentMonth && userCreatedAtDate.getFullYear() >= currentYear) return;
-
-  const monthToCheck = currentMonth - 1 >= 0 ? currentMonth - 1 : 11;
-  const yearToCheck = monthToCheck === 11 ? currentYear - 1 : currentYear;
 
   historyLogs.forEach(log => {
     if (log.date.includes(`${monthToCheck}/${yearToCheck}`)) {
@@ -109,4 +104,14 @@ export const generateHistoryChart = (userCreatedAt, historyLogs, data) => {
   });
 
   return historyLogs;
+}
+
+export const formatName = (text) => {
+  return text[0].toUpperCase() + text.slice(1).toLowerCase();
+}
+
+export const isChartExists = (historyLogs, month, year) => {
+  return historyLogs?.some(log => {
+    return log.date.includes(`${month}/${year}`);
+  })
 }

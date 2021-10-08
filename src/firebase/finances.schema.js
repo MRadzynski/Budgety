@@ -1,96 +1,111 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const FinanceSchema = {
   expenses: [
     {
-      id: 1,
+      id: uuidv4(),
       category: 'Food',
       amount: 0,
       bgColor: '#CDB4DB',
+      icon: 'food',
       logs: []
     },
     {
-      id: 2,
+      id: uuidv4(),
       category: 'Health',
       amount: 0,
       bgColor: '#FFC8DD',
+      icon: 'health',
       logs: []
     },
     {
-      id: 3,
+      id: uuidv4(),
       category: 'Family',
       amount: 0,
       bgColor: '#BDE0FE',
+      icon: 'family',
       logs: []
     },
     {
-      id: 4,
+      id: uuidv4(),
       category: 'Bills',
       amount: 0,
       bgColor: '#A0C4FF',
+      icon: 'bills',
       logs: []
     },
     {
-      id: 5,
+      id: uuidv4(),
       category: 'Fashion',
       amount: 0,
       bgColor: '#C07EED',
+      icon: 'fashion',
       logs: []
     },
     {
-      id: 6,
+      id: uuidv4(),
       category: 'House',
       amount: 0,
       bgColor: '#8783E0',
+      icon: 'house',
       logs: []
     },
     {
-      id: 7,
+      id: uuidv4(),
       category: 'Gas',
       amount: 0,
       bgColor: '#A983F7',
+      icon: 'gas',
       logs: []
     },
     {
-      id: 8,
+      id: uuidv4(),
       category: 'Other',
       amount: 0,
       bgColor: '#839CF7',
+      icon: 'other',
       logs: []
     }
   ],
   income: [
     {
-      id: 9,
+      id: uuidv4(),
       category: 'Job',
       amount: 0,
       bgColor: '#4FF6DD',
+      icon: 'job',
       logs: []
     },
     {
-      id: 10,
+      id: uuidv4(),
       category: 'Additional work',
       amount: 0,
       bgColor: '#44D495',
+      icon: 'additional_work',
       logs: []
     },
     {
-      id: 11,
+      id: uuidv4(),
       category: 'Sale',
       amount: 0,
       bgColor: '#89F64F',
+      icon: 'sale',
       logs: []
     },
     {
-      id: 12,
+      id: uuidv4(),
       category: 'Gifts',
       amount: 0,
       bgColor: '#57EB82',
+      icon: 'gifts',
       logs: []
     },
     {
-      id: 13,
+      id: uuidv4(),
       category: 'Other',
       amount: 0,
       bgColor: '#44D444',
+      icon: 'other',
       logs: []
     },
   ],

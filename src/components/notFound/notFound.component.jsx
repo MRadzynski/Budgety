@@ -1,8 +1,7 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
-
 import { useHistory } from 'react-router-dom';
+
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 import CustomButton from '../custom-button/custom-button.component';

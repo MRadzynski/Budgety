@@ -91,6 +91,7 @@ export const selectLatestExpenses = createSelector([selectExpenses], (expenses) 
       id: expenses[index].id,
       category: expenses[index].category,
       bgColor: expenses[index].bgColor,
+      icon: expenses[index].icon,
       amount: sumOfExpenses || 0,
     }
     latestMonthExpenses.push(monthExpenseObj);
@@ -137,6 +138,7 @@ export const selectLatestIncome = createSelector([selectIncome], (income) => {
       id: income[index].id,
       category: income[index].category,
       bgColor: income[index].bgColor,
+      icon: income[index].icon,
       amount: sumOfIncome || 0,
     }
     latestMonthIncome.push(monthIncomeObj);
@@ -167,4 +169,94 @@ export const selectLatestExpensesIncomeArr = createSelector(
   ]
 );
 
-export const selectLatestBalance = createSelector([selectLatestExpensesTotal, selectLatestIncomeTotal], (totalExpesnes, totalIncome) => totalIncome - totalExpesnes)
+export const selectLatestBalance = createSelector([selectLatestExpensesTotal, selectLatestIncomeTotal], (latestTotalExpesnes, latestTotalIncome) => latestTotalExpesnes !== 0 || latestTotalIncome !== 0 ? latestTotalIncome - latestTotalExpesnes : null);
+
+export const selectAllTimeExpensesCategoriesId = createSelector([selectExpensesLogs], (expensesLogs) => {
+  const categoriesIds = expensesLogs?.map(expenseLog => expenseLog.categoryId);
+
+  return Array.from(new Set(categoriesIds));
+})
+
+export const selectAllTimeExpensesCategories = createSelector([selectAllTimeExpensesCategoriesId, selectExpensesLogs, selectExpenses], (categoriesIds, expensesLogs, expenses) => {
+  const zeroValueCategories = expenses?.filter(singleIncome => !categoriesIds.includes(singleIncome.id))
+
+  const valuableCategories = categoriesIds?.map(categoryId => {
+    const lastOccurence = expensesLogs.slice().reverse().findIndex(entry => entry.categoryId === categoryId);
+    const foundIndex = (expensesLogs.length - 1) - lastOccurence
+    const categoryObj = {
+      categoryId: expensesLogs[foundIndex].categoryId,
+      category: expensesLogs[foundIndex].category,
+      bgColor: expensesLogs[foundIndex].bgColor,
+      amount: 0,
+    }
+
+    const expenseTotalAmount = expensesLogs?.reduce((acc, entry) => {
+      if (entry.categoryId === categoryId) {
+        return acc + entry.amount;
+      } else {
+        return acc;
+      }
+    }, 0)
+    categoryObj.amount = expenseTotalAmount;
+
+    return categoryObj
+  })
+  return [...valuableCategories, ...zeroValueCategories];
+})
+
+export const selectAllTimeExpensesPercent = createSelector([selectAllTimeExpensesCategories], (allTimeExpensesCategories) => {
+  const total = allTimeExpensesCategories.reduce((acc, category) => acc + category.amount, 0);
+
+  return allTimeExpensesCategories.map(category => {
+    return {
+      ...category,
+      percent: Number(((category.amount / total) * 100).toFixed(2)),
+    }
+  })
+})
+
+export const selectAllTimeIncomeCategoriesId = createSelector([selectIncomeLogs], (incomeLogs) => {
+  const categoriesIds = incomeLogs?.map(incomeLog => incomeLog.categoryId);
+
+  return Array.from(new Set(categoriesIds));
+})
+
+export const selectAllTimeIncomeCategories = createSelector([selectAllTimeIncomeCategoriesId, selectIncomeLogs, selectIncome], (categoriesIds, incomeLogs, income) => {
+  const zeroValueCategories = income?.filter(singleIncome => !categoriesIds.includes(singleIncome.id))
+
+  const valuableCategories = categoriesIds?.map(categoryId => {
+    const lastOccurence = incomeLogs.slice().reverse().findIndex(entry => entry.categoryId === categoryId);
+    const foundIndex = (incomeLogs.length - 1) - lastOccurence
+
+    const categoryObj = {
+      categoryId: incomeLogs[foundIndex].categoryId,
+      category: incomeLogs[foundIndex].category,
+      bgColor: incomeLogs[foundIndex].bgColor,
+      amount: 0,
+    }
+
+    const incomeTotalAmount = incomeLogs?.reduce((acc, entry) => {
+      if (entry.categoryId === categoryId) {
+        return acc + entry.amount;
+      } else {
+        return acc;
+      }
+    }, 0)
+    categoryObj.amount = incomeTotalAmount;
+
+    return categoryObj
+  })
+
+  return [...valuableCategories, ...zeroValueCategories];
+})
+
+export const selectAllTimeIncomePercent = createSelector([selectAllTimeIncomeCategories], (allTimeIncomeCategories) => {
+  const total = allTimeIncomeCategories.reduce((acc, category) => acc + category.amount, 0);
+
+  return allTimeIncomeCategories.map(category => {
+    return {
+      ...category,
+      percent: Number(((category.amount / total) * 100).toFixed(2)),
+    }
+  })
+})

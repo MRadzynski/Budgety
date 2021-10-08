@@ -8,8 +8,9 @@ import {
   selectLatestIncome,
 } from '../../redux/finance/finance.selectors';
 
-import ExpenseIncomeForm from '../expense-income-form/expense-income-form.component';
 import CategoriesList from '../categories-list/categories-list.component';
+import ExpenseIncomeForm from '../expense-income-form/expense-income-form.component';
+import NewCategoryForm from '../new-category-form/new-category-form.component';
 
 import {
   ExpensesIncomeDetailsContainer,
@@ -23,7 +24,7 @@ const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }
 
   return (
     <ExpensesIncomeDetailsContainer>
-      {!currentPath.includes('/add') ? (
+      {!currentPath.includes('/add') && !currentPath.includes('/edit') ? (
         <>
           <OverlapsContainer>
             <Overlap
@@ -57,7 +58,10 @@ const ExpensesDetails = ({ currentPath, latestExpenses, latestIncome, currency }
           </CustomButtonStyled>
         </>
       ) : (
-        <ExpenseIncomeForm type={currentPath.split('/')[1]} />
+        currentPath.includes('add-new-category')
+          ? <NewCategoryForm type={currentPath.split('/')[1]} />
+          : (currentPath.includes('edit-category') ? <NewCategoryForm type={currentPath.split('/')[1]} edit />
+            : <ExpenseIncomeForm type={currentPath.split('/')[1]} />)
       )}
     </ExpensesIncomeDetailsContainer>
   );
