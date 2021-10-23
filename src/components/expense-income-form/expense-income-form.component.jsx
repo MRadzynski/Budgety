@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   selectCurrency,
@@ -68,6 +69,7 @@ const ExpenseIncomeForm = ({
     const formattedPrice = Number((+price).toFixed(2));
 
     const newFinanceObj = {
+      id: uuidv4(),
       amount: formattedPrice,
       date: new Date(),
     }
