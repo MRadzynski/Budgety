@@ -111,7 +111,7 @@ export const formatName = (text) => {
 }
 
 export const isChartExists = (historyLogs, month, year) => {
-  return historyLogs.some(log => {
+  return historyLogs?.some(log => {
     return log.date.includes(`${month}/${year}`);
   })
 }

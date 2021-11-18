@@ -71,6 +71,9 @@ const ExpenseIncomeForm = ({
       id: uuidv4(),
       amount: formattedPrice,
       date: new Date(),
+      categoryId: '',
+      category: '',
+      bgColor: ''
     }
 
     if (type === 'expenses') {
@@ -80,12 +83,16 @@ const ExpenseIncomeForm = ({
           expense.logs.push(newFinanceObj);
           newFinanceObj.category = category;
           newFinanceObj.categoryId = expense.id;
+          newFinanceObj.bgColor = expense.bgColor;
         }
         return expense;
       });
-      expensesLogs.push(newFinanceObj);
 
-      updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
+      if (newFinanceObj.categoryId && newFinanceObj.category && newFinanceObj.bgColor) {
+        expensesLogs.push(newFinanceObj);
+        updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
+      }
+
     } else {
       const newIncomeObj = income.map((singleIncome) => {
         if (singleIncome.category === category) {
@@ -93,12 +100,15 @@ const ExpenseIncomeForm = ({
           singleIncome.logs.push(newFinanceObj);
           newFinanceObj.category = category;
           newFinanceObj.categoryId = singleIncome.id;
+          newFinanceObj.bgColor = singleIncome.bgColor;
         }
         return singleIncome;
       });
-      incomeLogs.push(newFinanceObj);
 
-      updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
+      if (newFinanceObj.categoryId && newFinanceObj.category && newFinanceObj.bgColor) {
+        incomeLogs.push(newFinanceObj);
+        updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
+      }
     }
 
     setCategory('');

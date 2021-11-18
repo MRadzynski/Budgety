@@ -24,7 +24,7 @@ const HistoryTab = ({ data, currency }) => {
       {isOpen &&
         <>
           <HistoryChartTitle>
-            Expenses: {formatCurrency(expensesSum)}
+            Expenses: {formatCurrency(expensesSum, currency)}
           </HistoryChartTitle>
           {expensesSum ?
             <HistoryChartContainer>
@@ -35,7 +35,7 @@ const HistoryTab = ({ data, currency }) => {
           }
 
           <HistoryChartTitle>
-            Income: {formatCurrency(incomeSum)}
+            Income: {formatCurrency(incomeSum, currency)}
           </HistoryChartTitle>
           {incomeSum ?
             <HistoryChartContainer>
@@ -46,7 +46,7 @@ const HistoryTab = ({ data, currency }) => {
           }
 
           <HistoryChartBalance balance={incomeSum - expensesSum}>
-            Balance: {formatCurrency(incomeSum - expensesSum)}
+            Balance: {formatCurrency(incomeSum - expensesSum, currency)}
           </HistoryChartBalance>
         </>
       }

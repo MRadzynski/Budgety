@@ -45,7 +45,7 @@ const HomePage = ({
       <WelcomeText>Hey {displayName}! </WelcomeText>
 
       <ChartContainer>
-        {latestBalance !== 0 ? (
+        {latestBalance !== null ? (
           <BalanceChart data={latestExpensesIncomeArr} currency={currency} />
         ) : (
           <NoDataText>No data to present 😔</NoDataText>

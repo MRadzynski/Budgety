@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { selectHistoryLogs, selectPercentageExpenses, selectPercentageIncome } from '../../redux/finance/finance.selectors';
+import { selectAllTimeExpensesPercent, selectAllTimeIncomePercent, selectHistoryLogs } from '../../redux/finance/finance.selectors';
 
 import HistoryTab from '../history-tab/history-tab.component';
 
 import { HistoryListContainer, HistoryChartList, HistoryChartListItem, HistoryMonthlyChartsContainer } from './history-list.styles';
 
-const HistoryList = ({ history, expensesPercent, incomePercent }) => {
-  const [financeObj] = useState({ date: 'All Time', expensesArr: expensesPercent, incomeArr: incomePercent })
+const HistoryList = ({ allTimeExpensesPercent, allTimeIncomePercent, history, }) => {
+  const [financeObj] = useState({ date: 'All Time', expensesArr: allTimeExpensesPercent, incomeArr: allTimeIncomePercent })
 
   return (
     <HistoryListContainer>
@@ -32,8 +32,8 @@ const HistoryList = ({ history, expensesPercent, incomePercent }) => {
 
 const mapStateToProps = (state) => ({
   history: selectHistoryLogs(state),
-  expensesPercent: selectPercentageExpenses(state),
-  incomePercent: selectPercentageIncome(state),
+  allTimeExpensesPercent: selectAllTimeExpensesPercent(state),
+  allTimeIncomePercent: selectAllTimeIncomePercent(state),
 })
 
 export default connect(mapStateToProps)(HistoryList);
