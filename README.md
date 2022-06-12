@@ -22,4 +22,4 @@ Budgety is the first React app I have ever written by myself and I think a perso
 ## Visit an app
 You can test the web app under this URL: https://budgety-live.herokuapp.com/
 
-In case you wouldn't like to create an account there is one for testing purposes:   login: test@test.com, password: ZAQ1@WSX
+In case you wouldn't like to create an account there is one for testing purposes:   login: test@test.com, password: zaq1@WSX
