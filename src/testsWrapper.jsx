@@ -1,19 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
-import { store } from './redux/store';
-import rootReducer from './redux/root-reducer';
+import configureStore from 'redux-mock-store';
 import React from 'react';
-import { createStore } from 'redux';
 
-const AllTheProviders = ({ children }) => (
-  <Provider store={store}>
-    <BrowserRouter>{children}</BrowserRouter>
-  </Provider>
-);
-
-// const customRender = (ui, options) =>
-//   render(ui, { wrapper: AllTheProviders, ...options });
+const mockStore = configureStore([]);
 
 const initState = {
   finance: {
@@ -29,15 +20,23 @@ const initState = {
   }
 };
 
-const customRender = (
-  ui,
-  {
-    initialState = initState,
-    store = createStore(rootReducer, initialState),
+const customRender = (ui, { initialState, ...renderOptions } = {}) => {
+  const AllTheProviders = ({ children }) => {
+    const store = mockStore({
+      ...initialState
+    });
+
+    return (
+      <Provider store={store}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Provider>
+    );
+  };
+
+  return render(ui, {
+    wrapper: AllTheProviders,
     ...renderOptions
-  } = {}
-) => {
-  return render(ui, { wrapper: AllTheProviders, ...renderOptions });
+  });
 };
 
 export * from '@testing-library/react';
