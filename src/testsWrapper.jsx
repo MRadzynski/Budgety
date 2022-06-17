@@ -23,6 +23,7 @@ const initState = {
 const customRender = (ui, { initialState, ...renderOptions } = {}) => {
   const AllTheProviders = ({ children }) => {
     const store = mockStore({
+      ...initState,
       ...initialState
     });
 
