@@ -16,4 +16,13 @@ describe('custom-button.jsx', () => {
 
     expect(customButton).toHaveStyle(`background-color: ${CUSTOM_COLOR}`);
   });
+
+  it('displays CustomButton with different text color if textColor prop is provided', () => {
+    const CUSTOM_TEXT_COLOR = 'white';
+    render(<CustomButton textColor={CUSTOM_TEXT_COLOR} />);
+
+    const customButton = screen.getByRole('button');
+
+    expect(customButton).toHaveStyle(`color: ${CUSTOM_TEXT_COLOR}`);
+  });
 });
