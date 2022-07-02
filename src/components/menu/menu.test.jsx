@@ -29,7 +29,7 @@ describe('menu.jsx', () => {
     const menuItems = screen.getAllByRole('link');
 
     menuItems.forEach((el, index) => {
-      if (index === 4) return;
+      if (index === 5) return;
       expect(el.getAttribute('href')).toBe(LINKS_HREFS[index]);
     });
   });
