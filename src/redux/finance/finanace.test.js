@@ -1,4 +1,9 @@
-import { formatCurrency, formatMonth, formatNumber } from './finance.utils';
+import {
+  formatCurrency,
+  formatMonth,
+  formatName,
+  formatNumber
+} from './finance.utils';
 
 describe('finance.utils.js', () => {
   it('formatCurrency()', () => {
@@ -28,5 +33,13 @@ describe('finance.utils.js', () => {
 
     expect(formattedDate).toBe('July 2022');
     expect(formattedMissingYearDate).toBe('6');
+  });
+
+  it('formatName()', () => {
+    const unformattedName = 'food';
+
+    const formattedName = formatName(unformattedName);
+
+    expect(formattedName).toBe('Food');
   });
 });
