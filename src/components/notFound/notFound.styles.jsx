@@ -1,24 +1,23 @@
+import { breakpoints } from '../../styles/breakpoints';
 import styled from 'styled-components';
 
-import { breakpoints } from '../../styles/breakpoints';
-
 export const NotFoundContainer = styled.div`
-  width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 3rem;
+  height: calc(var(--vh, 1vh) * 100);
+  justify-content: center;
+  width: 100vw;
 `;
 
 export const NotFoundImageContainer = styled.div`
-  width: 70vw;
   height: calc(var(--vh, 1vh) * 45);
+  width: 70vw;
 
   img {
-    width: 100%;
     height: 100%;
+    width: 100%;
   }
 
   @media ${breakpoints.xsLaptop} {
@@ -43,12 +42,12 @@ export const NotFoundImageContainer = styled.div`
 `;
 
 export const NotFoundText = styled.h1`
+  color: var(--white-shade);
+  font-size: 3.5rem;
+  letter-spacing: 0.2rem;
   margin: -2rem 0 1rem 0;
   padding: 0 1rem;
-  font-size: 3.5rem;
   text-align: center;
-  letter-spacing: 0.2rem;
-  color: var(--white-shade);
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   @media ${breakpoints.phone} {
@@ -57,8 +56,8 @@ export const NotFoundText = styled.h1`
   }
 
   @media ${breakpoints.tablet} {
-    margin: 0rem 0 3rem 0;
     font-size: 6rem;
+    margin: 0rem 0 3rem 0;
   }
 
   @media ${breakpoints.xsLaptop} {
@@ -74,7 +73,7 @@ export const NotFoundText = styled.h1`
   }
 
   @media ${breakpoints.desktop4K} {
-    margin: 0rem 0 7rem 0;
     font-size: 12rem;
+    margin: 0rem 0 7rem 0;
   }
 `;

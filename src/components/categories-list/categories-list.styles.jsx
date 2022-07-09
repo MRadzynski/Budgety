@@ -1,12 +1,68 @@
+import { breakpoints } from '../../styles/breakpoints';
 import styled from 'styled-components';
 
-import { breakpoints } from '../../styles/breakpoints';
+export const ActionButtons = styled.div`
+  align-self: center;
+  display: flex;
+  gap: 0.25rem;
+  position: absolute;
+  right: 10%;
+
+  @media ${breakpoints.tablet} {
+    img {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    img {
+      height: 4.5rem;
+      width: 4.5rem;
+    }
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    img {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  @media ${breakpoints.sLaptop} {
+    img {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+  }
+
+  @media ${breakpoints.sDesktop} {
+    img {
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+
+  @media ${breakpoints.desktop2K} {
+    img {
+      height: 5rem;
+      width: 5rem;
+    }
+  }
+
+  @media ${breakpoints.desktop4K} {
+    img {
+      height: 7rem;
+      width: 7rem;
+    }
+  }
+`;
 
 export const CategoriesListContainer = styled.div`
-  width: 100%;
-  height: calc(var(--vh, 1vh) * 44);
   display: flex;
   flex-direction: column;
+  height: calc(var(--vh, 1vh) * 44);
+  width: 100%;
 
   @media ${breakpoints.lPhone} {
     height: calc(var(--vh, 1vh) * 43.5);
@@ -53,19 +109,59 @@ export const CategoriesListContainer = styled.div`
   }
 `;
 
-export const CategoryList = styled.ul`
-  width: 100%;
-  height: 100%;
+export const Category = styled.li`
+  background-color: #eaeaea;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  padding: 1rem;
+  width: 90%;
+
+  :last-child {
+    margin-bottom: 1rem;
+  }
+`;
+
+export const CategoryInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+
+  @media ${breakpoints.fold} {
+    gap: 0.3rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    gap: 0.7rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    gap: 1.2rem;
+  }
+
+  @media ${breakpoints.desktopFHD} {
+    gap: 1.5rem;
+  }
+
+  @media ${breakpoints.desktop4K} {
+    gap: 2.2rem;
+  }
+`;
+
+export const CategoryList = styled.ul`
   align-items: center;
-  gap: 2rem;
-  position: relative;
-  margin-top: 3rem;
-  padding: 0rem 0;
   border-radius: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
   list-style: none;
+  margin-top: 3rem;
   overflow: hidden scroll;
+  padding: 0rem 0;
+  position: relative;
+  width: 100%;
 
   @media ${breakpoints.fold} {
     gap: 1rem;
@@ -99,8 +195,8 @@ export const CategoryList = styled.ul`
   }
 
   @media ${breakpoints.desktopFHD} {
-    margin-top: 3rem;
     margin-bottom: -3rem;
+    margin-top: 3rem;
   }
 
   @media ${breakpoints.desktopUltrawide} {
@@ -118,34 +214,20 @@ export const CategoryList = styled.ul`
   }
 `;
 
-export const Category = styled.li`
-  width: 90%;
-  /* height: 25%; */
-  display: flex;
-  padding: 1rem;
-  border-radius: 15px;
-  background-color: #eaeaea;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  :last-child {
-    margin-bottom: 1rem;
-  }
-`;
-
 export const CategoryLogo = styled.div`
-  width: 15%;
-  height: 100%;
-  display: flex;
   align-items: center;
+  background-color: ${({ bgColor }) => bgColor};
+  border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 100%;
   justify-content: center;
   margin-right: 3rem;
-  border-radius: 50%;
-  background-color: ${({ bgColor }) => bgColor};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 15%;
 
   img {
-    width: 75%;
     height: 75%;
+    width: 75%;
   }
 
   @media ${breakpoints.xsLaptop} {
@@ -153,13 +235,13 @@ export const CategoryLogo = styled.div`
   }
 
   @media ${breakpoints.sLaptop} {
-    width: 11%;
     margin-right: 4rem;
+    width: 11%;
   }
 
   @media ${breakpoints.desktopUltrawide} {
-    width: 10%;
     margin-left: 1rem;
+    width: 10%;
   }
 
   @media ${breakpoints.desktop2K} {
@@ -167,35 +249,8 @@ export const CategoryLogo = styled.div`
   }
 
   @media ${breakpoints.desktop4K} {
-    width: 11%;
     margin: 1rem 5rem 1rem 1rem;
-  }
-`;
-
-export const CategoryInfoContainer = styled.div`
-  display: flex;
-  justify-content:center;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  @media ${breakpoints.fold} {
-    gap: 0.3rem;
-  }
-
-  @media ${breakpoints.tablet} {
-    gap: 0.7rem;
-  }
-
-  @media ${breakpoints.xsLaptop} {
-    gap: 1.2rem;
-  }
-
-  @media ${breakpoints.desktopFHD} {
-    gap: 1.5rem;
-  }
-
-  @media ${breakpoints.desktop4K} {
-    gap: 2.2rem;
+    width: 11%;
   }
 `;
 
@@ -268,62 +323,5 @@ export const CategoryPrice = styled.h3`
 
   @media ${breakpoints.desktop4K} {
     font-size: 4.2rem;
-  }
-`;
-
-export const ActionButtons = styled.div`
-  display: flex;
-  align-self: center;
-  gap: 0.25rem;
-  position: absolute;
-  right: 10%;
-
-  @media ${breakpoints.tablet} {
-    img {
-      height: 3.5rem;
-      width: 3.5rem;
-    }
-  }
-
-  @media ${breakpoints.lTabletPortrait} {
-    img {
-      height: 4.5rem;
-      width: 4.5rem;
-    }
-  }
-
-  @media ${breakpoints.xsLaptop} {
-    img {
-      height: 3rem;
-      width: 3rem;
-    }
-  }
-
-  @media ${breakpoints.sLaptop} {
-    img {
-      height: 3.5rem;
-      width: 3.5rem;
-    }
-  }
-
-  @media ${breakpoints.sDesktop} {
-    img {
-      height: 4rem;
-      width: 4rem;
-    }
-  }
-
-  @media ${breakpoints.desktop2K} {
-    img {
-      height: 5rem;
-      width: 5rem;
-    }
-  }
-
-  @media ${breakpoints.desktop4K} {
-    img {
-      height: 7rem;
-      width: 7rem;
-    }
   }
 `;

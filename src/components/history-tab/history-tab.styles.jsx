@@ -1,86 +1,5 @@
-import styled from 'styled-components';
-
 import { breakpoints } from '../../styles/breakpoints';
-
-export const HistoryTabContainer = styled.div`
-  width: 100%;
-  height: calc(var(--vh, 1vh) * 6);
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 2rem;
-  padding-left: 1rem;
-  border-radius: 10px;
-  background-color: var(--white-shade);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-
-  &:hover {
-    background-color: var(--light-gray);
-  }
-
-  @media ${breakpoints.fold} {
-    border-radius: 15px;
-    gap: 1rem;
-    padding-left: 1.5rem;
-  }
-
-  @media ${breakpoints.xsPhone} {
-    border-radius: 10px;
-  }
-
-  @media ${breakpoints.lPhone} {
-    padding-left: 2rem;
-    border-radius: 15px;
-  }
-
-  @media ${breakpoints.tablet} {
-    height: calc(var(--vh, 1vh) * 6);
-    padding-left: 2rem;
-    border-radius: 20px;
-  }
-
-  @media ${breakpoints.lTabletPortrait} {
-    height: calc(var(--vh, 1vh) * 6);
-    gap: 2rem;
-    padding-left: 3rem;
-  }
-
-  @media ${breakpoints.xsLaptop} {
-    height: calc(var(--vh, 1vh) * 8);
-    gap: 1.5rem;
-    padding-left: 2rem;
-  }
-
-  @media ${breakpoints.sLaptop} {
-    border-radius: 25px;
-  }
-
-  @media ${breakpoints.laptop} {
-    height: calc(var(--vh, 1vh) * 7);
-    padding-left: 3rem;
-  }
-
-  @media ${breakpoints.desktopFHD} {
-    gap: 2.5rem;
-  }
-
-  @media ${breakpoints.desktopUltrawide} {
-    padding-left: 3.5rem;
-    border-radius: 30px;
-  }
-
-  @media ${breakpoints.desktop2K} {
-    height: calc(var(--vh, 1vh) * 6);
-    gap: 3rem;
-  }
-
-  @media ${breakpoints.desktop4K} {
-    height: calc(var(--vh,1vh) * 7);
-    padding-left: 5rem;
-    border-radius: 50px;
-  }
-`;
+import styled from 'styled-components';
 
 export const DateDescription = styled.h3`
   color: var(--primary-color);
@@ -118,8 +37,8 @@ export const DateDescription = styled.h3`
 export const ExpandArrow = styled.span`
   color: var(--secondary-color);
   font-size: 1.5rem;
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(90deg)' : 'rotate(0)')};
   transition: transform 0.2s linear;
-  transform: ${({ isOpen }) => isOpen ? 'rotate(90deg)' : 'rotate(0)'};
 
   @media ${breakpoints.tablet} {
     font-size: 2rem;
@@ -150,30 +69,78 @@ export const ExpandArrow = styled.span`
   }
 `;
 
+export const HistoryChartBalance = styled.h2`
+  color: ${({ balance }) =>
+    balance > 0
+      ? 'var(--successMessage)'
+      : balance < 0
+      ? 'var(--errorMessage)'
+      : 'var(--primary-color)'};
+  font-size: 1.8rem;
+  padding-bottom: 1rem;
+  word-spacing: 0.5rem;
+
+  @media ${breakpoints.tablet} {
+    font-size: 2.4rem;
+    padding: 1rem 0;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    font-size: 3rem;
+    padding: 1.5rem 0;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    font-size: 2.8rem;
+  }
+
+  @media ${breakpoints.sLaptop} {
+    font-size: 3rem;
+    padding: 2.5rem 0;
+  }
+
+  @media ${breakpoints.lLaptop} {
+    font-size: 3.4rem;
+  }
+
+  @media ${breakpoints.desktopFHD} {
+    font-size: 3.6rem;
+    padding: 3rem 0;
+  }
+
+  @media ${breakpoints.desktopUltrawide} {
+    font-size: 3.8rem;
+  }
+
+  @media ${breakpoints.desktop4K} {
+    font-size: 6rem;
+  }
+`;
+
 export const HistoryChartContainer = styled.div`
-  width: 100%;
+  background-color: var(--white-shade);
+  border-radius: 10px;
   height: 13rem;
   padding: 0.25rem 0 0.25rem;
-  border-radius: 10px;
-  background-color: var(--white-shade);
+  width: 100%;
 
   @media ${breakpoints.tablet} {
     height: 15rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    width: 90%;
     height: 17rem;
+    width: 90%;
   }
 
   @media ${breakpoints.xsLaptop} {
-    width: 90%;
     height: 15rem;
+    width: 90%;
   }
 
   @media ${breakpoints.sLaptop} {
-    width: 85%;
     height: 17rem;
+    width: 85%;
   }
 
   @media ${breakpoints.desktopFHD} {
@@ -186,19 +153,19 @@ export const HistoryChartContainer = styled.div`
 `;
 
 export const HistoryChartTitle = styled.h3`
-  padding-top:0.5rem;
   color: var(--primary-color);
   font-size: 1.5rem;
+  padding-top: 0.5rem;
   word-spacing: 0.3rem;
 
   @media ${breakpoints.tablet} {
-    padding-top: 1rem;
     font-size: 2rem;
+    padding-top: 1rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    padding: 1.2rem 0;
     font-size: 2.6rem;
+    padding: 1.2rem 0;
   }
 
   @media ${breakpoints.xsLaptop} {
@@ -222,61 +189,98 @@ export const HistoryChartTitle = styled.h3`
   }
 `;
 
-export const HistoryChartBalance = styled.h2`
-  padding-bottom: 1rem;
-  color: ${({ balance }) => balance > 0 ? 'var(--successMessage)' : balance < 0 ? 'var(--errorMessage)' : 'var(--primary-color)'};
-  font-size: 1.8rem;
-  word-spacing: 0.5rem;
+export const HistoryTabContainer = styled.div`
+  align-items: center;
+  background-color: var(--white-shade);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 2rem;
+  height: calc(var(--vh, 1vh) * 6);
+  justify-content: start;
+  padding-left: 1rem;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background-color: var(--light-gray);
+  }
+
+  @media ${breakpoints.fold} {
+    border-radius: 15px;
+    gap: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    border-radius: 10px;
+  }
+
+  @media ${breakpoints.lPhone} {
+    border-radius: 15px;
+    padding-left: 2rem;
+  }
 
   @media ${breakpoints.tablet} {
-    padding: 1rem 0;
-    font-size: 2.4rem;
+    border-radius: 20px;
+    height: calc(var(--vh, 1vh) * 6);
+    padding-left: 2rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    padding: 1.5rem 0;
-    font-size: 3rem;
+    gap: 2rem;
+    height: calc(var(--vh, 1vh) * 6);
+    padding-left: 3rem;
   }
 
   @media ${breakpoints.xsLaptop} {
-    font-size: 2.8rem;
+    gap: 1.5rem;
+    height: calc(var(--vh, 1vh) * 8);
+    padding-left: 2rem;
   }
 
   @media ${breakpoints.sLaptop} {
-    padding: 2.5rem 0;
-    font-size: 3rem;
+    border-radius: 25px;
   }
 
-  @media ${breakpoints.lLaptop} {
-    font-size: 3.4rem;
+  @media ${breakpoints.laptop} {
+    height: calc(var(--vh, 1vh) * 7);
+    padding-left: 3rem;
   }
 
   @media ${breakpoints.desktopFHD} {
-    padding: 3rem 0;
-    font-size: 3.6rem;
+    gap: 2.5rem;
   }
 
   @media ${breakpoints.desktopUltrawide} {
-    font-size: 3.8rem;
+    border-radius: 30px;
+    padding-left: 3.5rem;
+  }
+
+  @media ${breakpoints.desktop2K} {
+    gap: 3rem;
+    height: calc(var(--vh, 1vh) * 6);
   }
 
   @media ${breakpoints.desktop4K} {
-    font-size: 6rem;
+    border-radius: 50px;
+    height: calc(var(--vh, 1vh) * 7);
+    padding-left: 5rem;
   }
 `;
 
 export const NoDataInfo = styled.h4`
-  margin: 1rem 0 1.5rem 0;
   color: #9e9e9e;
   font-size: 1.5rem;
+  margin: 1rem 0 1.5rem 0;
 
   @media ${breakpoints.tablet} {
     font-size: 2rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    margin-top: 2rem;
     font-size: 2.6rem;
+    margin-top: 2rem;
   }
 
   @media ${breakpoints.xsLaptop} {
@@ -301,8 +305,8 @@ export const NoDataInfo = styled.h4`
 `;
 
 export const ScrollableChartContainer = styled.div`
-  width: 100%;
   height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  width: 100%;
 `;
