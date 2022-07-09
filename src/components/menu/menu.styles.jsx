@@ -1,105 +1,33 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
 import { breakpoints } from '../../styles/breakpoints';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const MenuContainer = styled.nav`
-  width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  height: calc(var(--vh, 1vh) * 100);
   position: absolute;
-  z-index: 9;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100vw)')};
   transition: all 0.4s linear;
-`;
-
-export const MenuList = styled.ul`
-  width: 40vw;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4rem;
-  position: relative;
-  z-index: 2;
-  background-color: rgba(240, 240, 240, 0.95);
-  color: var(--black-shade);
-  font-weight: bold;
-  list-style: none;
-  padding-bottom: 3rem;
-  box-shadow: 0 8px 8px rgba(0,0,0,0.25);
-
-  @media ${breakpoints.fold} {
-    gap: 1.5rem;
-  }
-
-  @media ${breakpoints.xsPhone} {
-    gap: 2rem;
-  }
-
-  @media ${breakpoints.sPhone} {
-    gap: 3rem;
-  }
-
-  @media ${breakpoints.phone} {
-    gap: 1rem;
-  }
-
-  @media ${breakpoints.lPhone} {
-    gap: 2rem;
-  }
-
-  @media ${breakpoints.tablet} {
-    gap: 2.5rem;
-  }
-
-  @media ${breakpoints.lTabletPortrait} {
-    gap: 4rem;
-  }
-
-  @media ${breakpoints.xsLaptop} {
-    width: 30vw;
-    gap: 1rem;
-    padding-bottom: 7rem;
-  }
-
-  @media ${breakpoints.laptop} {
-    gap: 1.5rem;
-  }
-
-  @media ${breakpoints.lLaptop} {
-    width: 25vw;
-    gap: 1rem;
-  }
-
-  @media ${breakpoints.desktopFHD} {
-    width: 20vw;
-    gap: 2rem;
-  }
-
-  @media ${breakpoints.desktopUltrawide} {
-    width: 15vw;
-    gap: 3rem;
-  }
+  width: 100vw;
+  z-index: 9;
 `;
 
 export const MenuItem = styled.li`
-  width: 100%;
   font-size: 2.5rem;
   text-align: center;
-  
-  &:nth-child(2){
+  width: 100%;
+
+  &:nth-child(2) {
     word-spacing: 250rem;
   }
 
   &:last-child {
-    position: absolute;
     bottom: 5%;
-    padding: 1.5rem 0;
     cursor: pointer;
+    padding: 1.5rem 0;
+    position: absolute;
   }
 
   &:hover {
@@ -183,13 +111,13 @@ export const MenuItem = styled.li`
 `;
 
 export const MenuLink = styled(Link)`
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  padding: 1.5rem 0;
   color: var(--black-shade);
-  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  height: 100%;
+  padding: 1.5rem 0;
   text-decoration: none;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
 
   @media ${breakpoints.tablet} {
     padding: 2rem 0;
@@ -212,14 +140,85 @@ export const MenuLink = styled(Link)`
   }
 `;
 
+export const MenuList = styled.ul`
+  align-items: center;
+  background-color: rgba(240, 240, 240, 0.95);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+  color: var(--black-shade);
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  gap: 4rem;
+  height: 100%;
+  justify-content: center;
+  list-style: none;
+  padding-bottom: 3rem;
+  position: relative;
+  width: 40vw;
+  z-index: 2;
+
+  @media ${breakpoints.fold} {
+    gap: 1.5rem;
+  }
+
+  @media ${breakpoints.xsPhone} {
+    gap: 2rem;
+  }
+
+  @media ${breakpoints.sPhone} {
+    gap: 3rem;
+  }
+
+  @media ${breakpoints.phone} {
+    gap: 1rem;
+  }
+
+  @media ${breakpoints.lPhone} {
+    gap: 2rem;
+  }
+
+  @media ${breakpoints.tablet} {
+    gap: 2.5rem;
+  }
+
+  @media ${breakpoints.lTabletPortrait} {
+    gap: 4rem;
+  }
+
+  @media ${breakpoints.xsLaptop} {
+    gap: 1rem;
+    padding-bottom: 7rem;
+    width: 30vw;
+  }
+
+  @media ${breakpoints.laptop} {
+    gap: 1.5rem;
+  }
+
+  @media ${breakpoints.lLaptop} {
+    gap: 1rem;
+    width: 25vw;
+  }
+
+  @media ${breakpoints.desktopFHD} {
+    gap: 2rem;
+    width: 20vw;
+  }
+
+  @media ${breakpoints.desktopUltrawide} {
+    gap: 3rem;
+    width: 15vw;
+  }
+`;
+
 export const MenuOverlay = styled.div`
-  width: 60vw;
-  height: calc(var(--vh, 1vh) * 100);
+  background-color: transparent;
   display: ${({ open }) => (open ? 'block' : 'none')};
+  height: calc(var(--vh, 1vh) * 100);
   position: fixed;
   right: 0;
+  width: 60vw;
   z-index: 1;
-  background-color: transparent;
 
   @media ${breakpoints.xsLaptop} {
     width: 70vw;

@@ -1,19 +1,18 @@
+import { breakpoints } from '../../styles/breakpoints';
 import styled from 'styled-components';
 
-import { breakpoints } from '../../styles/breakpoints';
-
 export const CustomButtonContainer = styled.button`
-  width: 20rem;
-  height: 5rem;
-  position: relative;
+  background-color: ${({ bgColor }) => bgColor};
   border: 0;
   border-radius: 25px;
-  outline: 0;
-  background-color: ${({ bgColor }) => bgColor};
-  color: ${({ textColor }) => textColor};
-  font-size: 2rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: ${({ textColor }) => textColor};
   cursor: pointer;
+  font-size: 2rem;
+  height: 5rem;
+  outline: 0;
+  position: relative;
+  width: 20rem;
   -webkit-tap-highlight-color: transparent;
 
   :hover {
@@ -22,45 +21,45 @@ export const CustomButtonContainer = styled.button`
   }
 
   @media ${breakpoints.fold} {
-    width: 16rem;
-    height: 3.5rem;
     font-size: 1.6rem;
+    height: 3.5rem;
+    width: 16rem;
   }
 
   @media ${breakpoints.xsPhone} {
-    width: 19rem;
-    height: 4rem;
     font-size: 1.8rem;
+    height: 4rem;
+    width: 19rem;
   }
 
   @media ${breakpoints.tablet} {
-    width: 30rem;
-    height: 6rem;
-    font-size: 2.8rem;
     border-radius: 35px;
+    font-size: 2.8rem;
+    height: 6rem;
+    width: 30rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    width: 35rem;
-    height: 7rem;
     font-size: 3.2rem;
+    height: 7rem;
+    width: 35rem;
   }
 
   @media ${breakpoints.xsLaptop} {
-    width: 27rem;
-    height: 5rem;
     font-size: 2.4rem;
+    height: 5rem;
+    width: 27rem;
   }
 
   @media ${breakpoints.laptop} {
-    width: 30rem;
     height: 5.5rem;
+    width: 30rem;
   }
 
   @media ${breakpoints.desktopFHD} {
-    width: 35rem;
-    height: 6rem;
     font-size: 3rem;
+    height: 6rem;
+    width: 35rem;
   }
 
   @media ${breakpoints.desktopUltrawide} {
@@ -68,16 +67,16 @@ export const CustomButtonContainer = styled.button`
   }
 
   @media ${breakpoints.desktop2K} {
-    height: 9rem;
-    width: 40rem;
     border-radius: 50px;
     font-size: 4rem;
+    height: 9rem;
+    width: 40rem;
   }
 
   @media ${breakpoints.desktop4K} {
-    width: 60rem;
-    height: 10rem;
     border-radius: 100px;
     font-size: 5rem;
+    height: 10rem;
+    width: 60rem;
   }
 `;

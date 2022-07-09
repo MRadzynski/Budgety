@@ -1,22 +1,22 @@
 import styled from 'styled-components';
 
 export const SpinnerContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
   position: absolute;
+  width: 100%;
 `;
 
 export const SpinnerElement = styled.div`
-  width: 5rem;
-  height: 5rem;
-  display: inline-block;
+  animation: spin 1s ease-in-out infinite;
   border: 3px solid rgba(195, 195, 195, 0.6);
   border-radius: 50%;
   border-top-color: #636767;
-  animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+  height: 5rem;
+  width: 5rem;
 
   @keyframes spin {
     to {

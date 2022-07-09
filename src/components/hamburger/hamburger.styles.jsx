@@ -1,31 +1,30 @@
+import { breakpoints } from '../../styles/breakpoints';
 import styled from 'styled-components';
 
-import { breakpoints } from '../../styles/breakpoints';
-
 export const HamburgerContainer = styled.div`
-  width: 3rem;
-  height: 3rem;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
+  height: 3rem;
   justify-content: space-around;
-  position: fixed;
-  position: ${({ location }) => location === 'history' ? 'absolute' : 'fixed'};
-  top: 1.5rem;
   left: 2rem;
+  position: ${({ location }) =>
+    location === 'history' ? 'absolute' : 'fixed'};
+  top: 1.5rem;
+  width: 3rem;
   z-index: 10;
-  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 
   span {
-    width: 3rem;
-    height: 0.5rem;
-    border-radius: 10px;
     background-color: ${({ open }) =>
-    open ? 'var(--black-shade)' : 'var(--white-shade)'};
-    transition: all 0.3s linear;
+      open ? 'var(--black-shade)' : 'var(--white-shade)'};
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 0.5rem;
     position: relative;
     transform-origin: 1px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s linear;
+    width: 3rem;
 
     :first-child {
       transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
@@ -42,71 +41,71 @@ export const HamburgerContainer = styled.div`
   }
 
   @media ${breakpoints.tablet} {
-    width: 4rem;
     height: 4rem;
+    width: 4rem;
 
     span {
-      width: 4rem;
       height: 0.7rem;
+      width: 4rem;
     }
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    top: 2rem;
     left: 2.5rem;
+    top: 2rem;
   }
 
   @media ${breakpoints.xsLaptop} {
-    width: 4rem;
     height: 4rem;
+    width: 4rem;
 
     span {
-      width: 4rem;
       height: 0.7rem;
+      width: 4rem;
     }
   }
 
   @media ${breakpoints.laptop} {
-    width: 5rem;
     height: 5rem;
-    top: 2.5rem;
     left: 3rem;
+    top: 2.5rem;
+    width: 5rem;
 
     span {
-      width: 5rem;
       height: 0.8rem;
+      width: 5rem;
     }
   }
 
   @media ${breakpoints.desktopFHD} {
-    width: 6rem;
     height: 6rem;
+    width: 6rem;
 
     span {
-      width: 6rem;
       height: 1rem;
+      width: 6rem;
     }
   }
 
   @media ${breakpoints.desktop2K} {
-    width: 7rem;
     height: 7rem;
+    width: 7rem;
 
     span {
-      width: 7rem;
       height: 1.3rem;
+      width: 7rem;
     }
   }
 
   @media ${breakpoints.desktop4K} {
-    width: 12rem;
     height: 12rem;
-    top: 5rem;
     left: 6rem;
+    top: 5rem;
+    width: 12rem;
 
     span {
-      width: 12rem;
       height: 2rem;
+      width: 12rem;
     }
   }
 `;

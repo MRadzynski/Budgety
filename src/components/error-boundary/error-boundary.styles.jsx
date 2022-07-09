@@ -1,33 +1,32 @@
+import { breakpoints } from '../../styles/breakpoints';
 import styled from 'styled-components';
 
-import { breakpoints } from '../../styles/breakpoints';
-
 export const ErrorContainer = styled.div`
-  width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 3rem;
+  height: calc(var(--vh, 1vh) * 100);
+  justify-content: center;
+  width: 100vw;
 `;
 
 export const ErrorImageContainer = styled.div`
-  width: calc(var(--vh, vh) * 50);
   height: calc(var(--vh, vh) * 50);
+  width: calc(var(--vh, vh) * 50);
 
   img {
-    width: 100%;
     height: 100%;
+    width: 100%;
   }
 `;
 
 export const ErrorText = styled.h1`
-  padding: 0 1rem;
-  font-size: 3rem;
-  text-align: center;
-  letter-spacing: 0.1rem;
   color: var(--white-shade);
+  font-size: 3rem;
+  letter-spacing: 0.1rem;
+  padding: 0 1rem;
+  text-align: center;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   @media ${breakpoints.xsPhone} {

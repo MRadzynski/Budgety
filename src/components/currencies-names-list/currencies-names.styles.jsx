@@ -1,19 +1,18 @@
+import { breakpoints } from '../../styles/breakpoints';
 import styled from 'styled-components';
 
-import { breakpoints } from '../../styles/breakpoints';
-
 export const CurrenciesList = styled.ul`
-  width: 43%;
-  height: 100%;
-  display: ${({ open }) => (open ? 'block' : 'none')};
-  position: absolute;
-  right: 0;
-  bottom: -100%;
-  border-radius: 0.5rem;
   background-color: #eaeaea;
-  text-align: center;
+  border-radius: 0.5rem;
+  bottom: -100%;
+  display: ${({ open }) => (open ? 'block' : 'none')};
+  height: 100%;
   list-style: none;
   overflow: auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  width: 43%;
 
   @media ${breakpoints.xsPhone} {
     height: 110%;
@@ -29,15 +28,15 @@ export const CurrenciesList = styled.ul`
 `;
 
 export const CurrenciesListItem = styled.li`
-  padding: 0.8rem 0;
-  border-bottom: 1px solid #cccccc;
   background-color: #eaeaea;
+  border-bottom: 1px solid #cccccc;
+  cursor: pointer;
   font-size: 2rem;
   font-weight: bold;
-  cursor: pointer;
+  padding: 0.8rem 0;
 
-  &:hover{
-    background-color:#dddddd;
+  &:hover {
+    background-color: #dddddd;
   }
 
   @media ${breakpoints.fold} {

@@ -1,6 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-
 import { breakpoints } from '../../styles/breakpoints';
+import styled, { keyframes } from 'styled-components';
 
 const slide = keyframes`
   0% { opacity: 0;}
@@ -8,32 +7,32 @@ const slide = keyframes`
 `;
 
 export const CustomPopupContainer = styled.div`
-  width: 80%;
-  display: ${({ open }) => (open ? 'flex' : 'none')};
   align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: 50%;
-  padding: 3rem 4rem;
-  border-radius: 15px;
-  background-color: var(--white-shade);
-  color: var(--black-shade);
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   animation: ${slide} 0.2s ease-in;
+  background-color: var(--white-shade);
+  border-radius: 15px;
+  bottom: 50%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: var(--black-shade);
+  display: ${({ open }) => (open ? 'flex' : 'none')};
+  justify-content: center;
+  padding: 3rem 4rem;
+  position: absolute;
+  width: 80%;
 
   @media ${breakpoints.tablet} {
-    width: 60%;
     height: 15%;
+    width: 60%;
   }
 
   @media ${breakpoints.xsLaptop} {
-    width: 50%;
     height: 15%;
+    width: 50%;
   }
 
   @media ${breakpoints.laptop} {
-    width: 45%;
     height: 20%;
+    width: 45%;
   }
 
   @media ${breakpoints.desktopFHD} {
@@ -41,8 +40,8 @@ export const CustomPopupContainer = styled.div`
   }
 
   @media ${breakpoints.desktopUltrawide} {
-    width: 35%;
     border-radius: 25px;
+    width: 35%;
   }
 
   @media ${breakpoints.desktop4K} {
@@ -100,12 +99,12 @@ export const CustomPopupText = styled.h1`
 `;
 
 export const ExitPopup = styled.div`
-  position: absolute;
-  top: 0.5rem;
-  left: 1rem;
+  cursor: pointer;
   font-size: 2rem;
   font-weight: bold;
-  cursor: pointer;
+  left: 1rem;
+  position: absolute;
+  top: 0.5rem;
 
   @media ${breakpoints.xsPhone} {
     font-size: 2rem;
@@ -116,18 +115,18 @@ export const ExitPopup = styled.div`
   }
 
   @media ${breakpoints.tablet} {
-    top: 0;
     font-size: 3rem;
+    top: 0;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    top: 0;
     font-size: 4rem;
+    top: 0;
   }
 
   @media ${breakpoints.xsLaptop} {
-    top: 0;
     font-size: 3.2rem;
+    top: 0;
   }
 
   @media ${breakpoints.laptop} {
@@ -135,9 +134,9 @@ export const ExitPopup = styled.div`
   }
 
   @media ${breakpoints.desktopFHD} {
-    top: 0.5rem;
-    left: 1.5rem;
     font-size: 4.4rem;
+    left: 1.5rem;
+    top: 0.5rem;
   }
 
   @media ${breakpoints.desktopUltrawide} {
@@ -145,13 +144,13 @@ export const ExitPopup = styled.div`
   }
 
   @media ${breakpoints.desktop2K} {
-    left: 2rem;
     font-size: 5.4rem;
+    left: 2rem;
   }
 
   @media ${breakpoints.desktop4K} {
-    top: 1.5rem;
-    left: 4rem;
     font-size: 8rem;
+    left: 4rem;
+    top: 1.5rem;
   }
 `;

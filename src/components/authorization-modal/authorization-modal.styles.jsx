@@ -1,77 +1,72 @@
+import { breakpoints } from '../../styles/breakpoints';
 import styled from 'styled-components';
 
-import { breakpoints } from '../../styles/breakpoints';
-
-export const ModalForm = styled.form`
-  width:100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-`;
-
-export const ModalLabel = styled.label`
-  width: 80%;
-  margin-top: -1.5rem;
-  font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+export const ErrorMessage = styled.span`
+  color: var(--errorMessage);
+  font-size: 1.6rem;
+  margin: 1rem 0 -1rem 0;
+  text-align: center;
 
   @media ${breakpoints.fold} {
-    margin-bottom: -1rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin: 0.5rem 0 -1.5rem 0;
   }
 
   @media ${breakpoints.lPhone} {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   @media ${breakpoints.tablet} {
-    font-size: 2.6rem;
+    font-size: 2.2rem;
+    margin: 0 0 -2rem 0;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    margin: -2.5rem 0;
-    font-size: 3.6rem;
+    font-size: 3.2rem;
+    margin: -1.5rem 0 -3rem 0;
   }
 
   @media ${breakpoints.xsLaptop} {
-    font-size: 2.6rem;
+    font-size: 2rem;
   }
 
   @media ${breakpoints.laptop} {
-    font-size: 3.2rem;
-  }
-
-  @media ${breakpoints.sDesktop} {
-    font-size: 3.6rem;
+    font-size: 2.4rem;
   }
 
   @media ${breakpoints.desktop2K} {
-    font-size: 4.4rem;
+    font-size: 3.6rem;
   }
 
   @media ${breakpoints.desktop4K} {
-    margin: -5rem 0 -4rem 0;
-    font-size: 6rem;
+    font-size: 5.4rem;
+    margin: -3rem 0 -4.5rem 0;
   }
 `;
 
+export const ModalForm = styled.form`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+  width: 100%;
+`;
+
 export const ModalInput = styled.input`
-  width: 75%;
-  height: 15%;
-  margin-bottom: -2rem;
-  padding: 0 1rem;
+  background-color: var(--light-gray);
   border: 0;
   border-radius: 1.5rem;
-  outline: 0;
-  background-color: var(--light-gray);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 2.2rem;
   font-weight: bold;
-  text-align: center;
+  height: 15%;
   letter-spacing: 0.6rem;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: -2rem;
+  outline: 0;
+  padding: 0 1rem;
+  text-align: center;
+  width: 75%;
 
   @media ${breakpoints.fold} {
     font-size: 1.6rem;
@@ -96,14 +91,14 @@ export const ModalInput = styled.input`
   }
 
   @media ${breakpoints.laptop} {
-    width: 70%;
     font-size: 3.2rem;
     letter-spacing: 0.8rem;
+    width: 70%;
   }
 
   @media ${breakpoints.lLaptop} {
-    width: 70%;
     font-size: 3.4rem;
+    width: 70%;
   }
 
   @media ${breakpoints.sDesktop} {
@@ -125,45 +120,49 @@ export const ModalInput = styled.input`
   }
 `;
 
-export const ErrorMessage = styled.span`
-  margin: 1rem 0 -1rem 0;
-  color: var(--errorMessage);
-  font-size: 1.6rem;
-  text-align: center;
+export const ModalLabel = styled.label`
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: -1.5rem;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+  width: 80%;
 
   @media ${breakpoints.fold} {
-    margin: 0.5rem 0 -1.5rem 0;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    margin-bottom: -1rem;
   }
 
   @media ${breakpoints.lPhone} {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   @media ${breakpoints.tablet} {
-    margin: 0 0 -2rem 0;
-    font-size: 2.2rem;
+    font-size: 2.6rem;
   }
 
   @media ${breakpoints.lTabletPortrait} {
-    margin: -1.5rem 0 -3rem 0;
-    font-size: 3.2rem;
+    font-size: 3.6rem;
+    margin: -2.5rem 0;
   }
 
   @media ${breakpoints.xsLaptop} {
-    font-size: 2rem;
+    font-size: 2.6rem;
   }
 
   @media ${breakpoints.laptop} {
-    font-size: 2.4rem;
+    font-size: 3.2rem;
   }
 
-  @media ${breakpoints.desktop2K} {
+  @media ${breakpoints.sDesktop} {
     font-size: 3.6rem;
   }
 
+  @media ${breakpoints.desktop2K} {
+    font-size: 4.4rem;
+  }
+
   @media ${breakpoints.desktop4K} {
-    margin: -3rem 0 -4.5rem 0;
-    font-size: 5.4rem;
+    font-size: 6rem;
+    margin: -5rem 0 -4rem 0;
   }
 `;

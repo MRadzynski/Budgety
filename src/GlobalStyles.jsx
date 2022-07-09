@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const vh = window.innerHeight * 0.01;
 
-const orientation = window.innerHeight > window.innerWidth ? 'portrait' : 'landscape';
+const orientation =
+  window.innerHeight > window.innerWidth ? 'portrait' : 'landscape';
 
 window.addEventListener('orientationchange', () => {
   window.location.reload();
@@ -10,19 +11,20 @@ window.addEventListener('orientationchange', () => {
 
 const GlobalStyle = createGlobalStyle`
 :root {
+  --black-shade: #353535;
+  --errorMessage: #ed4337;
+  --light-gray: #e0e0e0;
   --primary-color: #4361EE;
   --secondary-color: #33cfff;
-  --white-shade: #F5F5F5;
-  --black-shade: #353535;
-  --light-gray: #e0e0e0;
   --successMessage: #4bb543;
-  --errorMessage: #ed4337;
   --vh: ${vh}px;
+  --white-shade: #F5F5F5;
 }
+
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
@@ -31,9 +33,9 @@ html {
 }
 
 body{
-  height:100%;
   background: url(/assets/background-${orientation}.png), var(--primary-color);
   background-size: cover;
+  height:100%;
 }
 `;
 
