@@ -1,5 +1,5 @@
-import { render, screen, within } from '../../testsWrapper';
-import HomePage from './homepage.component';
+import { render, screen, within } from '../../utils/testsWrapper';
+import HomePage from './HomePage';
 
 jest.mock('../../hooks/useHistoryChart', () => {
   return jest.fn(() => null);

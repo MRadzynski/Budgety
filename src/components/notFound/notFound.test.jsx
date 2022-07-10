@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, within } from '../../testsWrapper';
-import NotFound from './notFound.component';
+import { fireEvent, render, screen, within } from '../../utils/testsWrapper';
+import NotFound from './NotFound';
 
 describe('notFound.jsx', () => {
   it(`should display a dog image`, () => {
