@@ -1,4 +1,4 @@
-import { breakpoints } from '../../styles/breakpoints';
+import breakpoints from '../../styles/breakpoints.json';
 import styled from 'styled-components';
 
 export const ChartText = styled.h2`

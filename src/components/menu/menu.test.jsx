@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, waitFor } from '../../testsWrapper';
-import Menu from './menu.component';
+import { fireEvent, render, screen, waitFor } from '../../utils/testsWrapper';
+import Menu from './Menu';
 
 const LINKS_HREFS = ['/', '/expenses', '/exchange', '/history', '/settings'];
 

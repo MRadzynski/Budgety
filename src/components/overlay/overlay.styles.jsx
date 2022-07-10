@@ -1,4 +1,4 @@
-import { breakpoints } from '../../styles/breakpoints';
+import breakpoints from '../../styles/breakpoints.json';
 import styled, { keyframes } from 'styled-components';
 
 const slide = keyframes`

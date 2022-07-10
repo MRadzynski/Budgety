@@ -1,5 +1,5 @@
-import { breakpoints } from '../../styles/breakpoints';
 import { Link } from 'react-router-dom';
+import breakpoints from '../../styles/breakpoints.json';
 import styled from 'styled-components';
 
 export const MenuContainer = styled.nav`
