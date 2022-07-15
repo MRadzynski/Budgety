@@ -1,40 +1,38 @@
+import CustomButton from '../CustomButton/CustomButton';
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
 import {
   auth,
-  signInWithGoogle,
   createUserDocument,
-  resetUserPassword
+  resetUserPassword,
+  signInWithGoogle
 } from '../../firebase/firebase.utils';
-
-import CustomButton from '../CustomButton/CustomButton';
-
 import {
-  SignInUpContainer,
-  Form,
-  FormTitle,
-  FormSubtext,
-  LogoContainer,
-  FormInput,
-  SignInUpLink,
-  ForgotPasswordLink,
   ErrorMessageContainer,
+  ForgotPasswordLink,
+  Form,
+  FormInput,
+  FormSubtext,
+  FormTitle,
+  LogoContainer,
+  SignInUpContainer,
+  SignInUpLink,
   SuccessMessageContainer
 } from './SignInUp.styles';
+import { useLocation } from 'react-router-dom';
 
 const regex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 const SignInUp = ({ formType }) => {
-  const [userCredentials, setUserCredentails] = useState({
-    displayName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
   const [errorMessage, setErrorMessage] = useState('');
   const [isMessage, setIsMessage] = useState('');
+  const [userCredentials, setUserCredentails] = useState({
+    confirmPassword: '',
+    displayName: '',
+    email: '',
+    password: ''
+  });
+
   const location = useLocation();
 
   const handleChange = event => {
@@ -91,70 +89,69 @@ const SignInUp = ({ formType }) => {
     <SignInUpContainer>
       <FormTitle>Budgety</FormTitle>
       <LogoContainer>
-        <img src="/assets/logo.png" alt="Budgety logo" />
+        <img alt="Budgety logo" src="/assets/logo.png" />
       </LogoContainer>
       <Form onSubmit={handleSubmit}>
         {!location.pathname.includes('/reset-password') ? (
           <>
-            {formType === 'sign-up' ? (
+            {formType === 'sign-up' && (
               <FormInput
-                type="text"
                 name="displayName"
-                placeholder="Display name (optional)"
                 onChange={handleChange}
+                placeholder="Display name (optional)"
+                type="text"
               />
-            ) : null}
+            )}
             <FormInput
-              type="email"
               name="email"
-              placeholder="Email"
               onChange={handleChange}
+              placeholder="Email"
               required
+              type="email"
             />
             <FormInput
-              type="password"
               name="password"
-              placeholder="Password"
               onChange={handleChange}
+              placeholder="Password"
               required
+              type="password"
             />
-            {formType === 'sign-in' ? (
+            {formType === 'sign-in' && (
               <ForgotPasswordLink to="/reset-password">
                 Forgot password?
               </ForgotPasswordLink>
-            ) : null}
-            {formType === 'sign-up' ? (
+            )}
+            {formType === 'sign-up' && (
               <FormInput
-                type="password"
                 name="confirmPassword"
-                placeholder="Confirm password"
                 onChange={handleChange}
+                placeholder="Confirm password"
                 required
+                type="password"
               />
-            ) : null}
+            )}
             <ErrorMessageContainer display={errorMessage}>
               {errorMessage}
             </ErrorMessageContainer>
-
             <CustomButton
-              type="submit"
               bgColor="var(--white-shade)"
               hoverColor="var(--secondary-color)"
               textColor="var(--black-shade)"
+              type="submit"
             >
               {formType === 'sign-up' ? 'Sign Up' : 'Sign In'}
             </CustomButton>
-            {formType === 'sign-in' ? (
+            {formType === 'sign-in' && (
               <CustomButton
-                type="button"
                 bgColor="#4285f4"
                 hoverColor="#357ae8"
-                textColor="var(--white-shade)"
                 onClick={signInWithGoogle}
+                textColor="var(--white-shade)"
+                type="button"
               >
                 Sign In with Google
               </CustomButton>
-            ) : null}
+            )}
           </>
         ) : (
           <>
@@ -162,12 +159,12 @@ const SignInUp = ({ formType }) => {
               Enter your email for instructions on resetting your password
             </FormSubtext>
             <FormInput
-              type="email"
               name="email"
-              placeholder="Email"
               onChange={handleChange}
-              resetInput
+              placeholder="Email"
               required
+              resetInput
+              type="email"
             />
             <SuccessMessageContainer display={isMessage}>
               The email with instructions has been sent!

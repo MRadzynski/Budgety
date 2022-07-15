@@ -1,9 +1,8 @@
-import { createStore, applyMiddleware } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import logger from 'redux-logger';
-
 import rootReducer from './root-reducer';
+import storage from 'redux-persist/lib/storage';
+import { applyMiddleware, createStore } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
 
 const middlewares = [];
 
@@ -13,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

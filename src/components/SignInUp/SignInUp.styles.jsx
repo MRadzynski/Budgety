@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import breakpoints from '../../styles/breakpoints.json';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const ErrorMessageContainer = styled.div`
   color: var(--errorMessage);

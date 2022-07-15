@@ -1,28 +1,23 @@
-import React, { useEffect, lazy, Suspense } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-import { setCurrentUser } from '../../redux/user/user.actions';
-import { setFinances, setCurrency } from '../../redux/finance/finance.actions';
-import { selectCurrentUser } from '../../redux/user/user.selectors';
-
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import GlobalStyle from '../../styles/GlobalStyles';
+import Navbar from '../Navbar/Navbar';
+import NotFound from '../NotFound/NotFound';
+import ResetPassword from '../ResetPassword/ResetPassword';
+import SignIn from '../SignIn/SignIn';
+import SignUp from '../SignUp/SignUp';
+import Spinner from '../Spinner/Spinner';
+import React, { lazy, Suspense, useEffect } from 'react';
 import {
   auth,
   createUserDocument,
   getUserFinancesRef
 } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { setCurrency, setFinances } from '../../redux/finance/finance.actions';
+import { setCurrentUser } from '../../redux/user/user.actions';
 
-import Navbar from '../Navbar/Navbar';
-import SignIn from '../SignIn/SignIn';
-import SignUp from '../SignUp/SignUp';
-import ResetPassword from '../ResetPassword/ResetPassword';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import NotFound from '../NotFound/NotFound';
-import Spinner from '../Spinner/Spinner';
-
-import GlobalStyle from '../../styles/GlobalStyles';
-
-const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const ExchangePage = lazy(() =>
   import('../../pages/ExchangePage/ExchangePage')
 );
@@ -30,11 +25,12 @@ const ExpensesIncomePage = lazy(() =>
   import('../../pages/ExpensesIncomePage/ExpensesIncomePage')
 );
 const HistoryPage = lazy(() => import('../../pages/HistoryPage/HistoryPage'));
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SettingsPage = lazy(() =>
   import('../../pages/SettingsPage/SettingsPage')
 );
 
-const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
+const App = ({ currentUser, setCurrency, setCurrentUser, setFinances }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -48,22 +44,21 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
         financeRef.onSnapshot(snapshot => {
           setFinances({
             expenses: snapshot.data()?.expenses,
-            income: snapshot.data()?.income,
             expensesLogs: snapshot.data()?.expensesLogs,
-            incomeLogs: snapshot.data()?.incomeLogs,
-            historyLogs: snapshot.data()?.historyLogs
+            historyLogs: snapshot.data()?.historyLogs,
+            income: snapshot.data()?.income,
+            incomeLogs: snapshot.data()?.incomeLogs
           });
-
           setCurrency(snapshot.data()?.currency);
         });
       } else {
         setCurrentUser(null);
         setFinances({
           expenses: null,
-          income: null,
           expensesLogs: null,
-          incomeLogs: null,
-          historyLogs: null
+          historyLogs: null,
+          income: null,
+          incomeLogs: null
         });
         setCurrency(null);
       }
@@ -72,12 +67,12 @@ const App = ({ setCurrentUser, currentUser, setFinances, setCurrency }) => {
     return () => {
       unsubscribe();
     };
-  }, [setCurrentUser, setFinances, setCurrency]);
+  }, [setCurrency, setCurrentUser, setFinances]);
 
   return (
     <>
       <GlobalStyle />
-      {currentUser ? <Navbar /> : null}
+      {currentUser && <Navbar />}
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <Switch>
@@ -195,9 +190,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  setCurrency: currency => dispatch(setCurrency(currency)),
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  setFinances: finances => dispatch(setFinances(finances)),
-  setCurrency: currency => dispatch(setCurrency(currency))
+  setFinances: finances => dispatch(setFinances(finances))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

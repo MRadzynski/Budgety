@@ -43,8 +43,8 @@ export const selectTotalIncome = createSelector([selectIncome], income => {
 export const selectTotalExpensesIncomeArr = createSelector(
   [selectTotalExpenses, selectTotalIncome],
   (totalExpenses, totalIncome) => [
-    { amount: totalExpenses, name: 'Expenses', bgColor: '#E6504C' },
-    { amount: totalIncome, name: 'Income', bgColor: '#44D495' }
+    { amount: totalExpenses, bgColor: '#E6504C', name: 'Expenses' },
+    { amount: totalIncome, bgColor: '#44D495', name: 'Income' }
   ]
 );
 
@@ -102,11 +102,11 @@ export const selectLatestExpenses = createSelector(
       }, 0);
 
       const monthExpenseObj = {
-        id: expenses[index].id,
-        category: expenses[index].category,
+        amount: sumOfExpenses || 0,
         bgColor: expenses[index].bgColor,
+        category: expenses[index].category,
         icon: expenses[index].icon,
-        amount: sumOfExpenses || 0
+        id: expenses[index].id
       };
       latestMonthExpenses.push(monthExpenseObj);
     });
@@ -160,11 +160,11 @@ export const selectLatestIncome = createSelector([selectIncome], income => {
     }, 0);
 
     const monthIncomeObj = {
-      id: income[index].id,
-      category: income[index].category,
+      amount: sumOfIncome || 0,
       bgColor: income[index].bgColor,
+      category: income[index].category,
       icon: income[index].icon,
-      amount: sumOfIncome || 0
+      id: income[index].id
     };
     latestMonthIncome.push(monthIncomeObj);
   });
@@ -196,8 +196,8 @@ export const selectLatestIncomePercent = createSelector(
 export const selectLatestExpensesIncomeArr = createSelector(
   [selectLatestExpensesTotal, selectLatestIncomeTotal],
   (latestTotalExpenses, latestTotalIncome) => [
-    { amount: latestTotalExpenses, name: 'Expenses', bgColor: '#E6504C' },
-    { amount: latestTotalIncome, name: 'Income', bgColor: '#44D495' }
+    { amount: latestTotalExpenses, bgColor: '#E6504C', name: 'Expenses' },
+    { amount: latestTotalIncome, bgColor: '#44D495', name: 'Income' }
   ]
 );
 
@@ -234,10 +234,10 @@ export const selectAllTimeExpensesCategories = createSelector(
         .findIndex(entry => entry.categoryId === categoryId);
       const foundIndex = expensesLogs.length - 1 - lastOccurence;
       const categoryObj = {
-        categoryId: expensesLogs[foundIndex].categoryId,
-        category: expensesLogs[foundIndex].category,
+        amount: 0,
         bgColor: expensesLogs[foundIndex].bgColor,
-        amount: 0
+        category: expensesLogs[foundIndex].category,
+        categoryId: expensesLogs[foundIndex].categoryId
       };
 
       const expenseTotalAmount = expensesLogs?.reduce((acc, entry) => {
@@ -296,10 +296,10 @@ export const selectAllTimeIncomeCategories = createSelector(
       const foundIndex = incomeLogs.length - 1 - lastOccurence;
 
       const categoryObj = {
-        categoryId: incomeLogs[foundIndex].categoryId,
-        category: incomeLogs[foundIndex].category,
+        amount: 0,
         bgColor: incomeLogs[foundIndex].bgColor,
-        amount: 0
+        category: incomeLogs[foundIndex].category,
+        categoryId: incomeLogs[foundIndex].categoryId
       };
 
       const incomeTotalAmount = incomeLogs?.reduce((acc, entry) => {

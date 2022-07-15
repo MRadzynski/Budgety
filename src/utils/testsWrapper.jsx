@@ -1,19 +1,19 @@
+import configureStore from 'redux-mock-store';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
-import configureStore from 'redux-mock-store';
-import React from 'react';
 
 const mockStore = configureStore([]);
 
 const initState = {
   finance: {
+    currency: null,
     expenses: null,
-    income: null,
     expensesLogs: null,
-    incomeLogs: null,
     historyLogs: null,
-    currency: null
+    income: null,
+    incomeLogs: null
   },
   user: {
     currentUser: null

@@ -1,36 +1,28 @@
-import React from 'react';
-
 import Overlay from '../Overlay/Overlay';
-
+import React from 'react';
 import {
+  CustomModalButton,
   CustomModalContainer,
-  CustomModalTitle,
   CustomModalExit,
-  CustomModalButton
+  CustomModalTitle
 } from './CustomModal.styles';
 
 const CustomModal = ({
-  open,
-  setOpen,
+  children,
   confirmFunction,
   large,
+  open,
   overlayRadius,
-  children
+  setOpen
 }) => {
-  const handleExit = () => {
-    setOpen(false);
-  };
-
-  const handleClick = () => {
-    confirmFunction();
-  };
+  const handleExit = () => setOpen(false);
 
   return (
-    <Overlay open={open} setOpen={setOpen} overlayRadius={overlayRadius}>
-      <CustomModalContainer open={open} large={large}>
+    <Overlay open={open} overlayRadius={overlayRadius} setOpen={setOpen}>
+      <CustomModalContainer large={large} open={open}>
         <CustomModalExit onClick={handleExit}>&#10005;</CustomModalExit>
         <CustomModalTitle>{children}</CustomModalTitle>
-        <CustomModalButton onClick={handleClick} large={large}>
+        <CustomModalButton large={large} onClick={confirmFunction}>
           Confirm
         </CustomModalButton>
       </CustomModalContainer>

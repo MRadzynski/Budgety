@@ -1,51 +1,48 @@
 import React, { useEffect, useState } from 'react';
+import {
+  AddExpenseIncomeForm,
+  CustomButtonStyled,
+  ExitForm,
+  ExpenseIncomeFormContainer,
+  FormFieldContainer,
+  FormHeading,
+  FormInput,
+  FormLabel,
+  ListItem,
+  RevertAction,
+  SelectList
+} from './ExpenseIncomeForm.styles';
 import { connect } from 'react-redux';
-import { useHistory, useLocation } from 'react-router';
-import { v4 as uuidv4 } from 'uuid';
-
 import {
   selectCurrency,
   selectExpenses,
-  selectIncome,
   selectExpensesLogs,
+  selectIncome,
   selectIncomeLogs
 } from '../../redux/finance/finance.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
-
 import { updateFinances } from '../../firebase/firebase.utils';
-
-import {
-  ExpenseIncomeFormContainer,
-  ExitForm,
-  RevertAction,
-  AddExpenseIncomeForm,
-  FormHeading,
-  FormFieldContainer,
-  FormInput,
-  FormLabel,
-  SelectList,
-  ListItem,
-  CustomButtonStyled
-} from './ExpenseIncomeForm.styles';
+import { useHistory, useLocation } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
 
 const ExpenseIncomeForm = ({
-  type,
-  expenses,
-  income,
-  expensesLogs,
-  incomeLogs,
+  currency,
   currentUser,
-  currency
+  expenses,
+  expensesLogs,
+  income,
+  incomeLogs,
+  type
 }) => {
+  const [category, setCategory] = useState('');
+  const [isRevertShown, setIsRevertShown] = useState(false);
+  const [lastExpenseCategoryId, setLastExpenseCategoryId] = useState(null);
+  const [lastIncomeCategoryId, setLastIncomeCategoryId] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [price, setPrice] = useState(0);
+
   const history = useHistory();
   const location = useLocation();
-
-  const [category, setCategory] = useState('');
-  const [lastIncomeCategoryId, setLastIncomeCategoryId] = useState(null);
-  const [lastExpenseCategoryId, setLastExpenseCategoryId] = useState(null);
-  const [price, setPrice] = useState(0);
-  const [open, setOpen] = useState(false);
-  const [isRevertShown, setIsRevertShown] = useState(false);
 
   useEffect(() => {
     const index = location.pathname.lastIndexOf('/');
@@ -65,69 +62,7 @@ const ExpenseIncomeForm = ({
     setPrice(correctNum);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (Number(price) === 0) return;
-
-    const formattedPrice = Number((+price).toFixed(2));
-
-    const newFinanceObj = {
-      id: uuidv4(),
-      amount: formattedPrice,
-      date: new Date(),
-      categoryId: '',
-      category: '',
-      bgColor: ''
-    };
-
-    if (type === 'expenses') {
-      const newExpenseObj = expenses.map(expense => {
-        if (expense.category === category) {
-          expense.amount += formattedPrice;
-          expense.logs.push(newFinanceObj);
-          newFinanceObj.category = category;
-          newFinanceObj.categoryId = expense.id;
-          newFinanceObj.bgColor = expense.bgColor;
-        }
-        return expense;
-      });
-
-      if (
-        newFinanceObj.categoryId &&
-        newFinanceObj.category &&
-        newFinanceObj.bgColor
-      ) {
-        expensesLogs.push(newFinanceObj);
-        updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
-        setLastExpenseCategoryId(newFinanceObj.categoryId);
-      }
-    } else {
-      const newIncomeObj = income.map(singleIncome => {
-        if (singleIncome.category === category) {
-          singleIncome.amount += formattedPrice;
-          singleIncome.logs.push(newFinanceObj);
-          newFinanceObj.category = category;
-          newFinanceObj.categoryId = singleIncome.id;
-          newFinanceObj.bgColor = singleIncome.bgColor;
-        }
-        return singleIncome;
-      });
-
-      if (
-        newFinanceObj.categoryId &&
-        newFinanceObj.category &&
-        newFinanceObj.bgColor
-      ) {
-        incomeLogs.push(newFinanceObj);
-        updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
-        setLastIncomeCategoryId(newFinanceObj.categoryId);
-      }
-    }
-
-    setCategory('');
-    setPrice('');
-    setIsRevertShown(true);
-  };
+  const handleExit = () => history.push(`/${type}`);
 
   const handleRevert = () => {
     if (type === 'expenses') {
@@ -168,9 +103,75 @@ const ExpenseIncomeForm = ({
     setIsRevertShown(false);
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (Number(price) === 0) return;
+
+    const formattedPrice = Number((+price).toFixed(2));
+
+    const newFinanceObj = {
+      amount: formattedPrice,
+      bgColor: '',
+      category: '',
+      categoryId: '',
+      date: new Date(),
+      id: uuidv4()
+    };
+
+    if (type === 'expenses') {
+      const newExpenseObj = expenses.map(expense => {
+        if (expense.category === category) {
+          expense.amount += formattedPrice;
+          expense.logs.push(newFinanceObj);
+          newFinanceObj.bgColor = expense.bgColor;
+          newFinanceObj.category = category;
+          newFinanceObj.categoryId = expense.id;
+        }
+        return expense;
+      });
+
+      if (
+        newFinanceObj.bgColor &&
+        newFinanceObj.category &&
+        newFinanceObj.categoryId
+      ) {
+        expensesLogs.push(newFinanceObj);
+        updateFinances(currentUser.id, newExpenseObj, null, expensesLogs);
+        setLastExpenseCategoryId(newFinanceObj.categoryId);
+      }
+    } else {
+      const newIncomeObj = income.map(singleIncome => {
+        if (singleIncome.category === category) {
+          singleIncome.amount += formattedPrice;
+          singleIncome.logs.push(newFinanceObj);
+          newFinanceObj.bgColor = singleIncome.bgColor;
+          newFinanceObj.category = category;
+          newFinanceObj.categoryId = singleIncome.id;
+        }
+        return singleIncome;
+      });
+
+      if (
+        newFinanceObj.bgColor &&
+        newFinanceObj.category &&
+        newFinanceObj.categoryId
+      ) {
+        incomeLogs.push(newFinanceObj);
+        updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
+        setLastIncomeCategoryId(newFinanceObj.categoryId);
+      }
+    }
+
+    setCategory('');
+    setPrice('');
+    setIsRevertShown(true);
+  };
+
+  const toggleOpen = () => setOpen(!open);
+
   return (
     <ExpenseIncomeFormContainer>
-      <ExitForm onClick={() => history.push(`/${type}`)}>&#10005;</ExitForm>
+      <ExitForm onClick={handleExit}>&#10005;</ExitForm>
       <FormHeading>
         Add {type === 'expenses' ? 'Expense' : 'Income'}
       </FormHeading>
@@ -178,54 +179,54 @@ const ExpenseIncomeForm = ({
         <RevertAction onClick={handleRevert}>&#8634;</RevertAction>
       )}
       <AddExpenseIncomeForm
-        onClick={() => (open ? setOpen(!open) : open)}
+        onClick={() => open && setOpen(!open)}
         onSubmit={handleSubmit}
       >
         <FormFieldContainer>
           <FormLabel>Price ({currency})</FormLabel>
           <FormInput
+            inputMode="decimal"
+            onChange={handleChange}
+            pattern="[0-9]+([\.,]{0,1}([0-9]{0,2}))"
+            required
             type="text"
             value={price || ''}
-            pattern="[0-9]+([\.,]{0,1}([0-9]{0,2}))"
-            onChange={handleChange}
-            inputMode="decimal"
-            required
           ></FormInput>
         </FormFieldContainer>
         <FormFieldContainer>
           <FormLabel>Category</FormLabel>
-          <FormInput readOnly value={category} onClick={() => setOpen(!open)} />
+          <FormInput onClick={toggleOpen} readOnly value={category} />
           {type === 'expenses' ? (
             <SelectList open={open}>
-              {expenses.map(expense => (
+              {expenses.map(({ category }) => (
                 <ListItem
-                  key={expense.category}
-                  value={expense.category}
-                  onClick={() => setCategory(expense.category)}
+                  key={category}
+                  onClick={() => setCategory(category)}
+                  value={category}
                 >
-                  {expense.category}
+                  {category}
                 </ListItem>
               ))}
             </SelectList>
           ) : (
             <SelectList open={open}>
-              {income.map(singleIncome => (
+              {income.map(({ category }) => (
                 <ListItem
-                  key={singleIncome.category}
-                  value={singleIncome.category}
-                  onClick={() => setCategory(singleIncome.category)}
+                  key={category}
+                  onClick={() => setCategory(category)}
+                  value={category}
                 >
-                  {singleIncome.category}
+                  {category}
                 </ListItem>
               ))}
             </SelectList>
           )}
         </FormFieldContainer>
         <CustomButtonStyled
-          type="submit"
           bgColor="var(--primary-color)"
           hoverColor="#395ae0"
           textColor="var(--white-shade)"
+          type="submit"
         >
           Confirm
         </CustomButtonStyled>
@@ -235,12 +236,12 @@ const ExpenseIncomeForm = ({
 };
 
 const mapStateToProps = state => ({
-  expenses: selectExpenses(state),
-  income: selectIncome(state),
-  expensesLogs: selectExpensesLogs(state),
-  incomeLogs: selectIncomeLogs(state),
+  currency: selectCurrency(state),
   currentUser: selectCurrentUser(state),
-  currency: selectCurrency(state)
+  expenses: selectExpenses(state),
+  expensesLogs: selectExpensesLogs(state),
+  income: selectIncome(state),
+  incomeLogs: selectIncomeLogs(state)
 });
 
 export default connect(mapStateToProps)(ExpenseIncomeForm);

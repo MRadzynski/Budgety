@@ -1,31 +1,33 @@
+import CategoriesList from '../CategoriesList/CategoriesList';
+import ExpenseIncomeForm from '../ExpenseIncomeForm/ExpenseIncomeForm';
+import NewCategoryForm from '../NewCategoryForm/NewCategoryForm';
 import React from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
-
+import {
+  CustomButtonStyled,
+  ExpensesIncomeDetailsContainer,
+  Overlap,
+  OverlapsContainer
+} from './ExpensesIncomeDetails.styles';
 import {
   selectCurrency,
   selectLatestExpenses,
   selectLatestIncome
 } from '../../redux/finance/finance.selectors';
-
-import CategoriesList from '../CategoriesList/CategoriesList';
-import ExpenseIncomeForm from '../ExpenseIncomeForm/ExpenseIncomeForm';
-import NewCategoryForm from '../NewCategoryForm/NewCategoryForm';
-
-import {
-  ExpensesIncomeDetailsContainer,
-  OverlapsContainer,
-  Overlap,
-  CustomButtonStyled
-} from './ExpensesIncomeDetails.styles';
+import { useHistory } from 'react-router';
 
 const ExpensesIncomeDetails = ({
+  currency,
   currentPath,
   latestExpenses,
-  latestIncome,
-  currency
+  latestIncome
 }) => {
   const history = useHistory();
+
+  const handleClick = () =>
+    history.push(`${currentPath}/add-${currentPath.slice(1)}`);
+
+  const newCategoryFormType = currentPath.split('/')[1];
 
   return (
     <ExpensesIncomeDetailsContainer>
@@ -33,14 +35,14 @@ const ExpensesIncomeDetails = ({
         <>
           <OverlapsContainer>
             <Overlap
-              to="/expenses"
               active={currentPath === '/expenses' ? 'true' : null}
+              to="/expenses"
             >
               Expenses
             </Overlap>
             <Overlap
-              to="/income"
               active={currentPath === '/income' ? 'true' : null}
+              to="/income"
             >
               Income
             </Overlap>
@@ -54,32 +56,30 @@ const ExpensesIncomeDetails = ({
             <CategoriesList categoriesData={latestIncome} currency={currency} />
           )}
           <CustomButtonStyled
-            type="button"
             bgColor="var(--primary-color)"
             hoverColor="#395ae0"
+            onClick={handleClick}
             textColor="var(--white-shade)"
-            onClick={() =>
-              history.push(`${currentPath}/add-${currentPath.slice(1)}`)
-            }
+            type="button"
           >
             {currentPath === '/expenses' ? 'Add Expense' : 'Add Income'}
           </CustomButtonStyled>
         </>
       ) : currentPath.includes('add-new-category') ? (
-        <NewCategoryForm type={currentPath.split('/')[1]} />
+        <NewCategoryForm type={newCategoryFormType} />
       ) : currentPath.includes('edit-category') ? (
-        <NewCategoryForm type={currentPath.split('/')[1]} edit />
+        <NewCategoryForm edit type={newCategoryFormType} />
       ) : (
-        <ExpenseIncomeForm type={currentPath.split('/')[1]} />
+        <ExpenseIncomeForm type={newCategoryFormType} />
       )}
     </ExpensesIncomeDetailsContainer>
   );
 };
 
 const mapStateToProps = state => ({
+  currency: selectCurrency(state),
   latestExpenses: selectLatestExpenses(state),
-  latestIncome: selectLatestIncome(state),
-  currency: selectCurrency(state)
+  latestIncome: selectLatestIncome(state)
 });
 
 export default connect(mapStateToProps)(ExpensesIncomeDetails);

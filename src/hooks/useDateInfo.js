@@ -1,4 +1,4 @@
-const useDateInfo = () => {
+export const useDateInfo = () => {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
@@ -6,6 +6,4 @@ const useDateInfo = () => {
   const yearToCheck = monthToCheck === 11 ? currentYear - 1 : currentYear;
 
   return { currentDate, currentMonth, currentYear, monthToCheck, yearToCheck };
-}
-
-export default useDateInfo;
+};

@@ -1,30 +1,27 @@
+import Spinner from '../Spinner/Spinner';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-
+import {
+  CurrencyName,
+  CurrencyRate,
+  DateInfo,
+  ExchangeList,
+  ExchangeListItem,
+  ExchangeWindowContainer
+} from './ExchangeWindow.styles';
+import { formatNumber } from '../../redux/finance/finance.utils';
 import {
   selectBalance,
   selectCurrency,
   selectLatestBalance
 } from '../../redux/finance/finance.selectors';
 
-import { formatNumber } from '../../redux/finance/finance.utils';
-
-import Spinner from '../Spinner/Spinner';
-
-import {
-  ExchangeWindowContainer,
-  ExchangeList,
-  ExchangeListItem,
-  CurrencyRate,
-  CurrencyName,
-  DateInfo
-} from './ExchangeWindow.styles';
-
-const ExchangeWindow = ({ type, currency, balance, latestBalance }) => {
-  const selectedBalance = type === 'monthly' ? latestBalance : balance;
-  const [rates, setRates] = useState([]);
+const ExchangeWindow = ({ balance, currency, latestBalance, type }) => {
   const [date, setDate] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [rates, setRates] = useState([]);
+
+  const selectedBalance = type === 'monthly' ? latestBalance : balance;
 
   useEffect(() => {
     const fetchCurrencies = async () => {
@@ -35,10 +32,12 @@ const ExchangeWindow = ({ type, currency, balance, latestBalance }) => {
       const currenciesDataArray = Object.entries(currenciesData).map(
         field => field[1]
       );
+
       setDate(currenciesDataArray[2]);
       setRates(Object.entries(currenciesDataArray[3]));
       setLoading(false);
     };
+
     fetchCurrencies();
 
     return () => {

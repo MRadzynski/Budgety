@@ -1,19 +1,17 @@
-import React from 'react';
-
 import CURRENCIES_NAME from '../../data/currencies.names.json';
-
+import React from 'react';
 import {
   CurrenciesList,
   CurrenciesListItem
 } from './CurrenciesNamesList.styles';
 
-const CurrenciesNamesList = ({ open, chooseCurrencyFunction }) => (
+const CurrenciesNamesList = ({ chooseCurrencyFunction, open }) => (
   <CurrenciesList open={open}>
     {CURRENCIES_NAME.map((currencyName, index) => (
       <CurrenciesListItem
         key={index}
-        value={currencyName}
         onClick={chooseCurrencyFunction}
+        value={currencyName}
       >
         {currencyName}
       </CurrenciesListItem>

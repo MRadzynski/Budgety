@@ -1,15 +1,14 @@
 import React, { useRef } from 'react';
-
 import { OverlayContainer } from './Overlay.styles';
 
 const Overlay = ({
-  open,
-  setOpen,
-  overlayRadius,
   children,
   className,
+  open,
+  overlayRadius,
   setError = null,
-  setInput = null
+  setInput = null,
+  setOpen
 }) => {
   const overlayRef = useRef();
 
@@ -24,10 +23,10 @@ const Overlay = ({
   return (
     <OverlayContainer
       className={className}
-      ref={overlayRef}
+      onClick={handleClick}
       open={open}
       overlayRadius={overlayRadius}
-      onClick={handleClick}
+      ref={overlayRef}
     >
       {children}
     </OverlayContainer>

@@ -1,7 +1,15 @@
+import Chart from '../../components/Chart/Chart';
+import ExpensesIncomeDetails from '../../components/ExpensesIncomeDetails/ExpensesIncomeDetails';
 import React from 'react';
+import Spinner from '../../components/Spinner/Spinner';
+import {
+  ChartContainer,
+  ChartPrice,
+  ExpensesIncomePageContainer,
+  ExpensesIncomeTitle
+} from './ExpensesIncomePage.styles';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-
+import { formatCurrency } from '../../redux/finance/finance.utils';
 import {
   selectCurrency,
   selectLatestExpenses,
@@ -9,35 +17,23 @@ import {
   selectLatestIncome,
   selectLatestIncomeTotal
 } from '../../redux/finance/finance.selectors';
-
-import { formatCurrency } from '../../redux/finance/finance.utils';
-
-import ExpensesIncomeDetails from '../../components/ExpensesIncomeDetails/ExpensesIncomeDetails';
-import Chart from '../../components/Chart/Chart';
-import Spinner from '../../components/Spinner/Spinner';
-
-import {
-  ExpensesIncomePageContainer,
-  ExpensesIncomeTitle,
-  ChartContainer,
-  ChartPrice
-} from './ExpensesIncomePage.styles';
+import { useLocation } from 'react-router-dom';
 
 const ExpensesIncomePage = ({
-  latestExpensesTotal,
-  latestIncomeTotal,
+  currency,
   latestExpenses,
+  latestExpensesTotal,
   latestIncome,
-  currency
+  latestIncomeTotal
 }) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <ExpensesIncomePageContainer>
       <ExpensesIncomeTitle>
-        {location.pathname.includes('/expenses') ? 'Expenses' : 'Income'}
+        {pathname.includes('/expenses') ? 'Expenses' : 'Income'}
       </ExpensesIncomeTitle>
-      {location.pathname.includes('/expenses') ? (
+      {pathname.includes('/expenses') ? (
         <ChartContainer>
           <Chart data={latestExpenses} />
           {latestExpensesTotal === undefined ? (
@@ -60,17 +56,17 @@ const ExpensesIncomePage = ({
           )}
         </ChartContainer>
       )}
-      <ExpensesIncomeDetails currentPath={location.pathname} />
+      <ExpensesIncomeDetails currentPath={pathname} />
     </ExpensesIncomePageContainer>
   );
 };
 
 const mapStateToProps = state => ({
   currency: selectCurrency(state),
-  latestExpensesTotal: selectLatestExpensesTotal(state),
-  latestIncomeTotal: selectLatestIncomeTotal(state),
   latestExpenses: selectLatestExpenses(state),
-  latestIncome: selectLatestIncome(state)
+  latestExpensesTotal: selectLatestExpensesTotal(state),
+  latestIncome: selectLatestIncome(state),
+  latestIncomeTotal: selectLatestIncomeTotal(state)
 });
 
 export default connect(mapStateToProps)(ExpensesIncomePage);

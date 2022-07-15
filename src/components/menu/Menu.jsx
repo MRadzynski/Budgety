@@ -1,17 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-
 import { auth } from '../../firebase/firebase.utils';
-
 import {
   MenuContainer,
-  MenuList,
   MenuItem,
   MenuLink,
+  MenuList,
   MenuOverlay
 } from './Menu.styles';
+import { useHistory } from 'react-router-dom';
 
-const Menu = ({ open, setOpen }) => {
+const Menu = ({ open, toggleOpen }) => {
   const history = useHistory();
 
   const handleLogout = async () => {
@@ -40,7 +38,7 @@ const Menu = ({ open, setOpen }) => {
         </MenuItem>
         <MenuItem onClick={handleLogout}>Log Out</MenuItem>
       </MenuList>
-      <MenuOverlay open={open} onClick={() => setOpen(!open)} />
+      <MenuOverlay onClick={toggleOpen} open={open} />
     </MenuContainer>
   );
 };

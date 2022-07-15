@@ -1,38 +1,36 @@
+import ExpensesIncomeBarchart from '../ExpensesIncomeBarchart/ExpensesIncomeBarchart';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-
-import { selectCurrency } from '../../redux/finance/finance.selectors';
 import {
-  getMonthlyFinanceSum,
-  formatCurrency,
-  formatMonth
-} from '../../redux/finance/finance.utils';
-
-import ExpensesIncomeBarchart from '../ExpensesIncomeBarchart/ExpensesIncomeBarchart';
-
-import {
-  HistoryTabContainer,
-  ScrollableChartContainer,
-  HistoryChartContainer,
-  HistoryChartTitle,
-  HistoryChartBalance,
   DateDescription,
   ExpandArrow,
-  NoDataInfo
+  HistoryChartBalance,
+  HistoryChartContainer,
+  HistoryChartTitle,
+  HistoryTabContainer,
+  NoDataInfo,
+  ScrollableChartContainer
 } from './HistoryTab.styles';
+import {
+  formatCurrency,
+  formatMonth,
+  getMonthlyFinanceSum
+} from '../../redux/finance/finance.utils';
+import { selectCurrency } from '../../redux/finance/finance.selectors';
 
-const HistoryTab = ({ data, currency }) => {
+const HistoryTab = ({ currency, data: { date, expensesArr, incomeArr } }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [expensesSum] = useState(getMonthlyFinanceSum(data.expensesArr));
-  const [incomeSum] = useState(getMonthlyFinanceSum(data.incomeArr));
 
   const handleClick = () => setIsOpen(!isOpen);
+
+  const expensesSum = getMonthlyFinanceSum(expensesArr);
+  const incomeSum = getMonthlyFinanceSum(incomeArr);
 
   return (
     <>
       <HistoryTabContainer onClick={handleClick}>
         <ExpandArrow isOpen={isOpen}>&#10095;</ExpandArrow>
-        <DateDescription>{formatMonth(data.date)}</DateDescription>
+        <DateDescription>{formatMonth(date)}</DateDescription>
       </HistoryTabContainer>
       {isOpen && (
         <>
@@ -43,8 +41,8 @@ const HistoryTab = ({ data, currency }) => {
             <HistoryChartContainer>
               <ScrollableChartContainer>
                 <ExpensesIncomeBarchart
-                  data={data.expensesArr}
                   currency={currency}
+                  data={expensesArr}
                 />
               </ScrollableChartContainer>
             </HistoryChartContainer>
@@ -58,10 +56,7 @@ const HistoryTab = ({ data, currency }) => {
           {incomeSum ? (
             <HistoryChartContainer>
               <ScrollableChartContainer>
-                <ExpensesIncomeBarchart
-                  data={data.incomeArr}
-                  currency={currency}
-                />
+                <ExpensesIncomeBarchart currency={currency} data={incomeArr} />
               </ScrollableChartContainer>
             </HistoryChartContainer>
           ) : (

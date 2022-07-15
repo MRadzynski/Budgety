@@ -1,19 +1,20 @@
+import CustomButton from '../CustomButton/CustomButton';
 import React from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-
-import { selectCurrentUser } from '../../redux/user/user.selectors';
-
-import CustomButton from '../CustomButton/CustomButton';
-
 import {
   NotFoundContainer,
   NotFoundImageContainer,
   NotFoundText
 } from './NotFound.styles';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { useHistory } from 'react-router-dom';
 
 const NotFound = ({ currentUser }) => {
   const history = useHistory();
+
+  const handleClick = () =>
+    currentUser ? history.push('/') : history.push('/signin');
+
   return (
     <NotFoundContainer>
       <NotFoundImageContainer>
@@ -23,11 +24,9 @@ const NotFound = ({ currentUser }) => {
 
       <CustomButton
         bgColor="var(--white-shade)"
-        textColor="var(--black-shade)"
         hoverColor="var(--secondary-color)"
-        onClick={() => {
-          currentUser ? history.push('/') : history.push('/signin');
-        }}
+        onClick={handleClick}
+        textColor="var(--black-shade)"
       >
         {currentUser ? 'Go Home!' : 'Go Sign In!'}
       </CustomButton>

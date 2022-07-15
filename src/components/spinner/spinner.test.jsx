@@ -1,5 +1,5 @@
-import { render } from '../../utils/testsWrapper';
 import Spinner from './Spinner';
+import { render } from '../../utils/testsWrapper';
 
 describe('spinner.jsx', () => {
   it('renders Spinner component', () => {

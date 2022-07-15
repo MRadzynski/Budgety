@@ -1,20 +1,16 @@
-import React from 'react';
-
 import Overlay from '../Overlay/Overlay';
-
+import React from 'react';
 import {
   CustomPopupContainer,
   CustomPopupText,
   ExitPopup
 } from './CustomPopup.styles';
 
-const CustomPopup = ({ open, setOpen, setError, children }) => (
-  <Overlay open={open} setOpen={setOpen} setError={setError}>
+const CustomPopup = ({ children, open, setError, setOpen }) => (
+  <Overlay open={open} setError={setError} setOpen={setOpen}>
     <CustomPopupContainer open={open}>
       <ExitPopup onClick={() => setOpen(false)}>&#10005;</ExitPopup>
-      <CustomPopupText>
-        {children ? children : 'Something went wrong!'}
-      </CustomPopupText>
+      <CustomPopupText>{children || 'Something went wrong!'}</CustomPopupText>
     </CustomPopupContainer>
   </Overlay>
 );

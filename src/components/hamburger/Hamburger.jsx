@@ -1,16 +1,15 @@
 import React from 'react';
+import { HamburgerContainer } from './Hamburger.styles';
 import { useLocation } from 'react-router';
 
-import { HamburgerContainer } from './Hamburger.styles';
-
-const Hamburger = ({ open, setOpen }) => {
-  const pathname = useLocation().pathname.slice(1);
+const Hamburger = ({ open, toggleOpen }) => {
+  const { pathname } = useLocation();
 
   return (
     <HamburgerContainer
+      location={pathname.slice(1)}
       open={open}
-      onClick={() => setOpen(!open)}
-      location={pathname}
+      onClick={toggleOpen}
     >
       <span></span>
       <span></span>

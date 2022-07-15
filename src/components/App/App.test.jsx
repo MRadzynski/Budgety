@@ -1,5 +1,5 @@
-import { render, screen } from '../../utils/testsWrapper';
 import App from './App';
+import { render, screen } from '../../utils/testsWrapper';
 
 describe('App.js', () => {
   it('renders app', () => {

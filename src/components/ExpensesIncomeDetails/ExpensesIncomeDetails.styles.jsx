@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import breakpoints from '../../styles/breakpoints.json';
 import CustomButton from '../CustomButton/CustomButton';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const CustomButtonStyled = styled(CustomButton)`
   @media ${breakpoints.fold} {

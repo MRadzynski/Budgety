@@ -1,24 +1,22 @@
 import React from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 const Chart = ({ data }) => (
-  <ResponsiveContainer width="100%" height="100%">
+  <ResponsiveContainer height="100%" width="100%">
     <PieChart margin={0}>
       <Pie
-        data={data}
-        dataKey="amount"
-        nameKey="category"
+        blendStroke
         cx="50%"
         cy="50%"
-        innerRadius={'50%'}
-        outerRadius={'100%'}
-        blendStroke
+        data={data}
+        dataKey="amount"
+        innerRadius="50%"
+        nameKey="category"
+        outerRadius="100%"
       >
-        {data
-          ? data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={entry.bgColor} />
-          ))
-          : null}
+        {data?.map((entry, index) => (
+          <Cell fill={entry.bgColor} key={`cell-${index}`} />
+        ))}
       </Pie>
     </PieChart>
   </ResponsiveContainer>

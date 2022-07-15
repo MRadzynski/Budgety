@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-
 import Hamburger from '../Hamburger/Hamburger';
 import Menu from '../Menu/Menu';
-
+import React, { useState } from 'react';
 import { NavbarContainer } from './Navbar.styles';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  const toggleOpen = () => setOpen(!open);
+
   return (
     <NavbarContainer>
-      <Hamburger open={open} setOpen={setOpen} />
-      <Menu open={open} setOpen={setOpen} />
+      <Hamburger open={open} toggleOpen={toggleOpen} />
+      <Menu open={open} toggleOpen={toggleOpen} />
     </NavbarContainer>
   );
 };

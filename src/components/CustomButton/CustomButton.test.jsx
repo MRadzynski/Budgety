@@ -1,5 +1,5 @@
-import { render, screen } from '../../utils/testsWrapper';
 import CustomButton from './CustomButton';
+import { render, screen } from '../../utils/testsWrapper';
 
 describe('custom-button.jsx', () => {
   it('renders CustomButton component', () => {

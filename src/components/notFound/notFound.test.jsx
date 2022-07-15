@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, within } from '../../utils/testsWrapper';
 import NotFound from './NotFound';
+import { fireEvent, render, screen, within } from '../../utils/testsWrapper';
 
 describe('notFound.jsx', () => {
   it(`should display a dog image`, () => {

@@ -1,18 +1,17 @@
 import React from 'react';
-
 import { CustomButtonContainer } from './CustomButton.styles';
 
 const CustomButton = ({
   bgColor,
-  textColor,
-  hoverColor,
   children,
+  hoverColor,
+  textColor,
   ...props
 }) => (
   <CustomButtonContainer
     bgColor={bgColor}
-    textColor={textColor}
     hoverColor={hoverColor}
+    textColor={textColor}
     {...props}
   >
     {children}

@@ -7,12 +7,12 @@ export const selectCurrentUser = createSelector(
   user => user?.currentUser
 );
 
-export const selectDisplayName = createSelector(
-  [selectCurrentUser],
-  currentUser => currentUser?.displayName
-);
-
 export const selectCreatedAt = createSelector(
   [selectCurrentUser],
   currentUser => currentUser?.createdAt
+);
+
+export const selectDisplayName = createSelector(
+  [selectCurrentUser],
+  currentUser => currentUser?.displayName
 );

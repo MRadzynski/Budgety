@@ -1,78 +1,60 @@
+import AuthorizationModal from '../../components/AutorizationModal/AutorizationModal';
+import CurrenciesNamesList from '../../components/CurrenciesNamesList/CurrenciesNamesList';
+import CustomModal from '../../components/CustomModal/CustomModal';
+import CustomPopup from '../../components/CustomPopup/CustomPopup';
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
-
 import {
-  selectIncome,
+  auth,
+  reauthenticateAndDeleteUser,
+  updateCurrency,
+  updateDisplayName,
+  updateFinances,
+  updateHistory
+} from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+import {
+  DangerButton,
+  SettingFieldContainer,
+  SettingInput,
+  SettingLabel,
+  SettingsContainer,
+  SettingsGroup,
+  SettingsGroupTitle,
+  SettingsTitle
+} from './SettingsPage.styles';
+import {
+  selectCurrency,
   selectExpenses,
-  selectCurrency
+  selectIncome
 } from '../../redux/finance/finance.selectors';
-
 import {
   selectCurrentUser,
   selectDisplayName
 } from '../../redux/user/user.selectors';
-
-import {
-  auth,
-  updateDisplayName,
-  updateFinances,
-  updateCurrency,
-  reauthenticateAndDeleteUser,
-  updateHistory
-} from '../../firebase/firebase.utils';
-
-import CustomPopup from '../../components/CustomPopup/CustomPopup';
-import CustomModal from '../../components/CustomModal/CustomModal';
-import AuthorizationModal from '../../components/AutorizationModal/AutorizationModal';
-import CurrenciesNamesList from '../../components/CurrenciesNamesList/CurrenciesNamesList';
-
-import {
-  SettingsContainer,
-  SettingsTitle,
-  SettingsGroupTitle,
-  SettingsGroup,
-  SettingFieldContainer,
-  SettingLabel,
-  SettingInput,
-  DangerButton
-} from './SettingsPage.styles';
+import { useHistory } from 'react-router';
 
 const SettingsPage = ({
+  currency,
   currentUser,
   displayName,
-  income,
   expenses,
-  currency
+  income
 }) => {
-  const history = useHistory();
-  const [openList, setOpenList] = useState(false);
-  const [openEraseModal, setOpenEraseModal] = useState(false);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [openPopup, setOpenPopup] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState(currency);
-  const [newDisplayName, setNewDisplayName] = useState(displayName);
-  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [newDisplayName, setNewDisplayName] = useState(displayName);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openEraseModal, setOpenEraseModal] = useState(false);
+  const [openList, setOpenList] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
+  const [password, setPassword] = useState('');
 
-  const handleEraseClick = () => {
-    income.map(singleIncome => {
-      singleIncome.amount = 0;
-      singleIncome.logs = [];
-      return singleIncome;
-    });
-    expenses.map(expense => {
-      expense.amount = 0;
-      expense.logs = [];
-      return expense;
-    });
+  const history = useHistory();
 
-    updateFinances(currentUser.id, expenses, income, []);
-    updateHistory(currentUser.id, []);
+  const handleBlur = () => {
+    if (displayName === newDisplayName) return;
 
-    setOpenEraseModal(false);
-    setErrorMessage('Data erased!');
-    setOpenPopup(true);
+    updateDisplayName(currentUser, newDisplayName);
   };
 
   const handleCurrencyChange = e => {
@@ -82,19 +64,10 @@ const SettingsPage = ({
     updateCurrency(currentUser.id, newCurrencyName);
   };
 
-  const handleDisplayNameChange = e => {
-    setNewDisplayName(e.target.value);
-  };
-
-  const handlePasswordChange = e => {
-    setPassword(e.target.value);
-  };
-
-  const handleBlur = () => {
-    if (displayName === newDisplayName) return;
-
-    updateDisplayName(currentUser, newDisplayName);
-  };
+  const handleDeleteClick = () =>
+    auth.currentUser.providerData[0].providerId === 'password'
+      ? setOpenDeleteModal(true)
+      : handleDeleteSubmit();
 
   const handleDeleteSubmit = () => {
     reauthenticateAndDeleteUser(password)
@@ -115,21 +88,49 @@ const SettingsPage = ({
       });
   };
 
-  return (
-    <SettingsContainer onClick={() => (openList ? setOpenList(false) : null)}>
-      <SettingsTitle>Settings</SettingsTitle>
+  const handleDisplayNameChange = e => setNewDisplayName(e.target.value);
 
+  const handleEraseClick = () => setOpenEraseModal(true);
+
+  const handleEraseSubmit = () => {
+    income.map(singleIncome => {
+      singleIncome.amount = 0;
+      singleIncome.logs = [];
+
+      return singleIncome;
+    });
+
+    expenses.map(expense => {
+      expense.amount = 0;
+      expense.logs = [];
+
+      return expense;
+    });
+
+    updateFinances(currentUser.id, expenses, income, []);
+    updateHistory(currentUser.id, []);
+
+    setOpenEraseModal(false);
+    setErrorMessage('Data erased!');
+    setOpenPopup(true);
+  };
+
+  const handlePasswordChange = e => setPassword(e.target.value);
+
+  return (
+    <SettingsContainer onClick={() => openList && setOpenList(false)}>
+      <SettingsTitle>Settings</SettingsTitle>
       <SettingsGroup>
         <SettingsGroupTitle>User</SettingsGroupTitle>
         <SettingFieldContainer>
           <SettingLabel>Display name</SettingLabel>
           <SettingInput
-            type="text"
             name="displayName"
-            value={newDisplayName || ''}
-            onChange={handleDisplayNameChange}
             onBlur={handleBlur}
+            onChange={handleDisplayNameChange}
             required
+            type="text"
+            value={newDisplayName || ''}
           />
         </SettingFieldContainer>
       </SettingsGroup>
@@ -139,14 +140,14 @@ const SettingsPage = ({
         <SettingFieldContainer>
           <SettingLabel>Currency</SettingLabel>
           <SettingInput
-            readOnly
-            value={currentCurrency}
             onClick={() => setOpenList(!openList)}
+            readOnly
             required
+            value={currentCurrency}
           />
           <CurrenciesNamesList
-            open={openList}
             chooseCurrencyFunction={handleCurrencyChange}
+            open={openList}
           />
         </SettingFieldContainer>
       </SettingsGroup>
@@ -155,25 +156,15 @@ const SettingsPage = ({
         <SettingsGroupTitle>Danger Zone</SettingsGroupTitle>
         <SettingFieldContainer>
           <SettingLabel>Erase balance</SettingLabel>
-          <DangerButton onClick={() => setOpenEraseModal(true)}>
-            Erase!
-          </DangerButton>
+          <DangerButton onClick={handleEraseClick}>Erase</DangerButton>
         </SettingFieldContainer>
         <SettingFieldContainer>
           <SettingLabel>Delete account</SettingLabel>
-          <DangerButton
-            onClick={e =>
-              auth.currentUser.providerData[0].providerId === 'password'
-                ? setOpenDeleteModal(true)
-                : handleDeleteSubmit(e)
-            }
-          >
-            Delete!
-          </DangerButton>
+          <DangerButton onClick={handleDeleteClick}>Delete</DangerButton>
         </SettingFieldContainer>
       </SettingsGroup>
 
-      {openDeleteModal ? (
+      {openDeleteModal && (
         <AuthorizationModal
           open={openDeleteModal}
           setOpen={setOpenDeleteModal}
@@ -184,35 +175,35 @@ const SettingsPage = ({
           inputFunction={handlePasswordChange}
           submitFunction={handleDeleteSubmit}
         />
-      ) : null}
-      {openPopup ? (
+      )}
+      {openPopup && (
         <CustomPopup
           open={openPopup}
-          setOpen={setOpenPopup}
           setError={setErrorMessage}
+          setOpen={setOpenPopup}
         >
           {errorMessage}
         </CustomPopup>
-      ) : null}
-      {openEraseModal ? (
+      )}
+      {openEraseModal && (
         <CustomModal
+          confirmFunction={handleEraseSubmit}
           open={openEraseModal}
           setOpen={setOpenEraseModal}
-          confirmFunction={handleEraseClick}
         >
           Are you sure?
         </CustomModal>
-      ) : null}
+      )}
     </SettingsContainer>
   );
 };
 
 const mapStateToProps = state => ({
+  currency: selectCurrency(state),
   currentUser: selectCurrentUser(state),
   displayName: selectDisplayName(state),
-  income: selectIncome(state),
   expenses: selectExpenses(state),
-  currency: selectCurrency(state)
+  income: selectIncome(state)
 });
 
 export default connect(mapStateToProps)(SettingsPage);

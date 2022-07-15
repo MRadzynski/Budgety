@@ -1,5 +1,5 @@
-import { render } from '../../utils/testsWrapper';
 import Hamburger from './Hamburger';
+import { render } from '../../utils/testsWrapper';
 
 describe('hamburger.jsx', () => {
   it('renders closed hamburger', () => {

@@ -1,6 +1,6 @@
-import { render, screen } from '../../utils/testsWrapper';
 import CurrenciesNamesList from './CurrenciesNamesList';
 import CURRENCIES_NAME from '../../data/currencies.names.json';
+import { render, screen } from '../../utils/testsWrapper';
 
 describe('currencies-names-list.jsx', () => {
   it('should not display currencies list when open prop is not provided', () => {

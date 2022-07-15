@@ -1,5 +1,5 @@
-import { render } from '../../utils/testsWrapper';
 import Navbar from './Navbar';
+import { render } from '../../utils/testsWrapper';
 
 describe('navbar.jsx', () => {
   it('renders', () => {

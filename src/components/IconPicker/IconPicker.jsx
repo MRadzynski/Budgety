@@ -1,38 +1,35 @@
+import ICON_NAMES from '../../data/icons.names.json';
 import {
-  IconPickerOverlay,
-  IconPickerContainer,
   ExitForm,
+  IconPickerContainer,
+  IconPickerOverlay,
   IconsList,
   IconsListItem
 } from './IconPicker.styles';
 
-import iconsNames from '../../data/icons.names.json';
-
-const IconPicker = ({ setCategoryData, setIsOpen, isOpen, itemsColor }) => {
+const IconPicker = ({ isOpen, itemsColor, setCategoryData, setIsOpen }) => {
   const handleClick = e => {
     const iconName = e.target.closest('li').dataset.name;
 
-    setCategoryData(prevData => {
-      return { ...prevData, icon: iconName };
-    });
+    setCategoryData(prevData => ({ ...prevData, icon: iconName }));
     setIsOpen(false);
   };
 
   const handleExit = () => setIsOpen(false);
 
   return (
-    <IconPickerOverlay setOpen={setIsOpen} open={isOpen} overlayRadius>
+    <IconPickerOverlay open={isOpen} overlayRadius setOpen={setIsOpen}>
       <IconPickerContainer>
         <ExitForm onClick={handleExit}>&#10005;</ExitForm>
         <IconsList>
-          {iconsNames.map((icon, index) => (
+          {ICON_NAMES.map((icon, index) => (
             <IconsListItem
-              key={index}
-              data-name={icon}
-              onClick={handleClick}
               bgColor={itemsColor}
+              data-name={icon}
+              key={index}
+              onClick={handleClick}
             >
-              <img src={`/assets/icons/${icon}.svg`} alt={`${icon} icon`} />
+              <img alt={`${icon} icon`} src={`/assets/icons/${icon}.svg`} />
             </IconsListItem>
           ))}
         </IconsList>

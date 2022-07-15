@@ -1,5 +1,5 @@
-import { render } from '../../utils/testsWrapper';
 import ResetPassword from './ResetPassword';
+import { render } from '../../utils/testsWrapper';
 
 describe('reset-password.jsx', () => {
   it('renders ResetPassword component', () => {

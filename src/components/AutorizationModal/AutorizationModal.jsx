@@ -1,29 +1,26 @@
-import React from 'react';
-
 import Overlay from '../Overlay/Overlay';
-
+import React from 'react';
 import {
+  CustomModalButton,
   CustomModalContainer,
   CustomModalExit,
-  CustomModalTitle,
-  CustomModalButton
+  CustomModalTitle
 } from '../CustomModal/CustomModal.styles';
-
 import {
-  ModalInput,
-  ModalLabel,
   ErrorMessage,
-  ModalForm
+  ModalForm,
+  ModalInput,
+  ModalLabel
 } from './AutorizationModal.styles';
 
 const AuthorizationModal = ({
-  open,
-  setOpen,
-  setError,
   errorMessage,
-  setInput,
-  inputValue,
   inputFunction,
+  inputValue,
+  open,
+  setError,
+  setInput,
+  setOpen,
   submitFunction
 }) => {
   const handleExit = () => {
@@ -31,28 +28,29 @@ const AuthorizationModal = ({
     setError('');
     setInput('');
   };
+
+  const submitHandler = e => {
+    e.preventDefault();
+    submitFunction();
+  };
+
   return (
     <Overlay
       open={open}
-      setOpen={setOpen}
       setError={setError}
       setInput={setInput}
+      setOpen={setOpen}
     >
-      <CustomModalContainer open={open} large>
+      <CustomModalContainer large open={open}>
         <CustomModalExit onClick={handleExit}>&#10005;</CustomModalExit>
-        <ModalForm
-          onSubmit={e => {
-            e.preventDefault();
-            submitFunction();
-          }}
-        >
+        <ModalForm onSubmit={submitHandler}>
           <CustomModalTitle>Are you sure?</CustomModalTitle>
           <ModalLabel>Enter your password</ModalLabel>
           <ModalInput
-            type="password"
-            value={inputValue || ''}
             onChange={e => inputFunction(e)}
             required
+            type="password"
+            value={inputValue || ''}
           />
           <ErrorMessage>{errorMessage}</ErrorMessage>
           <CustomModalButton large>Confirm</CustomModalButton>

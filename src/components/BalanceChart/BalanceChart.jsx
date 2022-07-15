@@ -1,10 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-
+import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { formatCurrency } from '../../redux/finance/finance.utils';
+import { useHistory } from 'react-router-dom';
 
-const BalanceChart = ({ data, currency }) => {
+const BalanceChart = ({ currency, data }) => {
   const history = useHistory();
 
   const innerWidth = window.innerWidth;
@@ -12,31 +11,34 @@ const BalanceChart = ({ data, currency }) => {
 
   if (innerWidth >= 3840) sizeModifier += 5;
 
+  const cellClickHandler = slice => () =>
+    history.push(`/${slice.name.toLowerCase()}`);
+
   const renderLabel = function (entry) {
     return formatCurrency(entry.amount, currency);
   };
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer height="100%" width="100%">
       <PieChart margin={{ top: 30 }}>
         <Pie
-          data={data}
-          dataKey="amount"
-          nameKey="name"
           cx="50%"
           cy={innerWidth >= 1024 ? '75%' : '90%'}
-          startAngle={0}
+          data={data}
+          dataKey="amount"
           endAngle={180}
           innerRadius={innerWidth > 700 ? 100 + 30 * sizeModifier : '60'}
+          label={renderLabel}
+          nameKey="name"
           outerRadius={innerWidth > 700 ? 150 + 30 * sizeModifier : '85'}
           paddingAngle={1}
-          label={renderLabel}
+          startAngle={0}
         >
           {data.map((entry, index) => (
             <Cell
-              key={`${index}`}
               fill={entry.bgColor}
-              onClick={() => history.push(`/${entry.name.toLowerCase()}`)}
+              key={index}
+              onClick={cellClickHandler(entry)}
             />
           ))}
         </Pie>

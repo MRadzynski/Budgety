@@ -1,11 +1,10 @@
+import financeReducer from './finance/finance.reducer';
+import userReducer from './user/user.reducer';
 import { combineReducers } from 'redux';
 
-import userReducer from './user/user.reducer';
-import financeReducer from './finance/finance.reducer';
-
 const rootReducer = combineReducers({
-  user: userReducer,
   finance: financeReducer,
+  user: userReducer
 });
 
 export default rootReducer;

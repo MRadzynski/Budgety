@@ -1,5 +1,5 @@
-import { render, screen } from '../../utils/testsWrapper';
 import ErrorBoundary from './ErrorBoundary';
+import { render, screen } from '../../utils/testsWrapper';
 
 describe('error-boundaries.jsx', () => {
   it('throws an error when error happen inside Error Boundaries', () => {

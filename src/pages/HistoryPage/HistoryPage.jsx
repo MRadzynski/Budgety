@@ -1,21 +1,17 @@
-import React from 'react';
-
 import HistoryList from '../../components/HistoryList/HistoryList';
-
+import React from 'react';
 import {
   HistoryPageContainer,
-  HistoryTitle,
-  HistorySubtitle
+  HistorySubtitle,
+  HistoryTitle
 } from './HistoryPage.styles';
 
-const HistoryPage = () => {
-  return (
-    <HistoryPageContainer>
-      <HistoryTitle>History</HistoryTitle>
-      <HistorySubtitle>Summary of your previous months</HistorySubtitle>
-      <HistoryList />
-    </HistoryPageContainer>
-  );
-};
+const HistoryPage = () => (
+  <HistoryPageContainer>
+    <HistoryTitle>History</HistoryTitle>
+    <HistorySubtitle>Summary of your previous months</HistorySubtitle>
+    <HistoryList />
+  </HistoryPageContainer>
+);
 
 export default HistoryPage;

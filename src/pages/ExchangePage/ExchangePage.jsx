@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-
 import ExchangeWindow from '../../components/ExchangeWindow/ExchangeWindow';
-
+import React, { useState } from 'react';
 import {
-  ExchangeContainer,
-  ExchangeTitle,
-  ExchangeSubTitle,
+  ExchangeButton,
   ExchangeButtonsContainer,
-  ExchangeButton
+  ExchangeContainer,
+  ExchangeSubTitle,
+  ExchangeTitle
 } from './ExchangePage.styles';
 
 const ExchangePage = () => {
   const [type, setType] = useState('monthly');
 
-  const handleClickMonthly = () => setType('monthly');
   const handleClickAllTime = () => setType('allTime');
+
+  const handleClickMonthly = () => setType('monthly');
 
   return (
     <ExchangeContainer>

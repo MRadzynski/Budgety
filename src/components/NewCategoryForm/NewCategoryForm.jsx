@@ -1,10 +1,19 @@
-import { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { useHistory, useParams } from 'react-router';
-import { v4 as uuidv4 } from 'uuid';
-
 import IconPicker from '../IconPicker/IconPicker';
-
+import {
+  CategoryFieldGroup,
+  CategoryForm,
+  CategoryIconContainer,
+  CategoryInputContainer,
+  CategoryInputField,
+  CategoryLabelField,
+  CustomButtonStyled,
+  ErrorMessage,
+  ExitForm,
+  FormHeading,
+  NewCategoryFormContainer
+} from './NewCategoryForm.styles';
+import { connect } from 'react-redux';
+import { formatName } from '../../redux/finance/finance.utils';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import {
   selectExpenses,
@@ -12,43 +21,31 @@ import {
   selectIncome,
   selectIncomeLogs
 } from '../../redux/finance/finance.selectors';
-
 import { updateFinances } from '../../firebase/firebase.utils';
-import { formatName } from '../../redux/finance/finance.utils';
-
-import {
-  NewCategoryFormContainer,
-  ExitForm,
-  FormHeading,
-  CategoryForm,
-  CategoryFieldGroup,
-  CategoryLabelField,
-  CategoryInputField,
-  CategoryIconContainer,
-  CustomButtonStyled,
-  CategoryInputContainer,
-  ErrorMessage
-} from './NewCategoryForm.styles';
+import { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
 
 const NewCategoryForm = ({
-  type,
-  edit,
   currentUser,
+  edit,
   expenses,
-  income,
   expensesLogs,
-  incomeLogs
+  income,
+  incomeLogs,
+  type
 }) => {
-  const history = useHistory();
-  const params = useParams();
-  const [isOpen, setIsOpen] = useState(false);
-  const [error, setError] = useState('');
-  const [currentEditedCategory, setCurrentEditedCategory] = useState(null);
   const [categoryData, setCategoryData] = useState({
     category: '',
     bgColor: '#000000',
     icon: 'other'
   });
+  const [currentEditedCategory, setCurrentEditedCategory] = useState(null);
+  const [error, setError] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const history = useHistory();
+  const params = useParams();
 
   useEffect(() => {
     if (type === 'expenses' && edit) {
@@ -64,14 +61,17 @@ const NewCategoryForm = ({
     } else {
       return;
     }
-  }, [edit, expenses, income, type, params.categoryId]);
+  }, [edit, expenses, income, params.categoryId, type]);
 
   useEffect(() => {
     if (currentEditedCategory) {
-      const { category, bgColor, icon } = currentEditedCategory;
-      setCategoryData({ category: category, bgColor: bgColor, icon: icon });
+      const { bgColor, category, icon } = currentEditedCategory;
+
+      setCategoryData({ bgColor: bgColor, category: category, icon: icon });
     }
   }, [currentEditedCategory]);
+
+  const handleExit = () => history.push(`/${type}`);
 
   const handleOnChange = e => {
     const { name, value } = e.target;
@@ -103,11 +103,11 @@ const NewCategoryForm = ({
     }
 
     const newCategoryData = {
-      id: uuidv4(),
-      category: formatName(categoryData.category),
       amount: 0,
       bgColor: categoryData.bgColor,
+      category: formatName(categoryData.category),
       icon: categoryData.icon,
+      id: uuidv4(),
       logs: []
     };
 
@@ -121,22 +121,24 @@ const NewCategoryForm = ({
       updateFinances(currentUser.id, null, newIncomeObj, incomeLogs);
     } else if (type === 'expenses' && edit) {
       const { category, bgColor, icon } = newCategoryData;
+
       const newExpenses = expenses.map(expense =>
         expense.id === params.categoryId
-          ? { ...expense, category: category, bgColor: bgColor, icon: icon }
+          ? { ...expense, bgColor, category, icon }
           : expense
       );
 
       updateFinances(currentUser.id, newExpenses, null, expensesLogs);
     } else if (type === 'income' && edit) {
-      const { category, bgColor, icon } = newCategoryData;
+      const { bgColor, category, icon } = newCategoryData;
+
       const newIncome = income.map(singleIncome =>
         singleIncome.id === params.categoryId
           ? {
               ...singleIncome,
-              category: category,
-              bgColor: bgColor,
-              icon: icon
+              bgColor,
+              category,
+              icon
             }
           : singleIncome
       );
@@ -149,19 +151,19 @@ const NewCategoryForm = ({
 
   return (
     <NewCategoryFormContainer>
-      <ExitForm onClick={() => history.push(`/${type}`)}>&#10005;</ExitForm>
+      <ExitForm onClick={handleExit}>&#10005;</ExitForm>
       <FormHeading>Add Category</FormHeading>
       <CategoryForm onSubmit={handleSubmit}>
         <CategoryFieldGroup>
           <CategoryLabelField>Name</CategoryLabelField>
           <CategoryInputContainer>
             <CategoryInputField
-              type="text"
-              name="category"
               error={error}
+              name="category"
               onChange={handleOnChange}
-              value={categoryData.category}
               required
+              type="text"
+              value={categoryData.category}
             />
             {error && <ErrorMessage>{error}</ErrorMessage>}
           </CategoryInputContainer>
@@ -169,43 +171,43 @@ const NewCategoryForm = ({
         <CategoryFieldGroup>
           <CategoryLabelField>Color</CategoryLabelField>
           <CategoryInputField
-            type="color"
             name="bgColor"
             onChange={handleOnChange}
-            value={categoryData.bgColor}
             required
+            type="color"
+            value={categoryData.bgColor}
           />
         </CategoryFieldGroup>
         <CategoryFieldGroup>
           <CategoryLabelField>Icon</CategoryLabelField>
           <CategoryIconContainer
-            onClick={() => setIsOpen(true)}
             bgColor={categoryData.bgColor}
+            onClick={() => setIsOpen(true)}
           >
             {categoryData.icon ? (
               <img
-                src={`/assets/icons/${categoryData.icon}.svg`}
                 alt={`${categoryData.icon} icon`}
+                src={`/assets/icons/${categoryData.icon}.svg`}
               />
             ) : (
-              <img src={`/assets/icons/other.svg`} alt={`other icon`} />
+              <img alt="Other icon" src="/assets/icons/other.svg" />
             )}
           </CategoryIconContainer>
         </CategoryFieldGroup>
         {isOpen && (
           <IconPicker
-            setCategoryData={setCategoryData}
-            setIsOpen={setIsOpen}
             isOpen={isOpen}
             itemsColor={categoryData.bgColor}
+            setCategoryData={setCategoryData}
+            setIsOpen={setIsOpen}
           />
         )}
 
         <CustomButtonStyled
-          type="submit"
           bgColor="var(--primary-color)"
           hoverColor="#395ae0"
           textColor="var(--white-shade)"
+          type="submit"
         >
           {edit ? 'Edit Category' : 'Add Category'}
         </CustomButtonStyled>
@@ -217,8 +219,8 @@ const NewCategoryForm = ({
 const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state),
   expenses: selectExpenses(state),
-  income: selectIncome(state),
   expensesLogs: selectExpensesLogs(state),
+  income: selectIncome(state),
   incomeLogs: selectIncomeLogs(state)
 });
 
