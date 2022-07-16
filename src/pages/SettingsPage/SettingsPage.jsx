@@ -31,7 +31,7 @@ import {
   selectCurrentUser,
   selectDisplayName
 } from '../../redux/user/user.selectors';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const SettingsPage = ({
   currency,
@@ -49,7 +49,7 @@ const SettingsPage = ({
   const [openPopup, setOpenPopup] = useState(false);
   const [password, setPassword] = useState('');
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleBlur = () => {
     if (displayName === newDisplayName) return;
@@ -71,7 +71,7 @@ const SettingsPage = ({
 
   const handleDeleteSubmit = () => {
     reauthenticateAndDeleteUser(password)
-      .then(() => history.push('/signin'))
+      .then(() => navigate('/signin'))
       .catch(error => {
         if (error.code === `auth/user-mismatch`) {
           setErrorMessage('Incorrect user data, please try again!');

@@ -7,13 +7,12 @@ import {
   NotFoundText
 } from './NotFound.styles';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NotFound = ({ currentUser }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  const handleClick = () =>
-    currentUser ? history.push('/') : history.push('/signin');
+  const handleClick = () => (currentUser ? navigate('/') : navigate('/signin'));
 
   return (
     <NotFoundContainer>

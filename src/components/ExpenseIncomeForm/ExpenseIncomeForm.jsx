@@ -22,7 +22,7 @@ import {
 } from '../../redux/finance/finance.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { updateFinances } from '../../firebase/firebase.utils';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 
 const ExpenseIncomeForm = ({
@@ -41,8 +41,8 @@ const ExpenseIncomeForm = ({
   const [open, setOpen] = useState(false);
   const [price, setPrice] = useState(0);
 
-  const history = useHistory();
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const index = location.pathname.lastIndexOf('/');
@@ -62,7 +62,7 @@ const ExpenseIncomeForm = ({
     setPrice(correctNum);
   };
 
-  const handleExit = () => history.push(`/${type}`);
+  const handleExit = () => navigate(`/${type}`);
 
   const handleRevert = () => {
     if (type === 'expenses') {
