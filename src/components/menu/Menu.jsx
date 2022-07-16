@@ -7,15 +7,15 @@ import {
   MenuList,
   MenuOverlay
 } from './Menu.styles';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = ({ open, toggleOpen }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     await auth.signOut();
 
-    return history.push('/signin');
+    return navigate('/signin');
   };
 
   return (

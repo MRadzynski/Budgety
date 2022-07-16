@@ -23,7 +23,7 @@ import {
 } from '../../redux/finance/finance.selectors';
 import { updateFinances } from '../../firebase/firebase.utils';
 import { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 
 const NewCategoryForm = ({
@@ -44,7 +44,7 @@ const NewCategoryForm = ({
   const [error, setError] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const NewCategoryForm = ({
     }
   }, [currentEditedCategory]);
 
-  const handleExit = () => history.push(`/${type}`);
+  const handleExit = () => navigate(`/${type}`);
 
   const handleOnChange = e => {
     const { name, value } = e.target;
@@ -146,7 +146,7 @@ const NewCategoryForm = ({
       updateFinances(currentUser.id, null, newIncome, incomeLogs);
     }
 
-    history.push(`/${type}`);
+    navigate(`/${type}`);
   };
 
   return (

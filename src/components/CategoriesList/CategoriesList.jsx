@@ -21,7 +21,7 @@ import {
   selectIncomeLogs
 } from '../../redux/finance/finance.selectors';
 import { updateFinances } from '../../firebase/firebase.utils';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 const CategoriesList = ({
   categoriesData,
@@ -35,8 +35,8 @@ const CategoriesList = ({
   const [categoryToDelete, setCategoryToDelete] = useState(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const history = useHistory();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const deleteCategory = () => {
     let newCategoriesData;
@@ -69,7 +69,7 @@ const CategoriesList = ({
       pathname = `${originPathname}/add-${targetURL}`;
     }
 
-    history.push(pathname);
+    navigate(pathname);
   };
 
   const handleDeleteClick = e => {
@@ -83,7 +83,7 @@ const CategoriesList = ({
     e.stopPropagation();
     const categoryId = e.target.id;
 
-    history.push(`${location.pathname}/edit-category/${categoryId}`);
+    navigate(`${location.pathname}/edit-category/${categoryId}`);
   };
 
   return !categoriesData ? (

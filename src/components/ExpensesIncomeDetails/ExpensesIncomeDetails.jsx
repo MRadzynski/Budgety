@@ -14,7 +14,7 @@ import {
   selectLatestExpenses,
   selectLatestIncome
 } from '../../redux/finance/finance.selectors';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const ExpensesIncomeDetails = ({
   currency,
@@ -22,10 +22,10 @@ const ExpensesIncomeDetails = ({
   latestExpenses,
   latestIncome
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClick = () =>
-    history.push(`${currentPath}/add-${currentPath.slice(1)}`);
+    navigate(`${currentPath}/add-${currentPath.slice(1)}`);
 
   const newCategoryFormType = currentPath.split('/')[1];
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { formatCurrency } from '../../redux/finance/finance.utils';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const BalanceChart = ({ currency, data }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const innerWidth = window.innerWidth;
   let sizeModifier = Math.floor(innerWidth / 640) - 1;
@@ -12,7 +12,7 @@ const BalanceChart = ({ currency, data }) => {
   if (innerWidth >= 3840) sizeModifier += 5;
 
   const cellClickHandler = slice => () =>
-    history.push(`/${slice.name.toLowerCase()}`);
+    navigate(`/${slice.name.toLowerCase()}`);
 
   const renderLabel = function (entry) {
     return formatCurrency(entry.amount, currency);
