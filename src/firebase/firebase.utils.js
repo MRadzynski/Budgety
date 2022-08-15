@@ -1,9 +1,35 @@
-import 'firebase/auth';
-import 'firebase/firestore';
-import firebase from 'firebase/app';
 import FinanceSchema from './finances.schema';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  onSnapshot,
+  query,
+  setDoc,
+  updateDoc,
+  where
+} from 'firebase/firestore';
+import {
+  createUserWithEmailAndPassword,
+  deleteUser,
+  EmailAuthProvider,
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  reauthenticateWithCredential,
+  reauthenticateWithPopup,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut
+} from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
 
-const config = {
+const CONFIG = {
   apiKey: 'AIzaSyB3uJxFSTpQpdqN9XOT3HtDrRi0aY3_y-Q',
   appId: '1:797033158597:web:e36e130ca99fcdf8679dac',
   authDomain: 'budgety-database.firebaseapp.com',
@@ -12,88 +38,95 @@ const config = {
   storageBucket: 'budgety-database.appspot.com'
 };
 
-firebase.initializeApp(config);
+const firebaseApp = initializeApp(CONFIG);
+
+export const auth = getAuth(firebaseApp);
+
+export const firestore = getFirestore(firebaseApp);
 
 export const createUserDocument = async (userAuth, additionalData) => {
   try {
     if (!userAuth) return;
 
-    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const userRef = doc(firestore, `users/${userAuth.uid}`);
+    const userSnapshot = await getDoc(userRef);
 
-    const userSnapshot = await userRef.get();
-
-    if (!userSnapshot.exists) {
+    if (!userSnapshot.exists()) {
       const { email } = userAuth;
       const createdAt = new Date();
 
-      await userRef.set({
+      await setDoc(userRef, {
         createdAt,
         email,
         ...additionalData
       });
     }
+
     return userRef;
   } catch (error) {
-    throw new Error({ message: `Couldn't create user document` });
+    throw new Error(`Couldn't create a user document`);
   }
 };
 
+export const createEmailAndPasswordUser = (email, password) =>
+  createUserWithEmailAndPassword(auth, email, password);
+
 export const deleteAccount = async userId => {
   try {
-    const financesRef = firestore
-      .collection('finances')
-      .where('userId', '==', userId);
-    const financesSnapshot = await financesRef.get();
+    const user = auth.currentUser;
 
-    await financesSnapshot.docs[0].ref.delete();
-    await firestore.doc(`users/${userId}`).delete();
-    await auth.currentUser.delete();
+    const financesRef = collection(firestore, 'finances');
+    const financesQuery = query(financesRef, where('userId', '==', userId));
+    const financesSnapshot = await getDocs(financesQuery);
+
+    await deleteDoc(financesSnapshot.docs[0].ref);
+    await deleteDoc(doc(firestore, `users/${userId}`));
+    await deleteUser(user);
   } catch (error) {
-    throw new Error({ message: `Couldn't perform this action` });
+    throw new Error(`Couldn't delete an account`);
   }
 };
 
 export const getUserFinancesRef = async userId => {
-  const financesRef = firestore
-    .collection('finances')
-    .where('userId', '==', userId);
-  const financesSnapshot = await financesRef.get();
+  try {
+    const financesRef = collection(firestore, 'finances');
+    const financesQuery = query(financesRef, where('userId', '==', userId));
+    const financesSnapshot = await getDocs(financesQuery);
 
-  if (financesSnapshot.empty) {
-    const financesDocRef = firestore.collection('finances').doc();
-    await financesDocRef.set({
-      currency: FinanceSchema.currency,
-      expenses: FinanceSchema.expenses,
-      expensesLogs: FinanceSchema.expensesLogs,
-      historyLogs: FinanceSchema.historyLogs,
-      income: FinanceSchema.income,
-      incomeLogs: FinanceSchema.incomeLogs,
-      userId
-    });
-    return financesDocRef;
-  } else {
-    return financesSnapshot.docs[0].ref;
+    if (financesSnapshot.empty) {
+      const createdDocRef = await addDoc(financesRef, {
+        currency: FinanceSchema.currency,
+        expenses: FinanceSchema.expenses,
+        expensesLogs: FinanceSchema.expensesLogs,
+        historyLogs: FinanceSchema.historyLogs,
+        income: FinanceSchema.income,
+        incomeLogs: FinanceSchema.incomeLogs,
+        userId
+      });
+
+      return createdDocRef;
+    } else {
+      return financesSnapshot.docs[0].ref;
+    }
+  } catch (error) {
+    throw new Error(`Couldn't get database data`);
   }
 };
 
 export const reauthenticateAndDeleteUser = (password = '') => {
-  const user = firebase.auth().currentUser;
+  const user = auth.currentUser;
   const provider = user.providerData[0].providerId;
 
   if (provider === 'password') {
-    const credentials = firebase.auth.EmailAuthProvider.credential(
-      user.email,
-      password
-    );
-    return user
-      .reauthenticateWithCredential(credentials)
+    const credentials = EmailAuthProvider.credential(user.email, password);
+
+    return reauthenticateWithCredential(user, credentials)
       .then(() => deleteAccount(user.uid))
       .catch(error => {
         throw error;
       });
   } else if (provider === 'google.com') {
-    return user
-      .reauthenticateWithPopup(googleProvider)
+    return reauthenticateWithPopup(user, googleProvider)
       .then(() => deleteAccount(user.uid))
       .catch(error => {
         throw error;
@@ -112,72 +145,125 @@ export const resetUserPassword = async email => {
           ? 'http://localhost:3000/signin'
           : 'https://budgety-live.herokuapp.com/signin'
     };
-    await auth.sendPasswordResetEmail(email, actionCodeSettings);
+
+    await sendPasswordResetEmail(auth, email, actionCodeSettings);
   } catch (error) {
-    throw error;
+    throw new Error(`Couldn't reset users password`);
   }
 };
 
+export const signInEmailAndPasswordUser = (email, password) =>
+  signInWithEmailAndPassword(auth, email, password);
+
+export const signOutFromApp = () => signOut(auth);
+
+export const subscribeToFirebase = ({
+  setCurrency,
+  setCurrentUser,
+  setFinances
+}) =>
+  onAuthStateChanged(auth, async userAuth => {
+    try {
+      if (userAuth) {
+        const userRef = await createUserDocument(userAuth);
+        const financeRef = await getUserFinancesRef(userAuth.uid);
+
+        onSnapshot(userRef, snapshot => {
+          setCurrentUser({ id: snapshot.id, ...snapshot.data() });
+        });
+
+        onSnapshot(financeRef, snapshot => {
+          setFinances({
+            expenses: snapshot.data()?.expenses,
+            expensesLogs: snapshot.data()?.expensesLogs,
+            historyLogs: snapshot.data()?.historyLogs,
+            income: snapshot.data()?.income,
+            incomeLogs: snapshot.data()?.incomeLogs
+          });
+
+          setCurrency(snapshot.data()?.currency);
+        });
+      } else {
+        setCurrentUser(null);
+        setFinances({
+          expenses: null,
+          expensesLogs: null,
+          historyLogs: null,
+          income: null,
+          incomeLogs: null
+        });
+        setCurrency(null);
+      }
+    } catch (error) {
+      throw new Error(`Something went wrong`);
+    }
+  });
+
 export const updateCurrency = async (userId, newCurrency) => {
-  const financesRef = firestore
-    .collection('finances')
-    .where('userId', '==', userId);
+  try {
+    const financesRef = collection(firestore, 'finances');
+    const financesQuery = query(financesRef, where('userId', '==', userId));
+    const financesSnapshot = await getDocs(financesQuery);
 
-  const financesSnapshot = await financesRef.get();
-
-  await financesSnapshot.docs[0].ref.update({ currency: newCurrency });
+    await updateDoc(financesSnapshot.docs[0].ref, { currency: newCurrency });
+  } catch (error) {
+    throw new Error(`Couldn't update the currency`);
+  }
 };
 
 export const updateDisplayName = async (user, displayName) => {
-  const userRef = firestore.doc(`users/${user.id}`);
+  try {
+    const userRef = doc(firestore, `users/${user.id}`);
 
-  await userRef.update({ ...user, displayName: displayName });
+    await updateDoc(userRef, { ...user, displayName: displayName });
+  } catch (error) {
+    throw new Error(`Couldn't update the profile's display name`);
+  }
 };
 
 export const updateFinances = async (userId, expenseObj, incomeObj, logs) => {
-  const financesRef = firestore
-    .collection('finances')
-    .where('userId', '==', userId);
-  const financesSnapshot = await financesRef.get();
+  try {
+    const financesRef = collection(firestore, 'finances');
+    const financesQuery = query(financesRef, where('userId', '==', userId));
+    const financesSnapshot = await getDocs(financesQuery);
 
-  if (expenseObj === null) {
-    await financesSnapshot.docs[0].ref.update({
-      income: incomeObj,
-      incomeLogs: logs
-    });
-  } else if (incomeObj === null) {
-    await financesSnapshot.docs[0].ref.update({
-      expenses: expenseObj,
-      expensesLogs: logs
-    });
-  } else {
-    await financesSnapshot.docs[0].ref.update({
-      expenses: expenseObj,
-      expensesLogs: logs,
-      historyLogs: logs,
-      income: incomeObj,
-      incomeLogs: logs
-    });
+    if (expenseObj === null) {
+      await updateDoc(financesSnapshot.docs[0].ref, {
+        income: incomeObj,
+        incomeLogs: logs
+      });
+    } else if (incomeObj === null) {
+      await updateDoc(financesSnapshot.docs[0].ref, {
+        expenses: expenseObj,
+        expensesLogs: logs
+      });
+    } else {
+      await updateDoc(financesSnapshot.docs[0].ref, {
+        expenses: expenseObj,
+        expensesLogs: logs,
+        historyLogs: logs,
+        income: incomeObj,
+        incomeLogs: logs
+      });
+    }
+  } catch (error) {
+    throw new Error(`Couldn't update data in the database`);
   }
 };
 
 export const updateHistory = async (userId, history) => {
-  const financesRef = firestore
-    .collection('finances')
-    .where('userId', '==', userId);
+  try {
+    const financesRef = collection(firestore, 'finances');
+    const financesQuery = query(financesRef, where('userId', '==', userId));
+    const financesSnapshot = await getDocs(financesQuery);
 
-  const financesSnapshot = await financesRef.get();
-
-  await financesSnapshot.docs[0].ref.update({ historyLogs: history });
+    await updateDoc(financesSnapshot.docs[0].ref, { historyLogs: history });
+  } catch (error) {
+    throw new Error(`Couldn't update data in the database`);
+  }
 };
 
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
-
-export const auth = firebase.auth();
-
-export const firestore = firebase.firestore();
-
-export default firebase;
+export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
