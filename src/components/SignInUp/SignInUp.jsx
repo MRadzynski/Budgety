@@ -1,9 +1,10 @@
 import CustomButton from '../CustomButton/CustomButton';
 import React, { useState } from 'react';
 import {
-  auth,
+  createEmailAndPasswordUser,
   createUserDocument,
   resetUserPassword,
+  signInEmailAndPasswordUser,
   signInWithGoogle
 } from '../../firebase/firebase.utils';
 import {
@@ -60,14 +61,11 @@ const SignInUp = ({ formType }) => {
           return;
         }
 
-        const { user } = await auth.createUserWithEmailAndPassword(
-          email,
-          password
-        );
+        const { user } = await createEmailAndPasswordUser(email, password);
 
         await createUserDocument(user, { displayName });
       } else if (formType === 'sign-in') {
-        await auth.signInWithEmailAndPassword(email, password);
+        await signInEmailAndPasswordUser(email, password);
       } else {
         await resetUserPassword(email);
         setIsMessage('true');

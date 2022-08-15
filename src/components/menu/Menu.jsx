@@ -1,5 +1,4 @@
 import React from 'react';
-import { auth } from '../../firebase/firebase.utils';
 import {
   MenuContainer,
   MenuItem,
@@ -7,13 +6,14 @@ import {
   MenuList,
   MenuOverlay
 } from './Menu.styles';
+import { signOutFromApp } from '../../firebase/firebase.utils';
 import { useNavigate } from 'react-router-dom';
 
 const Menu = ({ open, toggleOpen }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await auth.signOut();
+    await signOutFromApp();
 
     return navigate('/signin');
   };
