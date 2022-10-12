@@ -11,6 +11,7 @@ Budgety consists of several different views:
 ## Technology stack
 * React (+hooks)
 * Redux
+* TypeScript
 * Firebase
 * Styled-components
 * React Router
