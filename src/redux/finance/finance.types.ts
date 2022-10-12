@@ -1,0 +1,6 @@
+export const FinanceActionTypes = {
+  SET_CURRENCY: 'SET_CURRENCY',
+  SET_EXPENSES: 'SET_EXPENSES',
+  SET_FINANCES: 'SET_FINANCES',
+  SET_INCOME: 'SET_INCOME'
+};
