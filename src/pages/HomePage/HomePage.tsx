@@ -1,6 +1,5 @@
 import BalanceChart from '../../components/BalanceChart/BalanceChart';
 import ExpensesIncomeBarchart from '../../components/ExpensesIncomeBarchart/ExpensesIncomeBarchart';
-import React from 'react';
 import {
   ChartContainer,
   ChartText,

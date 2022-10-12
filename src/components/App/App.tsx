@@ -2,7 +2,7 @@ import AppRoutes from '../AppRoutes/AppRoutes';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import GlobalStyle from '../../styles/GlobalStyles';
 import Navbar from '../Navbar/Navbar';
-import React, { Dispatch, useEffect } from 'react';
+import { Dispatch, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   ExpensesIncomeWithLogsData,

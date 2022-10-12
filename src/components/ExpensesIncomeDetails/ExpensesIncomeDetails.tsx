@@ -1,7 +1,6 @@
 import CategoriesList from '../CategoriesList/CategoriesList';
 import ExpenseIncomeForm from '../ExpenseIncomeForm/ExpenseIncomeForm';
 import NewCategoryForm from '../NewCategoryForm/NewCategoryForm';
-import React from 'react';
 import { connect } from 'react-redux';
 import {
   CustomButtonStyled,

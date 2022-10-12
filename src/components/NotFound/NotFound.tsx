@@ -1,5 +1,4 @@
 import CustomButton from '../CustomButton/CustomButton';
-import React from 'react';
 import { connect } from 'react-redux';
 import { ICurrentUser } from '../../utils/interfaces';
 import {

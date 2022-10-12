@@ -1,6 +1,5 @@
 import Chart from '../../components/Chart/Chart';
 import ExpensesIncomeDetails from '../../components/ExpensesIncomeDetails/ExpensesIncomeDetails';
-import React from 'react';
 import Spinner from '../../components/Spinner/Spinner';
 import {
   ChartContainer,

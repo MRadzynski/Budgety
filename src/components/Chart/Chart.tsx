@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChartDataObject } from '../../utils/interfaces';
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { CustomButtonContainer } from './CustomButton.styles';
 
 interface CustomButtonProps {

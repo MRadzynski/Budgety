@@ -1,6 +1,6 @@
 import Hamburger from '../Hamburger/Hamburger';
 import Menu from '../Menu/Menu';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavbarContainer } from './Navbar.styles';
 
 const Navbar = () => {

@@ -1,5 +1,5 @@
 import ExpensesIncomeBarchart from '../ExpensesIncomeBarchart/ExpensesIncomeBarchart';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import {
   DateDescription,

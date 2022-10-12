@@ -1,5 +1,4 @@
 import Overlay from '../Overlay/Overlay';
-import React from 'react';
 import {
   CustomPopupContainer,
   CustomPopupText,

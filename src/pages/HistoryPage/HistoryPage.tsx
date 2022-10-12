@@ -1,5 +1,4 @@
 import HistoryList from '../../components/HistoryList/HistoryList';
-import React from 'react';
 import {
   HistoryPageContainer,
   HistorySubtitle,

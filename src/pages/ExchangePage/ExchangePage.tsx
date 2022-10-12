@@ -1,5 +1,5 @@
 import ExchangeWindow from '../../components/ExchangeWindow/ExchangeWindow';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   ExchangeButton,
   ExchangeButtonsContainer,

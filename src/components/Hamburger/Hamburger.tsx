@@ -1,4 +1,3 @@
-import React from 'react';
 import { HamburgerContainer } from './Hamburger.styles';
 import { useLocation } from 'react-router';
 
