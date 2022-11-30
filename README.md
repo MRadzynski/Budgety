@@ -21,6 +21,6 @@ Budgety consists of several different views:
 ## Personal insights
 Budgety is the first React app I have ever written by myself and I think a personal milestone in my fairly new developer career. I learned a lot, starting with routing through state management (with Redux), consuming API ending with Firebase. It was a huge amount of knowledge for me and it definitely broadened my horizons. There were plenty of challenges during development, but it gave me such satisfaction that it was definitely worth it!
 ## Visit an app
-You can test the web app under this URL: https://budgety-live.herokuapp.com/
+You can test the web app under this URL: https://budgety-v17y.onrender.com
 
 In case you wouldn't like to create an account there is one for testing purposes:   login: test@test.com, password: zaq1@WSX
